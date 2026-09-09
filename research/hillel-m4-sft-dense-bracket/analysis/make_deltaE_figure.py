@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """M4 denser 90–105° same-geometry SF-TDA figure: ACS plot (Fig 1).
 
-Reads results/dense_bracket_metrics.json at runtime for the two
-geometry-family series (S0-relaxed and T1-relaxed) and each family's
-100–105 linear interpolant. Does not invent points and does not label
-an interpolant as an MECP or an evaluated degeneracy. Lab frames are
+Reads analysis/points.json for the two geometry-family series
+(S0-relaxed and T1-relaxed), open/filled reuse flags, and each
+family's stored 100–105 linear interpolant. Does not invent points,
+does not recompute zeros from rounded ΔE, and does not label an
+interpolant as an MECP or an evaluated degeneracy. Lab frames are
 optional: a clean checkout writes the data plot and exits 0.
 
 Usage:
@@ -25,7 +26,7 @@ from PIL import Image, ImageDraw, ImageFont
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 REPO_ROOT = ROOT.parents[1]
-METRICS_PATH = ROOT / "results" / "dense_bracket_metrics.json"
+POINTS_PATH = HERE / "points.json"
 FRAMES = ROOT / "frames"
 OUT_PREVIEW = HERE / "fig_deltaE_vs_phi.png"
 OUT_PUBLISHED = REPO_ROOT / "images" / "hillel-m4-sft-dense-bracket-figure1.png"
@@ -63,7 +64,7 @@ PLOT_FONT_PX = canvas_font_px(PLOT_W)    # 32
 STILL_FONT_PX = canvas_font_px(STILL_W)  # 43
 
 INK = np.array([38, 38, 38], dtype=np.float64)       # ~0.15 near-black
-ZERO_C = np.array([22, 22, 22], dtype=np.float64)
+ZERO_C = np.array([168, 168, 168], dtype=np.float64)  # grey ΔE=0 hairline
 SERIES_S0 = np.array([36, 74, 128], dtype=np.float64)   # S0-relaxed
 SERIES_T1 = np.array([166, 84, 48], dtype=np.float64)   # T1-relaxed
 WHITE = np.array([255, 255, 255], dtype=np.uint8)
@@ -78,49 +79,64 @@ CROP = (151, 28, 710, 601)  # x0, y0, x1, y1
 
 
 # ---------------------------------------------------------------------------
-# metrics — only source of plotted numbers
+# points.json — only source of plotted numbers
 # ---------------------------------------------------------------------------
 
-def load_metrics(path: Path) -> dict:
-    m = json.loads(path.read_text())
-    series = {family: [] for family in FAMILY_ORDER}
-    for p in m["points"]:
-        fam = p.get("geom_family")
-        if fam not in series:
-            raise SystemExit(f"unexpected geom_family {fam!r}")
-        if not p.get("both_assigned"):
-            raise SystemExit(
-                f"refusing to plot: {fam} φ={p.get('phi_deg')} not both_assigned"
-            )
-        series[fam].append((float(p["phi_deg"]), float(p["deltaE_kJmol"])))
-    for fam, pts in series.items():
+STORED_ZEROS = {"s0_relaxed": 103.43, "t1_relaxed": 104.34}
+
+
+def load_points(path: Path) -> dict:
+    """Load display points and stored zeros. Never interpolate from rounded ΔE."""
+    d = json.loads(path.read_text())
+    if d.get("unit") != "kJ/mol":
+        raise SystemExit(f"points.json unit must be kJ/mol, got {d.get('unit')!r}")
+    reused = [int(x) for x in d["reused_phi_deg"]]
+    new = [int(x) for x in d["new_phi_deg"]]
+    if reused != [90, 105] or new != [95, 100]:
+        raise SystemExit(f"unexpected reuse lists: reused={reused!r} new={new!r}")
+    if set(reused) & set(new):
+        raise SystemExit("a φ cannot be both reused and new")
+
+    series = {}
+    for fam in FAMILY_ORDER:
+        pts = []
+        for p in d[fam]:
+            phi = float(p["phi_deg"])
+            de = float(p["deltaE_kJmol"])
+            reused_flag = bool(p["reused"])
+            iphi = int(phi)
+            if reused_flag != (iphi in reused):
+                raise SystemExit(f"{fam} φ={iphi} reused flag does not match reused_phi_deg")
+            if (iphi in new) == reused_flag:
+                raise SystemExit(f"{fam} φ={iphi} is not exactly one of reused/new")
+            pts.append((phi, de, reused_flag))
         pts.sort(key=lambda t: t[0])
-        if [phi for phi, _ in pts] != [90, 95, 100, 105]:
+        if [int(phi) for phi, _, _ in pts] != [90, 95, 100, 105]:
             raise SystemExit(f"{fam} points are not the required window: {pts!r}")
+        series[fam] = pts
 
     interpolants = {}
-    for pair in m["neighboring_pairs"]:
-        ic = pair.get("interpolated_crossing_phi_deg")
-        fam = pair.get("geom_family")
-        if pair.get("sign_change") and ic is not None:
-            if tuple(pair["pair"]) != (100, 105):
-                raise SystemExit(f"interpolant is not on 100–105: {pair['pair']}")
-            interpolants[fam] = float(ic)
-        elif ic is not None:
-            raise SystemExit("non-null interpolant on a non-sign-change pair")
-
-    if set(interpolants) != set(FAMILY_ORDER):
-        raise SystemExit(f"expected interpolants for both families, got {interpolants!r}")
-    if abs(float(m["crossing_phi_deg_s0"]) - interpolants["s0_relaxed"]) > 1e-9:
-        raise SystemExit("crossing_phi_deg_s0 != S0-relaxed 90–105 interpolant")
-    if abs(float(m["crossing_phi_deg_t1"]) - interpolants["t1_relaxed"]) > 1e-9:
-        raise SystemExit("crossing_phi_deg_t1 != T1-relaxed 90–105 interpolant")
+    zeros = d["linear_zeros"]
+    for fam in FAMILY_ORDER:
+        z = zeros[fam]
+        stored = float(z["phi_deg"])
+        if list(z["bracket"]) != [100, 105]:
+            raise SystemExit(f"{fam} linear zero bracket is not 100–105: {z['bracket']!r}")
+        note = str(z.get("note", "")).lower()
+        if "do not recompute" not in note:
+            raise SystemExit(f"{fam} linear zero is missing the stored-zero note")
+        expected = STORED_ZEROS[fam]
+        if abs(stored - expected) > 1e-9:
+            raise SystemExit(
+                f"{fam} stored zero {stored} != {expected}; "
+                "do not recompute from rounded Delta E"
+            )
+        interpolants[fam] = stored
 
     return {
         "series": series,
         "interpolants": interpolants,
-        "method": m["method"],
-        "slug": m.get("slug", ""),
+        "unit": d["unit"],
     }
 
 
@@ -543,6 +559,12 @@ def square(rgb, cx, cy, half, color, fill=True, stroke=1.2):
     )
 
 
+def plus(rgb, cx, cy, arm, color, width=1.6):
+    """Axis-aligned + on the ΔE=0 line. Not an MECP mark."""
+    line(rgb, cx - arm, cy, cx + arm, cy, color, width)
+    line(rgb, cx, cy - arm, cx, cy + arm, color, width)
+
+
 def dashed_line(rgb, x0, y0, x1, y1, color, width=1.2, dash=9.0, gap=6.5):
     dx, dy = float(x1) - float(x0), float(y1) - float(y0)
     length = math.hypot(dx, dy)
@@ -618,11 +640,11 @@ def load_cropped_frame(surf: str, phi: int) -> np.ndarray:
 # Fig 1 — ACS plot only
 # ---------------------------------------------------------------------------
 
-def render_plot(metrics: dict, font: Font) -> np.ndarray:
+def render_plot(points: dict, font: Font) -> np.ndarray:
     rgb = np.full((PLOT_H, PLOT_W, 3), 255, np.uint8)
 
-    series = metrics["series"]
-    interpolants = metrics["interpolants"]
+    series = points["series"]
+    interpolants = points["interpolants"]
     font_px = PLOT_FONT_PX  # 17 * 1200 / 632 → 32
 
     # Full-canvas plot: no title, no subtitle, no molecule strip.
@@ -631,12 +653,12 @@ def render_plot(metrics: dict, font: Font) -> np.ndarray:
     y_label = "\u0394E = E(T1) \u2212 E(S0) (kJ/mol)"
     x_label = "\u03c6 / CNNC (deg)"
     xticks = [90, 95, 100, 105]
-    yticks = [-50, -40, -20, 0, 20]
+    yticks = [-40, -20, 0, 20]
 
     ytick_w = max(font.measure(fmt_tick(v), font_px)[0] for v in yticks)
     _, ylab_box_w = font.measure(y_label, font_px)  # height before rot = width after
     _, xlab_h = font.measure(x_label, font_px)
-    _, tick_h = font.measure("120", font_px)
+    _, tick_h = font.measure("105", font_px)
 
     left_pad = 16
     ylab_to_ticks = 16
@@ -652,8 +674,8 @@ def render_plot(metrics: dict, font: Font) -> np.ndarray:
     plot_r = PLOT_W - right_pad
     plot_t = top_pad
     plot_b = PLOT_H - (bottom_pad + xlab_h + xlab_gap + tick_h + tick_label_gap + tick_len)
-    xlim = (87.5, 107.5)  # pad only; ticks stay 90/95/100/105
-    ylim = (-62.0, 36.0)
+    xlim = (88.0, 107.2)  # pad only; ticks stay 90/95/100/105
+    ylim = (-54.0, 32.0)
 
     def X(phi):
         return plot_l + (phi - xlim[0]) / (xlim[1] - xlim[0]) * (plot_r - plot_l)
@@ -667,7 +689,7 @@ def render_plot(metrics: dict, font: Font) -> np.ndarray:
     line(rgb, plot_l, plot_t, plot_l, plot_b, INK, 0.9)
     line(rgb, plot_r, plot_t, plot_r, plot_b, INK, 0.9)
 
-    # ΔE = 0 hairline (near-black, thin) — behind the series
+    # ΔE = 0 hairline (grey, thin) — behind the series
     y0 = Y(0.0)
     line(rgb, plot_l, y0, plot_r, y0, ZERO_C, 0.85)
 
@@ -700,43 +722,42 @@ def render_plot(metrics: dict, font: Font) -> np.ndarray:
         font_px, INK, align="center", valign="top",
     )
 
-    # Two series: adjacent both-assigned neighbors only; straight segments.
-    # S0-relaxed: solid line, filled circles. T1-relaxed: dashed, filled squares.
+    # Two series: adjacent neighbors only; straight segments.
+    # S0-relaxed: solid line, circles. T1-relaxed: dashed, squares.
+    # Open = reused published two-root points; filled = new.
     for fam in FAMILY_ORDER:
         pts = series[fam]
         color = FAMILY_COLOR[fam]
-        for (a, da), (b, db) in zip(pts, pts[1:]):
+        for (a, da, _), (b, db, _) in zip(pts, pts[1:]):
             if fam == "t1_relaxed":
                 dashed_line(rgb, X(a), Y(da), X(b), Y(db), color, 2.15)
             else:
                 line(rgb, X(a), Y(da), X(b), Y(db), color, 2.15)
-        for phi, de in pts:
+        for phi, de, reused in pts:
             if fam == "s0_relaxed":
-                circle(rgb, X(phi), Y(de), 5.1, color, fill=True)
+                circle(rgb, X(phi), Y(de), 5.1, color, fill=not reused, stroke=1.8)
             else:
-                square(rgb, X(phi), Y(de), 4.6, color, fill=True)
+                square(rgb, X(phi), Y(de), 4.6, color, fill=not reused, stroke=1.8)
 
-    # Point labels from file values, 2 decimals, series color.
-    # T1 100 is drawn unlabeled so the two lin. hashes stay readable.
+    # Point labels from points.json, 2 decimals, series color. All eight.
     label_off = {
         "s0_relaxed": {
-            90: (0, 22, "center"),
-            95: (0, 22, "center"),
+            90: (0, 24, "center"),
+            95: (0, 24, "center"),
             100: (16, 0, "left"),
             105: (0, -24, "center"),
         },
         "t1_relaxed": {
             90: (0, -24, "center"),
             95: (0, -24, "center"),
-            105: (0, 22, "center"),
+            100: (-16, 0, "right"),
+            105: (0, 24, "center"),
         },
     }
     for fam in FAMILY_ORDER:
         color = FAMILY_COLOR[fam]
-        for phi, de in series[fam]:
+        for phi, de, _reused in series[fam]:
             key = int(phi)
-            if key not in label_off[fam]:
-                continue
             dx, dy, al = label_off[fam][key]
             text(
                 rgb, font, fmt_delta(de),
@@ -744,21 +765,20 @@ def render_plot(metrics: dict, font: Font) -> np.ndarray:
                 font_px, color, align=al, valign="middle",
             )
 
-    # Stored interpolants only: short hashes on the zero line, labeled "lin."
-    # Not 110°. Not drawn as an MECP, a star, or an evaluated degeneracy.
+    # Stored interpolants only: + on the zero line, labeled "lin."
+    # Drawn from points.json linear_zeros. Not recomputed. Not an MECP.
     s0_xc = interpolants["s0_relaxed"]
     t1_xc = interpolants["t1_relaxed"]
-    hash_h = 7
-    line(rgb, X(s0_xc), y0 - hash_h, X(s0_xc), y0 + hash_h, SERIES_S0, 1.15)
-    line(rgb, X(t1_xc), y0 - hash_h, X(t1_xc), y0 + hash_h, SERIES_T1, 1.15)
+    plus(rgb, X(s0_xc), y0, 7.0, SERIES_S0, 1.6)
+    plus(rgb, X(t1_xc), y0, 7.0, SERIES_T1, 1.6)
     text(
         rgb, font, f"{s0_xc:.2f}\u00b0 lin.",
-        X(s0_xc), y0 - 10,
+        X(s0_xc), y0 - 12,
         font_px, SERIES_S0, align="center", valign="bottom",
     )
     text(
         rgb, font, f"{t1_xc:.2f}\u00b0 lin.",
-        X(t1_xc), y0 + 10,
+        X(t1_xc), y0 + 12,
         font_px, SERIES_T1, align="center", valign="top",
     )
 
@@ -778,6 +798,20 @@ def render_plot(metrics: dict, font: Font) -> np.ndarray:
     text(
         rgb, font, FAMILY_LABEL["t1_relaxed"],
         legend_x + 38, legend_y2,
+        font_px, INK, align="left", valign="middle",
+    )
+    legend_y3 = legend_y2 + 36
+    circle(rgb, legend_x + 14, legend_y3, 5.1, INK, fill=False, stroke=1.8)
+    text(
+        rgb, font, "reused",
+        legend_x + 38, legend_y3,
+        font_px, INK, align="left", valign="middle",
+    )
+    legend_y4 = legend_y3 + 36
+    circle(rgb, legend_x + 14, legend_y4, 5.1, INK, fill=True)
+    text(
+        rgb, font, "new",
+        legend_x + 38, legend_y4,
         font_px, INK, align="left", valign="middle",
     )
 
@@ -865,17 +899,22 @@ def load_plot_font() -> Font:
 
 
 def main():
-    metrics = load_metrics(METRICS_PATH)
-    print("points (from results/dense_bracket_metrics.json):")
+    points = load_points(POINTS_PATH)
+    print("points (from analysis/points.json):")
     for fam in FAMILY_ORDER:
         print(f"  {fam}:")
-        for phi, de in metrics["series"][fam]:
-            print(f"    phi={phi:g}  deltaE_kJmol={de}  label={fmt_delta(de)}")
+        for phi, de, reused in points["series"][fam]:
+            kind = "reused" if reused else "new"
+            print(
+                f"    phi={phi:g}  deltaE_kJmol={de}  "
+                f"label={fmt_delta(de)}  {kind}"
+            )
     for fam in FAMILY_ORDER:
-        xc = metrics["interpolants"][fam]
-        print(f"interpolant {fam} phi={xc}  label={xc:.2f}° lin.")
+        xc = points["interpolants"][fam]
+        print(f"stored linear zero {fam} phi={xc}  label={xc:.2f}° lin.")
     print("pairs with a drawn interpolant: 100–105 on each family")
-    print("T1 100 is drawn unlabeled; interpolants are short hashes labeled lin.")
+    print("zeros are stored; not recomputed from rounded Delta E")
+    print("open markers = reused; filled markers = new; interpolants are + labeled lin.")
     print("ACS: no title, no subtitle, no stills on the plot")
     print(
         f"standing rule: font_px = round({BODY_PX} * W / {DISPLAY_W}) "
@@ -887,7 +926,7 @@ def main():
     print(f"Pillow faces: {HANKEN_TTF.name} + {DEJAVU_TTF.name}")
     print(f"ImageFont.truetype plot={PLOT_FONT_PX} stills={STILL_FONT_PX}")
 
-    plot = render_plot(metrics, font)
+    plot = render_plot(points, font)
     if plot.shape[1] != PLOT_W or plot.shape[0] != PLOT_H:
         raise SystemExit(f"bad plot size {plot.shape}")
     write_png(OUT_PREVIEW, plot)

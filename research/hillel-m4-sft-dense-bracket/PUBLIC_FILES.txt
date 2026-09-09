@@ -8,6 +8,7 @@ research/hillel-m4-sft-dense-bracket/PUBLIC_FILES.txt
 research/hillel-m4-sft-dense-bracket/generate-metrics.mjs
 research/hillel-m4-sft-dense-bracket/requirements-figure.txt
 research/hillel-m4-sft-dense-bracket/analysis/make_deltaE_figure.py
+research/hillel-m4-sft-dense-bracket/analysis/points.json
 research/hillel-m4-sft-dense-bracket/analysis/hanken-grotesk.ttf
 research/hillel-m4-sft-dense-bracket/analysis/dejavu-sans.ttf
 research/hillel-m4-sft-dense-bracket/metrics.json

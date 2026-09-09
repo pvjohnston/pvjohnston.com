@@ -69,21 +69,26 @@ python3 -m pip install -r research/hillel-m4-sft-dense-bracket/requirements-figu
 python3 research/hillel-m4-sft-dense-bracket/analysis/make_deltaE_figure.py
 ```
 
-The renderer loads the committed `analysis/hanken-grotesk.ttf` with
-Pillow `ImageFont.truetype` for Latin ticks and numbers. Axis Δ and
-φ come from the committed `analysis/dejavu-sans.ttf` at the same
-pixel size. Coverage is checked from each TTF cmap before drawing.
-The renderer does not look up a host font path. Lab-side molecular
-stills are optional and are not in this repository. The same command
-writes the data plot from the committed scored dump and exits 0
-when frames are absent.
+The renderer loads `analysis/points.json` for the two-decimal ΔE
+labels, open/filled reuse flags, and the stored 100–105 linear
+zeros (103.43° S0-relaxed, 104.34° T1-relaxed). Those zeros are
+not recomputed from the rounded ΔE values. Fonts are the committed
+`analysis/hanken-grotesk.ttf` via Pillow `ImageFont.truetype` for
+Latin ticks and numbers. Axis Δ and φ come from the committed
+`analysis/dejavu-sans.ttf` at the same pixel size. Coverage is
+checked from each TTF cmap before drawing. The renderer does not
+look up a host font path. Lab-side molecular stills are optional
+and are not in this repository. The same command writes the data
+plot and exits 0 when frames are absent.
 
 The command updates:
 
 - `images/hillel-m4-sft-dense-bracket-figure1.png`
 
-Point labels on the plot are the stored ΔE values. Linear
-interpolants of the 100–105 pairs are short hashes on the ΔE = 0
+Point labels on the plot are the `points.json` ΔE values. Open
+markers are the reused 90° and 105° published two-root points;
+filled markers are the new 95° and 100° points. Linear
+interpolants of the 100–105 pairs are plus marks on the ΔE = 0
 line, labeled “lin.”
 
 ## Data and publication
