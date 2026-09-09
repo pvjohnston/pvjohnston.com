@@ -1210,8 +1210,8 @@ Format:
   interpolants 103.43° (S0-relaxed) and 104.34° (T1-relaxed). Those
   interpolants are not MECPs. 90° and 105° reused from the published
   two-root rematch; 95° and 100° are new constrained opts + new
-  tworoot SPs. Next step: MECP search on the same SF surfaces near
-  those interpolants.
+  tworoot SPs. The next experiment is an MECP search on the same
+  SF surfaces near those interpolants.
 
 ## Does an MECP search on the same SF surfaces sit near the denser-bracket interpolants?
 - **Observed:** Next step from the 2026-09-09 denser-bracket note.
