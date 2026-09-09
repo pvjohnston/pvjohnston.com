@@ -65,8 +65,8 @@ site interpolant metrics are the stored `crossing_phi_deg_s0` and
 `research/hillel-m4-sft-tworoot/metrics.json`, which is
 fingerprinted in provenance. `both_assigned` is true only when both
 assignment objects include iroot, ⟨S²⟩, and E_Eh, and those ⟨S²⟩
-values sit in the singlet/triplet bins. Assigned ΔE must equal
-E(T1)−E(S0) on every point.
+values sit in the lab bins (S0 ⟨S²⟩≤0.5; T1 1.5≤⟨S²⟩≤2.5).
+Assigned ΔE must equal E(T1)−E(S0) on every point.
 
 ## Regenerate Figure 1
 

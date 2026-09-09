@@ -2,12 +2,12 @@
   "schema_version": 1,
   "experiment": "hillel-m4-sft-dense-bracket",
   "provenance": {
-    "generated_at": "2026-09-09T16:36:17Z",
+    "generated_at": "2026-09-09T17:02:07Z",
     "generator": "research/hillel-m4-sft-dense-bracket/generate-metrics.mjs",
     "inputs": [
       {
         "path": "research/hillel-m4-sft-dense-bracket/results/dense_bracket_metrics.json",
-        "sha256": "d9b78b206c986759245911a7cf1265b266885ed6d3b1af0b441c0dfde3d2e63e"
+        "sha256": "bae1755bbfe934593dcf4d574b815d65edd5a13aada3f5dc7b78f23bed2041a8"
       },
       {
         "path": "research/hillel-m4-sft-tworoot/metrics.json",
@@ -106,7 +106,31 @@
     "unused_sf_root_near_s2_1_phi100_both_families": {
       "type": "boolean",
       "value": true,
-      "description": "At φ=100° both families have an unused SF root near ⟨S²⟩≈1"
+      "description": "At φ=100° both families have an unused SF root (S0-relaxed near ⟨S²⟩≈1; T1-relaxed ⟨S²⟩=0.703061, outside singlet ≤0.5)"
+    },
+    "assignment_s2_singlet_max": {
+      "type": "number",
+      "value": 0.5,
+      "format": {
+        "style": "raw"
+      },
+      "description": "Lab assignment bin: S0 is the lowest SF root with ⟨S²⟩≤0.5"
+    },
+    "assignment_s2_triplet_min": {
+      "type": "number",
+      "value": 1.5,
+      "format": {
+        "style": "raw"
+      },
+      "description": "Lab assignment bin: T1 lower ⟨S²⟩ edge, inclusive"
+    },
+    "assignment_s2_triplet_max": {
+      "type": "number",
+      "value": 2.5,
+      "format": {
+        "style": "raw"
+      },
+      "description": "Lab assignment bin: T1 is the lowest SF root with 1.5≤⟨S²⟩≤2.5"
     },
     "assigned_t1_s2_s0_100": {
       "type": "number",

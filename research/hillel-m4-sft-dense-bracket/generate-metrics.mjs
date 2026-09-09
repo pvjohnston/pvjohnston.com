@@ -17,9 +17,9 @@ const outputPath = resolve(experimentDir, 'metrics.json');
 const dumpInput = 'research/hillel-m4-sft-dense-bracket/results/dense_bracket_metrics.json';
 const tworootInput = 'research/hillel-m4-sft-tworoot/metrics.json';
 const checkOnly = process.argv.includes('--check');
-const SINGLET_S2_MAX = 0.8;
+const SINGLET_S2_MAX = 0.5;
 const TRIPLET_S2_MIN = 1.5;
-const TRIPLET_S2_MAX = 2.8;
+const TRIPLET_S2_MAX = 2.5;
 
 const REQUIRED_PHIS = [90, 95, 100, 105];
 const FAMILIES = [
@@ -117,11 +117,11 @@ function pairInterpolantOf(pair) {
 }
 
 function inSingletBin(s2) {
-  return Number.isFinite(s2) && s2 < SINGLET_S2_MAX;
+  return Number.isFinite(s2) && s2 <= SINGLET_S2_MAX;
 }
 
 function inTripletBin(s2) {
-  return Number.isFinite(s2) && s2 > TRIPLET_S2_MIN && s2 < TRIPLET_S2_MAX;
+  return Number.isFinite(s2) && s2 >= TRIPLET_S2_MIN && s2 <= TRIPLET_S2_MAX;
 }
 
 function assignmentComplete(root) {
@@ -169,6 +169,11 @@ function build(generatedAt) {
   if (dump.overall_verdict !== 'supported') {
     throw new Error(`${dumpInput}: overall_verdict must be supported, got ${dump.overall_verdict}`);
   }
+
+  const bins = dump.assignment_bins ?? {};
+  assertClose(bins.S2_SINGLET_MAX, SINGLET_S2_MAX, 'assignment_bins.S2_SINGLET_MAX', 0);
+  assertClose(bins.S2_TRIPLET_MIN, TRIPLET_S2_MIN, 'assignment_bins.S2_TRIPLET_MIN', 0);
+  assertClose(bins.S2_TRIPLET_MAX, TRIPLET_S2_MAX, 'assignment_bins.S2_TRIPLET_MAX', 0);
 
   const points = Array.isArray(dump.points) ? dump.points : [];
   const byFamily = {};
@@ -245,6 +250,9 @@ function build(generatedAt) {
         }
         if (point.unused_root_near_s2_1 !== true) {
           throw new Error(`${family.id} ${phi}°: unused_root_near_s2_1 must be true`);
+        }
+        if (inSingletBin(unusedS2) || inTripletBin(unusedS2)) {
+          throw new Error(`${family.id} ${phi}°: unused root1 ⟨S²⟩=${unusedS2} sits in an assignment bin`);
         }
       }
       slots[phi] = {
@@ -402,7 +410,7 @@ function build(generatedAt) {
     'unused_sf_root_near_s2_1_at_phi100_both_families',
   );
   if (unusedBoth !== true) {
-    throw new Error('expected unused SF root near ⟨S²⟩≈1 at φ=100° on both families');
+    throw new Error('expected unused SF root at φ=100° on both families');
   }
 
   const metrics = {
@@ -442,7 +450,13 @@ function build(generatedAt) {
       'Upper endpoint of the neighboring pair that changes sign of ΔE on both families',
       'deg'),
     unused_sf_root_near_s2_1_phi100_both_families: boolean(true,
-      'At φ=100° both families have an unused SF root near ⟨S²⟩≈1'),
+      'At φ=100° both families have an unused SF root (S0-relaxed near ⟨S²⟩≈1; T1-relaxed ⟨S²⟩=0.703061, outside singlet ≤0.5)'),
+    assignment_s2_singlet_max: raw(SINGLET_S2_MAX,
+      'Lab assignment bin: S0 is the lowest SF root with ⟨S²⟩≤0.5'),
+    assignment_s2_triplet_min: raw(TRIPLET_S2_MIN,
+      'Lab assignment bin: T1 lower ⟨S²⟩ edge, inclusive'),
+    assignment_s2_triplet_max: raw(TRIPLET_S2_MAX,
+      'Lab assignment bin: T1 is the lowest SF root with 1.5≤⟨S²⟩≤2.5'),
     assigned_t1_s2_s0_100: num(t1s2_100_s0, 3,
       'Assigned SF-T1 ⟨S²⟩ on the S0-relaxed geometry at CNNC 100°'),
     assigned_t1_s2_t1_100: num(t1s2_100_t1, 3,

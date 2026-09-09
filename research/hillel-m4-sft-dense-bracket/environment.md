@@ -44,7 +44,8 @@ directory does not rerun ORCA and does not pin an ORCA rerun path.
   and the published two-root `metrics.json`. Assigned S0/T1 totals
   for the new 95° and 100° points come from that dump; the
   generator requires iroot, ⟨S²⟩, and E_Eh on both assignment
-  objects before it treats a point as both-assigned.
+  objects before it treats a point as both-assigned. Assignment
+  bins match the lab scorer: S0 ⟨S²⟩≤0.5; T1 1.5≤⟨S²⟩≤2.5.
 
 ## What is not in this repository
 

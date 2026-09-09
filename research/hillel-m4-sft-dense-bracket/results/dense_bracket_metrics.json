@@ -6,7 +6,12 @@
   "preregistration_file": "research/hillel-m4-sft-dense-bracket/DENSE_BRACKET_PREREGISTRATION.md",
   "conversion_Eh_to_kJmol": 2625.49963831,
   "gap_definition": "deltaE_T1_minus_S0",
-  "energy_rule": "ΔE = E(T1)−E(S0) on ONE structure (same-geometry two-root SP). Assignment by ⟨S²⟩: S0 = lowest SF root ⟨S²⟩≈0; T1 = lowest ⟨S²⟩≈2. A root with ⟨S²⟩≈1 is unused. 90° and 105° reused from published tworoot_metrics.json and not re-run. 95° and 100° are new constrained opts + new tworoot SPs. Assigned S0/T1 totals for 95° and 100° are copied from the lab scored dump (sha256 7affdabfc24da91c4fb554b38b69a1dfd5b13c4ade5e655b29ab8c908f2f1256).",
+  "energy_rule": "ΔE = E(T1)−E(S0) on ONE structure (same-geometry two-root SP). Assignment by ⟨S²⟩: S0 = lowest SF root ⟨S²⟩≈0; T1 = lowest ⟨S²⟩≈2. A root with ⟨S²⟩≈1 is unused. Lab bins: S0 ⟨S²⟩≤0.5; T1 1.5≤⟨S²⟩≤2.5; roots outside those bins unused. 90° and 105° reused from published tworoot_metrics.json and not re-run. 95° and 100° are new constrained opts + new tworoot SPs. Assigned S0/T1 totals for 95° and 100° are copied from the lab scored dump (sha256 7affdabfc24da91c4fb554b38b69a1dfd5b13c4ade5e655b29ab8c908f2f1256).",
+  "assignment_bins": {
+    "S2_SINGLET_MAX": 0.5,
+    "S2_TRIPLET_MIN": 1.5,
+    "S2_TRIPLET_MAX": 2.5
+  },
   "source_files": [
     "results/dense_bracket_metrics.json",
     "DENSE_BRACKET_PREREGISTRATION.md",
@@ -184,7 +189,8 @@
       },
       "unused_root": {
         "iroot": 1,
-        "S2": 0.703061
+        "S2": 0.703061,
+        "note": "outside singlet bin ≤0.5"
       },
       "unused_root_near_s2_1": true,
       "deltaE_Eh": -0.018187,
