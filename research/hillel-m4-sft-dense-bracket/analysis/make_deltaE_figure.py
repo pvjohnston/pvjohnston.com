@@ -791,18 +791,19 @@ def render_plot(points: dict, font: Font) -> np.ndarray:
                 square(rgb, X(phi), Y(de), 4.6, color, fill=not reused, stroke=1.8)
 
     # Point labels from points.json, 2 decimals, series color. All eight.
+    # Offsets are da Vinci's regen (key, φ, ΔE, dx, dy, align).
     label_off = {
         "s0_relaxed": {
-            90: (0, 24, "center"),
-            95: (18, 30, "left"),
-            100: (16, 0, "left"),
-            105: (0, -24, "center"),
+            90: (-16, 30, "right"),
+            95: (-8, -66, "center"),
+            100: (-16, 28, "right"),
+            105: (-16, -28, "right"),
         },
         "t1_relaxed": {
-            90: (0, -24, "center"),
-            95: (-18, -30, "right"),
-            100: (-16, 0, "right"),
-            105: (0, 24, "center"),
+            90: (16, 30, "left"),
+            95: (-22, 40, "right"),
+            100: (16, 28, "left"),
+            105: (18, -8, "left"),
         },
     }
     for fam in FAMILY_ORDER:
@@ -824,13 +825,13 @@ def render_plot(points: dict, font: Font) -> np.ndarray:
     plus(rgb, X(t1_xc), y0, 7.0, SERIES_T1, 1.6)
     text(
         rgb, font, f"{s0_xc:.2f}\u00b0 lin.",
-        X(s0_xc), y0 - 12,
-        font_px, SERIES_S0, align="center", valign="bottom",
+        X(s0_xc) - 22, y0 - 12,
+        font_px, SERIES_S0, align="right", valign="bottom",
     )
     text(
         rgb, font, f"{t1_xc:.2f}\u00b0 lin.",
-        X(t1_xc), y0 + 12,
-        font_px, SERIES_T1, align="center", valign="top",
+        X(t1_xc) + 10, y0 + 14,
+        font_px, SERIES_T1, align="left", valign="top",
     )
 
     # Legend in the empty upper-left of the data box.
