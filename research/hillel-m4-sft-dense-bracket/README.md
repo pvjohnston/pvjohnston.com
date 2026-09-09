@@ -32,8 +32,8 @@ the research note
   convention as `research/hillel-m4-sft-tworoot`. Absolute host
   paths were replaced by pack-relative filenames. 90° and 105°
   ΔE values are reused from the published two-root rematch; 95°
-  and 100° contribute scored ΔE only. Absolute S0/T1 totals for
-  the new points are not in this dump.
+  and 100° are new jobs whose assigned S0/T1 totals are copied
+  from the lab scored dump.
 
 ## Molecule
 
@@ -63,9 +63,10 @@ site interpolant metrics are the stored `crossing_phi_deg_s0` and
 `crossing_phi_deg_t1`. Reused 90°/105° records and the published
 ⟨S²⟩ residual ranges are compared to
 `research/hillel-m4-sft-tworoot/metrics.json`, which is
-fingerprinted in provenance. `both_assigned` is derived from the
-recorded roots on reused points and from the scored gap plus any
-recorded ⟨S²⟩ on new points.
+fingerprinted in provenance. `both_assigned` is true only when both
+assignment objects include iroot, ⟨S²⟩, and E_Eh, and those ⟨S²⟩
+values sit in the singlet/triplet bins. Assigned ΔE must equal
+E(T1)−E(S0) on every point.
 
 ## Regenerate Figure 1
 

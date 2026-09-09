@@ -2,12 +2,12 @@
   "schema_version": 1,
   "experiment": "hillel-m4-sft-dense-bracket",
   "provenance": {
-    "generated_at": "2026-09-09T16:31:48Z",
+    "generated_at": "2026-09-09T16:36:17Z",
     "generator": "research/hillel-m4-sft-dense-bracket/generate-metrics.mjs",
     "inputs": [
       {
         "path": "research/hillel-m4-sft-dense-bracket/results/dense_bracket_metrics.json",
-        "sha256": "176ad605fa8b1ab9dae87030c5336ded69548569bffc29d9f6c6b8b6a14ce84e"
+        "sha256": "d9b78b206c986759245911a7cf1265b266885ed6d3b1af0b441c0dfde3d2e63e"
       },
       {
         "path": "research/hillel-m4-sft-tworoot/metrics.json",
@@ -110,7 +110,7 @@
     },
     "assigned_t1_s2_s0_100": {
       "type": "number",
-      "value": 1.636,
+      "value": 1.636375,
       "format": {
         "style": "fixed",
         "digits": 3
@@ -119,7 +119,7 @@
     },
     "assigned_t1_s2_t1_100": {
       "type": "number",
-      "value": 1.837,
+      "value": 1.837449,
       "format": {
         "style": "fixed",
         "digits": 3
@@ -201,6 +201,24 @@
       "description": "Same-geometry ΔE=E(T1)−E(S0) on the S0-relaxed geometry at CNNC 95°",
       "unit": "kJ/mol"
     },
+    "s0_e_eh_s0_95": {
+      "type": "number",
+      "value": -910.994348463,
+      "format": {
+        "style": "raw"
+      },
+      "description": "Assigned SF-S0 total energy from the lab scored dump on the S0-relaxed geometry at CNNC 95°",
+      "unit": "Eh"
+    },
+    "t1_e_eh_s0_95": {
+      "type": "number",
+      "value": -910.998066881,
+      "format": {
+        "style": "raw"
+      },
+      "description": "Assigned SF-T1 total energy from the lab scored dump on the S0-relaxed geometry at CNNC 95°",
+      "unit": "Eh"
+    },
     "deltae_eh_s0_100": {
       "type": "number",
       "value": -0.017975,
@@ -219,6 +237,24 @@
       },
       "description": "Same-geometry ΔE=E(T1)−E(S0) on the S0-relaxed geometry at CNNC 100°",
       "unit": "kJ/mol"
+    },
+    "s0_e_eh_s0_100": {
+      "type": "number",
+      "value": -910.979137476,
+      "format": {
+        "style": "raw"
+      },
+      "description": "Assigned SF-S0 total energy from the lab scored dump on the S0-relaxed geometry at CNNC 100°",
+      "unit": "Eh"
+    },
+    "t1_e_eh_s0_100": {
+      "type": "number",
+      "value": -910.997112476,
+      "format": {
+        "style": "raw"
+      },
+      "description": "Assigned SF-T1 total energy from the lab scored dump on the S0-relaxed geometry at CNNC 100°",
+      "unit": "Eh"
     },
     "deltae_eh_s0_105": {
       "type": "number",
@@ -313,6 +349,24 @@
       "description": "Same-geometry ΔE=E(T1)−E(S0) on the T1-relaxed geometry at CNNC 95°",
       "unit": "kJ/mol"
     },
+    "s0_e_eh_t1_95": {
+      "type": "number",
+      "value": -910.993752264,
+      "format": {
+        "style": "raw"
+      },
+      "description": "Assigned SF-S0 total energy from the lab scored dump on the T1-relaxed geometry at CNNC 95°",
+      "unit": "Eh"
+    },
+    "t1_e_eh_t1_95": {
+      "type": "number",
+      "value": -910.999602879,
+      "format": {
+        "style": "raw"
+      },
+      "description": "Assigned SF-T1 total energy from the lab scored dump on the T1-relaxed geometry at CNNC 95°",
+      "unit": "Eh"
+    },
     "deltae_eh_t1_100": {
       "type": "number",
       "value": -0.018187,
@@ -331,6 +385,24 @@
       },
       "description": "Same-geometry ΔE=E(T1)−E(S0) on the T1-relaxed geometry at CNNC 100°",
       "unit": "kJ/mol"
+    },
+    "s0_e_eh_t1_100": {
+      "type": "number",
+      "value": -910.978558244,
+      "format": {
+        "style": "raw"
+      },
+      "description": "Assigned SF-S0 total energy from the lab scored dump on the T1-relaxed geometry at CNNC 100°",
+      "unit": "Eh"
+    },
+    "t1_e_eh_t1_100": {
+      "type": "number",
+      "value": -910.996745244,
+      "format": {
+        "style": "raw"
+      },
+      "description": "Assigned SF-T1 total energy from the lab scored dump on the T1-relaxed geometry at CNNC 100°",
+      "unit": "Eh"
     },
     "deltae_eh_t1_105": {
       "type": "number",

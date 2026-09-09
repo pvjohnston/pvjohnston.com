@@ -41,7 +41,10 @@ directory does not rerun ORCA and does not pin an ORCA rerun path.
   Both load with Pillow `ImageFont.truetype`. No host font path and
   no platform-specific FreeType library name.
 - The metrics generator has no lockfile. It reads the scored dump
-  and the published two-root `metrics.json`.
+  and the published two-root `metrics.json`. Assigned S0/T1 totals
+  for the new 95° and 100° points come from that dump; the
+  generator requires iroot, ⟨S²⟩, and E_Eh on both assignment
+  objects before it treats a point as both-assigned.
 
 ## What is not in this repository
 

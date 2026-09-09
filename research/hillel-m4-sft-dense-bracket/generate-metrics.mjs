@@ -2,8 +2,9 @@
 
 // Publication metrics for the Hillel M4 denser 90–105° same-geometry
 // SF-TDA bracket. Numbers are flattened from the committed scored dump.
-// Do not hand-author metrics.json. Do not invent energies: 95°/100°
-// contribute ΔE only; 90°/105° reuse published tworoot totals.
+// Do not hand-author metrics.json. Do not invent energies: 90°/105°
+// reuse published tworoot totals; 95°/100° totals are the lab dump
+// assignment objects (iroot, ⟨S²⟩, E_Eh).
 
 import { createHash } from 'node:crypto';
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
@@ -27,6 +28,10 @@ const FAMILIES = [
 ];
 const REUSED_PHIS = [90, 105];
 const NEW_PHIS = [95, 100];
+const UNUSED_ROOT1_S2_PHI100 = {
+  s0_relaxed: 0.906582,
+  t1_relaxed: 0.703061,
+};
 
 const sha256 = (path) => createHash('sha256')
   .update(readFileSync(resolve(root, path)))
@@ -111,10 +116,6 @@ function pairInterpolantOf(pair) {
   return null;
 }
 
-function rootKeys(root) {
-  return root && typeof root === 'object' ? Object.keys(root) : [];
-}
-
 function inSingletBin(s2) {
   return Number.isFinite(s2) && s2 < SINGLET_S2_MAX;
 }
@@ -123,45 +124,24 @@ function inTripletBin(s2) {
   return Number.isFinite(s2) && s2 > TRIPLET_S2_MIN && s2 < TRIPLET_S2_MAX;
 }
 
-function deriveBothAssigned(point, reused, label) {
+function assignmentComplete(root) {
+  return Number.isInteger(root?.iroot)
+    && Number.isFinite(root?.S2)
+    && Number.isFinite(root?.E_Eh);
+}
+
+function deriveBothAssigned(point, label) {
   const deltaEh = point.deltaE_Eh;
   const deltaE = point.deltaE_kJmol;
   if (!Number.isFinite(deltaEh) || !Number.isFinite(deltaE)) {
     throw new Error(`${label}: scored ΔE is required to derive both_assigned`);
   }
-  if (rootKeys(point.s0).length === 0 && point.s0 && typeof point.s0 === 'object') {
-    throw new Error(`${label}: empty s0 object is not an assignment record`);
+  if (!assignmentComplete(point.s0) || !assignmentComplete(point.t1)) {
+    return false;
   }
-  if (rootKeys(point.t1).length === 0 && point.t1 && typeof point.t1 === 'object') {
-    throw new Error(`${label}: empty t1 object is not an assignment record`);
+  if (!inSingletBin(point.s0.S2) || !inTripletBin(point.t1.S2)) {
+    throw new Error(`${label}: ⟨S²⟩ is outside the assignment bins`);
   }
-  if (reused) {
-    const s0E = point.s0?.E_Eh;
-    const t1E = point.t1?.E_Eh;
-    const s0s2 = point.s0?.S2;
-    const t1s2 = point.t1?.S2;
-    if (![s0E, t1E, s0s2, t1s2].every(Number.isFinite)) {
-      throw new Error(`${label}: reused both_assigned requires s0/t1 E_Eh and S2`);
-    }
-    if (!inSingletBin(s0s2) || !inTripletBin(t1s2)) {
-      throw new Error(`${label}: reused ⟨S²⟩ is outside the assignment bins`);
-    }
-    return true;
-  }
-  if (point.s0) {
-    const s0s2 = requireFinite(point.s0.S2, `${label} s0.S2`);
-    if (!inSingletBin(s0s2)) {
-      throw new Error(`${label}: recorded S0 ⟨S²⟩=${s0s2} is not in the singlet bin`);
-    }
-  }
-  if (point.t1) {
-    const t1s2 = requireFinite(point.t1.S2, `${label} t1.S2`);
-    if (!inTripletBin(t1s2)) {
-      throw new Error(`${label}: recorded T1 ⟨S²⟩=${t1s2} is not in the triplet bin`);
-    }
-  }
-  // New points withhold absolute energies. both_assigned is derived from
-  // the scored same-geometry gap plus every recorded ⟨S²⟩ sitting in bin.
   return true;
 }
 
@@ -228,9 +208,7 @@ function build(generatedAt) {
         throw new Error(`${family.id} ${phi}°: file ${pointFile} !== ${expectedFile}`);
       }
       const reused = point.reused_from_tworoot === true;
-      const derivedAssigned = deriveBothAssigned(
-        point, reused, `${family.id} ${phi}°`,
-      );
+      const derivedAssigned = deriveBothAssigned(point, `${family.id} ${phi}°`);
       if (point.both_assigned !== derivedAssigned) {
         throw new Error(
           `${family.id} ${phi}°: both_assigned ${point.both_assigned} !== derived ${derivedAssigned}`,
@@ -251,31 +229,33 @@ function build(generatedAt) {
       const deltaEh = requireFinite(point.deltaE_Eh, `${family.id} ${phi} deltaE_Eh`);
       const deltaE = requireFinite(point.deltaE_kJmol, `${family.id} ${phi} deltaE_kJmol`);
       assertClose(deltaEh * conversion, deltaE, `${family.id} ${phi} ΔE from Eh`, 1e-8);
-      if (reused) {
-        const s0E = requireFinite(point.s0?.E_Eh, `${family.id} ${phi} s0.E_Eh`);
-        const t1E = requireFinite(point.t1?.E_Eh, `${family.id} ${phi} t1.E_Eh`);
-        assertClose(t1E - s0E, deltaEh, `${family.id} ${phi} reused energy difference`, 1e-12);
-        slots[phi] = {
-          reused,
-          deltaEh,
-          deltaE,
-          s0E,
-          t1E,
-          s0s2: requireFinite(point.s0?.S2, `${family.id} ${phi} s0.S2`),
-          t1s2: requireFinite(point.t1?.S2, `${family.id} ${phi} t1.S2`),
-        };
-      } else {
-        if (point.s0?.E_Eh != null || point.t1?.E_Eh != null) {
-          throw new Error(`${family.id} ${phi}°: new-point absolute energies are not in the scored dump`);
+      const s0E = requireFinite(point.s0?.E_Eh, `${family.id} ${phi} s0.E_Eh`);
+      const t1E = requireFinite(point.t1?.E_Eh, `${family.id} ${phi} t1.E_Eh`);
+      assertClose(t1E - s0E, deltaEh, `${family.id} ${phi} assigned energy difference`, 1e-12);
+      if (phi === 100) {
+        const unusedS2 = requireFinite(
+          point.unused_root?.S2, `${family.id} ${phi} unused_root.S2`,
+        );
+        assertClose(
+          unusedS2, UNUSED_ROOT1_S2_PHI100[family.id],
+          `${family.id} ${phi} unused root1 ⟨S²⟩`, 0,
+        );
+        if (point.unused_root?.iroot !== 1) {
+          throw new Error(`${family.id} ${phi}°: unused root must be iroot 1`);
         }
-        slots[phi] = {
-          reused,
-          deltaEh,
-          deltaE,
-          s0s2: Number.isFinite(point.s0?.S2) ? point.s0.S2 : null,
-          t1s2: Number.isFinite(point.t1?.S2) ? point.t1.S2 : null,
-        };
+        if (point.unused_root_near_s2_1 !== true) {
+          throw new Error(`${family.id} ${phi}°: unused_root_near_s2_1 must be true`);
+        }
       }
+      slots[phi] = {
+        reused,
+        deltaEh,
+        deltaE,
+        s0E,
+        t1E,
+        s0s2: requireFinite(point.s0?.S2, `${family.id} ${phi} s0.S2`),
+        t1s2: requireFinite(point.t1?.S2, `${family.id} ${phi} t1.S2`),
+      };
     }
     familyData[family.id] = slots;
   }
@@ -363,8 +343,8 @@ function build(generatedAt) {
   const t1s2_100_s0 = requireFinite(flags.assigned_t1_s2_phi100_s0_relaxed, 'assigned_t1_s2_phi100_s0_relaxed');
   const t1s2_100_t1 = requireFinite(flags.assigned_t1_s2_phi100_t1_relaxed, 'assigned_t1_s2_phi100_t1_relaxed');
   const s0s2_95_s0 = requireFinite(flags.assigned_s0_s2_phi95_s0_relaxed, 'assigned_s0_s2_phi95_s0_relaxed');
-  assertClose(t1s2_100_s0, 1.636, 'assigned_t1_s2_phi100_s0_relaxed', 0);
-  assertClose(t1s2_100_t1, 1.837, 'assigned_t1_s2_phi100_t1_relaxed', 0);
+  assertClose(t1s2_100_s0, 1.636375, 'assigned_t1_s2_phi100_s0_relaxed', 0);
+  assertClose(t1s2_100_t1, 1.837449, 'assigned_t1_s2_phi100_t1_relaxed', 0);
   assertClose(s0s2_95_s0, 0.437935, 'assigned_s0_s2_phi95_s0_relaxed', 0);
   if (!inTripletBin(t1s2_100_s0)) {
     throw new Error(`S0-relaxed 100° T1 ⟨S²⟩=${t1s2_100_s0} is not in the triplet bin`);
@@ -484,14 +464,15 @@ function build(generatedAt) {
       metrics[`deltae_kjmol_${family.key}_${phi}`] = num(point.deltaE, 2,
         `Same-geometry ΔE=E(T1)−E(S0) on the ${family.label} geometry at CNNC ${phi}°`,
         'kJ/mol');
-      if (point.reused) {
-        metrics[`s0_e_eh_${family.key}_${phi}`] = raw(point.s0E,
-          `Assigned SF-S0 total energy reused from the published two-root rematch on the ${family.label} geometry at CNNC ${phi}°`,
-          'Eh');
-        metrics[`t1_e_eh_${family.key}_${phi}`] = raw(point.t1E,
-          `Assigned SF-T1 total energy reused from the published two-root rematch on the ${family.label} geometry at CNNC ${phi}°`,
-          'Eh');
-      }
+      const energySource = point.reused
+        ? 'reused from the published two-root rematch'
+        : 'from the lab scored dump';
+      metrics[`s0_e_eh_${family.key}_${phi}`] = raw(point.s0E,
+        `Assigned SF-S0 total energy ${energySource} on the ${family.label} geometry at CNNC ${phi}°`,
+        'Eh');
+      metrics[`t1_e_eh_${family.key}_${phi}`] = raw(point.t1E,
+        `Assigned SF-T1 total energy ${energySource} on the ${family.label} geometry at CNNC ${phi}°`,
+        'Eh');
     }
   }
 
