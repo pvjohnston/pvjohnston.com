@@ -1203,12 +1203,33 @@ Format:
 - **Falsifier:** Falsified if either family has no neighboring pair
   of both-assigned points with opposite-signed ΔE values inside
   90–105°.
-- **Status:** ready — same ORCA 6.1.1 same-geometry method. The
-  published families contain only 90°, 105°, 120°, and 135°; a
-  denser relaxed-family bracket requires new constrained S0 and T1
-  optimizations at the intermediate angles, then same-geometry
-  two-root SPs on those new opts. Following on-line item: an MECP
-  search on the same surfaces.
+- **Status:** published —
+  `/posts/2026-09-09-does-a-denser-m4-bracket-keep-the-sign-change.html`.
+  Registered hypothesis **supported** on both families. F1–F3 all
+  false. Same-geometry ΔE changes sign between 100° and 105°; linear
+  interpolants 103.43° (S0-relaxed) and 104.34° (T1-relaxed). Those
+  interpolants are not MECPs. 90° and 105° reused from the published
+  two-root rematch; 95° and 100° are new constrained opts + new
+  tworoot SPs. Next step: MECP search on the same SF surfaces near
+  those interpolants.
+
+## Does an MECP search on the same SF surfaces sit near the denser-bracket interpolants?
+- **Observed:** Next step from the 2026-09-09 denser-bracket note.
+  Both geometry families keep a same-geometry ΔE sign change on the
+  100–105° pair; the stored zeros are linear interpolants of that
+  pair.
+- **Source:** own next step from
+  `/posts/2026-09-09-does-a-denser-m4-bracket-keep-the-sign-change.html`
+- **Type:** untested regime
+- **Contribution (candidate):** a located SF-TDA MECP on the same
+  S0/T1 surfaces near the denser-bracket interpolants, which is not
+  in the 2026-09-09 note
+- **Hypothesis:** a converged MECP exists near each family's
+  100–105 interpolant on the same SF manifold
+- **Falsifier:** no converged MECP is found on either family near
+  those interpolants, or a located MECP falls outside 90–105°
+- **Status:** ready — same ORCA 6.1.1 SF-TDA surfaces as the
+  denser bracket. Direct follow-up only.
 
 ## Does carboxylate oxygen charge oscillate with CX3 rotation, with larger amplitude for CCl3COO− than for CF3COO−?
 - **Observed:** Johnson, Gregory, Robertson, Gresham, Nelson, Craig, Prescott,
@@ -1301,3 +1322,172 @@ Format:
   not vanish on the claimed construction
 - **Status:** observation — parked after the denser M4 bracket;
   laptop-scale if picked
+
+## AD-DFPT symmetry in DFTK (Schmitz, Ploumhans & Herbst 2025)
+- **Observed:** Schmitz, Ploumhans, and Herbst report an AD-DFPT
+  framework that differentiates plane-wave DFT outputs in DFTK by
+  combining forward-mode algorithmic differentiation with density-
+  functional perturbation theory, so derivatives with respect to
+  an input parameter can be obtained without a hand-derived
+  gradient.
+- **Source:** Schmitz, Ploumhans & Herbst, *npj Comput. Mater.*
+  (2025), doi:10.1038/s41524-025-01880-3; arXiv:2509.07785,
+  https://arxiv.org/abs/2509.07785
+- **Type:** untested regime
+- **Contribution (candidate):** an independent DFTK rematch of a
+  published AD-DFPT derivative on a small solid, which is not in
+  that paper
+- **Falsifier:** the AD-DFPT derivative does not reproduce the
+  paper's published check on our DFTK build
+- **Status:** observation
+
+## DBT in anthracene: S1→Sn near 1.58 eV (Levy-Falk et al. 2026)
+- **Observed:** Levy-Falk et al. report that single DBT molecules
+  in anthracene nanocrystals leave the two-level saturation regime
+  under strong CW driving, and attribute the depletion to
+  intensity-dependent excited-state absorption. A candidate
+  S1→Sn window near 1.58 eV is the number that would have to be
+  checked if this entry is picked; any freeze must name an
+  ADC(2)/STEOM check before energies are seen.
+- **Source:** Levy-Falk, De Bernardis, Fanella, Morlaës &
+  Toninelli, arXiv:2608.00596,
+  https://arxiv.org/abs/2608.00596
+- **Type:** untested regime
+- **Contribution (candidate):** an independent ADC(2)/STEOM
+  location of the DBT S1→Sn window, which is not in that
+  preprint
+- **Falsifier:** the computed S1→Sn window misses 1.58 eV by
+  enough that the ESA assignment used in the paper no longer
+  sits on that gap under the frozen methods
+- **Status:** observation — if picked, the freeze must name the
+  ADC(2)/STEOM check
+
+## Anhydride exchange parked on CCSD(T) cost (Zhang et al. 2025)
+- **Observed:** Zhang, Chen, Li, Sullivan, and Zheng report
+  uncatalysed and acid-catalysed anhydride dynamic-covalent
+  exchange barriers from DFT, with geometries on Zenodo
+  16625442. A CCSD(T) rematch is parked on cost. A restraint
+  surrogate for the exchange coordinate would have to be named
+  in any freeze, and is a caveat rather than a substitute for
+  the published saddle search.
+- **Source:** Zhang et al., *Commun. Chem.* **8**, 351 (2025),
+  doi:10.1038/s42004-025-01736-3; Zenodo 16625442,
+  https://zenodo.org/records/16625442
+- **Type:** untested regime
+- **Contribution (candidate):** a correlated rematch of one
+  published anhydride-exchange barrier, which is not in Zhang
+  et al.
+- **Falsifier:** the correlated barrier stays inside the paper's
+  DFT window → the cost of the rematch buys no movement
+- **Status:** observation — parked on CCSD(T) cost; restraint-
+  surrogate caveat
+
+## ZenBand photonic anisotropy (Zinkevičius, Lukošiūnas & Gailevičius 2026)
+- **Observed:** Zinkevičius, Lukošiūnas, and Gailevičius release
+  ZenBand, an open-source 2D plane-wave expansion solver with a
+  GUI, and embed diagonal photonic-crystal anisotropy in that
+  solver.
+- **Source:** Zinkevičius, Lukošiūnas & Gailevičius, *Sci. Rep.*
+  **16**, 7242 (2026), doi:10.1038/s41598-026-37129-2
+- **Type:** untested regime
+- **Contribution (candidate):** an independent band-diagram
+  rematch of one published diagonally anisotropic example, which
+  is not in that paper
+- **Falsifier:** the published anisotropic bands do not
+  reproduce under our ZenBand or independent PWEM run
+- **Status:** observation — lower priority
+
+## Peptide-surface proton relay (Krasnokutski et al. 2026)
+- **Observed:** Krasnokutski, Kruczkiewicz, Bourseau, Remaury,
+  Geffroy, Ueberschaar, Poinot, and Chuang report catalytic
+  non-energetic formation of diverse peptides on cosmic-dust
+  analogues under extraterrestrial conditions, with a surface
+  proton-relay reading of how residues promote further chain
+  growth.
+- **Source:** Krasnokutski et al., *Commun. Chem.* (2026),
+  doi:10.1038/s42004-026-02159-4
+- **Type:** untested regime
+- **Contribution (candidate):** an independent surface proton-
+  relay calculation on a published peptide-growth step, which
+  is not in that paper
+- **Falsifier:** the relay does not lower the published growth
+  step on our surface model
+- **Status:** observation — lower priority
+
+## Methyl cinnamate 2 vs 3 (Hymas et al. 2026)
+- **Observed:** Hymas, Dalton, Romanov, Sanders, Barbatti, Toldo,
+  Buma, and Stavros report that para-methoxy substitution and
+  methyl-induced steric pre-twisting on methyl cinnamate
+  accelerate nonradiative decay, and they distinguish derivative
+  2 from derivative 3 on that path.
+- **Source:** Hymas et al., *Commun. Chem.* **9**, 163 (2026),
+  doi:10.1038/s42004-026-01963-2
+- **Type:** untested regime
+- **Contribution (candidate):** an independent S1 topography
+  rematch of methyl cinnamate 2 vs 3, which is not in that
+  paper
+- **Falsifier:** 2 and 3 share the same barrier class on our
+  surface → the 2-vs-3 distinction does not survive the rematch
+- **Status:** observation
+
+## Diazo-UiO-66 linker CT, productive vs non-productive (Kim et al. 2026)
+- **Observed:** Kim, Calvo, Teshima, La Mattina, and Otal report
+  that a red-shifted absorption edge on diazo-sensitized UiO-66
+  can be productive charge transfer or a non-productive emissive
+  trap, distinguished by photo-EPR versus PLE.
+- **Source:** Kim et al., arXiv:2609.00931,
+  https://arxiv.org/abs/2609.00931
+- **Type:** untested regime
+- **Contribution (candidate):** an independent linker CT
+  assignment of one productive and one non-productive diazo-
+  UiO-66 analogue, which is not in that preprint
+- **Falsifier:** both analogues populate the same CT manifold
+  on our calculation → the productive/non-productive split does
+  not appear
+- **Status:** observation
+
+## UH12 OpenMolcas compute-limit (Shyichuk & Zych 2026)
+- **Observed:** Shyichuk and Zych report UH12 as an icosahedral
+  f-electron superatom with a RASSCF/CASPT2/RASSI/SINGLE_ANISO
+  OpenMolcas workflow. A rematch is a compute-limit on our
+  OpenMolcas stack.
+- **Source:** Shyichuk & Zych, arXiv:2609.01863,
+  https://arxiv.org/abs/2609.01863
+- **Type:** untested regime
+- **Contribution (candidate):** an independent OpenMolcas
+  rematch of one published UH12 crystal-field splitting, which
+  is not in that preprint
+- **Falsifier:** the published 1+3+3 septet pattern does not
+  appear under our RASSCF/CASPT2 run
+- **Status:** observation — compute-limit OpenMolcas
+
+## Noble-gas χ table / PySCF EEM (Simons, Washburn & Allahyarov 2026)
+- **Observed:** Simons, Washburn, and Allahyarov replace
+  spectroscopic electronegativities in an electronegativity-
+  equalization model with a noble-gas geometric χ table and
+  report polarity failures on a 52-molecule B3LYP/def2-TZVP
+  set. A PySCF EEM rematch is the laptop-scale check.
+- **Source:** Simons, Washburn & Allahyarov, arXiv:2609.02930,
+  https://arxiv.org/abs/2609.02930
+- **Type:** untested regime / quantification
+- **Contribution (candidate):** an independent PySCF EEM rematch
+  of the published noble-gas χ table on a subset of that
+  molecule list, which is not in that preprint
+- **Falsifier:** the published polarity failures do not appear
+  on our PySCF charges
+- **Status:** observation
+
+## PFAS helix VCD, FC2–FC8 (Ray et al. 2026)
+- **Observed:** Ray, Cavalli, Bizana, Castillo, Vyas, Siefert,
+  Kalidindi, and Kolel-Veetil report statistical helicity
+  descriptors for PFAS backbones and validate them against
+  geometric dihedrals and DFT VCD on a perfluorocarboxylic-acid
+  series that includes FC2–FC8.
+- **Source:** Ray et al., arXiv:2609.02935,
+  https://arxiv.org/abs/2609.02935
+- **Type:** untested regime
+- **Contribution (candidate):** an independent VCD rematch of
+  FC2–FC8 helicity, which is not in that preprint
+- **Falsifier:** the FC2–FC8 VCD signatures do not track the
+  published helicity descriptors on our DFT run
+- **Status:** observation

@@ -1,0 +1,14 @@
+# One repository-relative path per line. Raw ORCA logs are not listed.
+LICENSE
+research/metrics.schema.json
+research/hillel-m4-sft-dense-bracket/README.md
+research/hillel-m4-sft-dense-bracket/DENSE_BRACKET_PREREGISTRATION.md
+research/hillel-m4-sft-dense-bracket/environment.md
+research/hillel-m4-sft-dense-bracket/PUBLIC_FILES.txt
+research/hillel-m4-sft-dense-bracket/generate-metrics.mjs
+research/hillel-m4-sft-dense-bracket/requirements-figure.txt
+research/hillel-m4-sft-dense-bracket/analysis/make_deltaE_figure.py
+research/hillel-m4-sft-dense-bracket/analysis/hanken-grotesk.ttf
+research/hillel-m4-sft-dense-bracket/analysis/dejavu-sans.ttf
+research/hillel-m4-sft-dense-bracket/metrics.json
+research/hillel-m4-sft-dense-bracket/results/dense_bracket_metrics.json

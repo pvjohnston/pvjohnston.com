@@ -1,0 +1,277 @@
+{
+  "slug": "hillel-m4-sft-dense-bracket",
+  "experiment": "hillel-m4-sft-dense-bracket",
+  "method": "ORCA 6.1.1 SF-TDA LibXC(BHANDHLYP) D3BJ def2-QZVPP RIJCOSX def2/J TightSCF; NROOTS 3; no IROOT on SPs; %pal nprocs 4; run as orca input.inp, never mpirun; gas; charge 0; SF ref mult 3",
+  "freeze_quote": "Frozen 2026-09-02 15:30 PDT, before any 95° or 100° energy is seen.",
+  "preregistration_file": "research/hillel-m4-sft-dense-bracket/DENSE_BRACKET_PREREGISTRATION.md",
+  "conversion_Eh_to_kJmol": 2625.49963831,
+  "gap_definition": "deltaE_T1_minus_S0",
+  "energy_rule": "ΔE = E(T1)−E(S0) on ONE structure (same-geometry two-root SP). Assignment by ⟨S²⟩: S0 = lowest SF root ⟨S²⟩≈0; T1 = lowest ⟨S²⟩≈2. A root with ⟨S²⟩≈1 is unused. 90° and 105° reused from published tworoot_metrics.json and not re-run. 95° and 100° are new constrained opts + new tworoot SPs. Absolute S0/T1 totals for 95° and 100° are not in this dump.",
+  "source_files": [
+    "results/dense_bracket_metrics.json",
+    "DENSE_BRACKET_PREREGISTRATION.md",
+    "research/hillel-m4-sft-tworoot/metrics.json"
+  ],
+  "preregistration": {
+    "frozen": "2026-09-02T15:30:00-07:00",
+    "frozen_display": "2026-09-02 15:30 PDT",
+    "question": "Does a denser 90–105° same-geometry SF-TDA bracket keep the M4 sign change?",
+    "hypothesis": "ΔE still changes sign between neighboring both-assigned points inside 90–105° on both families when S0 and T1 are taken from the same SF manifold on one structure.",
+    "crossing_definition_quoted": "On each constrained-CNNC geometry family (S0-relaxed and T1-relaxed), evaluate same-geometry ΔE = E(T1) − E(S0) at 90°, 95°, 100°, and 105°. The 90° and 105° points are the already-published two-root single points; they are reused and not re-run. The 95° and 100° points are new constrained optimizations on that family, then one SF-TDA single point per new geometry. S0 = lowest SF root ⟨S²⟩≈0; T1 = lowest ⟨S²⟩≈2; both from that one calculation. A same-geometry sign change is a sign change of ΔE on a neighboring both-assigned pair inside 90–105°, scored separately on each family. The linear interpolant of a sign-change pair is recorded; it is not an MECP.",
+    "falsifiers_quoted": {
+      "1": "Neither family has a both-assigned sign change of same-geometry ΔE on a neighboring pair in 90–105°.",
+      "2": "A family has a sign change whose interpolant lies outside 90–105°.",
+      "3": "A family has no neighboring both-assigned pair."
+    }
+  },
+  "published_tworoot_residual": {
+    "assigned_s0_s2_min": 0.140887,
+    "assigned_s0_s2_max": 0.30583,
+    "assigned_t1_s2_min": 2.194025,
+    "assigned_t1_s2_max": 2.293213,
+    "source": "research/hillel-m4-sft-tworoot/metrics.json"
+  },
+  "points": [
+    {
+      "geom_family": "s0_relaxed",
+      "phi_deg": 90,
+      "file": "m4_s0_phi_090.out",
+      "both_assigned": true,
+      "reused_from_tworoot": true,
+      "s0": {
+        "iroot": 2,
+        "S2": 0.30583,
+        "E_Eh": -910.991732775
+      },
+      "t1": {
+        "iroot": 1,
+        "S2": 2.250879,
+        "E_Eh": -910.99860543
+      },
+      "deltaE_Eh": -0.006872655,
+      "deltaE_kJmol": -18.044153216729413
+    },
+    {
+      "geom_family": "s0_relaxed",
+      "phi_deg": 95,
+      "file": "m4_s0_phi_095.out",
+      "both_assigned": true,
+      "reused_from_tworoot": false,
+      "s0": {
+        "S2": 0.437935
+      },
+      "t1": {},
+      "deltaE_Eh": -0.003718418,
+      "deltaE_kJmol": -9.762705114085394,
+      "contamination": {
+        "assigned_s0_s2_outside_published_residual": true
+      }
+    },
+    {
+      "geom_family": "s0_relaxed",
+      "phi_deg": 100,
+      "file": "m4_s0_phi_100.out",
+      "both_assigned": true,
+      "reused_from_tworoot": false,
+      "s0": {},
+      "t1": {
+        "S2": 1.636
+      },
+      "unused_root_near_s2_1": true,
+      "deltaE_Eh": -0.017975,
+      "deltaE_kJmol": -47.19335599862226,
+      "contamination": {
+        "unused_sf_root_near_s2_1": true,
+        "assigned_t1_s2_in_triplet_bin_outside_published_residual": true
+      }
+    },
+    {
+      "geom_family": "s0_relaxed",
+      "phi_deg": 105,
+      "file": "m4_s0_phi_105.out",
+      "both_assigned": true,
+      "reused_from_tworoot": true,
+      "s0": {
+        "iroot": 1,
+        "S2": 0.240761,
+        "E_Eh": -911.005005336
+      },
+      "t1": {
+        "iroot": 2,
+        "S2": 2.271664,
+        "E_Eh": -910.996796632
+      },
+      "deltaE_Eh": 0.008208704,
+      "deltaE_kJmol": 21.55194938299385
+    },
+    {
+      "geom_family": "t1_relaxed",
+      "phi_deg": 90,
+      "file": "m4_t1_phi_090.out",
+      "both_assigned": true,
+      "reused_from_tworoot": true,
+      "s0": {
+        "iroot": 2,
+        "S2": 0.256895,
+        "E_Eh": -910.991500624
+      },
+      "t1": {
+        "iroot": 1,
+        "S2": 2.26704,
+        "E_Eh": -910.999002628
+      },
+      "deltaE_Eh": -0.007502004,
+      "deltaE_kJmol": -19.696508788600173
+    },
+    {
+      "geom_family": "t1_relaxed",
+      "phi_deg": 95,
+      "file": "m4_t1_phi_095.out",
+      "both_assigned": true,
+      "reused_from_tworoot": false,
+      "s0": {},
+      "t1": {},
+      "deltaE_Eh": -0.005850615,
+      "deltaE_kJmol": -15.360787566391062
+    },
+    {
+      "geom_family": "t1_relaxed",
+      "phi_deg": 100,
+      "file": "m4_t1_phi_100.out",
+      "both_assigned": true,
+      "reused_from_tworoot": false,
+      "s0": {},
+      "t1": {
+        "S2": 1.837
+      },
+      "unused_root_near_s2_1": true,
+      "deltaE_Eh": -0.018187,
+      "deltaE_kJmol": -47.74996192194397,
+      "contamination": {
+        "unused_sf_root_near_s2_1": true,
+        "assigned_t1_s2_in_triplet_bin_outside_published_residual": true
+      }
+    },
+    {
+      "geom_family": "t1_relaxed",
+      "phi_deg": 105,
+      "file": "m4_t1_phi_105.out",
+      "both_assigned": true,
+      "reused_from_tworoot": true,
+      "s0": {
+        "iroot": 1,
+        "S2": 0.304834,
+        "E_Eh": -911.00275957
+      },
+      "t1": {
+        "iroot": 2,
+        "S2": 2.194025,
+        "E_Eh": -911.000008071
+      },
+      "deltaE_Eh": 0.002751499,
+      "deltaE_kJmol": 7.224059629310327
+    }
+  ],
+  "neighboring_pairs": [
+    {
+      "geom_family": "s0_relaxed",
+      "pair": [90, 95],
+      "both_assigned": true,
+      "sign_change": false,
+      "interpolated_crossing_phi_deg": null,
+      "deltaE_a_Eh": -0.006872655,
+      "deltaE_b_Eh": -0.003718418,
+      "deltaE_a_kJmol": -18.044153216729413,
+      "deltaE_b_kJmol": -9.762705114085394
+    },
+    {
+      "geom_family": "s0_relaxed",
+      "pair": [95, 100],
+      "both_assigned": true,
+      "sign_change": false,
+      "interpolated_crossing_phi_deg": null,
+      "deltaE_a_Eh": -0.003718418,
+      "deltaE_b_Eh": -0.017975,
+      "deltaE_a_kJmol": -9.762705114085394,
+      "deltaE_b_kJmol": -47.19335599862226
+    },
+    {
+      "geom_family": "s0_relaxed",
+      "pair": [100, 105],
+      "both_assigned": true,
+      "sign_change": true,
+      "interpolated_crossing_phi_deg": 103.43247846064865,
+      "deltaE_a_Eh": -0.017975,
+      "deltaE_b_Eh": 0.008208704,
+      "deltaE_a_kJmol": -47.19335599862226,
+      "deltaE_b_kJmol": 21.55194938299385
+    },
+    {
+      "geom_family": "t1_relaxed",
+      "pair": [90, 95],
+      "both_assigned": true,
+      "sign_change": false,
+      "interpolated_crossing_phi_deg": null,
+      "deltaE_a_Eh": -0.007502004,
+      "deltaE_b_Eh": -0.005850615,
+      "deltaE_a_kJmol": -19.696508788600173,
+      "deltaE_b_kJmol": -15.360787566391062
+    },
+    {
+      "geom_family": "t1_relaxed",
+      "pair": [95, 100],
+      "both_assigned": true,
+      "sign_change": false,
+      "interpolated_crossing_phi_deg": null,
+      "deltaE_a_Eh": -0.005850615,
+      "deltaE_b_Eh": -0.018187,
+      "deltaE_a_kJmol": -15.360787566391062,
+      "deltaE_b_kJmol": -47.74996192194397
+    },
+    {
+      "geom_family": "t1_relaxed",
+      "pair": [100, 105],
+      "both_assigned": true,
+      "sign_change": true,
+      "interpolated_crossing_phi_deg": 104.34295696171918,
+      "deltaE_a_Eh": -0.018187,
+      "deltaE_b_Eh": 0.002751499,
+      "deltaE_a_kJmol": -47.74996192194397,
+      "deltaE_b_kJmol": 7.224059629310327
+    }
+  ],
+  "family_scores": {
+    "s0_relaxed": {
+      "hypothesis_supported": true,
+      "sign_change_pair": [100, 105],
+      "interpolant_phi_deg": 103.43247846064865,
+      "both_assigned_neighbor_pair_count": 3
+    },
+    "t1_relaxed": {
+      "hypothesis_supported": true,
+      "sign_change_pair": [100, 105],
+      "interpolant_phi_deg": 104.34295696171918,
+      "both_assigned_neighbor_pair_count": 3
+    }
+  },
+  "crossing_phi_deg_s0": 103.43247846064865,
+  "crossing_phi_deg_t1": 104.34295696171918,
+  "flip_pair": [100, 105],
+  "falsifier_1_no_sign_change": false,
+  "falsifier_2_crossing_outside_90_105": false,
+  "falsifier_3_no_neighboring_pair": false,
+  "hypothesis_supported_s0_family": true,
+  "hypothesis_supported_t1_family": true,
+  "hypothesis_supported": true,
+  "one_family_only_sign_change": false,
+  "overall_verdict": "supported",
+  "contamination_flags": {
+    "unused_sf_root_near_s2_1_at_phi100_both_families": true,
+    "assigned_t1_s2_phi100_s0_relaxed": 1.636,
+    "assigned_t1_s2_phi100_t1_relaxed": 1.837,
+    "assigned_t1_s2_phi100_in_triplet_bin_outside_published_residual": true,
+    "assigned_s0_s2_phi95_s0_relaxed": 0.437935,
+    "assigned_s0_s2_phi95_s0_relaxed_in_singlet_bin_outside_published_residual": true
+  },
+  "claim_sentence": "On both constrained-CNNC geometry families, the same-geometry SF-TDA gap E(T1)−E(S0) changes sign between 100° and 105°."
+}
