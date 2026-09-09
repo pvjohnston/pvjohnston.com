@@ -2,12 +2,16 @@
   "schema_version": 1,
   "experiment": "hillel-m4-sft-dense-bracket",
   "provenance": {
-    "generated_at": "2026-09-09T15:54:44Z",
+    "generated_at": "2026-09-09T16:31:48Z",
     "generator": "research/hillel-m4-sft-dense-bracket/generate-metrics.mjs",
     "inputs": [
       {
         "path": "research/hillel-m4-sft-dense-bracket/results/dense_bracket_metrics.json",
-        "sha256": "7c173dbbbc50b6777688a12000c3a1a9a6af088dbb60e3ef4f86dab1cdc306e6"
+        "sha256": "176ad605fa8b1ab9dae87030c5336ded69548569bffc29d9f6c6b8b6a14ce84e"
+      },
+      {
+        "path": "research/hillel-m4-sft-tworoot/metrics.json",
+        "sha256": "abbc05037ebb48702f1e794d451ff1ba6673aaec3db9f313944d8d4996d0e9e7"
       }
     ]
   },

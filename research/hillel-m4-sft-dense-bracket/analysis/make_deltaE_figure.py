@@ -27,9 +27,14 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 REPO_ROOT = ROOT.parents[1]
 POINTS_PATH = HERE / "points.json"
+CANONICAL_PATH = ROOT / "results" / "dense_bracket_metrics.json"
 FRAMES = ROOT / "frames"
 OUT_PREVIEW = HERE / "fig_deltaE_vs_phi.png"
-OUT_PUBLISHED = REPO_ROOT / "images" / "hillel-m4-sft-dense-bracket-figure1.png"
+OUT_PUBLISHED = (
+    REPO_ROOT
+    / "images"
+    / "2026-09-09-does-a-denser-m4-bracket-keep-the-sign-change-figure1.png"
+)
 OUT_S0_PREVIEW = HERE / "fig_s0_stills.png"
 OUT_T1_PREVIEW = HERE / "fig_t1_stills.png"
 OUT_S0_PUBLISHED = REPO_ROOT / "images" / "hillel-m4-sft-dense-bracket-s0-stills.png"
@@ -83,6 +88,31 @@ CROP = (151, 28, 710, 601)  # x0, y0, x1, y1
 # ---------------------------------------------------------------------------
 
 STORED_ZEROS = {"s0_relaxed": 103.43, "t1_relaxed": 104.34}
+FAMILY_CROSSING_KEY = {
+    "s0_relaxed": "crossing_phi_deg_s0",
+    "t1_relaxed": "crossing_phi_deg_t1",
+}
+
+
+def display_2(value: float) -> float:
+    """Two-decimal display rounding. Not a linear interpolant."""
+    return float(f"{float(value):.2f}")
+
+
+def load_canonical(path: Path) -> dict:
+    d = json.loads(path.read_text())
+    by_family = {fam: {} for fam in FAMILY_ORDER}
+    for p in d.get("points", []):
+        fam = p.get("geom_family")
+        if fam not in by_family:
+            raise SystemExit(f"canonical dump: unexpected geom_family {fam!r}")
+        by_family[fam][int(p["phi_deg"])] = p
+    return {
+        "points": by_family,
+        "crossings": {
+            fam: float(d[FAMILY_CROSSING_KEY[fam]]) for fam in FAMILY_ORDER
+        },
+    }
 
 
 def load_points(path: Path) -> dict:
@@ -132,6 +162,27 @@ def load_points(path: Path) -> dict:
                 "do not recompute from rounded Delta E"
             )
         interpolants[fam] = stored
+
+    canonical = load_canonical(CANONICAL_PATH)
+    for fam in FAMILY_ORDER:
+        for phi, de, reused_flag in series[fam]:
+            src = canonical["points"][fam].get(int(phi))
+            if src is None:
+                raise SystemExit(f"canonical dump missing {fam} φ={int(phi)}")
+            if abs(display_2(src["deltaE_kJmol"]) - de) > 1e-9:
+                raise SystemExit(
+                    f"{fam} φ={int(phi)} points.json ΔE {de} != "
+                    f"display-rounded canonical {display_2(src['deltaE_kJmol'])}"
+                )
+            if reused_flag != bool(src.get("reused_from_tworoot")):
+                raise SystemExit(f"{fam} φ={int(phi)} reuse flag != canonical dump")
+        stored = interpolants[fam]
+        canon_zero = canonical["crossings"][fam]
+        if abs(display_2(canon_zero) - stored) > 1e-9:
+            raise SystemExit(
+                f"{fam} stored zero {stored} != display-rounded canonical "
+                f"{display_2(canon_zero)}; do not recompute from rounded Delta E"
+            )
 
     return {
         "series": series,
@@ -743,13 +794,13 @@ def render_plot(points: dict, font: Font) -> np.ndarray:
     label_off = {
         "s0_relaxed": {
             90: (0, 24, "center"),
-            95: (0, 24, "center"),
+            95: (18, 30, "left"),
             100: (16, 0, "left"),
             105: (0, -24, "center"),
         },
         "t1_relaxed": {
             90: (0, -24, "center"),
-            95: (0, -24, "center"),
+            95: (-18, -30, "right"),
             100: (-16, 0, "right"),
             105: (0, 24, "center"),
         },

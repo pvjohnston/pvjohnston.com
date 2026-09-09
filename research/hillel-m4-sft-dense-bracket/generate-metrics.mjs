@@ -14,7 +14,11 @@ const experimentDir = dirname(fileURLToPath(import.meta.url));
 const root = resolve(experimentDir, '../..');
 const outputPath = resolve(experimentDir, 'metrics.json');
 const dumpInput = 'research/hillel-m4-sft-dense-bracket/results/dense_bracket_metrics.json';
+const tworootInput = 'research/hillel-m4-sft-tworoot/metrics.json';
 const checkOnly = process.argv.includes('--check');
+const SINGLET_S2_MAX = 0.8;
+const TRIPLET_S2_MIN = 1.5;
+const TRIPLET_S2_MAX = 2.8;
 
 const REQUIRED_PHIS = [90, 95, 100, 105];
 const FAMILIES = [
@@ -107,6 +111,68 @@ function pairInterpolantOf(pair) {
   return null;
 }
 
+function rootKeys(root) {
+  return root && typeof root === 'object' ? Object.keys(root) : [];
+}
+
+function inSingletBin(s2) {
+  return Number.isFinite(s2) && s2 < SINGLET_S2_MAX;
+}
+
+function inTripletBin(s2) {
+  return Number.isFinite(s2) && s2 > TRIPLET_S2_MIN && s2 < TRIPLET_S2_MAX;
+}
+
+function deriveBothAssigned(point, reused, label) {
+  const deltaEh = point.deltaE_Eh;
+  const deltaE = point.deltaE_kJmol;
+  if (!Number.isFinite(deltaEh) || !Number.isFinite(deltaE)) {
+    throw new Error(`${label}: scored ΔE is required to derive both_assigned`);
+  }
+  if (rootKeys(point.s0).length === 0 && point.s0 && typeof point.s0 === 'object') {
+    throw new Error(`${label}: empty s0 object is not an assignment record`);
+  }
+  if (rootKeys(point.t1).length === 0 && point.t1 && typeof point.t1 === 'object') {
+    throw new Error(`${label}: empty t1 object is not an assignment record`);
+  }
+  if (reused) {
+    const s0E = point.s0?.E_Eh;
+    const t1E = point.t1?.E_Eh;
+    const s0s2 = point.s0?.S2;
+    const t1s2 = point.t1?.S2;
+    if (![s0E, t1E, s0s2, t1s2].every(Number.isFinite)) {
+      throw new Error(`${label}: reused both_assigned requires s0/t1 E_Eh and S2`);
+    }
+    if (!inSingletBin(s0s2) || !inTripletBin(t1s2)) {
+      throw new Error(`${label}: reused ⟨S²⟩ is outside the assignment bins`);
+    }
+    return true;
+  }
+  if (point.s0) {
+    const s0s2 = requireFinite(point.s0.S2, `${label} s0.S2`);
+    if (!inSingletBin(s0s2)) {
+      throw new Error(`${label}: recorded S0 ⟨S²⟩=${s0s2} is not in the singlet bin`);
+    }
+  }
+  if (point.t1) {
+    const t1s2 = requireFinite(point.t1.S2, `${label} t1.S2`);
+    if (!inTripletBin(t1s2)) {
+      throw new Error(`${label}: recorded T1 ⟨S²⟩=${t1s2} is not in the triplet bin`);
+    }
+  }
+  // New points withhold absolute energies. both_assigned is derived from
+  // the scored same-geometry gap plus every recorded ⟨S²⟩ sitting in bin.
+  return true;
+}
+
+function metricValue(metrics, id) {
+  const m = metrics?.[id];
+  if (!m || !Number.isFinite(m.value)) {
+    throw new Error(`tworoot metrics.json missing ${id}`);
+  }
+  return m.value;
+}
+
 function build(generatedAt) {
   const dump = JSON.parse(readFileSync(resolve(root, dumpInput), 'utf8'));
   const experimentId = dump.experiment ?? dump.slug;
@@ -161,13 +227,21 @@ function build(generatedAt) {
       if (pointFile !== expectedFile) {
         throw new Error(`${family.id} ${phi}°: file ${pointFile} !== ${expectedFile}`);
       }
-      if (point.both_assigned === true) {
+      const reused = point.reused_from_tworoot === true;
+      const derivedAssigned = deriveBothAssigned(
+        point, reused, `${family.id} ${phi}°`,
+      );
+      if (point.both_assigned !== derivedAssigned) {
+        throw new Error(
+          `${family.id} ${phi}°: both_assigned ${point.both_assigned} !== derived ${derivedAssigned}`,
+        );
+      }
+      if (derivedAssigned) {
         bothAssignedPointCount += 1;
       }
-      if (point.both_assigned !== true) {
+      if (derivedAssigned !== true) {
         throw new Error(`${family.id} ${phi}°: required window point must be both-assigned`);
       }
-      const reused = point.reused_from_tworoot === true;
       if (REUSED_PHIS.includes(phi) && !reused) {
         throw new Error(`${family.id} ${phi}°: must be reused from tworoot`);
       }
@@ -194,7 +268,13 @@ function build(generatedAt) {
         if (point.s0?.E_Eh != null || point.t1?.E_Eh != null) {
           throw new Error(`${family.id} ${phi}°: new-point absolute energies are not in the scored dump`);
         }
-        slots[phi] = { reused, deltaEh, deltaE };
+        slots[phi] = {
+          reused,
+          deltaEh,
+          deltaE,
+          s0s2: Number.isFinite(point.s0?.S2) ? point.s0.S2 : null,
+          t1s2: Number.isFinite(point.t1?.S2) ? point.t1.S2 : null,
+        };
       }
     }
     familyData[family.id] = slots;
@@ -286,14 +366,56 @@ function build(generatedAt) {
   assertClose(t1s2_100_s0, 1.636, 'assigned_t1_s2_phi100_s0_relaxed', 0);
   assertClose(t1s2_100_t1, 1.837, 'assigned_t1_s2_phi100_t1_relaxed', 0);
   assertClose(s0s2_95_s0, 0.437935, 'assigned_s0_s2_phi95_s0_relaxed', 0);
-  if (!(t1s2_100_s0 > 1.5 && t1s2_100_s0 < 2.8)) {
+  if (!inTripletBin(t1s2_100_s0)) {
     throw new Error(`S0-relaxed 100° T1 ⟨S²⟩=${t1s2_100_s0} is not in the triplet bin`);
   }
-  if (!(t1s2_100_t1 > 1.5 && t1s2_100_t1 < 2.8)) {
+  if (!inTripletBin(t1s2_100_t1)) {
     throw new Error(`T1-relaxed 100° T1 ⟨S²⟩=${t1s2_100_t1} is not in the triplet bin`);
   }
-  if (!(s0s2_95_s0 < 0.8)) {
+  if (!inSingletBin(s0s2_95_s0)) {
     throw new Error(`S0-relaxed 95° S0 ⟨S²⟩=${s0s2_95_s0} is not in the singlet bin`);
+  }
+  assertClose(
+    familyData.s0_relaxed[100].t1s2, t1s2_100_s0,
+    'S0-relaxed 100° T1 ⟨S²⟩ vs contamination flag', 0,
+  );
+  assertClose(
+    familyData.t1_relaxed[100].t1s2, t1s2_100_t1,
+    'T1-relaxed 100° T1 ⟨S²⟩ vs contamination flag', 0,
+  );
+  assertClose(
+    familyData.s0_relaxed[95].s0s2, s0s2_95_s0,
+    'S0-relaxed 95° S0 ⟨S²⟩ vs contamination flag', 0,
+  );
+
+  const tworoot = JSON.parse(readFileSync(resolve(root, tworootInput), 'utf8'));
+  if (tworoot.experiment !== 'hillel-m4-sft-tworoot') {
+    throw new Error(`${tworootInput}: experiment must be hillel-m4-sft-tworoot`);
+  }
+  const residual = dump.published_tworoot_residual ?? {};
+  assertClose(residual.assigned_s0_s2_min, metricValue(tworoot.metrics, 'assigned_s0_s2_min'),
+    'published residual assigned_s0_s2_min', 0);
+  assertClose(residual.assigned_s0_s2_max, metricValue(tworoot.metrics, 'assigned_s0_s2_max'),
+    'published residual assigned_s0_s2_max', 0);
+  assertClose(residual.assigned_t1_s2_min, metricValue(tworoot.metrics, 'assigned_t1_s2_min'),
+    'published residual assigned_t1_s2_min', 0);
+  assertClose(residual.assigned_t1_s2_max, metricValue(tworoot.metrics, 'assigned_t1_s2_max'),
+    'published residual assigned_t1_s2_max', 0);
+  for (const family of FAMILIES) {
+    for (const phi of REUSED_PHIS) {
+      const slot = familyData[family.id][phi];
+      const prefix = `${family.key}_${phi}`;
+      assertClose(slot.deltaE, metricValue(tworoot.metrics, `deltae_kjmol_${prefix}`),
+        `${family.id} ${phi}° reused ΔE vs tworoot`, 1e-12);
+      assertClose(slot.s0E, metricValue(tworoot.metrics, `s0_e_eh_${prefix}`),
+        `${family.id} ${phi}° reused S0 E vs tworoot`, 0);
+      assertClose(slot.t1E, metricValue(tworoot.metrics, `t1_e_eh_${prefix}`),
+        `${family.id} ${phi}° reused T1 E vs tworoot`, 0);
+      assertClose(slot.s0s2, metricValue(tworoot.metrics, `s0_s2_${prefix}`),
+        `${family.id} ${phi}° reused S0 ⟨S²⟩ vs tworoot`, 0);
+      assertClose(slot.t1s2, metricValue(tworoot.metrics, `t1_s2_${prefix}`),
+        `${family.id} ${phi}° reused T1 ⟨S²⟩ vs tworoot`, 0);
+    }
   }
   const unusedBoth = requireBool(
     flags.unused_sf_root_near_s2_1_at_phi100_both_families,
@@ -379,7 +501,10 @@ function build(generatedAt) {
     provenance: {
       generated_at: generatedAt,
       generator: relative(root, fileURLToPath(import.meta.url)),
-      inputs: [{ path: dumpInput, sha256: sha256(dumpInput) }],
+      inputs: [
+        { path: dumpInput, sha256: sha256(dumpInput) },
+        { path: tworootInput, sha256: sha256(tworootInput) },
+      ],
     },
     metrics,
   };

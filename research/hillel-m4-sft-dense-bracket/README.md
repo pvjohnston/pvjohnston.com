@@ -60,7 +60,12 @@ node scripts/verify-metrics.mjs
 ΔE(Eh) × conversion_Eh_to_kJmol and that each family's 100°/105°
 pair interpolant matches the stored neighboring-pair value. The
 site interpolant metrics are the stored `crossing_phi_deg_s0` and
-`crossing_phi_deg_t1`.
+`crossing_phi_deg_t1`. Reused 90°/105° records and the published
+⟨S²⟩ residual ranges are compared to
+`research/hillel-m4-sft-tworoot/metrics.json`, which is
+fingerprinted in provenance. `both_assigned` is derived from the
+recorded roots on reused points and from the scored gap plus any
+recorded ⟨S²⟩ on new points.
 
 ## Regenerate Figure 1
 
@@ -71,7 +76,9 @@ python3 research/hillel-m4-sft-dense-bracket/analysis/make_deltaE_figure.py
 
 The renderer loads `analysis/points.json` for the two-decimal ΔE
 labels, open/filled reuse flags, and the stored 100–105 linear
-zeros (103.43° S0-relaxed, 104.34° T1-relaxed). Those zeros are
+zeros (103.43° S0-relaxed, 104.34° T1-relaxed). Before drawing, it
+checks every plotted gap and stored zero against
+`results/dense_bracket_metrics.json`. Those zeros are
 not recomputed from the rounded ΔE values. Fonts are the committed
 `analysis/hanken-grotesk.ttf` via Pillow `ImageFont.truetype` for
 Latin ticks and numbers. Axis Δ and φ come from the committed
@@ -83,7 +90,7 @@ plot and exits 0 when frames are absent.
 
 The command updates:
 
-- `images/hillel-m4-sft-dense-bracket-figure1.png`
+- `images/2026-09-09-does-a-denser-m4-bracket-keep-the-sign-change-figure1.png`
 
 Point labels on the plot are the `points.json` ΔE values. Open
 markers are the reused 90° and 105° published two-root points;

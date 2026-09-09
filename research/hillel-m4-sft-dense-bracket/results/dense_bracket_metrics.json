@@ -60,7 +60,6 @@
       "s0": {
         "S2": 0.437935
       },
-      "t1": {},
       "deltaE_Eh": -0.003718418,
       "deltaE_kJmol": -9.762705114085394,
       "contamination": {
@@ -73,7 +72,6 @@
       "file": "m4_s0_phi_100.out",
       "both_assigned": true,
       "reused_from_tworoot": false,
-      "s0": {},
       "t1": {
         "S2": 1.636
       },
@@ -129,8 +127,6 @@
       "file": "m4_t1_phi_095.out",
       "both_assigned": true,
       "reused_from_tworoot": false,
-      "s0": {},
-      "t1": {},
       "deltaE_Eh": -0.005850615,
       "deltaE_kJmol": -15.360787566391062
     },
@@ -140,7 +136,6 @@
       "file": "m4_t1_phi_100.out",
       "both_assigned": true,
       "reused_from_tworoot": false,
-      "s0": {},
       "t1": {
         "S2": 1.837
       },
