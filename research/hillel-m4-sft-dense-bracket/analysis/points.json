@@ -1,0 +1,29 @@
+{
+  "unit": "kJ/mol",
+  "reused_phi_deg": [90, 105],
+  "new_phi_deg": [95, 100],
+  "s0_relaxed": [
+    {"phi_deg": 90, "deltaE_kJmol": -18.04, "reused": true},
+    {"phi_deg": 95, "deltaE_kJmol": -9.76, "reused": false},
+    {"phi_deg": 100, "deltaE_kJmol": -47.19, "reused": false},
+    {"phi_deg": 105, "deltaE_kJmol": 21.55, "reused": true}
+  ],
+  "t1_relaxed": [
+    {"phi_deg": 90, "deltaE_kJmol": -19.70, "reused": true},
+    {"phi_deg": 95, "deltaE_kJmol": -15.36, "reused": false},
+    {"phi_deg": 100, "deltaE_kJmol": -47.75, "reused": false},
+    {"phi_deg": 105, "deltaE_kJmol": 7.22, "reused": true}
+  ],
+  "linear_zeros": {
+    "s0_relaxed": {
+      "phi_deg": 103.43,
+      "bracket": [100, 105],
+      "note": "stored linear estimate; not an MECP; do not recompute from rounded Delta E"
+    },
+    "t1_relaxed": {
+      "phi_deg": 104.34,
+      "bracket": [100, 105],
+      "note": "stored linear estimate; not an MECP; do not recompute from rounded Delta E"
+    }
+  }
+}

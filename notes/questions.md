@@ -1203,12 +1203,33 @@ Format:
 - **Falsifier:** Falsified if either family has no neighboring pair
   of both-assigned points with opposite-signed ΔE values inside
   90–105°.
-- **Status:** ready — same ORCA 6.1.1 same-geometry method. The
-  published families contain only 90°, 105°, 120°, and 135°; a
-  denser relaxed-family bracket requires new constrained S0 and T1
-  optimizations at the intermediate angles, then same-geometry
-  two-root SPs on those new opts. Following on-line item: an MECP
-  search on the same surfaces.
+- **Status:** published —
+  `/posts/2026-09-09-does-a-denser-m4-bracket-keep-the-sign-change.html`.
+  Registered hypothesis **supported** on both families. F1–F3 all
+  false. Same-geometry ΔE changes sign between 100° and 105°; linear
+  interpolants 103.43° (S0-relaxed) and 104.34° (T1-relaxed). Those
+  interpolants are not MECPs. 90° and 105° reused from the published
+  two-root rematch; 95° and 100° are new constrained opts + new
+  tworoot SPs. The next experiment is an MECP search on the same
+  SF surfaces near those interpolants.
+
+## Does an MECP search on the same SF surfaces sit near the denser-bracket interpolants?
+- **Observed:** Next step from the 2026-09-09 denser-bracket note.
+  Both geometry families keep a same-geometry ΔE sign change on the
+  100–105° pair; the stored zeros are linear interpolants of that
+  pair.
+- **Source:** own next step from
+  `/posts/2026-09-09-does-a-denser-m4-bracket-keep-the-sign-change.html`
+- **Type:** untested regime
+- **Contribution (candidate):** a located SF-TDA MECP on the same
+  S0/T1 surfaces near the denser-bracket interpolants, which is not
+  in the 2026-09-09 note
+- **Hypothesis:** a converged MECP exists near each family's
+  100–105 interpolant on the same SF manifold
+- **Falsifier:** no converged MECP is found on either family near
+  those interpolants, or a located MECP falls outside 90–105°
+- **Status:** ready — same ORCA 6.1.1 SF-TDA surfaces as the
+  denser bracket. Direct follow-up only.
 
 ## Does carboxylate oxygen charge oscillate with CX3 rotation, with larger amplitude for CCl3COO− than for CF3COO−?
 - **Observed:** Johnson, Gregory, Robertson, Gresham, Nelson, Craig, Prescott,
