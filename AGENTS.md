@@ -38,9 +38,10 @@ better be earning its keep.
    `node scripts/verify-bib.mjs`, `node scripts/verify-metrics.mjs`, grep every
    `[@key]` against `bib/bibliography.bib`, confirm the bare `## References`,
    confirm internal post links end in `.html`.
-5. Open a PR into `main`. CI runs the full build and verification on every PR —
-   opening the PR *is* a legitimate way to run the expensive checks. Merge
-   deploys.
+5. Open a PR into `main`. PR CI (`ci.yml`) runs Stack tests and a TeX-free
+   `site build` (`SKIP_TIKZ=1`). Opening the PR *is* a legitimate way to run
+   those checks. Merge deploys via `deploy.yml`, which still installs TeX Live
+   and renders diagrams.
 6. Leave the session clean: worktrees you created are committed or removed, no
    stashes, no branches you can't account for, primary checkout on `main`.
 

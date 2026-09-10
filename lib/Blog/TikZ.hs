@@ -13,6 +13,10 @@
 -- Posts without any @tikzpicture@ blocks never shell out, so the site builds
 -- fine on a machine with no TeX toolchain installed.
 --
+-- Set @SKIP_TIKZ@ (to anything) to leave @.tikzpicture@ blocks as source
+-- instead of calling @lualatex@/@dvisvgm@. PR CI uses this so the Hakyll site
+-- can still be compiled and verified without installing TeX Live.
+--
 -- Rendered SVGs are cached on disk under @_cache/tikz@, keyed by a hash of the
 -- preamble and diagram source, so editing the prose of a diagram-heavy post
 -- does not re-run LaTeX for every unchanged diagram. @site clean@ clears the
@@ -26,11 +30,13 @@ module Blog.TikZ
 
 import Data.Char (ord)
 import Data.List (foldl', isInfixOf)
+import Data.Maybe (isJust)
 import qualified Data.Text as T
 import qualified Data.Text.IO as TIO
 import Hakyll (Compiler, unsafeCompiler)
 import Text.Pandoc.Definition (Block (..), Format (..))
 import System.Directory (createDirectoryIfMissing, doesFileExist)
+import System.Environment (lookupEnv)
 import System.Exit (ExitCode (..))
 import System.IO (hPutStrLn, stderr)
 import System.IO.Temp (withSystemTempDirectory)
@@ -41,17 +47,27 @@ import System.Process
   )
 
 -- | Pandoc filter: replace @.tikzpicture@ code blocks with rendered inline SVG,
--- leaving every other block untouched.
+-- leaving every other block untouched. When @SKIP_TIKZ@ is set, the original
+-- source block is returned so the rest of the site can still compile.
 tikzFilter :: Block -> Compiler Block
-tikzFilter (CodeBlock (_, classes, _) contents)
+tikzFilter block@(CodeBlock (_, classes, _) contents)
   | "tikzpicture" `elem` classes = do
-      result <- unsafeCompiler $ renderTikz (T.unpack contents)
-      let html = case result of
-            Right svg -> "<div class=\"tikz-figure\">" ++ inlineSvg svg ++ "</div>"
-            Left err  -> "<div class=\"tikz-error\"><strong>Diagram failed to render.</strong>"
-                          ++ "<pre>" ++ escapeHtml err ++ "</pre></div>"
-      return $ RawBlock (Format "html") (T.pack html)
+      skip <- unsafeCompiler skipTikzRequested
+      if skip
+        then return block
+        else do
+          result <- unsafeCompiler $ renderTikz (T.unpack contents)
+          let html = case result of
+                Right svg -> "<div class=\"tikz-figure\">" ++ inlineSvg svg ++ "</div>"
+                Left err  -> "<div class=\"tikz-error\"><strong>Diagram failed to render.</strong>"
+                              ++ "<pre>" ++ escapeHtml err ++ "</pre></div>"
+          return $ RawBlock (Format "html") (T.pack html)
 tikzFilter block = return block
+
+-- | True when @SKIP_TIKZ@ is set to anything (same convention as
+-- @PREVIEW_DRAFTS@). PR CI sets this so the site builds without TeX Live.
+skipTikzRequested :: IO Bool
+skipTikzRequested = isJust <$> lookupEnv "SKIP_TIKZ"
 
 -- | Drop the XML prolog / DOCTYPE that @dvisvgm@ emits, returning the markup
 -- from the opening @\<svg@ tag onward so it is safe to inline in HTML. Pure,
