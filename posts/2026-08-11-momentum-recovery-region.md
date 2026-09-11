@@ -139,14 +139,14 @@ every result number in this post resolves from the committed
 [metrics projection](/research/momentum-recovery-region/metrics.json) at
 build time.
 
+**Code 1.** Exact commands for the canonical run and the metrics projection,
+from the repository root and experiment directory respectively.
+
 ```bash
 cd research/momentum-recovery-region
 python3 src/run_sweep.py    # stage 1, then stage 2 by the frozen rule
 node generate-metrics.mjs   # project results/*.json into metrics.json
 ```
-
-**Code 1.** Exact commands for the canonical run and the metrics projection,
-from the repository root and experiment directory respectively.
 
 ## Results
 

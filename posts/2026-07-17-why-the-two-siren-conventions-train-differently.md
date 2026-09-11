@@ -114,6 +114,11 @@ divides only its *weights* by $\omega_0$ — biases keep the framework's default
 initialization — so the exact same-function property is a property of this
 construction, not of the repository's code.
 
+**Code 1.** The reparameterization under test and the Adam update it interacts
+with. Dividing the stored hidden weights by $\omega_0$ leaves the forward pass
+unchanged and leaves the Adam step size in parameter space unchanged, which is
+the entire content of the experiment.
+
 ```python
 def to_official(P):
     """Same function, official parameterization."""
@@ -129,11 +134,6 @@ m[k] = b1*m[k] + (1-b1)*g[k]
 v[k] = b2*v[k] + (1-b2)*g[k]**2
 P[k] -= step * (m[k]/(1-b1**t)) / (np.sqrt(v[k]/(1-b2**t)) + eps)
 ```
-
-**Code 1.** The reparameterization under test and the Adam update it interacts
-with. Dividing the stored hidden weights by $\omega_0$ leaves the forward pass
-unchanged and leaves the Adam step size in parameter space unchanged, which is
-the entire content of the experiment.
 
 The complete NumPy-only script used for the experiment is available as
 [siren-convention-adam.py](/downloads/siren-convention-adam.py). The frozen raw

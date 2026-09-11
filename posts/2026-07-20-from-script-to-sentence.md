@@ -196,6 +196,11 @@ describe the bundle; its metrics conform to the [shared schema](/research/metric
 and its code carries the site's [license](/LICENSE). Code 1 shows the complete
 local check.
 
+**Code 1.** Recalculate the cheap upstream demonstration in check mode, verify
+the publication projection and its fingerprints, test the compiler, rebuild
+the site without stale Hakyll state, and inspect the generated links and failure
+markers.
+
 ```sh
 python3 research/traceable-brewster-angle/calculate.py --check
 node research/traceable-brewster-angle/generate-metrics.mjs --check
@@ -204,11 +209,6 @@ stack test
 stack exec site rebuild
 node scripts/verify-site.mjs
 ```
-
-**Code 1.** Recalculate the cheap upstream demonstration in check mode, verify
-the publication projection and its fingerprints, test the compiler, rebuild
-the site without stale Hakyll state, and inspect the generated links and failure
-markers.
 
 The recorded run used arm64 macOS 26.5.2, CPython 3.13.12, and Node.js 24.8.0. Both
 scripts use only their language standard libraries. There are no downloads,

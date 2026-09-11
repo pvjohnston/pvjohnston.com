@@ -136,6 +136,10 @@ Code 1 is the demonstration behind Figure 2, condensed to its two moves: draw
 each molecule's centre frequency from a Gaussian, then average the Lorentzians.
 It uses only the Python standard library.
 
+**Code 1.** The core of the ensemble-averaging demonstration: each molecule
+contributes the same Lorentzian cross section shifted to its own centre
+frequency, and the ensemble spectrum is the plain average.
+
 ```python
 import math, random
 
@@ -152,10 +156,6 @@ centres = [random.gauss(0.0, sigma) for _ in range(N)]
 nu = [-300 + 600 * i / 999 for i in range(1000)]
 spectrum = [sum(lorentzian(x, c, gamma) for c in centres) / N for x in nu]
 ```
-
-**Code 1.** The core of the ensemble-averaging demonstration: each molecule
-contributes the same Lorentzian cross section shifted to its own centre
-frequency, and the ensemble spectrum is the plain average.
 
 On the plotted grid the one-molecule line has a full width at half maximum of
 [single_molecule_fwhm]{.metric} cm⁻¹, while the averaged band of the

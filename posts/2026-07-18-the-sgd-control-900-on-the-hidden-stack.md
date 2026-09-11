@@ -117,6 +117,11 @@ separated by a factor of $10^{0.05}=1.122$ — with three repetitions using
 data RNG seeds $1544$, $1545$, and $1546$ and parameter seeds $7000$, $7001$,
 and $7002$.
 
+**Code 1.** The full-batch SGD update and the two isolation switches. Setting
+`isolate=True` trains the hidden stack alone, while `shared_only=True` freezes
+it; `hidden_lr` applies a separate rate to hidden weights and biases, which is
+how the $\times 900$ rescaling in the Results is applied.
+
 ```python
 def train(P, official, x_tr, x_te, lr, hidden_lr=None,
           isolate=False, shared_only=False, ...):
@@ -131,11 +136,6 @@ def train(P, official, x_tr, x_te, lr, hidden_lr=None,
             step = hidden_lr if (hidden_lr is not None and k in HIDDEN) else lr
             P[k] -= step * g[k].reshape(P[k].shape)     # plain SGD: no m, v, eps
 ```
-
-**Code 1.** The full-batch SGD update and the two isolation switches. Setting
-`isolate=True` trains the hidden stack alone, while `shared_only=True` freezes
-it; `hidden_lr` applies a separate rate to hidden weights and biases, which is
-how the $\times 900$ rescaling in the Results is applied.
 
 Three bounds are declared here rather than discovered later. I fix the
 regularization penalties at zero, where the paper searches them jointly with the

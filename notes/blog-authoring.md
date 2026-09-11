@@ -642,7 +642,9 @@ uncaptioned or unreferenced element is a bug.
   - Tables — `**Table 1.** Sentence describing the table.` directly **above**
     the table (ACS: table title above; figure caption below).
   - Code blocks — `**Code 1.** Sentence describing what the code does.` directly
-    **below** the fenced block.
+    **above** the fenced block (house style: ACS has no Listing rule; treat
+    like a table title, not a figure caption — readers need the label before
+    the fence).
   - Audio — keep the complete `<audio>` element on one source line, with a
     useful fallback sentence and direct file link between its tags; put
     `**Audio 1.** Sentence describing what the listener will hear.` directly

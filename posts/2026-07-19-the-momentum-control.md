@@ -110,6 +110,10 @@ the sweeps. Setting $\beta=0$ reproduces the SGD script's update exactly and
 is measured through the same code path wherever a plain-SGD reference is
 quoted.
 
+**Code 1.** The heavy-ball update and the isolation switch. `beta=0` recovers
+plain SGD; `hidden_lr` applies a separate rate to hidden weights and biases,
+which is how the $\times 900$ reparameterization check is run.
+
 ```python
 V = {k: np.zeros_like(v) for k, v in P.items()}
 for t in range(1, epochs + 1):
@@ -123,10 +127,6 @@ for t in range(1, epochs + 1):
         step = hidden_lr if (hidden_lr is not None and k in HIDDEN) else lr
         P[k] -= step * V[k]
 ```
-
-**Code 1.** The heavy-ball update and the isolation switch. `beta=0` recovers
-plain SGD; `hidden_lr` applies a separate rate to hidden weights and biases,
-which is how the $\times 900$ reparameterization check is run.
 
 The protocol — hypothesis, the three falsifiers, and their exact settings —
 was written into the script header before any run. The declared measurements
@@ -151,6 +151,9 @@ of their written specification.
 Code 2 gives the exact invocations used to regenerate the diagnostics and all
 seven JSON outputs from the `downloads` directory.
 
+**Code 2.** Exact commands for the initialization and gradient checks, declared
+and post-hoc diagnostics, broad sweep, and three-repetition refined sweep.
+
 ```bash
 python3 siren-convention-momentum.py identity
 python3 siren-convention-momentum.py gradcheck
@@ -162,9 +165,6 @@ python3 siren-convention-momentum.py decompose 1e-12 200
 python3 siren-convention-momentum.py sweep:1
 python3 siren-convention-momentum.py refine:3 -3.5
 ```
-
-**Code 2.** Exact commands for the initialization and gradient checks, declared
-and post-hoc diagnostics, broad sweep, and three-repetition refined sweep.
 
 The script is
 [siren-convention-momentum.py](/downloads/siren-convention-momentum.py); raw

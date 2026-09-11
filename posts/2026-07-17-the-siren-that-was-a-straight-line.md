@@ -109,6 +109,9 @@ pre-activation recorded (Code 1). Nonlinearity is reported as the mean relative
 departure of $\sin(z)$ from $z$, $\mathbb{E}|\sin z - z| / \mathbb{E}|z|$, for $z$
 drawn at the measured scale.
 
+**Code 1.** Forward propagation at initialization under the three schemes,
+recording the standard deviation of each hidden pre-activation.
+
 ```python
 import numpy as np
 RNG, C, W = np.random.default_rng(0), 6.0, 16
@@ -130,9 +133,6 @@ def run(scheme, w0, L=4):
         h = np.sin(z)
     return stds
 ```
-
-**Code 1.** Forward propagation at initialization under the three schemes,
-recording the standard deviation of each hidden pre-activation.
 
 The complete script, which reproduces every number in the Results section and
 requires nothing but NumPy, is available as

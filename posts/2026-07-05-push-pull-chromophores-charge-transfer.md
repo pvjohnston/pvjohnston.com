@@ -65,6 +65,11 @@ functionals per molecule: **B3LYP**, a global hybrid,[@Becke1993Exchange] and
 for running both is §5. Everything ran in psi4 1.11;[@Smith2020Psi4] the core
 of the excited-state call is Code 1.
 
+**Code 1.** The excited-state step, per molecule and functional: converge the
+ground-state Kohn–Sham determinant, then solve the full TD-DFT (RPA) equations
+for the twelve lowest singlets and read off each state's excitation energy and
+length-gauge oscillator strength.
+
 ```python
 escf, wfn = psi4.energy(func, molecule=m2, return_wfn=True)   # func: b3lyp / cam-b3lyp
 res = tdscf_excitations(wfn, states=12, tda=False,            # full RPA, 12 singlets
@@ -73,11 +78,6 @@ for st in res:
     e_ev = float(st["EXCITATION ENERGY"]) * HA2EV
     f    = float(st["OSCILLATOR STRENGTH (LEN)"])             # length gauge
 ```
-
-**Code 1.** The excited-state step, per molecule and functional: converge the
-ground-state Kohn–Sham determinant, then solve the full TD-DFT (RPA) equations
-for the twelve lowest singlets and read off each state's excitation energy and
-length-gauge oscillator strength.
 
 Two derived quantities do the interpretive work. First, each state's dominant
 occupied→virtual excitation is located in space by the **hole–particle centroid

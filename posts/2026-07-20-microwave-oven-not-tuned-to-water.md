@@ -140,6 +140,11 @@ material. The complete [standard-library
 calculation](/research/microwave-debye-relaxation/calculate.py) validates the
 declared inputs and writes canonical JSON. Code 1 shows only its numerical core.
 
+**Code 1.** Core of the single-Debye evaluation using the declared
+$e^{-i\omega t}$ convention. The complete program adds input validation,
+canonical output, independent consistency checks, and non-writing `--check`
+mode.
+
 ```python
 omega_tau = 2 * math.pi * frequency_hz * relaxation_time_s
 epsilon = epsilon_infinity + (epsilon_static - epsilon_infinity) / (1 - 1j * omega_tau)
@@ -147,11 +152,6 @@ wave_index = cmath.sqrt(epsilon)
 alpha = (2 * math.pi * frequency_hz / speed_of_light) * wave_index.imag
 power_penetration_depth_m = 1 / (2 * alpha)
 ```
-
-**Code 1.** Core of the single-Debye evaluation using the declared
-$e^{-i\omega t}$ convention. The complete program adds input validation,
-canonical output, independent consistency checks, and non-writing `--check`
-mode.
 
 Table 1 is the generated publication projection for liquid water. Its final row
 is explicitly a one-pole extrapolation, included to expose the difference
@@ -264,6 +264,10 @@ generator](/research/microwave-debye-relaxation/generate-metrics.mjs),
 manifest](/research/microwave-debye-relaxation/PUBLIC_FILES.txt). Code 2 checks
 the complete chain.
 
+**Code 2.** Recalculate the canonical result in non-writing check mode, verify
+the typed projection and source fingerprints, test and rebuild the site, and
+inspect the generated links and failure markers.
+
 ```sh
 python3 research/microwave-debye-relaxation/calculate.py --check
 node research/microwave-debye-relaxation/generate-metrics.mjs --check
@@ -272,10 +276,6 @@ stack test
 stack exec site rebuild
 node scripts/verify-site.mjs
 ```
-
-**Code 2.** Recalculate the canonical result in non-writing check mode, verify
-the typed projection and source fingerprints, test and rebuild the site, and
-inspect the generated links and failure markers.
 
 The calculation uses only the Python standard library, with no random inputs,
 downloads, services, or credentials. In the documented environment it is
