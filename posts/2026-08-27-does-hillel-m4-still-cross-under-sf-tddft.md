@@ -44,14 +44,14 @@ Raw ORCA `.out` files stay in the private Molecules lab. They are large and carr
 
 All four required CNNC points are both-converged and both-spin-assigned. Table 1 lists assigned SF-S0 and SF-T1 totals after the separately constrained optimizations of each surface.
 
+**Table 1.** Assigned SF-S0 and SF-T1 totals on the required CNNC window after separately constrained optimizations of each assigned surface. $\Delta E = E(\mathrm{T1})-E(\mathrm{S0})$ is the gap between those two profiles at the same constrained φ. LibXC(BHANDHLYP)-D3(BJ)/def2-QZVPP, SF-TDA, RIJCOSX, gas phase.
+
 | CNNC (deg) | SF-S0 $E$ (Eh) | SF-S0 $\langle S^2\rangle$ | SF-S0 iroot | SF-T1 $E$ (Eh) | SF-T1 $\langle S^2\rangle$ | SF-T1 iroot | $\Delta E$ (kJ/mol) |
 | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | 135 | [s0_e_eh_135]{.metric} | [s0_s2_135]{.metric} | [s0_iroot_135]{.metric} | [t1_e_eh_135]{.metric} | [t1_s2_135]{.metric} | [t1_iroot_135]{.metric} | [deltae_kjmol_135]{.metric} |
 | 120 | [s0_e_eh_120]{.metric} | [s0_s2_120]{.metric} | [s0_iroot_120]{.metric} | [t1_e_eh_120]{.metric} | [t1_s2_120]{.metric} | [t1_iroot_120]{.metric} | [deltae_kjmol_120]{.metric} |
 | 105 | [s0_e_eh_105]{.metric} | [s0_s2_105]{.metric} | [s0_iroot_105]{.metric} | [t1_e_eh_105]{.metric} | [t1_s2_105]{.metric} | [t1_iroot_105]{.metric} | [deltae_kjmol_105]{.metric} |
 | 90 | [s0_e_eh_90]{.metric} | [s0_s2_90]{.metric} | [s0_iroot_90]{.metric} | [t1_e_eh_90]{.metric} | [t1_s2_90]{.metric} | [t1_iroot_90]{.metric} | [deltae_kjmol_90]{.metric} |
-
-**Table 1.** Assigned SF-S0 and SF-T1 totals on the required CNNC window after separately constrained optimizations of each assigned surface. $\Delta E = E(\mathrm{T1})-E(\mathrm{S0})$ is the gap between those two profiles at the same constrained φ. LibXC(BHANDHLYP)-D3(BJ)/def2-QZVPP, SF-TDA, RIJCOSX, gas phase.
 
 <figure>
   <img src="/images/2026-08-27-does-hillel-m4-still-cross-under-sf-tddft-og.png" alt="M4 separately relaxed SF-S0 and SF-T1 profile gap ΔE versus constrained CNNC angle φ at 90, 105, 120, and 135 degrees, each point labeled with its ΔE value and the 90–105 interpolant marked at ΔE = 0.">

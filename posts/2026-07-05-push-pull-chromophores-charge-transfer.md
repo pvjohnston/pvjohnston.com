@@ -103,6 +103,12 @@ methodological point, is robust to this.
 Table 1 collects the lowest bright band of each molecule under each functional,
 and Figure 1 shows the broadened CAM-B3LYP spectra.
 
+**Table 1.** The lowest bright excited state (f ≥ 0.01) of each molecule under
+each functional: wavelength, energy, oscillator strength, two-level radiative
+lifetime, and band assignment. The push–pull molecule's lowest bright state is
+the charge-transfer band — the reddest and by far the brightest entry in the
+table, with the shortest radiative lifetime of the three substituted rings.
+
 | molecule | functional | λmax (nm) | E (eV) | f | τ_rad (ns) | band |
 |---|---|---|---|---|---|---|
 | benzene | B3LYP | 176 | 7.03 | 0.578 | 0.8 | π→π* (E1u) |
@@ -113,12 +119,6 @@ and Figure 1 shows the broadened CAM-B3LYP spectra.
 | nitrobenzene | CAM-B3LYP | 255 | 4.86 | 0.018 | 53.8 | π→π* (weak) |
 | para-nitroaniline | B3LYP | 311 | 3.98 | 0.324 | 4.5 | **CT** |
 | para-nitroaniline | CAM-B3LYP | 282 | 4.40 | 0.378 | 3.2 | **CT** |
-
-**Table 1.** The lowest bright excited state (f ≥ 0.01) of each molecule under
-each functional: wavelength, energy, oscillator strength, two-level radiative
-lifetime, and band assignment. The push–pull molecule's lowest bright state is
-the charge-transfer band — the reddest and by far the brightest entry in the
-table, with the shortest radiative lifetime of the three substituted rings.
 
 **The bare bridge sets the baseline.** Benzene's two lowest singlets (computed
 at 231 and 205 nm with B3LYP) are the textbook symmetry-forbidden ¹B₂ᵤ and ¹B₁ᵤ
@@ -234,16 +234,16 @@ nearly flat: the molecule pre-organizes its own π system to make the
 donor-to-acceptor communication — and hence the CT transition — as strong as
 possible.
 
+**Table 2.** Optimized-geometry diagnostics (B3LYP/def2-SVP, all fully relaxed
+in C1). Isolated aniline's donor is genuinely pyramidal; in the push–pull
+molecule the same –NH₂ is ironed nearly flat and the acceptor –NO₂ sits
+coplanar, maximizing conjugation across the bridge.
+
 | molecule | –NH₂ pyramidalization | –NO₂ twist vs ring |
 |---|---|---|
 | aniline | 14.4° (N angle-sum 345.6°) | — |
 | nitrobenzene | — | 0.0° (coplanar) |
 | para-nitroaniline | 4.5° (N angle-sum 355.5°) | 0.1° (coplanar) |
-
-**Table 2.** Optimized-geometry diagnostics (B3LYP/def2-SVP, all fully relaxed
-in C1). Isolated aniline's donor is genuinely pyramidal; in the push–pull
-molecule the same –NH₂ is ironed nearly flat and the acceptor –NO₂ sits
-coplanar, maximizing conjugation across the bridge.
 
 ## 5. Two functionals, one diagnostic
 
@@ -374,18 +374,18 @@ below was tuned; the experimental values are literature gas-phase or vapor band
 maxima [@Hiraya1991Benzene; @Kimura1964Aniline; @Nagakura1964Nitrobenzene;
 @Millefiori1977Nitroanilines].
 
+**Table 3.** Computed vertical excitation energies against experimental band
+maxima (computed − experiment in the last two columns). Absolute errors are
+typical TD-DFT, a few tenths of an eV either way. The pattern is the point: for
+the CT band, B3LYP errs low — the known global-hybrid underestimation — while
+CAM-B3LYP lands slightly high, and the two functionals bracket the measurement.
+
 | molecule | band | B3LYP | CAM-B3LYP | experiment | Δ B3LYP | Δ CAM |
 |---|---|---|---|---|---|---|
 | benzene | ¹E₁ᵤ π→π* | 7.03 eV | 7.12 eV | ~6.94 eV (179 nm, gas) | +0.09 | +0.18 |
 | aniline | π→π* | 4.68 eV | 4.87 eV | ~4.40 eV (~282 nm, vapor) | +0.28 | +0.47 |
 | nitrobenzene | strong π→π* | 4.78 eV | 5.17 eV | ~4.90 eV (~252 nm) | −0.12 | +0.27 |
 | para-nitroaniline | **CT** | 3.98 eV | 4.40 eV | ~4.24 eV (292 nm, vapor) | **−0.26** | **+0.16** |
-
-**Table 3.** Computed vertical excitation energies against experimental band
-maxima (computed − experiment in the last two columns). Absolute errors are
-typical TD-DFT, a few tenths of an eV either way. The pattern is the point: for
-the CT band, B3LYP errs low — the known global-hybrid underestimation — while
-CAM-B3LYP lands slightly high, and the two functionals bracket the measurement.
 
 One caution on that table: pNA is strongly solvatochromic. Its CT band slides
 from 292 nm in vapor to roughly 380 nm in water, because the enormous

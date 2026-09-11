@@ -39,6 +39,8 @@ That distinction should matter beyond this case study to anyone working where ma
 
 The frozen dataset 1.0.0 contained two focal cases selected from Greenberg, three ordinary tonic-return anchors, and one off-tonic K. 545 dossier used as an identification-sensitivity anchor (Table 1).[@Greenberg2025] The Mozart symbolic sources came from the annotated sonata corpus described by Hentschel and co-workers.[@Hentschel2021] K. 545 was excluded from primary reliability and target-identity gates but retained as the separate required identification-sensitivity condition. The five-case primary set consequently contained no clear off-tonic control and could not support a tonic-versus-off-tonic, category-sensitivity, prevalence, or continuum claim.
 
+**Table 1.** The frozen corpus combined five primary dossiers with one separately analysed K. 545 identification-sensitivity anchor.
+
 | Opaque ID | Work and movement | Candidate | Frozen role | Primary reliability |
 | --- | --- | ---: | --- | --- |
 | `CASE-6U43` | C. P. E. Bach, Prussian Sonata in E major, Wq 48/3, iii | m. 51 | Focal | Included |
@@ -47,8 +49,6 @@ The frozen dataset 1.0.0 contained two focal cases selected from Greenberg, thre
 | `CASE-Q2R9` | Mozart, Piano Sonata in B-flat major, K. 333, i | pickup in m. 93 into m. 94 | Tonic anchor | Included |
 | `CASE-D09B` | Mozart, Piano Sonata in D major, K. 576, i | m. 99 | Tonic anchor | Included |
 | `CASE-VT57` | Mozart, Piano Sonata in C major, K. 545, i | m. 42 | Off-tonic identification-sensitivity anchor | Excluded |
-
-**Table 1.** The frozen corpus combined five primary dossiers with one separately analysed K. 545 identification-sensitivity anchor.
 
 Each identity-withheld dossier encoded selected musical events, measure positions, metre, home key, and opening/candidate/post-candidate windows. The investigator-authored rubric assigned integer scores from 0 to 4 for tonal stability, thematic correspondence, preparation strength, proportional location, rhetorical emphasis, and rotational continuation. Greenberg did not propose or validate this rubric. The analysis response also distributed probability among `not_recapitulation`, `off_tonic_recapitulation`, and `tonic_double_return`, and disclosed a self-assessed recognition level. That disclosure is a model report, not evidence about training data or memorization.
 
@@ -86,6 +86,8 @@ The raw namespace contained 540 files: one claim plus four finalized bundle file
 
 All 108 scheduled slots terminated with no timeout, command failure, partial bundle, or retry. Figure 1 summarizes the reliability, gate, and identification patterns, and Table 2 gives validity separately for analysis and identification.
 
+**Table 2.** Frozen-contract validity counts are tabulated by system and task.
+
 | System | Analysis valid | Identification valid | Combined valid |
 | --- | ---: | ---: | ---: |
 | OpenAI frontier | 18/18 (100.0%) | 18/18 (100.0%) | 36/36 (100.0%) |
@@ -93,9 +95,9 @@ All 108 scheduled slots terminated with no timeout, command failure, partial bun
 | OpenAI prior-generation | 18/18 (100.0%) | 18/18 (100.0%) | 36/36 (100.0%) |
 | Total | 49/54 (90.7%) | 54/54 (100.0%) | 103/108 (95.4%) |
 
-**Table 2.** Frozen-contract validity counts are tabulated by system and task.
-
 Within-system results over the 30 primary case-cue units are reported in Table 3. The Anthropic statistic used 42 available rating pairs; its 95% α interval was defined in 1978 of 2000 bootstrap replicates. Each complete OpenAI arm used 90 rating pairs and had 2000 defined α replicates.
+
+**Table 3.** Within-system test–retest statistics use available ordinal pairs, while validity and availability columns retain missing scheduled responses.
 
 | System | Valid target calls | Complete three-run data | Ordinal α (bootstrap 95%) | Exact | Within one | MAD | Availability agreement |
 | --- | ---: | --- | --- | ---: | ---: | ---: | ---: |
@@ -103,11 +105,11 @@ Within-system results over the 30 primary case-cue units are reported in Table 3
 | Anthropic frontier | 10/15 | No | 0.837 (0.318–1.000) | 0.762 | 1.000 | 0.238 | 0.600 |
 | OpenAI prior-generation | 15/15 | Yes | 0.892 (0.851–0.926) | 0.778 | 1.000 | 0.222 | 1.000 |
 
-**Table 3.** Within-system test–retest statistics use available ordinal pairs, while validity and availability columns retain missing scheduled responses.
-
 The separately scoped K. 545 anchor had complete three-run data in all systems. Within-system α values were 0.979, 1.000, and 0.873 for OpenAI frontier, Anthropic frontier, and OpenAI prior-generation, respectively; exact agreement was 0.889, 1.000, and 0.556, and every pair was within one point. Anchor α was 0.638 for OpenAI frontier / Anthropic frontier, 0.832 for Anthropic frontier / OpenAI prior-generation, 0.793 for the OpenAI pair, and 0.758 for the provider-unbalanced three-system summary; all anchor medians were available.
 
 The identification task returned 54 valid responses and 54 adjudications. The aggregate counts were 38 `L0`, 7 `L1`, and 9 `L2`. Table 4 locates the levels by case and distributes exact matches by system.
+
+**Table 4.** Masked adjudication counts list partial and exact identity matches for all valid identification outputs.
 
 | Case | Probe role | L0 | L1 | L2 | L2: OpenAI frontier / Anthropic frontier / OpenAI prior |
 | --- | --- | ---: | ---: | ---: | --- |
@@ -119,9 +121,9 @@ The identification task returned 54 valid responses and 54 adjudications. The ag
 | Mozart K. 545/i | Sensitivity anchor | 5 | 1 | 3 | 1 / 0 / 2 |
 | Total | — | 38 | 7 | 9 | 3 / 2 / 4 |
 
-**Table 4.** Masked adjudication counts list partial and exact identity matches for all valid identification outputs.
-
 The structured analysis responses contained two target work-level recognition self-reports: OpenAI frontier on Wq 48/3/iii run 02 at confidence 0.78 and OpenAI frontier on K. 576/i run 01 at confidence 0.72. The frozen gate values are listed in Table 5.
+
+**Table 5.** Frozen gate inputs and Boolean outcomes are reproduced from the deterministic analysis summary.
 
 | Gate | Frozen requirement | Printed outcome | Pass |
 | --- | --- | --- | --- |
@@ -133,13 +135,13 @@ The structured analysis responses contained two target work-level recognition se
 | K. 545 sensitivity | Two `L2` runs in one system or one in each provider | OpenAI prior-generation 2/3; OpenAI frontier 1/3 | Yes |
 | Automatic expansion | Every required gate passes | `false` | No |
 
-**Table 5.** Frozen gate inputs and Boolean outcomes are reproduced from the deterministic analysis summary.
-
 ### Preregistered reporting addendum
 
 The locked primary analyzer implemented the frozen estimands but omitted the pre-specified named-pair bootstrap output from its printed schema. After collection, a separate reporting script applied the frozen dossier-resampling rule, 2000 replicates, and seed 1702 without changing the locked analyzer, raw responses, or primary summary. Table 6 reports that addendum.
 
 The named-system comparisons appear in Table 6. The pairwise calculations used a system median when all three repetitions for that case-cue unit were present. The provider-unbalanced pooled three-system statistic used 54 rating pairs and returned α = 0.841 (bootstrap 95% 0.698–0.950), exact agreement 0.722, within-one agreement 0.981, MAD 0.296, and availability agreement 0.600.
+
+**Table 6.** Named pair reliability and availability are reported with pair-specific dossier-block bootstrap intervals and the number of replicates in which α was defined.
 
 | Named systems | Relation | Units with both medians | Ordinal α (pair-bootstrap 95%; defined replicates) | Exact | Within one | MAD | Availability agreement |
 | --- | --- | ---: | --- | ---: | ---: | ---: | ---: |
@@ -147,11 +149,11 @@ The named-system comparisons appear in Table 6. The pairwise calculations used a
 | Anthropic frontier / OpenAI prior-generation | Cross-provider | 12/30 | 0.786 (0.296–1.000; 1837/2000) | 0.667 | 0.917 | 0.417 | 0.400 |
 | OpenAI frontier / OpenAI prior-generation | Within-provider | 30/30 | 0.884 (0.774–0.982; 2000/2000) | 0.733 | 1.000 | 0.267 | 1.000 |
 
-**Table 6.** Named pair reliability and availability are reported with pair-specific dossier-block bootstrap intervals and the number of replicates in which α was defined.
-
 ### Post hoc descriptives and sensitivity checks
 
 For each valid analysis response, Table 7 counts the status with the largest printed probability. Ties did not occur.
+
+**Table 7.** Maximum-probability status counts are post hoc descriptives over the 49 analysis responses that passed the frozen validator.
 
 | Case | Valid analyses | Not recapitulation | Off-tonic recapitulation | Tonic double return |
 | --- | ---: | ---: | ---: | ---: |
@@ -162,9 +164,9 @@ For each valid analysis response, Table 7 counts the status with the largest pri
 | Mozart K. 576/i | 7 | 0 | 0 | 7 |
 | Mozart K. 545/i | 9 | 0 | 9 | 0 |
 
-**Table 7.** Maximum-probability status counts are post hoc descriptives over the 49 analysis responses that passed the frozen validator.
-
 The five invalid outputs were all Anthropic frontier analysis responses. Each was complete, parseable, returned with exit status zero, and had empty standard error. Table 8 groups the two prompt–validator mismatches found in the immutable responses; one response had both findings, so the finding counts overlap. No response was repaired or retried.
+
+**Table 8.** The invalid-output audit preserves the frozen contract classifications and gives the completed post hoc prompt-aligned sensitivity count.
 
 | Contract finding | Outputs affected | Cases and runs | Prompt–validator relation |
 | --- | ---: | --- | --- |
@@ -173,8 +175,6 @@ The five invalid outputs were all Anthropic frontier analysis responses. Each wa
 | Overlap between findings | 1 | Benda run 03 | Both findings occurred in one response |
 | Unique frozen-invalid outputs | 5 | Three dossiers | Invalid in the primary analysis |
 | Prompt-aligned alternative interpretation | 5/5 accepted | Analysis 54/54; cue cells 324/324; combined 108/108 | Post hoc; primary records unchanged |
-
-**Table 8.** The invalid-output audit preserves the frozen contract classifications and gives the completed post hoc prompt-aligned sensitivity count.
 
 Under the post hoc interpretation in Table 8, the Anthropic within-system result was α = 0.815 (bootstrap 95% 0.663–0.900), exact agreement 0.778, within-one agreement 1.000, and MAD 0.222. All three systems across both providers met the repeatability thresholds. The pooled three-system result was α = 0.809 (0.694–0.900), exact agreement 0.689, within-one agreement 0.978, and MAD 0.333. Pair α was 0.761 for OpenAI frontier / Anthropic frontier, 0.770 for Anthropic frontier / OpenAI prior-generation, and 0.884 for the OpenAI pair; each pair had 30/30 system medians. Tonal stability and preparation strength qualified for the dispersion rule, for 2/6 cues against the required 4/6. In this sensitivity, the output and repeatability gates were true; the dispersion, target-identification, and analysis-recognition gates were false; automatic expansion was false.
 

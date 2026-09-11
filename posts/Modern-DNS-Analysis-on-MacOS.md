@@ -95,12 +95,14 @@ The output from each command was captured and analyzed to compare information co
 
 **Table 1.** DNS A Record Query Results for apple.com
 
+**Table 2.** MX Record Query Results for apple.com
+
 | Tool | Resolved IP | Response Time / ms | TTL / s | Server Used |
 |------|-------------|-------------------|---------|-------------|
 | nslookup | 17.253.144.10 | Not provided | Not provided | fe80::900e:5cff:fefc:af0e%8 |
 | dig | 17.253.144.10 | 20 | 686 | fe80::900e:5cff:fefc:af0e%8 |
 
-**Table 2.** MX Record Query Results for apple.com
+**Table 3.** Name Server (NS) Records for apple.com
 
 | Mail Server | Priority | TTL / s (dig only) |
 |-------------|----------|-------------------|
@@ -111,7 +113,7 @@ The output from each command was captured and analyzed to compare information co
 | mx-in-rn.apple.com | 20 | 3600 |
 | mx-in-hfd.apple.com | 20 | 3600 |
 
-**Table 3.** Name Server (NS) Records for apple.com
+**Table 4.** Start of Authority (SOA) Record for apple.com
 
 | Name Server | IPv4 Address | IPv6 Address | TTL / s (dig only) |
 |-------------|-------------|-------------|-------------------|
@@ -120,7 +122,7 @@ The output from each command was captured and analyzed to compare information co
 | c.ns.apple.com | 204.19.119.1 | 2620:171:800:714::1 | 856 |
 | d.ns.apple.com | 204.26.57.1 | 2620:171:801:714::1 | 856 |
 
-**Table 4.** Start of Authority (SOA) Record for apple.com
+**Table 5.** CNAME Resolution Chain for www.apple.com
 
 | Parameter | Value | TTL / s (dig only) |
 |-----------|-------|-------------------|
@@ -132,7 +134,7 @@ The output from each command was captured and analyzed to compare information co
 | Expire Time / s | 2016000 | - |
 | Negative Caching TTL / s | 1800 | - |
 
-**Table 5.** CNAME Resolution Chain for www.apple.com
+**Table 6.** DNS Trace Resolution Path for apple.com
 
 | Resolution Step | Target | TTL / s (dig only) |
 |-----------------|--------|-------------------|
@@ -141,7 +143,7 @@ The output from each command was captured and analyzed to compare information co
 | 3 | e6858.dsce9.akamaiedge.net | 99 |
 | Final IP | 23.206.49.53 | - |
 
-**Table 6.** DNS Trace Resolution Path for apple.com
+**Table 7.** Error and Timeout Responses
 
 | Level | Server Type | TTL / s | Number of Servers |
 |-------|------------|---------|-------------------|
@@ -149,8 +151,6 @@ The output from each command was captured and analyzed to compare information co
 | TLD (com.) | gtld-servers.net | 172800 | 13 |
 | Domain | ns.apple.com | 172800 / 43200 | 4 |
 | Final IP | - | 900 | - |
-
-**Table 7.** Error and Timeout Responses
 
 | Query Type | Response | Status |
 |------------|----------|--------|

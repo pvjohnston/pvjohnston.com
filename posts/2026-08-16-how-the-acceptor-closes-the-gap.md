@@ -211,6 +211,12 @@ than the Kohn-Sham gap because the excited-state calculation includes
 electron-hole interaction and relaxation. For CN it is HOMO→LUMO+1, so it is not
 the HOMO-LUMO excitation energy.
 
+**Table 1.** Kohn-Sham frontier-orbital energies, Kohn-Sham gaps, and lowest
+TD-DFT vertical excitations for the acceptor series. The S₁ character column is
+the dominant amplitude. DCV and TCF have a HOMO→LUMO lowest excitation. For CN
+the lowest excitation is HOMO→LUMO+1, so the S₁ energy is not the HOMO-LUMO
+excitation energy even though the HOMO-LUMO gap is reported.
+
 | acceptor | functional | ε(HOMO) (eV) | ε(LUMO) (eV) | gap (eV) | S₁ (eV) | S₁ character |
 |---|---|---:|---:|---:|---:|:---|
 | CN | CAM-B3LYP | [homo_cn_cam]{.metric} | [lumo_cn_cam]{.metric} | [gap_cn_cam]{.metric} | [s1_cn_cam]{.metric} | [s1_character_cn_cam]{.metric} |
@@ -219,12 +225,6 @@ the HOMO-LUMO excitation energy.
 | CN | B3LYP | [homo_cn_b3lyp]{.metric} | [lumo_cn_b3lyp]{.metric} | [gap_cn_b3lyp]{.metric} | [s1_cn_b3lyp]{.metric} | [s1_character_cn_b3lyp]{.metric} |
 | DCV | B3LYP | [homo_dcv_b3lyp]{.metric} | [lumo_dcv_b3lyp]{.metric} | [gap_dcv_b3lyp]{.metric} | [s1_dcv_b3lyp]{.metric} | [s1_character_dcv_b3lyp]{.metric} |
 | TCF | B3LYP | [homo_tcf_b3lyp]{.metric} | [lumo_tcf_b3lyp]{.metric} | [gap_tcf_b3lyp]{.metric} | [s1_tcf_b3lyp]{.metric} | [s1_character_tcf_b3lyp]{.metric} |
-
-**Table 1.** Kohn-Sham frontier-orbital energies, Kohn-Sham gaps, and lowest
-TD-DFT vertical excitations for the acceptor series. The S₁ character column is
-the dominant amplitude. DCV and TCF have a HOMO→LUMO lowest excitation. For CN
-the lowest excitation is HOMO→LUMO+1, so the S₁ energy is not the HOMO-LUMO
-excitation energy even though the HOMO-LUMO gap is reported.
 
 From CN to TCF the LUMO drops by [d_lumo_cam]{.metric} eV under CAM-B3LYP and
 [d_lumo_b3lyp]{.metric} eV under B3LYP, while the HOMO changes by only

@@ -660,6 +660,8 @@ All calculations were performed on a Linux system (Ubuntu noble/24.04) with Mini
 
 **Table 1. Excited States of Urea from TD-DFT Calculations.** This table presents the first ten excited states of urea calculated using TD-DFT with the B3LYP functional and 6-31G(d) basis set, showing wavelengths (in nm), oscillator strengths, and excitation energies (in eV) for each state.
 
+**Table 2. Major Orbital Transitions for Urea Excited States.** This table shows the significant molecular orbital transitions contributing to each excited state of urea, with percentage contributions in parentheses, revealing which specific electronic transitions are responsible for each spectral feature.
+
 | Excited State | Wavelength (nm) | Oscillator Strength | Energy (eV) |
 |:-------------:|:---------------:|:-------------------:|:-----------:|
 | 1 | 193.37 | 0.0006 | 6.41 |
@@ -672,8 +674,6 @@ All calculations were performed on a Linux system (Ubuntu noble/24.04) with Mini
 | 8 | 132.42 | 0.0151 | 9.36 |
 | 9 | 129.29 | 0.0538 | 9.59 |
 | 10 | 128.93 | 0.0181 | 9.62 |
-
-**Table 2. Major Orbital Transitions for Urea Excited States.** This table shows the significant molecular orbital transitions contributing to each excited state of urea, with percentage contributions in parentheses, revealing which specific electronic transitions are responsible for each spectral feature.
 
 | State | Wavelength (nm) | Oscillator Strength | Major Transitions |
 |:-----:|:--------------:|:-------------------:|:------------------|
@@ -700,6 +700,8 @@ All calculations were performed on a Linux system (Ubuntu noble/24.04) with Mini
 
 **Table 3. Excited States of DCDHF-Me2 from TD-DFT Calculations.** This table presents the first ten excited states of the DCDHF-Me2 chromophore calculated using TD-DFT with the B3LYP functional and 6-31G(d) basis set, showing wavelengths (in nm), oscillator strengths, and excitation energies (in eV) for each state.
 
+**Table 4. Major Orbital Transitions for DCDHF-Me2 Excited States.** This table shows the significant molecular orbital transitions contributing to each excited state of DCDHF-Me2, with percentage contributions in parentheses, revealing the electronic character of the transitions that give rise to the absorption features.
+
 | Excited State | Wavelength (nm) | Oscillator Strength | Energy (eV) |
 |:-------------:|:---------------:|:-------------------:|:-----------:|
 | 1 | 407.83 | 0.9403 | 3.04 |
@@ -713,7 +715,7 @@ All calculations were performed on a Linux system (Ubuntu noble/24.04) with Mini
 | 9 | 236.58 | 0.0100 | 5.24 |
 | 10 | 236.31 | 0.0005 | 5.25 |
 
-**Table 4. Major Orbital Transitions for DCDHF-Me2 Excited States.** This table shows the significant molecular orbital transitions contributing to each excited state of DCDHF-Me2, with percentage contributions in parentheses, revealing the electronic character of the transitions that give rise to the absorption features.
+**Table 5. Molecular Properties of DCDHF-Me2.** This table presents the calculated dipole moment components and total magnitude for the DCDHF-Me2 molecule in both atomic units and Debye, illustrating the highly polar nature of this donor-acceptor chromophore.
 
 | State | Wavelength (nm) | Oscillator Strength | Major Transitions |
 |:-----:|:--------------:|:-------------------:|:------------------|
@@ -727,8 +729,6 @@ All calculations were performed on a Linux system (Ubuntu noble/24.04) with Mini
 | 8 | 248.35 | 0.0006 | 80a → 84a (87.5%) |
 | 9 | 236.58 | 0.0100 | 79a → 82a (84.6%), 79a → 83a (10.9%) |
 | 10 | 236.31 | 0.0005 | 75a → 81a (87.1%) |
-
-**Table 5. Molecular Properties of DCDHF-Me2.** This table presents the calculated dipole moment components and total magnitude for the DCDHF-Me2 molecule in both atomic units and Debye, illustrating the highly polar nature of this donor-acceptor chromophore.
 
 | Property | Value (a.u.) | Value (Debye) |
 |:--------:|:------------:|:-------------:|

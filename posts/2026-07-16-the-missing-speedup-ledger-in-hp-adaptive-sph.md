@@ -97,14 +97,14 @@ $26.2/4.25=6.164705882352941176470588235$. The corresponding saved fractions
 were 74.39024390243902439024390244% and
 83.77862595419847328244274809%.
 
+**Table 1.** The paper's two stated equal-accuracy vortex-ring pairs joined to
+its reported normalized run times, with elapsed times and cost ratios calculated
+from those inputs.
+
 | Matched comparison | h/p normalized time | Lagrangian normalized time | h/p elapsed time (min) | Lagrangian elapsed time (min) | Speedup | Runtime reduction |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | h/p 10 vs. Lagrangian 20 | 1.05 | 4.10 | 10.87 | 42.44 | 3.90x | 74.39% |
 | h/p 20 vs. Lagrangian 40 | 4.25 | 26.20 | 43.99 | 271.17 | 6.16x | 83.78% |
-
-**Table 1.** The paper's two stated equal-accuracy vortex-ring pairs joined to
-its reported normalized run times, with elapsed times and cost ratios calculated
-from those inputs.
 
 Across the two rows of Table 1, the minimum speedup was 3.9048 and the maximum
 was 6.1647. Neither printed ratio reached 10.

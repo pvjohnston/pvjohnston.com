@@ -125,19 +125,19 @@ Table 1 lists, for each reaction, the CCSD(T) enthalpy at
 ΔH(CCSD(T)) − ΔH(HF), and that contribution as a fraction of the CCSD(T)
 enthalpy.
 
-| reaction | ΔH(CCSD(T)) (kJ/mol) | Δcorr (kJ/mol) | Δcorr / ΔH(CCSD(T)) |
-| --- | --- | --- | --- |
-| C₂H₂ + H₂ → C₂H₄ | [dh_ccsdt_acetylene_hydrogenation_kj]{.metric} | [correlation_content_acetylene_hydrogenation_kj]{.metric} | [correlation_fraction_acetylene_hydrogenation]{.metric} |
-| C₂H₄ + H₂ → C₂H₆ | [dh_ccsdt_ethylene_hydrogenation_kj]{.metric} | [correlation_content_ethylene_hydrogenation_kj]{.metric} | [correlation_fraction_ethylene_hydrogenation]{.metric} |
-| N₂ + 3 H₂ → 2 NH₃ | [dh_ccsdt_ammonia_synthesis_kj]{.metric} | [correlation_content_ammonia_synthesis_kj]{.metric} | [correlation_fraction_ammonia_synthesis]{.metric} |
-| CO + 2 H₂ → CH₃OH | [dh_ccsdt_methanol_synthesis_kj]{.metric} | [correlation_content_methanol_synthesis_kj]{.metric} | [correlation_fraction_methanol_synthesis]{.metric} |
-
 **Table 1.** CCSD(T)/cc-pVTZ hydrogenation enthalpies at [temperature_k]{.metric} K,
 the correlation contribution ΔH(CCSD(T)) − ΔH(HF) to each, and that contribution
 as a fraction of the CCSD(T) enthalpy. Δcorr carries the sign of
 ΔH(CCSD(T)) − ΔH(HF). Across the four reactions the mean absolute correlation
 contribution is [mean_abs_correlation_content_kj]{.metric} kJ/mol and the largest
 absolute value is [max_abs_correlation_content_kj]{.metric} kJ/mol.
+
+| reaction | ΔH(CCSD(T)) (kJ/mol) | Δcorr (kJ/mol) | Δcorr / ΔH(CCSD(T)) |
+| --- | --- | --- | --- |
+| C₂H₂ + H₂ → C₂H₄ | [dh_ccsdt_acetylene_hydrogenation_kj]{.metric} | [correlation_content_acetylene_hydrogenation_kj]{.metric} | [correlation_fraction_acetylene_hydrogenation]{.metric} |
+| C₂H₄ + H₂ → C₂H₆ | [dh_ccsdt_ethylene_hydrogenation_kj]{.metric} | [correlation_content_ethylene_hydrogenation_kj]{.metric} | [correlation_fraction_ethylene_hydrogenation]{.metric} |
+| N₂ + 3 H₂ → 2 NH₃ | [dh_ccsdt_ammonia_synthesis_kj]{.metric} | [correlation_content_ammonia_synthesis_kj]{.metric} | [correlation_fraction_ammonia_synthesis]{.metric} |
+| CO + 2 H₂ → CH₃OH | [dh_ccsdt_methanol_synthesis_kj]{.metric} | [correlation_content_methanol_synthesis_kj]{.metric} | [correlation_fraction_methanol_synthesis]{.metric} |
 
 For the two hydrocarbon rungs the correlation contribution is
 [correlation_content_acetylene_hydrogenation_kj]{.metric} kJ/mol

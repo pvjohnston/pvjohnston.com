@@ -186,6 +186,11 @@ entered the calculation. The full primary sweep and audit took
 
 The 20,000-step first-parity cutoffs and sampled brackets are listed in Table 1.
 
+**Table 1.** First sampled cutoff at which the median paired energy-RMSE ratio
+was at most one after 20,000 steps. A bracket joins adjacent tested cutoffs and
+is a resolution interval, not an uncertainty interval. Crossing count includes
+later reverse and forward recrossings.
+
 | standardized $\lambda$ | first parity bracket ($a_0$) | $C(\lambda)$ ($a_0$) | crossing count |
 | ---: | ---: | ---: | ---: |
 | 0 | [crossover_lower_lambda_0_bohr]{.metric}–[crossover_upper_lambda_0_bohr]{.metric} | [crossover_lambda_0_bohr]{.metric} | [crossing_count_lambda_0]{.metric} |
@@ -194,11 +199,6 @@ The 20,000-step first-parity cutoffs and sampled brackets are listed in Table 1.
 | 1 | [crossover_lower_lambda_1_bohr]{.metric}–[crossover_upper_lambda_1_bohr]{.metric} | [crossover_lambda_1_bohr]{.metric} | [crossing_count_lambda_1]{.metric} |
 | 10 | [crossover_lower_lambda_10_bohr]{.metric}–[crossover_upper_lambda_10_bohr]{.metric} | [crossover_lambda_10_bohr]{.metric} | [crossing_count_lambda_10]{.metric} |
 | 100 | [crossover_lower_lambda_100_bohr]{.metric}–[crossover_upper_lambda_100_bohr]{.metric} | [crossover_lambda_100_bohr]{.metric} | [crossing_count_lambda_100]{.metric} |
-
-**Table 1.** First sampled cutoff at which the median paired energy-RMSE ratio
-was at most one after 20,000 steps. A bracket joins adjacent tested cutoffs and
-is a resolution interval, not an uncertainty interval. Crossing count includes
-later reverse and forward recrossings.
 
 The sequence fell from [crossover_lambda_0_bohr]{.metric} $a_0$ at $\lambda=0$
 to [crossover_lambda_001_bohr]{.metric} $a_0$ at $0.01$, remained there at
@@ -234,6 +234,10 @@ $\lambda=0$, $2.75\,a_0$ endpoint moved from just above parity to below it; the
 $\lambda=1$, $1.75\,a_0$ and $\lambda=100$, $2.00\,a_0$ endpoints moved from
 below parity to above it.
 
+**Table 2.** Registered optimization-sensitivity audit. Each value is the
+median of five paired total-energy RMSE ratios. “Same side” asks whether the
+20,000- and 40,000-step values occupy the same side of A/B = 1.
+
 | $\lambda$ | $R_{\min}$ ($a_0$) | ratio at 20,000 steps | ratio at 40,000 steps | same side of parity |
 | ---: | ---: | ---: | ---: | :---: |
 | 0 | 2.75 | [audit_lambda_0_cutoff_275_primary_ratio]{.metric} | [audit_lambda_0_cutoff_275_extended_ratio]{.metric} | [audit_lambda_0_cutoff_275_same_side]{.metric} |
@@ -242,10 +246,6 @@ below parity to above it.
 | 1 | 1.75 | [audit_lambda_1_cutoff_175_primary_ratio]{.metric} | [audit_lambda_1_cutoff_175_extended_ratio]{.metric} | [audit_lambda_1_cutoff_175_same_side]{.metric} |
 | 100 | 1.75 | [audit_lambda_100_cutoff_175_primary_ratio]{.metric} | [audit_lambda_100_cutoff_175_extended_ratio]{.metric} | [audit_lambda_100_cutoff_175_same_side]{.metric} |
 | 100 | 2.00 | [audit_lambda_100_cutoff_200_primary_ratio]{.metric} | [audit_lambda_100_cutoff_200_extended_ratio]{.metric} | [audit_lambda_100_cutoff_200_same_side]{.metric} |
-
-**Table 2.** Registered optimization-sensitivity audit. Each value is the
-median of five paired total-energy RMSE ratios. “Same side” asks whether the
-20,000- and 40,000-step values occupy the same side of A/B = 1.
 
 The near-wall energy ratio rose from
 [nearwall_energy_ratio_lambda_0]{.metric} at $\lambda=0$ to

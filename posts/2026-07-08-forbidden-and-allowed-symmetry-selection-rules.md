@@ -167,19 +167,19 @@ symmetry operations. For $C_{2v}$ — one two-fold axis, two mirror planes — t
 full table is small enough to show whole (Table 1), with the molecule in the
 $yz$ plane as in the water post.
 
-| $C_{2v}$ | $E$ | $C_2$ | $\sigma_v(xz)$ | $\sigma_v'(yz)$ | linear function |
-| --- | --- | --- | --- | --- | --- |
-| $A_1$ | $+1$ | $+1$ | $+1$ | $+1$ | $z$ |
-| $A_2$ | $+1$ | $+1$ | $-1$ | $-1$ | — |
-| $B_1$ | $+1$ | $-1$ | $+1$ | $-1$ | $x$ |
-| $B_2$ | $+1$ | $-1$ | $-1$ | $+1$ | $y$ |
-
 **Table 1.** The character table of $C_{2v}$, the point group of water and
 formaldehyde. Each row is an irrep — a possible symmetry behavior — and each
 entry says what a function of that species does under the operation at the top
 of the column ($+1$ unchanged, $-1$ sign-flipped). The last column is the
 payload for spectroscopy: which component of the dipole operator transforms as
 which irrep. Note that no dipole component transforms as $A_2$.
+
+| $C_{2v}$ | $E$ | $C_2$ | $\sigma_v(xz)$ | $\sigma_v'(yz)$ | linear function |
+| --- | --- | --- | --- | --- | --- |
+| $A_1$ | $+1$ | $+1$ | $+1$ | $+1$ | $z$ |
+| $A_2$ | $+1$ | $+1$ | $-1$ | $-1$ | — |
+| $B_1$ | $+1$ | $-1$ | $+1$ | $-1$ | $x$ |
+| $B_2$ | $+1$ | $-1$ | $-1$ | $+1$ | $y$ |
 
 The generalization of "odd × odd = even" is that symmetry species multiply: the
 integrand $\psi_f^* \,\hat{\mu}\, \psi_i$ belongs to the **product** of the

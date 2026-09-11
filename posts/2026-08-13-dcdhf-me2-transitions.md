@@ -127,6 +127,12 @@ CAM-B3LYP is itself diagnostic: it is the signature of substantial
 charge-transfer character in S₁ — the same signature the push-pull note
 measured at 0.42 eV for para-nitroaniline.
 
+**Table 1.** The twelve computed singlet states of DCDHF-Me2 at
+CAM-B3LYP/def2-TZVP: one intense HOMO→LUMO transition, then nothing of
+comparable strength anywhere in the window. The generated per-state record in
+the experiment directory additionally carries hole–particle distances and an
+automated character label, omitted here for a reason given in §8.
+
 | State | E (eV) | λ (nm) | f | Dominant excitation |
 |---:|---:|---:|---:|---|
 | S1 | 3.32 | 374 | 1.1239 | HOMO→LUMO (96.5%) |
@@ -141,12 +147,6 @@ measured at 0.42 eV for para-nitroaniline.
 | S10 | 6.11 | 203 | 0.0043 | HOMO→LUMO+3 (26.4%); HOMO→LUMO+8 (16.0%); HOMO-1→LUMO+3 (10.1%); HOMO-3→LUMO+3 (7.1%) |
 | S11 | 6.17 | 201 | 0.0218 | HOMO→LUMO+4 (53.8%); HOMO-1→LUMO+4 (10.3%) |
 | S12 | 6.20 | 200 | 0.0023 | HOMO-5→LUMO (39.1%); HOMO-4→LUMO (20.9%); HOMO-4→LUMO+2 (8.9%); HOMO-8→LUMO (8.0%) |
-
-**Table 1.** The twelve computed singlet states of DCDHF-Me2 at
-CAM-B3LYP/def2-TZVP: one intense HOMO→LUMO transition, then nothing of
-comparable strength anywhere in the window. The generated per-state record in
-the experiment directory additionally carries hole–particle distances and an
-automated character label, omitted here for a reason given in §8.
 
 ## 5. The contrast: benzene's band is a degenerate pair
 
@@ -335,6 +335,12 @@ The comparison is about the composition of one apparent band. For benzene it
 is two transitions sharing one line; for the dye it is one transition
 wearing the whole band.
 
+**Table 2.** The twelve computed singlet states of benzene under the
+identical protocol: forbidden states with exactly zero strength, and bright
+strength arriving only as a degenerate pair. Every dominant excitation is an
+almost exactly equal two-configuration mixture — the orbital-level
+fingerprint of a degenerate frame.
+
 | State | E (eV) | λ (nm) | f | Dominant excitation |
 |---:|---:|---:|---:|---|
 | S1 | 5.46 | 227 | 0.0000 | HOMO→LUMO (49.7%); HOMO-1→LUMO+1 (49.7%) |
@@ -349,12 +355,6 @@ wearing the whole band.
 | S10 | 7.99 | 155 | 0.0000 | HOMO-3→LUMO+1 (49.2%); HOMO-2→LUMO (48.6%) |
 | S11 | 8.45 | 147 | 0.0202 | HOMO→LUMO+3 (46.1%); HOMO-1→LUMO+4 (46.0%); HOMO-4→LUMO+2 (5.9%) |
 | S12 | 8.69 | 143 | 0.0000 | HOMO-1→LUMO+4 (48.4%); HOMO→LUMO+3 (48.4%) |
-
-**Table 2.** The twelve computed singlet states of benzene under the
-identical protocol: forbidden states with exactly zero strength, and bright
-strength arriving only as a degenerate pair. Every dominant excitation is an
-almost exactly equal two-configuration mixture — the orbital-level
-fingerprint of a degenerate frame.
 
 ## 6. Three currencies for one transition: dipole moment, oscillator strength, absorptivity
 

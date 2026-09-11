@@ -44,6 +44,8 @@ Raw ORCA `.out` files stay in the private Molecules lab. They are large and carr
 
 [both_assigned_point_count]{.metric} same-geometry points are both-assigned. Table 1 lists same-geometry ΔE on the S0-relaxed geometries. Table 2 lists the same quantity on the T1-relaxed geometries. The 90° and 105° rows reuse the published two-root single points.
 
+**Table 1.** Same-geometry SF-TDA gap $\Delta E = E(\mathrm{T1})-E(\mathrm{S0})$ on each S0-relaxed constrained-CNNC geometry. Both roots come from one SF-TDA single point. LibXC(BHANDHLYP)-D3(BJ)/def2-QZVPP, SF-TDA, RIJCOSX, gas phase.
+
 | CNNC (deg) | $\Delta E$ (Eh) | $\Delta E$ (kJ/mol) | Source |
 | ---: | ---: | ---: | --- |
 | 90 | [deltae_eh_s0_90]{.metric} | [deltae_kjmol_s0_90]{.metric} | reused |
@@ -51,7 +53,7 @@ Raw ORCA `.out` files stay in the private Molecules lab. They are large and carr
 | 100 | [deltae_eh_s0_100]{.metric} | [deltae_kjmol_s0_100]{.metric} | new |
 | 105 | [deltae_eh_s0_105]{.metric} | [deltae_kjmol_s0_105]{.metric} | reused |
 
-**Table 1.** Same-geometry SF-TDA gap $\Delta E = E(\mathrm{T1})-E(\mathrm{S0})$ on each S0-relaxed constrained-CNNC geometry. Both roots come from one SF-TDA single point. LibXC(BHANDHLYP)-D3(BJ)/def2-QZVPP, SF-TDA, RIJCOSX, gas phase.
+**Table 2.** Same-geometry SF-TDA gap $\Delta E = E(\mathrm{T1})-E(\mathrm{S0})$ on each T1-relaxed constrained-CNNC geometry. Both roots come from one SF-TDA single point. Same method as Table 1.
 
 | CNNC (deg) | $\Delta E$ (Eh) | $\Delta E$ (kJ/mol) | Source |
 | ---: | ---: | ---: | --- |
@@ -59,8 +61,6 @@ Raw ORCA `.out` files stay in the private Molecules lab. They are large and carr
 | 95 | [deltae_eh_t1_95]{.metric} | [deltae_kjmol_t1_95]{.metric} | new |
 | 100 | [deltae_eh_t1_100]{.metric} | [deltae_kjmol_t1_100]{.metric} | new |
 | 105 | [deltae_eh_t1_105]{.metric} | [deltae_kjmol_t1_105]{.metric} | reused |
-
-**Table 2.** Same-geometry SF-TDA gap $\Delta E = E(\mathrm{T1})-E(\mathrm{S0})$ on each T1-relaxed constrained-CNNC geometry. Both roots come from one SF-TDA single point. Same method as Table 1.
 
 <figure>
   <img src="/images/2026-09-09-does-a-denser-m4-bracket-keep-the-sign-change-figure1.png" alt="Same-geometry SF-TDA gap ΔE versus constrained CNNC angle φ for S0-relaxed (solid blue circles) and T1-relaxed (dashed orange squares) M4 geometries. Open markers are reused published two-root points; filled markers are new points. Plus marks on the zero line are stored linear interpolants, labeled lin.">

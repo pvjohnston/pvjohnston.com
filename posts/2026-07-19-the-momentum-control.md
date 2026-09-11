@@ -188,6 +188,11 @@ described displacement scales as $2.154\times10^{-6} \to 2.154\times10^{-5}
 \to 2.154\times10^{-4}$ across the post-hoc rates. In the post-hoc small-rate
 runs the $200$-step ratio is $900.006$ at $10^{-12}$.
 
+**Table 1.** Isolated hidden-stack displacement ratio (official / described)
+at a common learning rate under $\beta=0.9$, with the official convention's
+absolute displacement at the listed step count; the declared F1 setting is
+$\text{lr}=10^{-8}$ for $200$ steps.
+
 | run | $\text{lr}$ | steps | isolated ratio | official $\max\lvert\Delta y\rvert$ |
 | --- | ---: | ---: | ---: | ---: |
 | declared | $10^{-8}$ | $1$ | $899.86$ | $1.01\times10^{-2}$ |
@@ -197,11 +202,6 @@ runs the $200$-step ratio is $900.006$ at $10^{-12}$.
 | post hoc | $10^{-10}$ | $200$ | $898.22$ | $1.935\times10^{-1}$ |
 | post hoc | $10^{-11}$ | $200$ | $900.04$ | $1.938\times10^{-2}$ |
 | post hoc | $10^{-12}$ | $200$ | $900.006$ | $1.938\times10^{-3}$ |
-
-**Table 1.** Isolated hidden-stack displacement ratio (official / described)
-at a common learning rate under $\beta=0.9$, with the official convention's
-absolute displacement at the listed step count; the declared F1 setting is
-$\text{lr}=10^{-8}$ for $200$ steps.
 
 On the isolated stack, the described convention at hidden rate
 $900\times\text{lr}$ tracks the official convention at $\text{lr}$ with a
@@ -222,17 +222,17 @@ $6.61$ — while the shared-group displacements reach $2.48$ to $6.04$ and the
 residual of the additive reconstruction reaches $3.80$ (official, $\beta=0.9$)
 against a full displacement of $5.47$.
 
+**Table 2.** Post-hoc $200$-step decomposition at $\text{lr}=10^{-12}$:
+shared-to-hidden maximum-displacement ratio per convention, the hidden-stack
+convention factor, and the described convention's final velocity max-norm
+amplification relative to $\beta=0$.
+
 | $\beta$ | S/h described | S/h official | hidden factor | velocity amp. (shared, hidden) |
 | ---: | ---: | ---: | ---: | ---: |
 | $0$ | $5729.3$ | $6.366$ | $900.001$ | — |
 | $0.5$ | $5726.1$ | $6.362$ | $900.002$ | $2.001$, $2.000$ |
 | $0.9$ | $5703.9$ | $6.338$ | $900.006$ | $10.031$, $9.993$ |
 | $0.99$ | $5622.3$ | $6.247$ | $899.948$ | $87.56$, $86.39$ |
-
-**Table 2.** Post-hoc $200$-step decomposition at $\text{lr}=10^{-12}$:
-shared-to-hidden maximum-displacement ratio per convention, the hidden-stack
-convention factor, and the described convention's final velocity max-norm
-amplification relative to $\beta=0$.
 
 In the broad sweep at $\beta=0.9$, both conventions' lowest error on the
 half-decade grid occurs at $\text{lr}=10^{-3}$ — $4.7\times10^{-8}$
@@ -253,6 +253,10 @@ $7.079458\times10^{-4}$ in all six pairs; the momentum-to-SGD ratio is
 $1.9953$ for the boundary and $1.9953$ for the modal best rate, with
 $1+\beta=1.9$ and a grid step of $1.122$.
 
+**Table 3.** Lowest finite normalized test MSE and first non-finite rate on
+the $0.05$-decade momentum grid from $3.16\times10^{-4}$ through
+$3.16\times10^{-3}$, per convention and repetition, $\beta=0.9$.
+
 | Convention | rep | best tested lr | normalized test MSE | first non-finite lr |
 | --- | ---: | ---: | ---: | ---: |
 | official | 0 | $1.000000\times10^{-3}$ | $4.1739\times10^{-29}$ | $1.412538\times10^{-3}$ |
@@ -261,10 +265,6 @@ $1+\beta=1.9$ and a grid step of $1.122$.
 | described | 0 | $1.258925\times10^{-3}$ | $1.9158\times10^{-28}$ | $1.412538\times10^{-3}$ |
 | described | 1 | $1.258925\times10^{-3}$ | $3.4399\times10^{-29}$ | $1.412538\times10^{-3}$ |
 | described | 2 | $1.258925\times10^{-3}$ | $6.8100\times10^{-29}$ | $1.412538\times10^{-3}$ |
-
-**Table 3.** Lowest finite normalized test MSE and first non-finite rate on
-the $0.05$-decade momentum grid from $3.16\times10^{-4}$ through
-$3.16\times10^{-3}$, per convention and repetition, $\beta=0.9$.
 
 ## Discussion
 

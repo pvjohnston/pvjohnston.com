@@ -235,6 +235,8 @@ echo "================================================================="
 
 **Table 1.** System specifications of the target computer used for environment setup, showing distribution details, hardware specifications, and available resources. The system offers adequate CPU, memory, and storage resources for computational chemistry applications.
 
+**Table 2.** Package verification results showing successfully installed components in the quantum chemistry environment. Core packages were successfully installed, providing a complete toolset for computational chemistry applications.
+
 | Component | Details |
 |-----------|---------|
 | Distribution | Ubuntu 24.04.2 LTS (Noble) |
@@ -247,8 +249,6 @@ echo "================================================================="
 | Swap | 4GB |
 | Storage | 954GB NVMe SSD (937GB available) |
 | Graphics | Intel Iris Xe Graphics |
-
-**Table 2.** Package verification results showing successfully installed components in the quantum chemistry environment. Core packages were successfully installed, providing a complete toolset for computational chemistry applications.
 
 | Package Category | Packages | Versions |
 |-----------------|----------|----------|

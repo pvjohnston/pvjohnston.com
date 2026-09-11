@@ -158,15 +158,15 @@ is explicitly a one-pole extrapolation, included to expose the difference
 between a loss-factor peak and attenuation rather than to claim high-frequency
 accuracy.
 
+**Table 1.** Single-Debye relative permittivity, loss tangent, and $1/e$ power
+penetration depth for liquid water at [water_temperature_c]{.metric} °C.
+
 | $f$ | $\varepsilon'$ | $\varepsilon''$ | $\tan\delta$ | $D_p$ |
 | --- | --- | --- | --- | --- |
 | [water_0915_frequency_ghz]{.metric} GHz | [water_0915_relative_permittivity_real]{.metric} | [water_0915_relative_permittivity_loss]{.metric} | [water_0915_loss_tangent]{.metric} | [water_0915_penetration_depth_cm]{.metric} cm |
 | [oven_frequency_ghz]{.metric} GHz | [water_245_relative_permittivity_real]{.metric} | [water_245_relative_permittivity_loss]{.metric} | [water_245_loss_tangent]{.metric} | [water_245_penetration_depth_cm]{.metric} cm |
 | [water_dielectric_loss_peak_frequency_ghz]{.metric} GHz | [water_dielectric_loss_peak_relative_permittivity_real]{.metric} | [water_dielectric_loss_peak_relative_permittivity_loss]{.metric} | [water_dielectric_loss_peak_loss_tangent]{.metric} | [water_dielectric_loss_peak_penetration_depth_cm]{.metric} cm |
 | [high_evaluation_frequency_ghz]{.metric} GHz | [water_60_relative_permittivity_real]{.metric} | [water_60_relative_permittivity_loss]{.metric} | [water_60_loss_tangent]{.metric} | [water_60_penetration_depth_cm]{.metric} cm |
-
-**Table 1.** Single-Debye relative permittivity, loss tangent, and $1/e$ power
-penetration depth for liquid water at [water_temperature_c]{.metric} °C.
 
 At [oven_frequency_ghz]{.metric} GHz, the model gives
 $\tan\delta=$ [water_245_loss_tangent]{.metric}; the corresponding total
@@ -205,14 +205,14 @@ $\varepsilon_\infty=$ [ice_high_frequency_relative_permittivity]{.metric} are
 representative inputs to this idealized comparison, not a complete microwave
 model for frozen food.[@EisenbergKauzmann1969]
 
+**Table 2.** Liquid water at [water_temperature_c]{.metric} °C and idealized
+ice at [ice_temperature_c]{.metric} °C evaluated at
+[oven_frequency_ghz]{.metric} GHz with the same single-Debye equations.
+
 | Phase | $\varepsilon'$ | $\varepsilon''$ | $\tan\delta$ | $D_p$ |
 | --- | --- | --- | --- | --- |
 | Liquid water | [water_245_relative_permittivity_real]{.metric} | [water_245_relative_permittivity_loss]{.metric} | [water_245_loss_tangent]{.metric} | [water_245_penetration_depth_cm]{.metric} cm |
 | Ice | [ice_245_relative_permittivity_real]{.metric} | [ice_245_relative_permittivity_loss]{.metric} | [ice_245_loss_tangent]{.metric} | [ice_245_penetration_depth_m]{.metric} m |
-
-**Table 2.** Liquid water at [water_temperature_c]{.metric} °C and idealized
-ice at [ice_temperature_c]{.metric} °C evaluated at
-[oven_frequency_ghz]{.metric} GHz with the same single-Debye equations.
 
 For ice, $\omega\tau=$ [ice_245_omega_tau]{.metric}. The slow orientational
 increment therefore contributes negligibly at the oven frequency; faster

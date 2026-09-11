@@ -111,6 +111,11 @@ Table 1 shows, which identifies the sampling artifact directly: any count
 obtained from a fixed number of shuffles is a lower bound on the achievable set,
 and reports the sampler's coverage as much as the arithmetic.
 
+**Table 1.** Distinct floating-point sums recovered from the same eight-element
+array as a function of how many random orderings are sampled, against the
+exhaustive count. The sampled count is a coverage statistic, not a property of
+the arithmetic.
+
 | Trials $n$ | Distinct sums |
 | --- | --- |
 | 100 | 39 |
@@ -118,11 +123,6 @@ and reports the sampler's coverage as much as the arithmetic.
 | 10,000 | 258 |
 | 100,000 | 275 |
 | Exhaustive (40,320) | **275** |
-
-**Table 1.** Distinct floating-point sums recovered from the same eight-element
-array as a function of how many random orderings are sampled, against the
-exhaustive count. The sampled count is a coverage statistic, not a property of
-the arithmetic.
 
 One apparent discrepancy is worth recording, because resolving it sharpens the
 argument rather than complicating it. The source that popularized this experiment
