@@ -3,9 +3,6 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
   workflow_dispatch:
 
 permissions:
@@ -15,6 +12,7 @@ permissions:
 # "GitHub Actions"). One controlled deploy per run instead of force-pushing a
 # gh-pages branch and relying on GitHub's separate, flaky auto "pages build and
 # deployment" pipeline. Serialize deploys and never cancel one mid-publish.
+# Pull-request CI lives in ci.yml and may cancel in-progress runs.
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -92,7 +90,6 @@ jobs:
     # Custom domain (the file GitHub Pages reads for the CNAME record) and a
     # marker that disables Jekyll processing of the already-rendered site.
     - name: Add CNAME and .nojekyll
-      if: github.event_name != 'pull_request'
       run: |
         echo "pvjohnston.com" > _site/CNAME
         touch _site/.nojekyll
@@ -100,13 +97,11 @@ jobs:
     # Packages _site into the single tar artifact that actions/deploy-pages
     # expects (named "github-pages").
     - name: Upload Pages artifact
-      if: github.event_name != 'pull_request'
       uses: actions/upload-pages-artifact@v3
       with:
         path: _site
 
   deploy:
-    if: github.event_name != 'pull_request'
     needs: build
     runs-on: ubuntu-latest
     # Scopes required by the native Pages deployment: an OIDC token proves the

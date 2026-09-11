@@ -798,8 +798,11 @@ will remain available.
 
 ## 8. Deploy flow
 
-`.github/workflows/deploy.yml` builds the Hakyll site with Stack and publishes to
-GitHub Pages on **push to `main`** (also PR-to-main and manual dispatch). So:
+`.github/workflows/deploy.yml` builds the Hakyll site with Stack (including TeX
+Live / dvisvgm for TikZ) and publishes to GitHub Pages on **push to `main`**
+and manual dispatch. Pull requests run the cheaper `.github/workflows/ci.yml`
+job instead: the same Stack tests and `site build`, but with `SKIP_TIKZ=1`, so
+TeX Live is not installed and diagrams stay as source. So:
 
 1. Work on a `post/<slug>` branch in its own worktree, never commit straight to
    `main`. `notes/worktrees.md` has the layout, the rule about which files a
@@ -807,13 +810,16 @@ GitHub Pages on **push to `main`** (also PR-to-main and manual dispatch). So:
 2. **Verify before merge:** locally, `node scripts/verify-bib.mjs && stack test && stack exec site rebuild && node scripts/verify-metrics.mjs && node scripts/verify-site.mjs` must succeed;
    check the post renders, citations resolve, figures load, and the card meta is
    right. The bib check is source-level and needs no build — run it in the
-   worktree as soon as you finish appending entries. CI runs the same checks but
-   uses `site build` on a clean checkout with no restored Hakyll store.
+   worktree as soon as you finish appending entries. PR CI runs the same checks
+   with `SKIP_TIKZ=1` and `site build` on a clean checkout with no restored
+   Hakyll store; it will not catch a diagram that fails to compile. The full
+   TeX path runs on merge to `main`.
 3. Open a PR into `main`; merge triggers the deploy.
 
-The full build runs once, in the primary checkout or in CI on the pull request
-— not in every worktree, each of which would otherwise rebuild the site library
-into its own `.stack-work`.
+The full TeX build runs once, in the primary checkout or on push to `main` —
+not in every worktree, each of which would otherwise rebuild the site library
+into its own `.stack-work`. PR CI is the cheap Hakyll/site check, not a
+substitute for rendering diagrams locally when a post adds or edits TikZ.
 
 The verification script rejects missing internal assets/links and any generated
 `tikz-error` box, because a green Hakyll exit alone does not prove every diagram

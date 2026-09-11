@@ -33,13 +33,21 @@ Draft posts are excluded unless preview mode is enabled:
 PREVIEW_DRAFTS=1 stack exec site watch
 ```
 
+To compile the site without TeX Live (diagrams stay as source, same as PR CI):
+
+```sh
+SKIP_TIKZ=1 stack exec site rebuild
+```
+
 ## Authoring
 
 Posts live in `posts/` as Markdown with YAML front matter. See [`notes/blog-authoring.md`](notes/blog-authoring.md) for citations, figures, captions, and verification conventions.
 
 ## Deployment
 
-Pull requests run the complete test and build pipeline. Pushes to `main` additionally publish `_site` through GitHub’s native Pages deployment. The custom domain is written to `_site/CNAME` by the workflow.
+Pull requests run `.github/workflows/ci.yml`: Stack tests plus a Hakyll `site build` with `SKIP_TIKZ=1`, so TeX Live is not installed and TikZ diagrams are left as source. A new push on the same PR cancels the in-flight CI run.
+
+Pushes to `main` (and manual `workflow_dispatch`) run `.github/workflows/deploy.yml`: the full TeX Live / dvisvgm pipeline, then publish `_site` through GitHub’s native Pages deployment. Deploy concurrency is serialized and never cancelled mid-publish. The custom domain is written to `_site/CNAME` by that workflow.
 
 ## License
 

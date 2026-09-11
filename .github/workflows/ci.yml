@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+# Safe to cancel: PR CI does not publish. A new push on the same PR supersedes
+# the in-flight run, which is what burned minutes on long-lived PRs (e.g. #108).
+concurrency:
+  group: ci-pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    # Installs Stack only. Stack provisions the GHC the snapshot pins
+    # (stack.yaml — currently GHC 9.8.4 via LTS 23.8) into ~/.stack, which is
+    # cached below, so a setup-installed GHC would just be dead weight.
+    - name: Setup Haskell Stack
+      uses: haskell-actions/setup@v2
+      with:
+        enable-stack: true
+        stack-no-global: true
+
+    - name: Cache Stack dependencies
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/.stack
+          .stack-work
+        key: ${{ runner.os }}-stack-${{ hashFiles('stack.yaml.lock', '*.cabal') }}
+        restore-keys: |
+          ${{ runner.os }}-stack-
+
+    # No TeX Live / dvisvgm / mutool. SKIP_TIKZ leaves .tikzpicture blocks as
+    # source so the Hakyll pipeline, citations, metrics, and internal links
+    # still get exercised. Diagram compile failures are caught on main deploy.
+    - name: Build, test, and verify without TeX
+      env:
+        SKIP_TIKZ: "1"
+      run: |
+        # Source-level and buildless, so a duplicate citation key fails in
+        # seconds rather than after the full Hakyll build. See notes/worktrees.md §3.
+        node scripts/verify-bib.mjs
+        stack test
+        stack exec site build
+        node scripts/verify-metrics.mjs
+        node scripts/verify-site.mjs
