@@ -160,6 +160,9 @@ SCF iterations with 160 AOs and 160 MOs. The smallest overlap eigenvalue was
 $4.36\times10^{-9}$, and the basis rank remained 160 across the scan. Table 1
 lists the electronic-structure checks.
 
+**Table 1.** Numerical checks on the UHF/aug-cc-pV5Z production curve and the
+eight-point electronic-structure validation set.
+
 | Check | Recorded value |
 | --- | ---: |
 | $\max|V-(E_{\mathrm{el}}+V_{\mathrm{NN}})|$ | $2.22\times10^{-16}\ E_h$ |
@@ -171,9 +174,6 @@ lists the electronic-structure checks.
 | sampled minimum $(R,V)$ | $(2.00590\,a_0,-0.6026188\ E_h)$ |
 | $E_{\mathrm{el}}(2\,a_0)$; difference from high-accuracy value | $-1.1026223\ E_h$; $1.19\times10^{-5}\ E_h$ |
 | $V(20\,a_0)$ | $-0.50000899\ E_h$ |
-
-**Table 1.** Numerical checks on the UHF/aug-cc-pV5Z production curve and the
-eight-point electronic-structure validation set.
 
 Figure 1 plots the two target curves and the equal-point out-of-fold RMSE ratios.
 The shaded range is the minimum to maximum of the seven raw-$R$ configuration
@@ -196,6 +196,9 @@ The primary fit returned the values in Table 2. The median ratio decreased from
 $R_{\min}=1.0\,a_0$; four did at $1.5\,a_0$, two at $2.0\,a_0$, and zero at
 $3.0\,a_0$.
 
+**Table 2.** Pooled out-of-fold total-energy RMSE for the primary 1--15--1
+tanh network, with medians and ranges over five paired initialization seeds.
+
 | $R_{\min}$ ($a_0$) | points | median A RMSE (cm$^{-1}$) | median B RMSE (cm$^{-1}$) | median A/B [seed range] | B-favoring seeds |
 | ---: | ---: | ---: | ---: | ---: | ---: |
 | 0.15 | 401 | 26,269.89 | 568.94 | 44.938 [40.772, 51.427] | 5/5 |
@@ -206,9 +209,6 @@ $3.0\,a_0$.
 | 1.50 | 212 | 115.21 | 93.39 | 1.187 [0.991, 1.655] | 4/5 |
 | 2.00 | 189 | 57.56 | 61.29 | 0.954 [0.783, 1.110] | 2/5 |
 | 3.00 | 156 | 2.88 | 31.21 | 0.102 [0.055, 0.123] | 0/5 |
-
-**Table 2.** Pooled out-of-fold total-energy RMSE for the primary 1--15--1
-tanh network, with medians and ranges over five paired initialization seeds.
 
 Uniform-in-$R$ weighting gave median A/B ratios of 27.354, 3.667, 1.213,
 1.075, 0.895, and 0.100 at $R_{\min}=0.15, 0.70, 1.00, 1.50, 2.00,$ and
@@ -222,6 +222,9 @@ $1.50\,a_0$, 9 at $2.00\,a_0$, and 0 at $3.00\,a_0$. All eight configuration
 medians were above 1 through $0.70\,a_0$ and below 1 at $2.00$ and
 $3.00\,a_0$.
 
+**Table 3.** Median equal-point out-of-fold RMSE ratio A/B over five paired
+seeds for each fit configuration and lower-domain cutoff.
+
 | Configuration | 0.70 $a_0$ | 1.00 $a_0$ | 1.50 $a_0$ | 2.00 $a_0$ | 3.00 $a_0$ |
 | --- | ---: | ---: | ---: | ---: | ---: |
 | primary | 5.214 | 1.546 | 1.187 | 0.954 | 0.102 |
@@ -232,9 +235,6 @@ $3.00\,a_0$.
 | 40,000 lower-rate steps | 5.754 | 2.088 | 1.033 | 0.675 | 0.166 |
 | aug-cc-pVQZ curve | 5.269 | 1.541 | 1.182 | 0.951 | 0.107 |
 | $\log R$ input | 1.419 | 0.458 | 0.241 | 0.254 | 0.060 |
-
-**Table 3.** Median equal-point out-of-fold RMSE ratio A/B over five paired
-seeds for each fit configuration and lower-domain cutoff.
 
 ## Discussion
 

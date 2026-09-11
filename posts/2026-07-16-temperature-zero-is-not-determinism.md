@@ -77,6 +77,9 @@ whose whole purpose is to cancel the reordering error this experiment exists to
 exhibit.[@Higham2002] The distinction is not pedantry — it is the entire content
 of the discrepancy reported below.
 
+**Code 1.** Exhaustive enumeration of every summation order for an array whose
+exact sum is zero, counting the distinct floating-point results and their range.
+
 ```python
 from itertools import permutations
 from functools import reduce
@@ -87,9 +90,6 @@ sums = {reduce(lambda a, b: a + b, p, 0.0) for p in permutations(vals)}
 s = sorted(sums)
 print(len(s), s[0], s[-1])   # 275 -2.220446049250313e-16 2.220446049250313e-16
 ```
-
-**Code 1.** Exhaustive enumeration of every summation order for an array whose
-exact sum is zero, counting the distinct floating-point results and their range.
 
 The GPU-side claims discussed in the Discussion section — batch-invariance
 failure in `torch.mm`, the completion-divergence experiment on
@@ -111,6 +111,11 @@ Table 1 shows, which identifies the sampling artifact directly: any count
 obtained from a fixed number of shuffles is a lower bound on the achievable set,
 and reports the sampler's coverage as much as the arithmetic.
 
+**Table 1.** Distinct floating-point sums recovered from the same eight-element
+array as a function of how many random orderings are sampled, against the
+exhaustive count. The sampled count is a coverage statistic, not a property of
+the arithmetic.
+
 | Trials $n$ | Distinct sums |
 | --- | --- |
 | 100 | 39 |
@@ -118,11 +123,6 @@ and reports the sampler's coverage as much as the arithmetic.
 | 10,000 | 258 |
 | 100,000 | 275 |
 | Exhaustive (40,320) | **275** |
-
-**Table 1.** Distinct floating-point sums recovered from the same eight-element
-array as a function of how many random orderings are sampled, against the
-exhaustive count. The sampled count is a coverage statistic, not a property of
-the arithmetic.
 
 One apparent discrepancy is worth recording, because resolving it sharpens the
 argument rather than complicating it. The source that popularized this experiment
@@ -183,6 +183,11 @@ instruction shapes, or abandon tensor cores entirely — each with its own
 internal reduction order.[@He2025Nondeterminism] The consequence is that a row's
 result depends on how many unrelated rows shared the call:
 
+**Code 2.** The same input row multiplied by the same matrix returns different
+values depending only on how many unrelated rows shared the call. Code and
+output reproduced verbatim from He and Thinking Machines Lab; not run in the
+present work.
+
 ```python
 import torch
 torch.set_default_device('cuda')
@@ -195,11 +200,6 @@ out1 = torch.mm(a[:1], b)    # one row, batch of 1
 out2 = torch.mm(a, b)[:1]    # the same row, batch of 2048
 print((out1 - out2).abs().max())  # tensor(1669.2500, device='cuda:0')
 ```
-
-**Code 2.** The same input row multiplied by the same matrix returns different
-values depending only on how many unrelated rows shared the call. Code and
-output reproduced verbatim from He and Thinking Machines Lab; not run in the
-present work.
 
 Nothing in Code 2 is random, and both lines are individually reproducible
 forever. They simply are not the same computation. The same reasoning applies to

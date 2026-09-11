@@ -152,6 +152,13 @@ Figure 1 plots the M4 gap, the two M2 gaps at those angles, and
 the tabulated trans-side zeros. Figure 2 is the M4 S0 and T1 profiles.
 Figure 3 puts the M4 profiles beside the M4 and M2 gaps.
 
+**Table 1.** Both-converged S0/T1 zeros and the 120°/105° gaps on the
+B3LYP-D3(BJ)/cc-pVDZ CNNC grid. A dash is a quantity that is not a
+both-converged neighbour zero in the committed projection. M1 has a
+loose interpolant at [m1_crossing_lower_deg]{.metric}° that uses a 45°
+bracket: S0 at 90° and 75° did not converge. M3 T1 at 45° failed.
+M2 S0 did not converge at 180°, 90°, 75°, 60°, 45°, 30°, 15°, or 0°.
+
 | Molecule | Trans-side crossing (deg) | Other both-converged zeros (deg) | $\Delta$ at 120° (kJ/mol) | $\Delta$ at 105° (kJ/mol) |
 | --- | ---: | ---: | ---: | ---: |
 | M0 azobenzene | [m0_crossing_upper_deg]{.metric} | [m0_crossing_lower_deg]{.metric}; also [m0_cis_zero_a_deg]{.metric}, [m0_cis_zero_b_deg]{.metric} | — | — |
@@ -159,13 +166,6 @@ Figure 3 puts the M4 profiles beside the M4 and M2 gaps.
 | M2 AzPyH+ | none ([m2_crossing_count]{.metric}) | — | [m2_gap_120]{.metric} | [m2_gap_105]{.metric} |
 | M3 2-AzPy | [m3_crossing_upper_deg]{.metric} | [m3_crossing_lower_deg]{.metric} | — | — |
 | M4 NMe2/NO2 | [m4_crossing_deg]{.metric} | — | [m4_gap_120]{.metric} | [m4_gap_105]{.metric} |
-
-**Table 1.** Both-converged S0/T1 zeros and the 120°/105° gaps on the
-B3LYP-D3(BJ)/cc-pVDZ CNNC grid. A dash is a quantity that is not a
-both-converged neighbour zero in the committed projection. M1 has a
-loose interpolant at [m1_crossing_lower_deg]{.metric}° that uses a 45°
-bracket: S0 at 90° and 75° did not converge. M3 T1 at 45° failed.
-M2 S0 did not converge at 180°, 90°, 75°, 60°, 45°, 30°, 15°, or 0°.
 
 <figure>
   <img src="/images/2026-08-22-does-push-pull-abolish-the-s0-t1-crossing-fig1.png" alt="S0 minus T1 energy gap versus CNNC dihedral for M4, with M2 gaps at 120 and 105 degrees and vertical marks at the tabulated trans-side zeros of M0, M1, M3, and M4.">
@@ -189,6 +189,11 @@ converge at 90°, 75°, or 45° ([m4_s0_unconverged_count]{.metric} unconverged
 S0 points in the projection). [m4_s0_not_run_count]{.metric} further S0
 angles (30°, 15°, 0°) were not run.
 
+**Table 2.** M4 energies relative to the trans S0 minimum. The 60° S0
+energy after reconvergence is [m4_s0_60_eh]{.metric} Eh, and the
+both-converged gap there is [m4_gap_60]{.metric} kJ/mol. The 90° and 75°
+S0 values are the still-unconverged reruns.
+
 | CNNC (deg) | S0 (kJ/mol) | T1 (kJ/mol) | S0 converged | T1 converged |
 | ---: | ---: | ---: | --- | --- |
 | 180 | [m4_s0_rel_180]{.metric} | [m4_t1_rel_180]{.metric} | yes | yes |
@@ -201,11 +206,6 @@ angles (30°, 15°, 0°) were not run.
 | 75 | [m4_s0_rel_75]{.metric} | [m4_t1_rel_75]{.metric} | no | yes |
 | 60 | [m4_s0_rel_60]{.metric} | [m4_t1_rel_60]{.metric} | yes | yes |
 | 45 | [m4_s0_rel_45]{.metric} | [m4_t1_rel_45]{.metric} | no | yes |
-
-**Table 2.** M4 energies relative to the trans S0 minimum. The 60° S0
-energy after reconvergence is [m4_s0_60_eh]{.metric} Eh, and the
-both-converged gap there is [m4_gap_60]{.metric} kJ/mol. The 90° and 75°
-S0 values are the still-unconverged reruns.
 
 <figure>
   <img src="/images/2026-08-22-does-push-pull-abolish-the-s0-t1-crossing-fig2.png" alt="M4 ground-state and lowest-triplet torsion profiles versus CNNC dihedral, with letter A at the interpolated S0/T1 crossing between 120 and 105 degrees.">

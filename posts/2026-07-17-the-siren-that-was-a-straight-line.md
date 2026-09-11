@@ -92,15 +92,15 @@ Three schemes were implemented, differing only in the hidden-layer forward pass
 and weight distribution, with $c = 6$ throughout and the first layer identical in
 all three ($W_0 \sim \mathcal{U}(\pm 1/n)$, $\sin(\omega_0 \cdot W_0 x + b_0)$):
 
+**Table 1.** The three initialization schemes compared. The first two differ in
+bookkeeping only; the third takes its forward pass from the first and its weight
+distribution from the second.
+
 | Scheme | Hidden forward | Hidden weight init |
 | --- | --- | --- |
 | Sitzmann, as described[@Sitzmann2020] | $\sin(W_l x + b_l)$ | $\mathcal{U}(\pm\sqrt{6/n})$ |
 | Sitzmann, official implementation[@SirenOfficial] | $\sin(\omega_0 (W_l x + b_l))$ | $\mathcal{U}(\pm\sqrt{6/n}/\omega_0)$ |
 | Villatoro et al., as specified[@Villatoro2026] | $\sin(W_l x + b_l)$ | $\mathcal{U}(\pm\sqrt{6/(\omega_0^2 n)})$ |
-
-**Table 1.** The three initialization schemes compared. The first two differ in
-bookkeeping only; the third takes its forward pass from the first and its weight
-distribution from the second.
 
 Networks are the paper's $3\times16$ configuration — three hidden layers of
 sixteen neurons — on the K1 input domain $x \in [0,1]$. $2\times10^5$ inputs were
@@ -108,6 +108,9 @@ propagated forward at initialization and the standard deviation of each hidden
 pre-activation recorded (Code 1). Nonlinearity is reported as the mean relative
 departure of $\sin(z)$ from $z$, $\mathbb{E}|\sin z - z| / \mathbb{E}|z|$, for $z$
 drawn at the measured scale.
+
+**Code 1.** Forward propagation at initialization under the three schemes,
+recording the standard deviation of each hidden pre-activation.
 
 ```python
 import numpy as np
@@ -131,9 +134,6 @@ def run(scheme, w0, L=4):
     return stds
 ```
 
-**Code 1.** Forward propagation at initialization under the three schemes,
-recording the standard deviation of each hidden pre-activation.
-
 The complete script, which reproduces every number in the Results section and
 requires nothing but NumPy, is available as
 [siren-init-scales.py](/downloads/siren-init-scales.py).
@@ -152,16 +152,16 @@ $1.052$ under the official implementation (Table 2). The mean relative departure
 of $\sin(z)$ from $z$ at those scales is $0.044\%$, $29.8\%$ and $29.8\%$
 respectively.
 
+**Table 2.** Standard deviation of the first hidden pre-activation at
+initialization, by scheme and $\omega_0$, over $2\times10^5$ inputs. The final
+column reports the product of $\omega_0$ and the specified scheme's value.
+
 | $\omega_0$ | Sitzmann, described | Sitzmann, official | Villatoro, specified | $\omega_0 \times$ specified |
 | --- | --- | --- | --- | --- |
 | 5 | 0.800 | 0.865 | 0.160 | 0.799 |
 | 10 | 0.949 | 1.046 | 0.105 | 1.053 |
 | 20 | 0.944 | 0.914 | 0.055 | 1.095 |
 | 30 | 1.051 | 1.052 | **0.036** | 1.092 |
-
-**Table 2.** Standard deviation of the first hidden pre-activation at
-initialization, by scheme and $\omega_0$, over $2\times10^5$ inputs. The final
-column reports the product of $\omega_0$ and the specified scheme's value.
 
 The specified scheme's standard deviation falls from $0.160$ to $0.036$ across
 $\omega_0 \in \{5,10,20,30\}$; its product with $\omega_0$ takes the values
@@ -172,15 +172,15 @@ Standard deviations at successive depths under the specified scheme are $0.0364$
 at the first hidden layer and $0.00178$ at the second, at $\omega_0 = 30$
 (Table 3).
 
+**Table 3.** Standard deviation of hidden pre-activations by depth at
+$\omega_0 = 30$. The corresponding ratios between layers are $0.78$, $0.98$ and
+$0.049$.
+
 | Scheme | Hidden layer 1 | Hidden layer 2 |
 | --- | --- | --- |
 | Sitzmann, described | 1.051 | 0.822 |
 | Sitzmann, official | 1.052 | 1.033 |
 | Villatoro, specified | 0.0364 | 0.00178 |
-
-**Table 3.** Standard deviation of hidden pre-activations by depth at
-$\omega_0 = 30$. The corresponding ratios between layers are $0.78$, $0.98$ and
-$0.049$.
 
 The falsifier was not triggered: $0.036$ is a factor of $29$ below the Sitzmann
 values, not within a factor of two.

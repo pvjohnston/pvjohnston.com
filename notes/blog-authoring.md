@@ -537,6 +537,10 @@ Rules:
 source *is*, and always include an access date for anything that can change
 under you.
 
+**Table 0.** ACS-mapped BibTeX entry types by source type. A research blog post
+that carries a DOI is an `@article` with the blog as `journal` — follow the
+source's own citation block when it provides one (rule 5).
+
 | Source | Entry | Required fields beyond title/author |
 | --- | --- | --- |
 | Journal article | `@article` | `journal`, `year`, `volume`, `pages`, `doi` |
@@ -549,10 +553,6 @@ under you.
 | Dataset | `@misc` | `publisher` (repository), `doi` or `url`, `year` |
 | Thesis | `@phdthesis` / `@thesis` | `school`, `year`, `type` |
 | Conference talk / poster | `@inproceedings` | `booktitle` (meeting name), `address`, `year` |
-
-**Table 0.** ACS-mapped BibTeX entry types by source type. A research blog post
-that carries a DOI is an `@article` with the blog as `journal` — follow the
-source's own citation block when it provides one (rule 5).
 
 ## 5. Figures & the hero image
 
@@ -639,10 +639,12 @@ uncaptioned or unreferenced element is a bug.
   full sentence (not a bare label):
   - Figures — `**Figure 1.** Sentence describing what it shows.` directly
     **below** the `<figure>`.
-  - Tables — `**Table 1.** Sentence describing the table.` directly **below**
-    the table.
+  - Tables — `**Table 1.** Sentence describing the table.` directly **above**
+    the table (ACS: table title above; figure caption below).
   - Code blocks — `**Code 1.** Sentence describing what the code does.` directly
-    **below** the fenced block.
+    **above** the fenced block (house style: ACS has no Listing rule; treat
+    like a table title, not a figure caption — readers need the label before
+    the fence).
   - Audio — keep the complete `<audio>` element on one source line, with a
     useful fallback sentence and direct file link between its tags; put
     `**Audio 1.** Sentence describing what the listener will hear.` directly

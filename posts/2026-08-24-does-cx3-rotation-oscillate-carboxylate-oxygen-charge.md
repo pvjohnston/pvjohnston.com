@@ -146,13 +146,6 @@ signed $120^\circ-0^\circ$ charge differences, and energy ranges. Figure 1 plots
 $q(\mathrm{O})$ and $q(\mathrm{COO})$ versus the frozen target angle.
 Figure 2 plots the relative electronic energy.
 
-| Ion | $r(\mathrm{C{-}C})$ (Å) | $\Delta(\mathrm{C{-}X})$ (Å) | MBIS $q(\mathrm{O})$ (e) | MBIS $q(\mathrm{COO})$ (e) | Converged |
-| --- | ---: | ---: | ---: | ---: | --- |
-| CH3COO− | [r_cc_acetate]{.metric} | — | — | — | yes |
-| CF3COO− | [r_cc_cf3]{.metric} | [delta_cx_cf3]{.metric} | [rematch_q_o_cf3]{.metric} | [rematch_q_coo_cf3]{.metric} | yes |
-| CClF2COO− | [r_cc_cclf2]{.metric} | — | — | — | yes |
-| CCl3COO− | [r_cc_ccl3]{.metric} | [delta_cx_ccl3]{.metric} | [rematch_q_o_ccl3]{.metric} | [rematch_q_coo_ccl3]{.metric} | yes |
-
 **Table 1.** Rematch B3LYP-D3(BJ)/aug-cc-pVDZ optimizations.
 $\Delta(\mathrm{C{-}X})$ is out-of-plane minus in-plane. A dash is a
 quantity that is not in the committed rematch table: acetate has no
@@ -166,6 +159,13 @@ that gate. The other predeclared inequalities evaluate to
 [rematch_delta_cx_pass]{.metric} for $\Delta(\mathrm{C{-}X})$,
 [rematch_q_o_pass]{.metric} for MBIS $q(\mathrm{O})$, and
 [rematch_q_coo_pass]{.metric} for MBIS $q(\mathrm{COO})$.
+
+| Ion | $r(\mathrm{C{-}C})$ (Å) | $\Delta(\mathrm{C{-}X})$ (Å) | MBIS $q(\mathrm{O})$ (e) | MBIS $q(\mathrm{COO})$ (e) | Converged |
+| --- | ---: | ---: | ---: | ---: | --- |
+| CH3COO− | [r_cc_acetate]{.metric} | — | — | — | yes |
+| CF3COO− | [r_cc_cf3]{.metric} | [delta_cx_cf3]{.metric} | [rematch_q_o_cf3]{.metric} | [rematch_q_coo_cf3]{.metric} | yes |
+| CClF2COO− | [r_cc_cclf2]{.metric} | — | — | — | yes |
+| CCl3COO− | [r_cc_ccl3]{.metric} | [delta_cx_ccl3]{.metric} | [rematch_q_o_ccl3]{.metric} | [rematch_q_coo_ccl3]{.metric} | yes |
 
 [n_scan_converged]{.metric} of [n_scan_points]{.metric} scan points
 converged (optking True and a clean exit).
@@ -183,19 +183,19 @@ scan-mean $q(\mathrm{O})$, in e, is [mean_q_o_cf3]{.metric} (CF3) and
 B3LYP-D3(BJ)/aug-cc-pVDZ. Solid lines join 15° neighbours. All plotted
 points converged.
 
-| Quantity | CF3COO− | CCl3COO− |
-| --- | ---: | ---: |
-| $q(\mathrm{O})$ amplitude (e) | [amp_q_o_cf3]{.metric} | [amp_q_o_ccl3]{.metric} |
-| $q(\mathrm{COO})$ amplitude (e) | [amp_q_coo_cf3]{.metric} | [amp_q_coo_ccl3]{.metric} |
-| $E$ range ($E_\mathrm{h}$) | [barrier_eh_cf3]{.metric} | [barrier_eh_ccl3]{.metric} |
-| $E$ range (kcal/mol) | [barrier_kcal_cf3]{.metric} | [barrier_kcal_ccl3]{.metric} |
-
 **Table 2.** Peak-to-peak MBIS amplitudes and electronic-energy ranges
 on the both-converged scan. Conversion is [eh_to_kcal]{.metric} kcal
 mol$^{-1}$ $E_\mathrm{h}^{-1}$. The largest of the four charge
 amplitudes, in e, is [max_charge_amp]{.metric}. Signed $120^\circ-0^\circ$
 overlays are endpoint-only and are not cited here. Both endpoints on
 this run converged ([scan_endpoints_converged]{.metric}).
+
+| Quantity | CF3COO− | CCl3COO− |
+| --- | ---: | ---: |
+| $q(\mathrm{O})$ amplitude (e) | [amp_q_o_cf3]{.metric} | [amp_q_o_ccl3]{.metric} |
+| $q(\mathrm{COO})$ amplitude (e) | [amp_q_coo_cf3]{.metric} | [amp_q_coo_ccl3]{.metric} |
+| $E$ range ($E_\mathrm{h}$) | [barrier_eh_cf3]{.metric} | [barrier_eh_ccl3]{.metric} |
+| $E$ range (kcal/mol) | [barrier_kcal_cf3]{.metric} | [barrier_kcal_ccl3]{.metric} |
 
 <figure>
   <img src="/images/2026-08-24-does-cx3-rotation-oscillate-carboxylate-oxygen-charge-fig2.png" alt="Relative electronic energy versus frozen CX3 dihedral for CF3COO− and CCl3COO−, each series referenced to its own scan minimum, in kilocalories per mole.">

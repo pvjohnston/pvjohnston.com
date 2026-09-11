@@ -161,16 +161,16 @@ against the registered floor of 3.5. The `rrho` arm fails both gates; the
 `mrrho50` arm fails the shift gate and passes the count gate. Both arms fail
 at least one gate.
 
+**Table 1.** Boltzmann populations of the four SMX conformers at 298.15 K:
+from the source's electronic energies, and from the composite free energies
+of the two registered thermochemistry arms.
+
 | Population at 298.15 K | Source electronic | `rrho` | `mrrho50` |
 | --- | ---: | ---: | ---: |
 | A | [source_population_a]{.metric} | [rrho_population_a]{.metric} | [mrrho50_population_a]{.metric} |
 | B | [source_population_b]{.metric} | [rrho_population_b]{.metric} | [mrrho50_population_b]{.metric} |
 | C | [source_population_c]{.metric} | [rrho_population_c]{.metric} | [mrrho50_population_c]{.metric} |
 | D | [source_population_d]{.metric} | [rrho_population_d]{.metric} | [mrrho50_population_d]{.metric} |
-
-**Table 1.** Boltzmann populations of the four SMX conformers at 298.15 K:
-from the source's electronic energies, and from the composite free energies
-of the two registered thermochemistry arms.
 
 ```tikzpicture
 \begin{tikzpicture}[font=\small]

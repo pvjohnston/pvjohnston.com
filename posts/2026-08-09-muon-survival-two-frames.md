@@ -116,6 +116,11 @@ event is ever edited. Each event names the graph node it leaves, the node it
 enters, the actor, and a decision — approve, revise, amend, or park. Code 1
 shows the trial's terminal event.
 
+**Code 1.** Fields from the ledger's final event: an independent amendment
+reviewer routes the experiment from `amendment_review` to the terminal
+`parked` state. The full event also carries a UUID, a timestamp, the SHA-256
+of the governing graph, and the evidence snapshot it binds.
+
 ```json
 {
   "sequence": 27,
@@ -127,11 +132,6 @@ shows the trial's terminal event.
   "decision": "park"
 }
 ```
-
-**Code 1.** Fields from the ledger's final event: an independent amendment
-reviewer routes the experiment from `amendment_review` to the terminal
-`parked` state. The full event also carries a UUID, a timestamp, the SHA-256
-of the governing graph, and the evidence snapshot it binds.
 
 **Evidence bound by hash.** A submission is not prose in a chat window; it is
 a small receipt file, snapshotted immutably under

@@ -418,6 +418,12 @@ all-capitals status token, from a vocabulary of
 [distinct_filename_tokens]{.metric} distinct tokens that nobody specified
 (Table 1).
 
+**Table 1.** The most frequent status tokens appearing in message filenames,
+with counts over the whole corpus and the state each one marks. Case variants
+are merged (`pr-ready` includes `PR_READY`; `deploy-live` includes
+`DEPLOY_LIVE`); the full table of [distinct_filename_tokens]{.metric} tokens is
+in the committed input file named in the reproducibility section below.
+
 | Token | Filenames | What it marks |
 |---|---|---|
 | `deploy-live` | [token_deploy_live]{.metric} | the deploy landed; downstream seats may proceed |
@@ -428,12 +434,6 @@ all-capitals status token, from a vocabulary of
 | `HOLD` | [token_hold]{.metric} | stop where you are, a correction is coming |
 | `MERGED` | [token_merged]{.metric} | it landed on the default branch |
 | `merge-block` | [token_merge_block]{.metric} | the gate refused it |
-
-**Table 1.** The most frequent status tokens appearing in message filenames,
-with counts over the whole corpus and the state each one marks. Case variants
-are merged (`pr-ready` includes `PR_READY`; `deploy-live` includes
-`DEPLOY_LIVE`); the full table of [distinct_filename_tokens]{.metric} tokens is
-in the committed input file named in the reproducibility section below.
 
 Drawn as transitions, those tokens are a workflow state machine (Figure 4).
 

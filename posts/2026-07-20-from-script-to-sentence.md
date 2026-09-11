@@ -33,6 +33,10 @@ This site's Hakyll build already turns Markdown, citations, equations, and TikZ
 into HTML. The traceable-metrics addition gives computed prose one more compiler
 input. Table 1 follows the complete path used by this note.
 
+**Table 1.** The one-way path from a declared computational input to rendered
+prose. The normal site build begins at the committed projection; a separate
+verification step checks the cheaper upstream layers.
+
 | Stage | Artifact | Responsibility |
 | --- | --- | --- |
 | Declared model | `inputs.json` | Records chosen indices, sweep bounds, and tolerances |
@@ -42,10 +46,6 @@ input. Table 1 follows the complete path used by this note.
 | Build input | `metrics.json` | Supplies the only values resolved by metric references |
 | Post source | `[name]{.metric}` | Names a result without copying its display value |
 | Rendered page | `metric-value` span | Retains the metric name beside the formatted text |
-
-**Table 1.** The one-way path from a declared computational input to rendered
-prose. The normal site build begins at the committed projection; a separate
-verification step checks the cheaper upstream layers.
 
 This extends the build described in [Anatomy of a Hakyll
 site](/posts/2026-06-24-anatomy-of-a-hakyll-site.html). It does not make the
@@ -107,6 +107,9 @@ The script evaluates the analytic angle, then samples the Fresnel equations from
 projection. Every displayed result cell is a metric reference, not a copied
 result literal.
 
+**Table 2.** Analytic, numerical, and conservation quantities produced by the
+same canonical optical output and formatted by the Hakyll compiler.
+
 | Quantity | Published value |
 | --- | --- |
 | Refractive-index ratio $n_2/n_1$ | [index_ratio]{.metric} |
@@ -120,9 +123,6 @@ result literal.
 | Minimum grid P reflectance | [grid_minimum_p_reflectance]{.metric} |
 | Largest sampled $|R+T-1|$ | [maximum_energy_balance_error]{.metric} |
 | Angles in the sweep | [sweep_sample_count]{.metric} |
-
-**Table 2.** Analytic, numerical, and conservation quantities produced by the
-same canonical optical output and formatted by the Hakyll compiler.
 
 The three declared checks are data too. The analytic p-reflectance
 [analytic_p_reflectance]{.metric} is compared with a limit of
@@ -196,6 +196,11 @@ describe the bundle; its metrics conform to the [shared schema](/research/metric
 and its code carries the site's [license](/LICENSE). Code 1 shows the complete
 local check.
 
+**Code 1.** Recalculate the cheap upstream demonstration in check mode, verify
+the publication projection and its fingerprints, test the compiler, rebuild
+the site without stale Hakyll state, and inspect the generated links and failure
+markers.
+
 ```sh
 python3 research/traceable-brewster-angle/calculate.py --check
 node research/traceable-brewster-angle/generate-metrics.mjs --check
@@ -204,11 +209,6 @@ stack test
 stack exec site rebuild
 node scripts/verify-site.mjs
 ```
-
-**Code 1.** Recalculate the cheap upstream demonstration in check mode, verify
-the publication projection and its fingerprints, test the compiler, rebuild
-the site without stale Hakyll state, and inspect the generated links and failure
-markers.
 
 The recorded run used arm64 macOS 26.5.2, CPython 3.13.12, and Node.js 24.8.0. Both
 scripts use only their language standard libraries. There are no downloads,

@@ -99,6 +99,11 @@ spontaneous cold-to-hot flow. **Clausius forbids it, and so does Liouville.** Tw
 arguments from unrelated starting points converging on the same number is how you
 know the constraint is real and not an artifact of the model.
 
+**Code 1.** Four lines of radiometry: the solar constant is the sun's surface
+emittance diluted by $\sin^2\theta_\odot$, the ideal concentration limit is the
+reciprocal of that same factor, and their product returns the photospheric flux
+exactly — the assertion is the second law, written as an identity.
+
 ```python
 import numpy as np
 
@@ -112,11 +117,6 @@ C_max = 1 / np.sin(th_sun)**2         # 46200 -> ideal 3D concentration
 
 assert np.isclose(C_max * E_top, M_sun)   # concentration only undoes dilution
 ```
-
-**Code 1.** Four lines of radiometry: the solar constant is the sun's surface
-emittance diluted by $\sin^2\theta_\odot$, the ideal concentration limit is the
-reciprocal of that same factor, and their product returns the photospheric flux
-exactly — the assertion is the second law, written as an identity.
 
 ## Where the real hardware sits
 

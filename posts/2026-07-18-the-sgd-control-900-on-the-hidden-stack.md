@@ -117,6 +117,11 @@ separated by a factor of $10^{0.05}=1.122$ — with three repetitions using
 data RNG seeds $1544$, $1545$, and $1546$ and parameter seeds $7000$, $7001$,
 and $7002$.
 
+**Code 1.** The full-batch SGD update and the two isolation switches. Setting
+`isolate=True` trains the hidden stack alone, while `shared_only=True` freezes
+it; `hidden_lr` applies a separate rate to hidden weights and biases, which is
+how the $\times 900$ rescaling in the Results is applied.
+
 ```python
 def train(P, official, x_tr, x_te, lr, hidden_lr=None,
           isolate=False, shared_only=False, ...):
@@ -131,11 +136,6 @@ def train(P, official, x_tr, x_te, lr, hidden_lr=None,
             step = hidden_lr if (hidden_lr is not None and k in HIDDEN) else lr
             P[k] -= step * g[k].reshape(P[k].shape)     # plain SGD: no m, v, eps
 ```
-
-**Code 1.** The full-batch SGD update and the two isolation switches. Setting
-`isolate=True` trains the hidden stack alone, while `shared_only=True` freezes
-it; `hidden_lr` applies a separate rate to hidden weights and biases, which is
-how the $\times 900$ rescaling in the Results is applied.
 
 Three bounds are declared here rather than discovered later. I fix the
 regularization penalties at zero, where the paper searches them jointly with the
@@ -165,6 +165,10 @@ $\text{lr}=10^{-8}$ and $898.03$ at $10^{-7}$, falling to $325.95$ at $10^{-5}$
 and $28.71$ at $10^{-4}$. On the full network it stays between $1.14$ and $1.29$
 across the same range.
 
+**Table 1.** Single-step function-space displacement ratio (official / described)
+from a common initialization, hidden stack isolated versus full network, at
+learning rate $\text{lr}$.
+
 | $\text{lr}$ | isolated hidden stack | full network |
 | --- | --- | --- |
 | $10^{-8}$ | $899.86$ | $1.157$ |
@@ -172,10 +176,6 @@ across the same range.
 | $10^{-6}$ | $825.96$ | $1.262$ |
 | $10^{-5}$ | $325.95$ | $1.285$ |
 | $10^{-4}$ | $28.71$ | $1.157$ |
-
-**Table 1.** Single-step function-space displacement ratio (official / described)
-from a common initialization, hidden stack isolated versus full network, at
-learning rate $\text{lr}$.
 
 The parameter-group measurement at $\text{lr}=10^{-8}$ is given in Table 2. The
 two shared-parameter displacement vectors differ by at most $1.776\times10^{-15}$.
@@ -187,15 +187,15 @@ the separately measured shared and hidden vectors from the simultaneous full
 step leaves a maximum residual of $1.366\times10^{-7}$ (described) and
 $1.231\times10^{-4}$ (official).
 
+**Table 2.** Maximum single-step test-set output displacement from a common
+initialization at $\text{lr}=10^{-8}$, by updated parameter group. The shared
+group is the first layer, readout, and affine branch.
+
 | Parameters updated | described $\max|\Delta y|$ | official $\max|\Delta y|$ | official / described |
 | --- | --- | --- | --- |
 | shared parameters | $6.43543\times10^{-2}$ | $6.43543\times10^{-2}$ | $1.00000$ |
 | hidden stack | $1.12763\times10^{-5}$ | $1.01471\times10^{-2}$ | $899.864$ |
 | full network | $6.43656\times10^{-2}$ | $7.44662\times10^{-2}$ | $1.15693$ |
-
-**Table 2.** Maximum single-step test-set output displacement from a common
-initialization at $\text{lr}=10^{-8}$, by updated parameter group. The shared
-group is the first layer, readout, and affine branch.
 
 On the isolated hidden stack, the official convention at learning rate
 $10^{-6}$ and the described convention at hidden learning rate $900\times10^{-6}$
@@ -211,6 +211,10 @@ $7.079458\times10^{-4}$. At the former rate, the described-to-official MSE ratio
 is $4.02\times10^8$, $1.48\times10^9$, and $8.52\times10^8$ across the three
 repetitions.
 
+**Table 3.** Lowest finite normalized test MSE and first non-finite rate on the
+$0.05$-decade local grid from $10^{-4}$ through $10^{-3}$, per convention and
+repetition.
+
 | Convention | rep | best tested lr | normalized test MSE | first non-finite lr |
 | --- | --- | --- | --- | --- |
 | official | 0 | $6.309573\times10^{-4}$ | $1.1963\times10^{-14}$ | $7.079458\times10^{-4}$ |
@@ -219,10 +223,6 @@ repetitions.
 | described | 0 | $6.309573\times10^{-4}$ | $4.8062\times10^{-6}$ | $7.079458\times10^{-4}$ |
 | described | 1 | $6.309573\times10^{-4}$ | $8.3687\times10^{-6}$ | $7.079458\times10^{-4}$ |
 | described | 2 | $6.309573\times10^{-4}$ | $1.0275\times10^{-5}$ | $7.079458\times10^{-4}$ |
-
-**Table 3.** Lowest finite normalized test MSE and first non-finite rate on the
-$0.05$-decade local grid from $10^{-4}$ through $10^{-3}$, per convention and
-repetition.
 
 ## Discussion
 

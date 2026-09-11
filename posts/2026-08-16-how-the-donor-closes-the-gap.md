@@ -217,6 +217,12 @@ the same values that appear in Figure 1. The S₁ column is the lowest vertical
 excitation energy; it is always smaller than the Kohn-Sham gap because the
 excited-state calculation includes electron-hole interaction and relaxation.
 
+**Table 1.** Kohn-Sham frontier-orbital energies, Kohn-Sham gaps, and lowest
+TD-DFT vertical excitations for the BMN series. The S₁ character column is the
+dominant amplitude; every S₁ in the series is HOMO→LUMO, with the smallest
+weight [s1_hl_weight_min_cam]{.metric}% under CAM-B3LYP and
+[s1_hl_weight_min_b3lyp]{.metric}% under B3LYP.
+
 | X | σ_p⁺ | functional | ε(HOMO) (eV) | ε(LUMO) (eV) | gap (eV) | S₁ (eV) | S₁ character |
 |---|---:|---|---:|---:|---:|---:|:---|
 | H | 0.00 | CAM-B3LYP | [homo_h_cam]{.metric} | [lumo_h_cam]{.metric} | [gap_h_cam]{.metric} | [s1_h_cam]{.metric} | HOMO→LUMO |
@@ -227,12 +233,6 @@ excited-state calculation includes electron-hole interaction and relaxation.
 | F | −0.07 | B3LYP | [homo_f_b3lyp]{.metric} | [lumo_f_b3lyp]{.metric} | [gap_f_b3lyp]{.metric} | [s1_f_b3lyp]{.metric} | HOMO→LUMO |
 | NH₂ | −1.30 | B3LYP | [homo_nh2_b3lyp]{.metric} | [lumo_nh2_b3lyp]{.metric} | [gap_nh2_b3lyp]{.metric} | [s1_nh2_b3lyp]{.metric} | HOMO→LUMO |
 | NMe₂ | −1.70 | B3LYP | [homo_nme2_b3lyp]{.metric} | [lumo_nme2_b3lyp]{.metric} | [gap_nme2_b3lyp]{.metric} | [s1_nme2_b3lyp]{.metric} | HOMO→LUMO |
-
-**Table 1.** Kohn-Sham frontier-orbital energies, Kohn-Sham gaps, and lowest
-TD-DFT vertical excitations for the BMN series. The S₁ character column is the
-dominant amplitude; every S₁ in the series is HOMO→LUMO, with the smallest
-weight [s1_hl_weight_min_cam]{.metric}% under CAM-B3LYP and
-[s1_hl_weight_min_b3lyp]{.metric}% under B3LYP.
 
 Two derived quantities summarize the trend. From H to NMe₂ the HOMO rises by
 [d_homo_cam]{.metric} eV under CAM-B3LYP and [d_homo_b3lyp]{.metric} eV under

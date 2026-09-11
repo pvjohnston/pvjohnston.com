@@ -114,6 +114,11 @@ divides only its *weights* by $\omega_0$ — biases keep the framework's default
 initialization — so the exact same-function property is a property of this
 construction, not of the repository's code.
 
+**Code 1.** The reparameterization under test and the Adam update it interacts
+with. Dividing the stored hidden weights by $\omega_0$ leaves the forward pass
+unchanged and leaves the Adam step size in parameter space unchanged, which is
+the entire content of the experiment.
+
 ```python
 def to_official(P):
     """Same function, official parameterization."""
@@ -129,11 +134,6 @@ m[k] = b1*m[k] + (1-b1)*g[k]
 v[k] = b2*v[k] + (1-b2)*g[k]**2
 P[k] -= step * (m[k]/(1-b1**t)) / (np.sqrt(v[k]/(1-b2**t)) + eps)
 ```
-
-**Code 1.** The reparameterization under test and the Adam update it interacts
-with. Dividing the stored hidden weights by $\omega_0$ leaves the forward pass
-unchanged and leaves the Adam step size in parameter space unchanged, which is
-the entire content of the experiment.
 
 The complete NumPy-only script used for the experiment is available as
 [siren-convention-adam.py](/downloads/siren-convention-adam.py). The frozen raw
@@ -187,16 +187,16 @@ differing from the official convention by
 [equiv_lr_1e_4_relative_difference]{.metric} and
 [equiv_lr_1e_3_relative_difference]{.metric} relative (Table 1).
 
+**Table 1.** Normalized test MSE after 20,000 epochs at learning rate $\lambda$,
+from a common initialization. The final column is the relative difference between
+the official convention and the described convention with its hidden-layer
+learning rate multiplied by 30.
+
 | $\lambda$ | official | described | described, hidden lr $\times 30$ | relative difference |
 | --- | --- | --- | --- | --- |
 | $10^{-5}$ | [equiv_lr_1e_5_official_mse]{.metric} | [equiv_lr_1e_5_described_mse]{.metric} | [equiv_lr_1e_5_scaled_mse]{.metric} | [equiv_lr_1e_5_relative_difference]{.metric} |
 | $10^{-4}$ | [equiv_lr_1e_4_official_mse]{.metric} | [equiv_lr_1e_4_described_mse]{.metric} | [equiv_lr_1e_4_scaled_mse]{.metric} | [equiv_lr_1e_4_relative_difference]{.metric} |
 | $10^{-3}$ | [equiv_lr_1e_3_official_mse]{.metric} | [equiv_lr_1e_3_described_mse]{.metric} | [equiv_lr_1e_3_scaled_mse]{.metric} | [equiv_lr_1e_3_relative_difference]{.metric} |
-
-**Table 1.** Normalized test MSE after 20,000 epochs at learning rate $\lambda$,
-from a common initialization. The final column is the relative difference between
-the official convention and the described convention with its hidden-layer
-learning rate multiplied by 30.
 
 Across a grid of nine learning rates spanning $10^{-5}$ to $10^{-1}$ and four
 repetitions, the lowest learning rate at which each convention reaches a
@@ -209,6 +209,14 @@ normalized test MSE below $10^{-3}$ is
 [range_described_rep3_first_fit_lr]{.metric} for the described convention
 (Table 2).
 
+**Table 2.** Normalized test MSE on K1 at $N_H = 32$, by convention and
+repetition, partitioned at the top of the learning-rate range Villatoro et al.
+search. Median best-in-range values are
+[range_described_median_best_in_range]{.metric} (described) and
+[range_official_median_best_in_range]{.metric} (official); median best above
+the range are [range_described_median_best_above_range]{.metric} and
+[range_official_median_best_above_range]{.metric}.
+
 | Convention | rep | best, lr $\in [10^{-5}, 10^{-3}]$ | best, lr $> 10^{-3}$ | lowest lr reaching $<10^{-3}$ |
 | --- | --- | --- | --- | --- |
 | described | 0 | [range_described_rep0_best_in_range]{.metric} | [range_described_rep0_best_above_range]{.metric} | [range_described_rep0_first_fit_lr]{.metric} |
@@ -219,14 +227,6 @@ normalized test MSE below $10^{-3}$ is
 | official | 1 | [range_official_rep1_best_in_range]{.metric} | [range_official_rep1_best_above_range]{.metric} | [range_official_rep1_first_fit_lr]{.metric} |
 | official | 2 | [range_official_rep2_best_in_range]{.metric} | [range_official_rep2_best_above_range]{.metric} | [range_official_rep2_first_fit_lr]{.metric} |
 | official | 3 | [range_official_rep3_best_in_range]{.metric} | [range_official_rep3_best_above_range]{.metric} | [range_official_rep3_first_fit_lr]{.metric} |
-
-**Table 2.** Normalized test MSE on K1 at $N_H = 32$, by convention and
-repetition, partitioned at the top of the learning-rate range Villatoro et al.
-search. Median best-in-range values are
-[range_described_median_best_in_range]{.metric} (described) and
-[range_official_median_best_in_range]{.metric} (official); median best above
-the range are [range_described_median_best_above_range]{.metric} and
-[range_official_median_best_above_range]{.metric}.
 
 ## Discussion
 

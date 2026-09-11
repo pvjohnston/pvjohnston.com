@@ -140,6 +140,11 @@ material. The complete [standard-library
 calculation](/research/microwave-debye-relaxation/calculate.py) validates the
 declared inputs and writes canonical JSON. Code 1 shows only its numerical core.
 
+**Code 1.** Core of the single-Debye evaluation using the declared
+$e^{-i\omega t}$ convention. The complete program adds input validation,
+canonical output, independent consistency checks, and non-writing `--check`
+mode.
+
 ```python
 omega_tau = 2 * math.pi * frequency_hz * relaxation_time_s
 epsilon = epsilon_infinity + (epsilon_static - epsilon_infinity) / (1 - 1j * omega_tau)
@@ -148,15 +153,13 @@ alpha = (2 * math.pi * frequency_hz / speed_of_light) * wave_index.imag
 power_penetration_depth_m = 1 / (2 * alpha)
 ```
 
-**Code 1.** Core of the single-Debye evaluation using the declared
-$e^{-i\omega t}$ convention. The complete program adds input validation,
-canonical output, independent consistency checks, and non-writing `--check`
-mode.
-
 Table 1 is the generated publication projection for liquid water. Its final row
 is explicitly a one-pole extrapolation, included to expose the difference
 between a loss-factor peak and attenuation rather than to claim high-frequency
 accuracy.
+
+**Table 1.** Single-Debye relative permittivity, loss tangent, and $1/e$ power
+penetration depth for liquid water at [water_temperature_c]{.metric} °C.
 
 | $f$ | $\varepsilon'$ | $\varepsilon''$ | $\tan\delta$ | $D_p$ |
 | --- | --- | --- | --- | --- |
@@ -164,9 +167,6 @@ accuracy.
 | [oven_frequency_ghz]{.metric} GHz | [water_245_relative_permittivity_real]{.metric} | [water_245_relative_permittivity_loss]{.metric} | [water_245_loss_tangent]{.metric} | [water_245_penetration_depth_cm]{.metric} cm |
 | [water_dielectric_loss_peak_frequency_ghz]{.metric} GHz | [water_dielectric_loss_peak_relative_permittivity_real]{.metric} | [water_dielectric_loss_peak_relative_permittivity_loss]{.metric} | [water_dielectric_loss_peak_loss_tangent]{.metric} | [water_dielectric_loss_peak_penetration_depth_cm]{.metric} cm |
 | [high_evaluation_frequency_ghz]{.metric} GHz | [water_60_relative_permittivity_real]{.metric} | [water_60_relative_permittivity_loss]{.metric} | [water_60_loss_tangent]{.metric} | [water_60_penetration_depth_cm]{.metric} cm |
-
-**Table 1.** Single-Debye relative permittivity, loss tangent, and $1/e$ power
-penetration depth for liquid water at [water_temperature_c]{.metric} °C.
 
 At [oven_frequency_ghz]{.metric} GHz, the model gives
 $\tan\delta=$ [water_245_loss_tangent]{.metric}; the corresponding total
@@ -205,14 +205,14 @@ $\varepsilon_\infty=$ [ice_high_frequency_relative_permittivity]{.metric} are
 representative inputs to this idealized comparison, not a complete microwave
 model for frozen food.[@EisenbergKauzmann1969]
 
+**Table 2.** Liquid water at [water_temperature_c]{.metric} °C and idealized
+ice at [ice_temperature_c]{.metric} °C evaluated at
+[oven_frequency_ghz]{.metric} GHz with the same single-Debye equations.
+
 | Phase | $\varepsilon'$ | $\varepsilon''$ | $\tan\delta$ | $D_p$ |
 | --- | --- | --- | --- | --- |
 | Liquid water | [water_245_relative_permittivity_real]{.metric} | [water_245_relative_permittivity_loss]{.metric} | [water_245_loss_tangent]{.metric} | [water_245_penetration_depth_cm]{.metric} cm |
 | Ice | [ice_245_relative_permittivity_real]{.metric} | [ice_245_relative_permittivity_loss]{.metric} | [ice_245_loss_tangent]{.metric} | [ice_245_penetration_depth_m]{.metric} m |
-
-**Table 2.** Liquid water at [water_temperature_c]{.metric} °C and idealized
-ice at [ice_temperature_c]{.metric} °C evaluated at
-[oven_frequency_ghz]{.metric} GHz with the same single-Debye equations.
 
 For ice, $\omega\tau=$ [ice_245_omega_tau]{.metric}. The slow orientational
 increment therefore contributes negligibly at the oven frequency; faster
@@ -264,6 +264,10 @@ generator](/research/microwave-debye-relaxation/generate-metrics.mjs),
 manifest](/research/microwave-debye-relaxation/PUBLIC_FILES.txt). Code 2 checks
 the complete chain.
 
+**Code 2.** Recalculate the canonical result in non-writing check mode, verify
+the typed projection and source fingerprints, test and rebuild the site, and
+inspect the generated links and failure markers.
+
 ```sh
 python3 research/microwave-debye-relaxation/calculate.py --check
 node research/microwave-debye-relaxation/generate-metrics.mjs --check
@@ -272,10 +276,6 @@ stack test
 stack exec site rebuild
 node scripts/verify-site.mjs
 ```
-
-**Code 2.** Recalculate the canonical result in non-writing check mode, verify
-the typed projection and source fingerprints, test and rebuild the site, and
-inspect the generated links and failure markers.
 
 The calculation uses only the Python standard library, with no random inputs,
 downloads, services, or credentials. In the documented environment it is

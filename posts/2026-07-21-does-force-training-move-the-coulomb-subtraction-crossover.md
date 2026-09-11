@@ -198,6 +198,11 @@ it.
 Table 1 lists the median paired A/B out-of-fold energy-RMSE ratio at every cutoff
 under both losses, and Figure 1 plots them.
 
+**Table 1.** Median paired A/B out-of-fold energy-RMSE ratio at each fitting-domain
+lower cutoff, under the energy-only and energy-plus-force losses. A value above
+one is a cutoff at which the median direct-fit (Scheme A) RMSE exceeds the median
+Coulomb-subtraction (Scheme B) RMSE.
+
 | $R_{\min}$ (bohr) | energy-only A/B | energy+force A/B |
 | --- | --- | --- |
 | 0.15 | [ratio_energy_015]{.metric} | [ratio_force_015]{.metric} |
@@ -208,11 +213,6 @@ under both losses, and Figure 1 plots them.
 | 1.50 | [ratio_energy_150]{.metric} | [ratio_force_150]{.metric} |
 | 2.00 | [ratio_energy_200]{.metric} | [ratio_force_200]{.metric} |
 | 3.00 | [ratio_energy_300]{.metric} | [ratio_force_300]{.metric} |
-
-**Table 1.** Median paired A/B out-of-fold energy-RMSE ratio at each fitting-domain
-lower cutoff, under the energy-only and energy-plus-force losses. A value above
-one is a cutoff at which the median direct-fit (Scheme A) RMSE exceeds the median
-Coulomb-subtraction (Scheme B) RMSE.
 
 Under the energy-only loss the median ratio ran from [ratio_energy_015]{.metric}
 at $R_{\min} = 0.15\,a_0$ to [ratio_energy_300]{.metric} at $3.00\,a_0$, first at

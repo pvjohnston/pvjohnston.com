@@ -135,6 +135,12 @@ transform of its absorption peak. You can watch it happen numerically: hand a
 computer only the absorption Lorentzian and let it grind out the principal-value
 integral, and the dispersion curve reappears (Code 1).
 
+**Code 1.** A discrete Kramers–Kronig transform: given only a Lorentzian absorption
+band `kappa`, the principal-value integral reconstructs the real refractive index
+`n_minus_1`, reproducing the dispersion S-curve the [oscillator model](/posts/2026-07-06-molecules-as-circuits-rlc-resonator.html)
+draws analytically — a numerical demonstration that the two curves carry the same
+information.
+
 ```python
 import numpy as np
 
@@ -152,12 +158,6 @@ for i, wi in enumerate(w):
 # n_minus_1 now traces the S-shaped dispersion curve — never supplied,
 # only implied by the absorption band it was transformed from.
 ```
-
-**Code 1.** A discrete Kramers–Kronig transform: given only a Lorentzian absorption
-band `kappa`, the principal-value integral reconstructs the real refractive index
-`n_minus_1`, reproducing the dispersion S-curve the [oscillator model](/posts/2026-07-06-molecules-as-circuits-rlc-resonator.html)
-draws analytically — a numerical demonstration that the two curves carry the same
-information.
 
 ## Why the prism works, and why it works backwards near a line
 

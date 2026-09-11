@@ -139,14 +139,14 @@ every result number in this post resolves from the committed
 [metrics projection](/research/momentum-recovery-region/metrics.json) at
 build time.
 
+**Code 1.** Exact commands for the canonical run and the metrics projection,
+from the repository root and experiment directory respectively.
+
 ```bash
 cd research/momentum-recovery-region
 python3 src/run_sweep.py    # stage 1, then stage 2 by the frozen rule
 node generate-metrics.mjs   # project results/*.json into metrics.json
 ```
-
-**Code 1.** Exact commands for the canonical run and the metrics projection,
-from the repository root and experiment directory respectively.
 
 ## Results
 
@@ -163,6 +163,12 @@ median test error over finite grid points decreases from
 [official_median_beta_0]{.metric} at $\beta=0$ to
 [official_median_beta_099]{.metric} at $\beta=0.99$.
 
+**Table 1.** Stage-1 results per momentum coefficient: described-convention
+recovered-point count at the frozen $10^{-24}$ threshold, best tested
+learning rate and best median normalized test MSE, official-convention median
+over finite points, first divergent learning rate, and the divergence
+boundary relative to $\beta=0$ against the $1+\beta$ prediction.
+
 | $\beta$ | recovered points | best tested lr | best described MSE | official median MSE | first divergent lr | boundary ratio | $1+\beta$ |
 | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | $0$ | [recovered_points_beta_0]{.metric} | [described_best_lr_beta_0]{.metric} | [described_best_beta_0]{.metric} | [official_median_beta_0]{.metric} | [boundary_beta_0]{.metric} | [boundary_ratio_beta_0]{.metric} | $1$ |
@@ -170,12 +176,6 @@ median test error over finite grid points decreases from
 | $0.6$ | [recovered_points_beta_06]{.metric} | [described_best_lr_beta_06]{.metric} | [described_best_beta_06]{.metric} | [official_median_beta_06]{.metric} | [boundary_beta_06]{.metric} | [boundary_ratio_beta_06]{.metric} | $1.6$ |
 | $0.9$ | [recovered_points_beta_09]{.metric} | [described_best_lr_beta_09]{.metric} | [described_best_beta_09]{.metric} | [official_median_beta_09]{.metric} | [boundary_beta_09]{.metric} | [boundary_ratio_beta_09]{.metric} | $1.9$ |
 | $0.99$ | [recovered_points_beta_099]{.metric} | [described_best_lr_beta_099]{.metric} | [described_best_beta_099]{.metric} | [official_median_beta_099]{.metric} | [boundary_beta_099]{.metric} | [boundary_ratio_beta_099]{.metric} | $1.99$ |
-
-**Table 1.** Stage-1 results per momentum coefficient: described-convention
-recovered-point count at the frozen $10^{-24}$ threshold, best tested
-learning rate and best median normalized test MSE, official-convention median
-over finite points, first divergent learning rate, and the divergence
-boundary relative to $\beta=0$ against the $1+\beta$ prediction.
 
 The first divergent learning rate is identical for the two conventions at
 every $\beta$ (described [boundary_beta_09]{.metric} and official
@@ -198,15 +198,15 @@ points — [refined_width_beta_099_decades]{.metric} decades — running from th
 bottom of its refinement window up to [recovered_top_lr_beta_099]{.metric};
 the region reaches the window's bottom edge, so the width is a lower bound.
 
-| $\beta$ | refined recovered points | refined width (decades) | refined best MSE | refined first divergent lr | censored below |
-| ---: | ---: | ---: | ---: | ---: | ---: |
-| $0.9$ | [refined_recovered_points_beta_09]{.metric} | [refined_width_beta_09_decades]{.metric} | [refined_described_best_beta_09]{.metric} | [refined_boundary_beta_09]{.metric} | [refined_width_censored_beta_09]{.metric} |
-| $0.99$ | [refined_recovered_points_beta_099]{.metric} | [refined_width_beta_099_decades]{.metric} | [refined_described_best_beta_099]{.metric} | [refined_boundary_beta_099]{.metric} | [refined_width_censored_beta_099]{.metric} |
-
 **Table 2.** Stage-2 refinement at $0.01$-decade resolution for the two
 momentum coefficients with a stage-1 recovery: recovered-point count, width,
 best described median test error, first divergent rate on the refined grid,
 and whether the recovered region reaches the bottom of its refinement window.
+
+| $\beta$ | refined recovered points | refined width (decades) | refined best MSE | refined first divergent lr | censored below |
+| ---: | ---: | ---: | ---: | ---: | ---: |
+| $0.9$ | [refined_recovered_points_beta_09]{.metric} | [refined_width_beta_09_decades]{.metric} | [refined_described_best_beta_09]{.metric} | [refined_boundary_beta_09]{.metric} | [refined_width_censored_beta_09]{.metric} |
+| $0.99$ | [refined_recovered_points_beta_099]{.metric} | [refined_width_beta_099_decades]{.metric} | [refined_described_best_beta_099]{.metric} | [refined_boundary_beta_099]{.metric} | [refined_width_censored_beta_099]{.metric} |
 
 Between the $\beta=0.99$ plateau's upper edge and its divergence boundary,
 the described convention's finite test errors reach

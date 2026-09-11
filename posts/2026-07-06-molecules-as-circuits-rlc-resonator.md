@@ -316,14 +316,6 @@ a thiophene bridge (a small balloon, a measured $\beta$ penalty) → a truncated
 diene (barely any tube) — and each rung is a real molecule with a real number
 attached.
 
-| chromophore | bridge | $\lambda_{\max}$ (nm) | computed $\beta$ (10⁻³⁰ esu) | poling $r_{33}/E_p$ ((nm/V)²) |
-|---|---|---|---|---|
-| YLD-124 | ring-locked polyene | 786 | 460 | 1.4 |
-| JRD1 | ring-locked polyene | 788 | 483 | 3.1 |
-| JRD5 | ring-locked polyene (carbazole) | 778 | 476 | 2.9 |
-| KRD1 | thiophene | 762 | 341 | 1.4 |
-| JRD2 | short diene | 630 | 88 | 0.3 |
-
 **Table 1.** The chromophore family behind Figure 2: measured absorption maximum
 (chloroform), computed static first hyperpolarizability $\beta$ (LC-BLYP, gas
 phase), and the poling efficiency $r_{33}/E_p$ — the electro-optic coefficient
@@ -333,6 +325,14 @@ bridge over thiophene (KRD1) and reward any bridge over none (JRD2). The device
 column does *not* simply follow $\beta$: YLD-124 and JRD1 have essentially the
 same molecular $\beta$ yet JRD1 poles more than twice as efficiently — the subject
 of §5.[@Jin2016; @Johnston2016Thesis]
+
+| chromophore | bridge | $\lambda_{\max}$ (nm) | computed $\beta$ (10⁻³⁰ esu) | poling $r_{33}/E_p$ ((nm/V)²) |
+|---|---|---|---|---|
+| YLD-124 | ring-locked polyene | 786 | 460 | 1.4 |
+| JRD1 | ring-locked polyene | 788 | 483 | 3.1 |
+| JRD5 | ring-locked polyene (carbazole) | 778 | 476 | 2.9 |
+| KRD1 | thiophene | 762 | 341 | 1.4 |
+| JRD2 | short diene | 630 | 88 | 0.3 |
 
 ## 5. The cliff: the circuit ends at one molecule
 

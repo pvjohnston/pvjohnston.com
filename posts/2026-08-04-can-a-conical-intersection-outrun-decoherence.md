@@ -234,12 +234,12 @@ The phase-sensitive convergence gate did not pass. Table 1 reports the pooled
 candidate and reference timing outcomes at $s=0.05$. Neither setting reached a
 majority.
 
+**Table 1.** Phase-sensitive pooled outcomes in the eight-paired-seed numerical gate. These are convergence runs, not the blocked seven-scale production sweep.
+
 | Setting | $C_{\mathrm{ens}}(0)/e$ lifetime (fs) | Accepted events before lifetime | Majority? |
 | :--- | ---: | ---: | :---: |
 | Candidate, 0.0125 fs / 20 | [corrective_candidate_ensemble_lifetime_fs]{.metric} | [corrective_candidate_early_hop_fraction]{.metric} | [corrective_candidate_majority]{.metric} |
 | Reference, 0.00625 fs / 40 | [corrective_reference_ensemble_lifetime_fs]{.metric} | [corrective_reference_early_hop_fraction]{.metric} | [corrective_reference_majority]{.metric} |
-
-**Table 1.** Phase-sensitive pooled outcomes in the eight-paired-seed numerical gate. These are convergence runs, not the blocked seven-scale production sweep.
 
 The maximum absolute 95% interval endpoints were
 [corrective_fraction_95_max_endpoint]{.metric} for early-hop fraction,
@@ -255,6 +255,8 @@ run was [corrective_production_run]{.metric}.
 Table 2 gives the archived sweep under its corrected local-magnitude scope.
 The two smallest rate multipliers cross the half-event line descriptively.
 
+**Table 2.** Descriptive archived FP--RP results using the mean single-trajectory coherence-magnitude lifetime. They are not measurements of ensemble optical coherence, and the archived numerical gate did not pass.
+
 | $s$ | $C_{\mathrm{local}}(0)/e$ lifetime (fs) | Events before lifetime | $\max|\Delta P_+|$ | $\max|\Delta P(q_x<0)|$ | $\max|\Delta\langle q_x\rangle|/\sigma_x$ |
 | ---: | ---: | ---: | ---: | ---: | ---: |
 | 1 | [s_1_local_magnitude_lifetime_fs]{.metric} | [s_1_local_magnitude_early_hop_fraction]{.metric} | [s_1_max_upper_population_error]{.metric} | [s_1_max_product_probability_error]{.metric} | [s_1_max_centroid_x_sigma_error]{.metric} |
@@ -264,8 +266,6 @@ The two smallest rate multipliers cross the half-event line descriptively.
 | 0.10 | [s_0_10_local_magnitude_lifetime_fs]{.metric} | [s_0_10_local_magnitude_early_hop_fraction]{.metric} | [s_0_10_max_upper_population_error]{.metric} | [s_0_10_max_product_probability_error]{.metric} | [s_0_10_max_centroid_x_sigma_error]{.metric} |
 | 0.075 | [s_0_075_local_magnitude_lifetime_fs]{.metric} | [s_0_075_local_magnitude_early_hop_fraction]{.metric} | [s_0_075_max_upper_population_error]{.metric} | [s_0_075_max_product_probability_error]{.metric} | [s_0_075_max_centroid_x_sigma_error]{.metric} |
 | 0.05 | [s_0_05_local_magnitude_lifetime_fs]{.metric} | [s_0_05_local_magnitude_early_hop_fraction]{.metric} | [s_0_05_max_upper_population_error]{.metric} | [s_0_05_max_product_probability_error]{.metric} | [s_0_05_max_centroid_x_sigma_error]{.metric} |
-
-**Table 2.** Descriptive archived FP--RP results using the mean single-trajectory coherence-magnitude lifetime. They are not measurements of ensemble optical coherence, and the archived numerical gate did not pass.
 
 <figure>
   <img src="/images/2026-08-04-conical-intersection-outrun-decoherence-hero.png" alt="Archived local-magnitude early-event fractions on the horizontal axis and normalized FP minus RP errors on the vertical axis, explicitly labeled as not ensemble optical coherence.">
@@ -291,17 +291,17 @@ coefficient-versus-active-state inconsistency rose from a seed maximum of
 Table 3 reports selected-exact RMSE for the two archived local-magnitude
 majority settings.
 
+**Table 3.** Descriptive RMSE against the selected exact trace. FP used
+[legacy_fp_paths_per_seed]{.metric} nuclear paths per seed and scale; RP-AXE
+used [legacy_rp_axe_paths_per_seed]{.metric}. The exact trace passed a spatial
+grid audit but not timestep or box-size audits.
+
 | $s$ | Method | $P_+$ RMSE | $P(q_x<0)$ RMSE | Centroid RMSE ($\sigma_x$) |
 | ---: | :--- | ---: | ---: | ---: |
 | 0.075 | FP | [s_0_075_full_rmse_selected_exact_upper_population]{.metric} | [s_0_075_full_rmse_selected_exact_product_probability]{.metric} | [s_0_075_full_rmse_selected_exact_centroid_x_sigma]{.metric} |
 | 0.075 | RP-AXE | [s_0_075_reprop_axe_rmse_selected_exact_upper_population]{.metric} | [s_0_075_reprop_axe_rmse_selected_exact_product_probability]{.metric} | [s_0_075_reprop_axe_rmse_selected_exact_centroid_x_sigma]{.metric} |
 | 0.05 | FP | [s_0_05_full_rmse_selected_exact_upper_population]{.metric} | [s_0_05_full_rmse_selected_exact_product_probability]{.metric} | [s_0_05_full_rmse_selected_exact_centroid_x_sigma]{.metric} |
 | 0.05 | RP-AXE | [s_0_05_reprop_axe_rmse_selected_exact_upper_population]{.metric} | [s_0_05_reprop_axe_rmse_selected_exact_product_probability]{.metric} | [s_0_05_reprop_axe_rmse_selected_exact_centroid_x_sigma]{.metric} |
-
-**Table 3.** Descriptive RMSE against the selected exact trace. FP used
-[legacy_fp_paths_per_seed]{.metric} nuclear paths per seed and scale; RP-AXE
-used [legacy_rp_axe_paths_per_seed]{.metric}. The exact trace passed a spatial
-grid audit but not timestep or box-size audits.
 
 ## Discussion
 

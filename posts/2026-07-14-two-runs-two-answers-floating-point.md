@@ -26,15 +26,15 @@ you round changes *what* you get.
 
 The pathological case makes it obvious:
 
+**Code 1.** The same three numbers, added in two groupings, give answers that
+differ by 100%.
+
 ```python
 >>> (1e20 + -1e20) + 1.0
 1.0
 >>> 1e20 + (-1e20 + 1.0)
 0.0
 ```
-
-**Code 1.** The same three numbers, added in two groupings, give answers that
-differ by 100%.
 
 In the first line of Code 1 the two large magnitudes cancel exactly, leaving
 $1$. In the second, `-1e20 + 1.0` is computed first — but the spacing between

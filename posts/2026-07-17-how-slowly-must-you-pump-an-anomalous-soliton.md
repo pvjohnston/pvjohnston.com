@@ -105,6 +105,10 @@ the data is presumably embargoed. Nothing here is therefore checked against the
 authors' numbers, and the model is instead validated against four facts the paper
 states or implies (Table 1).
 
+**Table 1.** Independent checks of the reimplemented model against statements in
+the source. At $\theta = \pi$ both bands are flat, which makes the fourth check
+analytic rather than numerical.
+
 | Check | Paper | Measured |
 | --- | --- | --- |
 | Real-space vs $k$-space spectrum | identical | max diff $5\times10^{-15}$ |
@@ -112,10 +116,6 @@ states or implies (Table 1).
 | Wannier centre at $\theta=\pi$ | at $l + 1/2$ | $29.5$ on a 60-cell ring |
 | $\chi = \sqrt{N}\,W_0$ at $\theta=\pi$ | "precisely the Wannier function multiplied by $\sqrt N$" | exact: residual $10^{-15}$, $\mu = -1 + 0.3625(g+g_{12})$ to 6 decimals |
 | Wannier centre displacement per cycle | $= C = -1$ | $-1.000000$ |
-
-**Table 1.** Independent checks of the reimplemented model against statements in
-the source. At $\theta = \pi$ both bands are flat, which makes the fourth check
-analytic rather than numerical.
 
 **Initial soliton.** For $g > 0$ the soliton bifurcates from the *top* of band 0
 (at $k = \pi$) into the gap, so the seed envelope must be staggered; Newton's method
@@ -159,16 +159,16 @@ Time evolution reproduces three of the paper's four reported displacements
 $T = 9600$ it takes the values $-19.23$, $-19.30$ and $-19.33$ under
 $\delta t = 0.04$, $0.02$ and $0.01$.
 
+**Table 2.** Pumped displacement in unit cells from direct time evolution,
+against the values reported in the source's Fig. 2a. Cases normal, 1 and 2 are the
+convergence-gated scan; case 3 is the three step sizes quoted above.
+
 | Case | $g$ | $g_{12}$ | $m_0$ | Paper | Measured | At |
 | --- | --- | --- | --- | --- | --- | --- |
 | normal | 1 | 1 | 1 | $-1$ | $-0.9796 \pm 0.0584$ | mean over $T \in [1200, 12000]$ |
 | case 1 | $-1$ | 0 | 1 | $0$ | $-0.0009$ to $+0.0019$ | every $T \in [400, 12000]$ |
 | case 2 | 1 | 0 | 1 | $-2$ | $-1.9921$ | $T = 6400$ |
 | case 3 | 1 | 0 | 1.3 | $-3$ | $-19.33$ | $T = 9600$ |
-
-**Table 2.** Pumped displacement in unit cells from direct time evolution,
-against the values reported in the source's Fig. 2a. Cases normal, 1 and 2 are the
-convergence-gated scan; case 3 is the three step sizes quoted above.
 
 The displacement of the normal pump first enters a $\pm 0.15$ band around $-1$ at
 $T = 1200$. Across the 28 periods from $T = 1200$ to $T = 12000$, one lies outside
@@ -238,6 +238,11 @@ that instead moves the soliton the wrong way. **C** marks the $-3.76$ excursion 
 $T = 9600$. Below $T \approx 5200$ the anomalous displacement swings off-scale (it
 reaches $+12$ and $-16$).
 
+**Table 3.** Behaviour of the pumped displacement at and above the first period
+that reaches the quantized value, $\pm 0.15$ band, convergence-gated 4th-order
+integration. Every period converged; the anomalous excursions required
+$\delta t = 0.005$.
+
 | | Normal | Anomalous (case 2) |
 | --- | ---: | ---: |
 | First period inside the $\pm 0.15$ band | $1200$ | $5200$ |
@@ -246,11 +251,6 @@ reaches $+12$ and $-16$).
 | Largest deviation above it | $0.185$ | $2.346$ |
 | Mean displacement above it | $-0.9796$ | $-1.8995$ |
 | Standard deviation above it | $0.0584$ | $0.7865$ |
-
-**Table 3.** Behaviour of the pumped displacement at and above the first period
-that reaches the quantized value, $\pm 0.15$ band, convergence-gated 4th-order
-integration. Every period converged; the anomalous excursions required
-$\delta t = 0.005$.
 
 The ratio of first-in-band periods, anomalous to normal, is $5200/1200 = 4.33$.
 

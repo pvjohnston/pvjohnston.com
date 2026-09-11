@@ -231,6 +231,9 @@ from 0.0730 to 0.2613. Its Spearman correlation with each of the three maximum
 errors was 0.90. The maximum coherence-amplitude difference rose from 0.00295
 to 0.00664 and had $\rho=1.00$ with the early-hop fraction.
 
+**Table 1.** FP--RP-AXE maximum absolute differences for the four-seed pooled
+center scan. Each regime contains 16,000 FP trajectories and 32,000 AXE paths.
+
 | $q_{x,0}/(a/2)$ | $C(0)/e$ time (fs) | early hops | max $|\Delta P_+|$ | max $|\Delta P(q_x<0)|$ | max $|\Delta\langle q_x\rangle|/\sigma_x$ |
 | ---: | ---: | ---: | ---: | ---: | ---: |
 | 1.00 | 2.164 | 0.0730 | 0.00495 | 0.01077 | 0.06487 |
@@ -238,9 +241,6 @@ to 0.00664 and had $\rho=1.00$ with the early-hop fraction.
 | 0.50 | 2.396 | 0.1998 | 0.02019 | 0.01436 | 0.10381 |
 | 0.25 | 2.536 | 0.2451 | 0.01912 | 0.01772 | 0.12773 |
 | 0.00 | 2.634 | 0.2613 | 0.02186 | 0.01627 | 0.10725 |
-
-**Table 1.** FP--RP-AXE maximum absolute differences for the four-seed pooled
-center scan. Each regime contains 16,000 FP trajectories and 32,000 AXE paths.
 
 Figure 2 divides each maximum error by its predeclared tolerance. The centroid
 ratios were 0.649, 0.823, 1.038, 1.277, and 1.072 across the center scan. The
@@ -263,6 +263,9 @@ with population, product, and centroid errors were 0.90; the correlation with
 maximum coherence-amplitude error was 1.00. No regime in either scan had an
 early-hop fraction of 0.5.
 
+**Table 2.** FP--RP-AXE maximum absolute differences in the adaptive
+directional-kick scan.
+
 | $-\langle p_x\rangle/\sigma_{p_x}$ | early hops | max $|\Delta P_+|$ | max $|\Delta P(q_x<0)|$ | max $|\Delta\langle q_x\rangle|/\sigma_x$ |
 | ---: | ---: | ---: | ---: | ---: |
 | 0.0 | 0.1998 | 0.02019 | 0.01436 | 0.10381 |
@@ -270,9 +273,6 @@ early-hop fraction of 0.5.
 | 1.0 | 0.2493 | 0.02047 | 0.01979 | 0.14228 |
 | 1.5 | 0.2548 | 0.02295 | 0.02444 | 0.17224 |
 | 2.0 | 0.2629 | 0.02440 | 0.02302 | 0.16882 |
-
-**Table 2.** FP--RP-AXE maximum absolute differences in the adaptive
-directional-kick scan.
 
 Against exact grid dynamics, RP-AXE had the lower upper-population RMSE in 9
 of 9 regimes. FP had the lower $P(q_x<0)$ RMSE in 9 of 9 and the lower

@@ -211,6 +211,11 @@ than the CEPB prediction, by [swap_dev_nearest_cbs]{.metric} to
 at aug-cc-pVQZ, and by [swap_dev_nearest_tz]{.metric} to
 [swap_dev_farthest_tz]{.metric}\ kcal/mol at aug-cc-pVTZ.
 
+**Table 1.** Correlation-energy change of the C=C → C–C + 2 C–H swap in the
+three published pairs that realize it, computed from the source's per-molecule
+correlation energies at each of its three published levels, with the single
+CEPB-predicted value and the spread across the three measured changes.
+
 | ΔE~corr~ for C=C → C–C + 2 C–H (kcal/mol) | CBS | aug-cc-pVQZ | aug-cc-pVTZ |
 | --- | ---: | ---: | ---: |
 | ethene → ethane | [swap_ethene_ethane_cbs]{.metric} | [swap_ethene_ethane_qz]{.metric} | [swap_ethene_ethane_tz]{.metric} |
@@ -218,11 +223,6 @@ at aug-cc-pVQZ, and by [swap_dev_nearest_tz]{.metric} to
 | cyclohexene → cyclohexane | [swap_cyclohexene_cyclohexane_cbs]{.metric} | [swap_cyclohexene_cyclohexane_qz]{.metric} | [swap_cyclohexene_cyclohexane_tz]{.metric} |
 | CEPB prediction, all rows | [cepb_swap_cbs]{.metric} | [cepb_swap_qz]{.metric} | [cepb_swap_tz]{.metric} |
 | spread across the three contrasts | [swap_spread_cbs]{.metric} | [swap_spread_qz]{.metric} | [swap_spread_tz]{.metric} |
-
-**Table 1.** Correlation-energy change of the C=C → C–C + 2 C–H swap in the
-three published pairs that realize it, computed from the source's per-molecule
-correlation energies at each of its three published levels, with the single
-CEPB-predicted value and the spread across the three measured changes.
 
 The secondary, descriptive statistic — the raw effective C=C increment of the
 amendment, which assigns each molecule's whole CEPB residual to its C=C
@@ -242,6 +242,10 @@ between the two bases; the cis-2-butene − 1-butene pair is
 [pair_cis2butene_minus_1butene_dz]{.metric}\ kcal/mol at cc-pVDZ and
 [pair_cis2butene_minus_1butene_tz]{.metric}\ kcal/mol at cc-pVTZ.
 
+**Table 2.** Pairwise frozen-core DF-CCSD(T) correlation-energy differences
+among the four C₄H₈ positional isomers at the registered basis and its
+sensitivity check. CEPB predicts every entry to be exactly zero.
+
 | ΔE~corr~ (kcal/mol) | cc-pVDZ | cc-pVTZ |
 | --- | ---: | ---: |
 | cis-2-butene − 1-butene | [pair_cis2butene_minus_1butene_dz]{.metric} | [pair_cis2butene_minus_1butene_tz]{.metric} |
@@ -250,10 +254,6 @@ between the two bases; the cis-2-butene − 1-butene pair is
 | trans-2-butene − cis-2-butene | [pair_trans2butene_minus_cis2butene_dz]{.metric} | [pair_trans2butene_minus_cis2butene_tz]{.metric} |
 | isobutene − cis-2-butene | [pair_isobutene_minus_cis2butene_dz]{.metric} | [pair_isobutene_minus_cis2butene_tz]{.metric} |
 | isobutene − trans-2-butene | [pair_isobutene_minus_trans2butene_dz]{.metric} | [pair_isobutene_minus_trans2butene_tz]{.metric} |
-
-**Table 2.** Pairwise frozen-core DF-CCSD(T) correlation-energy differences
-among the four C₄H₈ positional isomers at the registered basis and its
-sensitivity check. CEPB predicts every entry to be exactly zero.
 
 ## Discussion
 
