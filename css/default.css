@@ -30,7 +30,7 @@ a { color: inherit; text-decoration: none; }
 /* =============================================================================
    MASTHEAD (home + archive)
    ============================================================================= */
-.masthead { border-bottom: 1px solid var(--border); }
+.masthead { border: none; }
 .masthead-inner { max-width: var(--maxw); margin: 0 auto; padding: 74px 32px 60px; }
 
 .masthead-meta { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; }
@@ -68,21 +68,19 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* Home variant: slimmer — the featured note directly below carries the page. */
-.masthead-home .masthead-inner { padding: 60px 32px 44px; }
-.masthead-home .masthead-title { font-size: clamp(30px, 4.5vw, 44px); max-width: 24ch; margin-bottom: 18px; }
-.masthead-home + .featured .featured-inner { padding-top: 48px; }
+.masthead-home .masthead-inner { padding: 80px 32px 24px; }
+.masthead-home .masthead-title { font-size: clamp(28px, 4vw, 40px); max-width: 24ch; margin: 0; }
+.masthead-home .masthead-title em { font-style: normal; color: inherit; }
+.masthead-home .masthead-lede,
+.masthead-home .meta-rule,
+.masthead-home .meta-kind { display: none; }
+.masthead-home + .featured .featured-inner { padding-top: 56px; }
 
 /* =============================================================================
    FEATURED NOTE
    ============================================================================= */
-.featured {
-  border-bottom: 1px solid var(--border);
-  animation: npFadeUp 0.5s ease both;
-}
-.featured-inner { max-width: var(--maxw); margin: 0 auto; padding: 72px 32px; transition: opacity .3s ease; }
-/* Hold the featured card invisible (but laid out, so no reflow) until the
-   reel resolves — see the no-flash script in default.html. */
-.feat-pending .featured-inner { opacity: 0; }
+.featured { border: none; }
+.featured-inner { max-width: var(--maxw); margin: 0 auto; padding: 72px 32px; }
 .featured-head {
   display: flex; align-items: center; justify-content: space-between;
   gap: 16px; margin-bottom: 32px;
@@ -134,9 +132,9 @@ a { color: inherit; text-decoration: none; }
 
 .featured-figure {
   margin: 0;
-  background: var(--offwhite);
-  border: 1px solid var(--border);
-  border-radius: 4px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 0;
   padding: 26px;
   display: flex;
   flex-direction: column;
@@ -305,10 +303,10 @@ a { color: inherit; text-decoration: none; }
 /* =============================================================================
    POST ROWS (home Latest + archive)
    ============================================================================= */
-.post-list { border-top: 1px solid var(--border); }
+.post-list { border: none; }
 .post-row {
   display: grid; grid-template-columns: 1fr; gap: 8px;
-  padding: 26px 20px; margin: 0 -20px;
+  padding: 34px 20px; margin: 0 -20px;
   border-bottom: 1px solid var(--border);
   color: inherit;
   transition: background-color 0.16s ease;
@@ -400,7 +398,7 @@ a { color: inherit; text-decoration: none; }
    ARCHIVE PAGE
    ============================================================================= */
 .archive-inner { max-width: var(--maxw); margin: 0 auto; padding: 0 32px 32px; }
-.archive-masthead { padding: 74px 0 4px; }
+.archive-masthead { padding: 88px 0 36px; }
 .archive-title {
   font-family: var(--font-display); font-weight: 800;
   font-size: clamp(34px, 5vw, 52px); line-height: 1.05; letter-spacing: -0.02em;
@@ -412,7 +410,7 @@ a { color: inherit; text-decoration: none; }
 /* =============================================================================
    ARTICLE (post reading view)
    ============================================================================= */
-.post { max-width: var(--maxw-read); margin: 0 auto; padding: 56px 32px 24px; }
+.post { max-width: var(--maxw-read); margin: 0 auto; padding: 80px 32px 24px; }
 .back-link {
   display: inline-flex; align-items: center; gap: 7px;
   min-height: 44px;
@@ -424,14 +422,14 @@ a { color: inherit; text-decoration: none; }
 .post-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
 .chip {
   font-family: var(--font-mono); font-size: 11px; color: var(--faint);
-  background: var(--offwhite); border: 1px solid var(--border);
-  border-radius: 2px; padding: 4px 9px;
+  background: transparent; border: none;
+  padding: 0;
   max-width: 100%; white-space: normal; overflow-wrap: break-word;
 }
 .post-title {
   font-family: var(--font-display); font-weight: 800;
-  font-size: clamp(32px, 5vw, 44px); line-height: 1.06; letter-spacing: -0.02em;
-  color: var(--text); margin: 0 0 18px; text-wrap: balance;
+  font-size: clamp(34px, 5vw, 52px); line-height: 1.08; letter-spacing: -0.025em;
+  color: var(--text); margin: 0 0 28px; text-wrap: balance;
 }
 .post-meta {
   display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center;
@@ -439,7 +437,7 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: 0.02em;
 }
 .post-meta .byline { color: var(--muted); }
-.post-rule { height: 2px; background: var(--border-strong); margin: 24px 0 34px; }
+.post-rule { height: 0; margin: 0 0 48px; }
 
 /* ----- Post body typography ----- */
 .post-body { font-size: 17px; line-height: 1.75; color: var(--text); overflow-wrap: break-word; }
@@ -505,14 +503,14 @@ a { color: inherit; text-decoration: none; }
 .post-body pre .co, .post-body pre .cm { color: var(--faint); font-style: italic; }
 .post-body pre .kw, .post-body pre .cf, .post-body pre .im, .post-body pre .kc { color: var(--sky-mid); }
 .post-body pre .dt, .post-body pre .bu, .post-body pre .fu { color: var(--mint); }
-.post-body pre .dv, .post-body pre .bn, .post-body pre .fl, .post-body pre .cn { color: var(--terracotta); }
+.post-body pre .dv, .post-body pre .bn, .post-body pre .fl, .post-body pre .cn { color: var(--on-ink-quiet); }
 .post-body pre .st, .post-body pre .ch, .post-body pre .sc, .post-body pre .vs { color: var(--mint); }
 .post-body pre .op, .post-body pre .va, .post-body pre .at { color: var(--on-ink-quiet); }
 
 .post-body blockquote { border-left: 3px solid var(--accent); padding: 4px 0 4px 22px; margin: 0 0 26px; }
 .post-body blockquote p { font-size: 18px; line-height: 1.6; color: var(--muted); font-style: italic; margin: 0; }
 
-.post-body figure { margin: 0 0 28px; border: 1px solid var(--border); background: var(--offwhite); border-radius: 6px; padding: 32px; scroll-margin-top: 84px; }
+.post-body figure { margin: 36px 0 40px; border: 1px solid transparent; background: transparent; border-radius: 0; padding: 32px; scroll-margin-top: 84px; }
 .post-body figure img { display: block; margin: 0 auto; }
 .post-body figcaption, .post-body figure figcaption {
   font-family: var(--font-mono); font-size: 11.5px; color: var(--faint); margin-top: 12px;
@@ -624,23 +622,18 @@ main > p a:hover, main > ul a:hover, main > ol a:hover { color: var(--accent); b
 /* =============================================================================
    RESPONSIVE
    ============================================================================= */
-/* Two-column homepage: titles and tag rows still differ by slide. A floor
-   under the grid keeps the dots from tracking that leftover variation once
-   the figure card itself is locked. */
-@media (min-width: 821px) {
-  .featured-grid { min-height: 42rem; }
-}
 @media (max-width: 820px) {
   .featured-grid { grid-template-columns: 1fr; gap: 32px; }
 }
 @media (max-width: 680px) {
   .masthead-inner { padding: 48px 20px 40px; }
+  .masthead-home .masthead-inner { padding: 56px 20px 16px; }
   .featured-inner { padding: 48px 20px; }
   .post-body figure, .featured-figure { padding: 12px; }
   .latest-inner { padding-left: 20px; padding-right: 20px; }
   .post-row { margin: 0 -16px; padding: 22px 16px; }
-  .post { padding: 40px 20px 20px; }
-  .post-title { font-size: 26px; }
+  .post { padding: 52px 20px 20px; }
+  .post-title { font-size: clamp(30px, 7vw, 38px); }
   .archive-inner { padding-left: 20px; padding-right: 20px; }
   .archive-masthead { padding-top: 48px; }
   .archive-cta { padding-left: 20px; padding-right: 20px; }

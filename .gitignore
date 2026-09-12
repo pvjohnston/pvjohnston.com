@@ -87,3 +87,4 @@ research/off-tonic-recapitulation/data/sources/dcml/
 
 # Source PDFs stay local unless a future artifact is explicitly force-added.
 *.pdf
+.codex-refs/
