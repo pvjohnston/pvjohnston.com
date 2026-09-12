@@ -1,5 +1,5 @@
-// Decorative home field. Colors come from the live theme; the notebook,
-// navigation, and featured reel remain ordinary, independent document content.
+// Decorative home field: soft boiling bubbles on cream paper.
+// Colors come from the live theme; notebook content stays independent.
 (function () {
   'use strict';
 
@@ -25,83 +25,53 @@
 
     var width = 0;
     var height = 0;
-    var scale = 0;
     var frame = 0;
     var lastPaint = null;
     var elapsed = 0;
     var scrollPosition = window.scrollY || 0;
-    var nextPhoton = random(.4, 1);
+    var nextBubble = 0.2;
     var active = false;
     var away = false;
     var palette = [];
-    var colorTokens = ['--accent', '--accent-deep', '--sky-mid', '--mint', '--terracotta', '--forest'];
-    var washes = [];
-    var photons = [];
+    var colorTokens = ['--accent', '--sky-mid', '--mint', '--terracotta'];
+    var bubbles = [];
     var pointer = { x: 0, y: 0, visible: false };
     var glowX = 0;
     var glowY = 0;
     var tau = Math.PI * 2;
 
     function random(low, high) { return low + Math.random() * (high - low); }
-
     function randomColor() { return Math.floor(random(0, colorTokens.length)); }
-    function signedSpeed(low, high) { return random(low, high) * (Math.random() < .5 ? -1 : 1); }
 
-    // Each visit gets a fresh field, with independent sizes, drift, and phases.
-    // Smaller washes can mingle with broad ones instead of filling fixed corners.
-    var blobs = Array.from({ length: 16 }, function () {
+    // Softly boiling solution: round bubbles rise, sway, and fade near the surface.
+    function makeBubble(initial) {
+      var radius = random(3.5, 11);
       return {
-        x: random(.02, .98), y: random(.02, .98), color: randomColor(),
-        radius: random(.085, .25), opacity: random(.58, .8),
-        depth: random(.1, .2),
-        vx: signedSpeed(.002, .009), vy: signedSpeed(.002, .008),
-        phase: random(0, tau), pulseSpeed: random(.12, .38)
-      };
-    });
-    var orbitals = Array.from({ length: 10 }, function () {
-      var radius = random(.075, .23);
-      return {
-        x: random(.06, .94), y: random(.08, .92),
-        rx: radius, ry: radius * random(.22, .65),
-        angle: random(0, tau), speed: signedSpeed(.015, .065),
-        color: randomColor(), opacity: random(.7, .95), lineWidth: random(.95, 1.4),
-        depth: random(.22, .36),
-        phase: random(0, tau), dotSpeed: signedSpeed(.18, .6), dotRadius: random(1.8, 2.8),
-        driftSpeed: random(.07, .18), driftX: random(.01, .04), driftY: random(.01, .04)
-      };
-    });
-
-    function makePhoton(initial) {
-      return {
-        x: random(.03, .97), y: initial ? random(.03, .97) : 1.02,
-        vx: random(-.008, .008), speed: random(.03, .075),
-        age: initial ? random(1, 6) : 0, life: random(20, 32),
-        depth: random(.38, .5),
-        color: randomColor(), radius: random(1.4, 2.4), trail: random(5, 15)
+        x: random(0.04, 0.96),
+        y: initial ? random(0.05, 1.05) : 1.08 + random(0, 0.08),
+        radius: radius,
+        // Larger bubbles rise a little faster (Stokes-ish, not literal physics).
+        speed: random(0.018, 0.038) * (0.7 + radius / 14),
+        sway: random(0.012, 0.035),
+        swaySpeed: random(0.35, 0.9),
+        phase: random(0, tau),
+        age: initial ? random(0, 8) : 0,
+        life: random(10, 22),
+        depth: random(0.12, 0.35),
+        color: randomColor(),
+        wobble: random(0.85, 1.15)
       };
     }
-    // Populate the first frame as well as the lower edge during animation.
-    photons = Array.from({ length: window.innerWidth < 600 ? 6 : 12 }, function () {
-      return makePhoton(true);
-    });
+
+    function seedBubbles() {
+      var count = window.innerWidth < 600 ? 14 : 26;
+      bubbles = Array.from({ length: count }, function () { return makeBubble(true); });
+    }
 
     function readPalette() {
       var style = getComputedStyle(document.documentElement);
       palette = colorTokens.map(function (token) {
         return style.getPropertyValue(token).trim();
-      });
-      // Rasterize the soft washes only on a theme change, not on every frame.
-      washes = palette.map(function (color) {
-        var wash = document.createElement('canvas');
-        wash.width = wash.height = 192;
-        var brush = wash.getContext('2d');
-        var gradient = brush.createRadialGradient(96, 96, 0, 96, 96, 96);
-        gradient.addColorStop(0, color);
-        gradient.addColorStop(.16, color);
-        gradient.addColorStop(1, 'transparent');
-        brush.fillStyle = gradient;
-        brush.fillRect(0, 0, 192, 192);
-        return wash;
       });
     }
 
@@ -109,8 +79,6 @@
       if (!active) return;
       width = window.innerWidth;
       height = window.innerHeight;
-      scale = Math.min(width, height);
-      // Bound fill cost on large / high-density displays; all geometry is CSS px.
       var ratio = Math.min(window.devicePixelRatio || 1, 1.5,
         Math.sqrt(3000000 / Math.max(1, width * height)));
       canvas.width = Math.round(width * ratio);
@@ -123,8 +91,6 @@
       glow.classList.remove('is-visible');
     }
 
-    // The foreground travels at full scroll speed. These depths move the field
-    // upward at 10–50% of that speed; wrap only beyond each shape's visible edge.
     function parallaxY(y, depth, padding) {
       var span = height + padding * 2;
       return ((y - scrollPosition * depth + padding) % span + span) % span - padding;
@@ -144,94 +110,94 @@
       pointer.visible = true;
     }
 
+    function drawBubble(b, cx, cy, alpha) {
+      var r = b.radius * b.wobble;
+      var color = palette[b.color] || palette[0];
+
+      // Soft fill body
+      ctx.globalAlpha = alpha * 0.14;
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, tau);
+      ctx.fill();
+
+      // Thin rim
+      ctx.globalAlpha = alpha * 0.55;
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 1.1;
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, tau);
+      ctx.stroke();
+
+      // Specular highlight (upper-left), reads as a soap/solution bubble
+      ctx.globalAlpha = alpha * 0.7;
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.ellipse(cx - r * 0.32, cy - r * 0.35, r * 0.22, r * 0.14, -0.5, 0, tau);
+      ctx.fill();
+
+      // Tiny secondary glint
+      ctx.globalAlpha = alpha * 0.35;
+      ctx.beginPath();
+      ctx.arc(cx + r * 0.28, cy + r * 0.2, Math.max(0.8, r * 0.08), 0, tau);
+      ctx.fill();
+    }
+
     function draw(stamp) {
       frame = 0;
       if (!active) return;
       frame = window.requestAnimationFrame(draw);
-      // Time-based movement at at most 30 paints/sec, independent of refresh rate.
       if (lastPaint !== null && stamp - lastPaint < 1000 / 30) return;
-      var dt = lastPaint === null ? 0 : Math.min((stamp - lastPaint) / 1000, .08);
+      var dt = lastPaint === null ? 0 : Math.min((stamp - lastPaint) / 1000, 0.08);
       lastPaint = stamp;
       elapsed += dt;
       scrollPosition += ((window.scrollY || 0) - scrollPosition) * (1 - Math.exp(-dt * 12));
       ctx.clearRect(0, 0, width, height);
 
       var compact = width < 600;
-      blobs.slice(0, compact ? 8 : 16).forEach(function (blob) {
-        blob.x += blob.vx * dt;
-        blob.y += blob.vy * dt;
-        var padding = blob.radius * scale * 1.06;
+      var maxBubbles = compact ? 18 : 34;
+
+      nextBubble -= dt;
+      if (nextBubble <= 0) {
+        if (bubbles.length < maxBubbles) bubbles.push(makeBubble(false));
+        nextBubble = random(0.18, 0.55);
+      }
+
+      for (var i = bubbles.length - 1; i >= 0; i--) {
+        var b = bubbles[i];
+        b.age += dt;
+        b.y -= b.speed * dt;
+        // Gentle lateral sway — soft boil, not frantic
+        var swayX = Math.sin(elapsed * b.swaySpeed + b.phase) * b.sway;
+        // Slight breathing of radius
+        b.wobble = 0.92 + 0.08 * Math.sin(elapsed * 1.4 + b.phase);
+
+        // Mild pointer nudge (solution stirred, not repelled hard)
+        var x = (b.x + swayX) * width;
+        var y = parallaxY(b.y * height, b.depth, b.radius * 2);
         if (pointer.visible) {
-          var dx = blob.x * width - pointer.x;
-          var dy = parallaxY(blob.y * height, blob.depth, padding) - pointer.y;
+          var dx = x - pointer.x;
+          var dy = y - pointer.y;
           var distance = Math.hypot(dx, dy);
-          // A bounded force avoids a singularity when the pointer hits the center.
-          if (distance > .1 && distance < 180) {
-            var push = (1 - distance / 180) * 18 * dt / distance;
-            blob.x += dx * push / width;
-            blob.y += dy * push / height;
+          if (distance > 0.1 && distance < 120) {
+            var push = (1 - distance / 120) * 10 * dt / distance;
+            b.x += dx * push / width;
+            b.y += dy * push / height;
           }
         }
-        if (blob.x < -.35) blob.x = 1.35;
-        if (blob.x > 1.35) blob.x = -.35;
-        var pulse = Math.sin(elapsed * blob.pulseSpeed + blob.phase);
-        var radius = blob.radius * scale * (1 + .06 * pulse);
-        ctx.globalAlpha = blob.opacity + .08 * pulse;
-        ctx.drawImage(washes[blob.color], blob.x * width - radius,
-          parallaxY(blob.y * height, blob.depth, padding) - radius, radius * 2, radius * 2);
-      });
 
-      orbitals.slice(0, compact ? 5 : 10).forEach(function (orbit) {
-        ctx.save();
-        var drift = elapsed * orbit.driftSpeed + orbit.phase;
-        ctx.translate((orbit.x + Math.sin(drift) * orbit.driftX) * width,
-          parallaxY((orbit.y + Math.cos(drift * .8) * orbit.driftY) * height,
-            orbit.depth, orbit.rx * scale + orbit.dotRadius));
-        ctx.rotate(orbit.angle + elapsed * orbit.speed);
-        ctx.strokeStyle = ctx.fillStyle = palette[orbit.color];
-        ctx.globalAlpha = orbit.opacity;
-        ctx.lineWidth = orbit.lineWidth;
-        ctx.beginPath();
-        ctx.ellipse(0, 0, orbit.rx * scale, orbit.ry * scale, 0, 0, tau);
-        ctx.stroke();
-        var phase = elapsed * orbit.dotSpeed + orbit.phase;
-        ctx.globalAlpha = 1;
-        ctx.beginPath();
-        ctx.arc(Math.cos(phase) * orbit.rx * scale,
-          Math.sin(phase) * orbit.ry * scale, orbit.dotRadius, 0, tau);
-        ctx.fill();
-        ctx.restore();
-      });
-
-      nextPhoton -= dt;
-      if (nextPhoton <= 0) {
-        if (photons.length < (compact ? 10 : 18)) {
-          photons.push(makePhoton(false));
-        }
-        nextPhoton = random(.65, 1.25);
-      }
-      for (var i = photons.length - 1; i >= 0; i--) {
-        var photon = photons[i];
-        photon.age += dt;
-        photon.x += photon.vx * dt;
-        photon.y -= photon.speed * dt;
-        if (photon.x < -.03 || photon.x > 1.03 || photon.age >= photon.life) {
-          photons.splice(i, 1);
+        // Pop / fade near the top or end of life
+        var lifeFade = Math.min(1, b.age * 1.2, (b.life - b.age) / 1.8);
+        var surfaceFade = b.y < 0.12 ? Math.max(0, b.y / 0.12) : 1;
+        var alpha = lifeFade * surfaceFade;
+        if (b.y < -0.06 || b.age >= b.life || alpha <= 0.02) {
+          bubbles.splice(i, 1);
           continue;
         }
-        var alpha = Math.min(1, photon.age, (photon.life - photon.age) / 2);
-        var y = parallaxY(photon.y * height, photon.depth, photon.trail + photon.radius);
-        ctx.fillStyle = ctx.strokeStyle = palette[photon.color];
-        ctx.globalAlpha = alpha * .6;
-        ctx.lineWidth = .9;
-        ctx.beginPath();
-        ctx.moveTo(photon.x * width, y + 2);
-        ctx.lineTo(photon.x * width, y + photon.trail);
-        ctx.stroke();
-        ctx.globalAlpha = alpha;
-        ctx.beginPath();
-        ctx.arc(photon.x * width, y, photon.radius, 0, tau);
-        ctx.fill();
+
+        x = (b.x + swayX) * width;
+        y = parallaxY(b.y * height, b.depth, b.radius * 2);
+        drawBubble(b, x, y, alpha);
       }
       ctx.globalAlpha = 1;
 
@@ -258,10 +224,13 @@
       if (active) {
         readPalette();
         resize();
+        if (!bubbles.length) seedBubbles();
         if (fine.matches) window.addEventListener('pointermove', movePointer, { passive: true });
         frame = window.requestAnimationFrame(draw);
       }
     }
+
+    seedBubbles();
 
     new MutationObserver(function () {
       if (active) readPalette();
