@@ -72,12 +72,51 @@ a { color: inherit; text-decoration: none; }
 .masthead-home .masthead-title { font-size: clamp(30px, 4.5vw, 44px); max-width: 24ch; margin-bottom: 18px; }
 .masthead-home + .featured .featured-inner { padding-top: 48px; }
 
+/* Home atmosphere: one composited alpha budget for the entire field. Isolate
+   the body so negative layers sit above its paper, below every content surface.
+   Nodes are injected only on the home route; neither can intercept input. */
+body.has-home-field { isolation: isolate; }
+.home-field,
+.home-cursor-glow { display: none; pointer-events: none; }
+@media screen and (prefers-reduced-motion: no-preference) and (forced-colors: none) {
+  .home-field {
+    display: block;
+    position: fixed; inset: 0; width: 100%; height: 100%;
+    z-index: -1; opacity: .42;
+  }
+  [data-theme='dark'] .home-field { opacity: .46; }
+}
+@media screen and (prefers-reduced-motion: no-preference) and (forced-colors: none) and (hover: hover) and (pointer: fine) {
+  .home-cursor-glow {
+    display: block;
+    position: fixed; top: 0; left: 0; width: 320px; height: 320px;
+    z-index: -1; border-radius: 50%; opacity: 0;
+    background: radial-gradient(circle,
+      color-mix(in srgb, var(--accent) 9%, transparent),
+      color-mix(in srgb, var(--sky-mid) 4%, transparent) 35%, transparent 70%);
+    transition: opacity 220ms ease;
+  }
+  .home-cursor-glow.is-visible { opacity: 1; }
+}
+.home-field[hidden],
+.home-cursor-glow[hidden] { display: none; }
+
+/* A stationary spectrum hairline takes the place of the home masthead rule. */
+@media screen and (forced-colors: none) {
+  .masthead-home {
+    border-image: linear-gradient(90deg,
+      color-mix(in srgb, var(--accent) 28%, var(--border)),
+      color-mix(in srgb, var(--sky-mid) 28%, var(--border)),
+      color-mix(in srgb, var(--mint) 28%, var(--border)),
+      color-mix(in srgb, var(--terracotta) 28%, var(--border))) 1;
+  }
+}
+
 /* =============================================================================
    FEATURED NOTE
    ============================================================================= */
 .featured {
   border-bottom: 1px solid var(--border);
-  animation: npFadeUp 0.5s ease both;
 }
 .featured-inner { max-width: var(--maxw); margin: 0 auto; padding: 72px 32px; transition: opacity .3s ease; }
 /* Hold the featured card invisible (but laid out, so no reflow) until the
@@ -271,6 +310,45 @@ a { color: inherit; text-decoration: none; }
   outline-offset: 2px;
 }
 
+/* Home motion: translate the reserved figure viewport without scaling or
+   recropping the plot. Scroll leaves labels, captions, and text in place.
+   The reel's stable parent owns the offset, including after a slide swap. */
+@media screen and (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+  .masthead-home + .featured .figure-body {
+    transform: translateY(var(--home-figure-y, 0px));
+  }
+  .masthead-home + .featured .featured-figure {
+    transition: transform 220ms ease, box-shadow 220ms ease;
+  }
+  .masthead-home + .featured .featured-figure:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px -12px color-mix(in srgb, var(--ink) 24%, transparent);
+  }
+}
+
+/* Only JS-observed sections that start below the fold are ever hidden.
+   Without JS/IntersectionObserver, in print, or with reduced motion, the
+   ordinary document is visible. Keyboard focus reveals a section at once. */
+@media screen and (prefers-reduced-motion: no-preference) {
+  .masthead-home ~ .home-reveal {
+    transition: opacity 420ms ease, transform 420ms ease;
+  }
+  .masthead-home ~ .home-reveal.is-waiting {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  .masthead-home ~ .home-reveal:focus-within {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .masthead-home + .featured .featured-inner { transition: none; }
+  .masthead-home ~ .process-feature .process-feature-card:hover { transform: none; }
+}
+
 /* =============================================================================
    LATEST + topic filter
    ============================================================================= */
@@ -361,6 +439,42 @@ a { color: inherit; text-decoration: none; }
   content: ""; display: inline-block; width: 5px; height: 5px;
   border-radius: 50%; background: var(--forest); margin-right: 5px;
   vertical-align: 2px;
+}
+
+/* Latest's mask uses the theme's contrasting accent pair in both themes.
+   Keep it inside the link; [hidden] and the reel's .is-featured still own layout. */
+.latest .post-row { position: relative; isolation: isolate; background: transparent; }
+.latest .post-row::before {
+  content: ''; position: absolute; inset: 0; z-index: -1;
+  pointer-events: none; background: var(--accent);
+  transform: scaleY(0); transform-origin: bottom;
+  transition: transform 240ms cubic-bezier(.22, 1, .36, 1);
+}
+.latest .post-row:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 4px;
+}
+.latest .post-row:focus-visible::before { transform: scaleY(1); transition: none; }
+.latest .post-row:focus-visible :is(.post-row-title, .post-row-desc, .post-row-date,
+    .post-row-topic, .row-tag, .note-badge) {
+  color: var(--on-accent); transition: none;
+}
+.latest .post-row:focus-visible .note-badge { background: transparent; border-color: currentColor; }
+.latest .post-row:focus-visible .badge-traceable::before { background: currentColor; }
+@media (hover: hover) and (pointer: fine) {
+  .latest .post-row:hover::before { transform: scaleY(1); }
+  .latest .post-row:hover :is(.post-row-title, .post-row-desc, .post-row-date,
+      .post-row-topic, .row-tag, .note-badge) { color: var(--on-accent); }
+  .latest .post-row:hover .note-badge { background: transparent; border-color: currentColor; }
+  .latest .post-row:hover .badge-traceable::before { background: currentColor; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .latest .post-row::before, .latest .post-row .post-row-title { transition: none; }
+}
+@media (forced-colors: active) {
+  .latest .post-row::before { display: none; }
+  .latest .post-row:focus-visible { outline-color: Highlight; }
+  .latest .post-row:is(:hover, :focus-visible) :is(.post-row-title, .post-row-desc,
+      .post-row-date, .post-row-topic, .row-tag, .note-badge) { color: LinkText; }
 }
 
 /* Archive year groups + tag cloud */
