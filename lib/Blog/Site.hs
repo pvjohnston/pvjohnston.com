@@ -26,7 +26,7 @@ bibFile = "bib/bibliography.bib"
 
 -- | The static content pages (everything routed except posts and listings).
 staticPages :: [Identifier]
-staticPages = ["about.markdown", "resume.markdown", "contact.markdown", "colophon.markdown"]
+staticPages = ["about.markdown", "resume.markdown", "cv.markdown", "contact.markdown", "colophon.markdown"]
 
 -- | The writing index and its backwards-compatible archive alias.
 writingPages :: [Identifier]
