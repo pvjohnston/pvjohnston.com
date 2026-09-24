@@ -1294,7 +1294,6 @@ main > p a:hover, main > ul a:hover, main > ol a:hover { color: var(--accent); b
   .resume-page a { color: #111 !important; border: 0 !important; }
   .resume-version-link { display: none; }
   .resume-page section > h2, .resume-project h3 { break-after: avoid; }
-  .resume-focused .resume-projects { break-before: page; margin-top: 0; }
   .resume-project { padding-bottom: 8px; margin-bottom: 8px; border-color: #ddd; break-inside: avoid; }
   .resume-project h3 { font-size: 10.5pt; }
   .resume-project h3 span { display: inline; margin-left: 8px; font-size: 8pt; color: #555; }
