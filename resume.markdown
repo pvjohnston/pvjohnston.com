@@ -33,7 +33,7 @@ description: Peter V. Johnston — Ph.D. chemist working in construction softwar
 <h2>Core competencies</h2>
 <div class="resume-grid">
 <div><h3>Analytical problem solving</h3><p>Problem framing · research and literature synthesis · quantitative analysis · root-cause investigation · translating complex domains into actionable models.</p></div>
-<div><h3>AI-assisted tools &amp; automation</h3><p>Rapid prototyping · custom internal applications · workflow design · data integration · document automation · validation and iterative improvement.</p></div>
+<div><h3>AI-assisted tools &amp; automation</h3><p>JavaScript / TypeScript · React · Firebase · rapid prototyping · custom internal applications · workflow design · data integration · document automation · validation and iterative improvement.</p></div>
 <div><h3>Google Workspace &amp; data</h3><p>Advanced Sheets (formulas, pivots, validation, connected sources) · Apps Script · SQL and structured data · Docs and Drive automation · reporting dashboards · templated document generation.</p></div>
 <div><h3>Scientific &amp; technical communication</h3><p>Chemistry and molecular materials · computational workflows · spectroscopy · peer-reviewed publication · technical writing · visual explanation.</p></div>
 </div>
@@ -46,6 +46,7 @@ description: Peter V. Johnston — Ph.D. chemist working in construction softwar
 <ul>
 <li>Led the design and rollout of six connected project-tracking applications, replacing scattered spreadsheets with a live source of truth used by field crews, warehouse staff, and the office.</li>
 <li>Automated finishing-material selection letters, bid packages, supplier requests, scopes of work, and client correspondence directly from job data, reducing routine production from hours to minutes.</li>
+<li>Built procurement reconciliation that matches orders to deliveries and flags discrepancies and outstanding materials by dollar value.</li>
 <li>Coordinate dozens of concurrent projects across subcontractors, suppliers, schedules, procurement, document control, and client communication.</li>
 </ul>
 </div>
@@ -60,6 +61,18 @@ description: Peter V. Johnston — Ph.D. chemist working in construction softwar
 
 <section class="resume-projects">
 <h2>Selected software &amp; tools</h2>
+<div class="resume-project">
+<h3>Grey Wolfe Operations Platform <span>Private internal applications</span></h3>
+<p>Construction administration and delivery tools combining desktop scheduling, mobile driver workflows, materials tracking, and document management. Built photo-upload recovery for intermittent connectivity and attributable histories of job updates.</p>
+</div>
+<div class="resume-project">
+<h3><a href="https://lineage.pvjohnston.com">Lineage</a> <span>Public citation explorer</span></h3>
+<p>Built an interactive research tool combining Crossref publication metadata and OpenCitations links in a chronological citation graph. Implemented D3 visualization, API request pacing, caching, and automated tests.</p>
+</div>
+<div class="resume-project">
+<h3>Howl <span>Private internal communication tool</span></h3>
+<p>Developed a multilingual jobsite messaging application that keeps conversations and photos connected to construction jobs, with original and translated messages and controlled access.</p>
+</div>
 <div class="resume-project">
 <h3><a href="https://noprofits.org">Nonprofit data tools</a> <span>Public data &amp; visualization</span></h3>
 <p>Built <a href="https://search.noprofits.org">Nonprofit Search</a> for Form 990 financial and operational data and <a href="https://grants.noprofits.org">Grant Flows</a> for interactive grantor-to-grantee visualization.</p>
