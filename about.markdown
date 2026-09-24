@@ -11,8 +11,7 @@ title: About
             <span class="meta-rule" aria-hidden="true"></span>
             <span class="meta-kind">Quantum chemistry · Construction software</span>
         </div>
-        <h1>Peter V. Johnston</h1>
-        <p>$positioning$</p>
+        <p>$introduction$</p>
         <div class="hero-actions">
             <a class="np-btn np-btn-primary" href="/resume.html">View résumé <span aria-hidden="true">→</span></a>
             <a class="np-btn np-btn-secondary" href="/writing.html">Read the notes <span aria-hidden="true">→</span></a>
