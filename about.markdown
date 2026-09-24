@@ -1,5 +1,6 @@
 ---
 title: About
+description: Peter Johnston, Ph.D. I run quantum-chemistry calculations on dyes and light-switching molecules and publish every number with the code behind it. By day I build the software that runs a Seattle construction company.
 ---
 
 ```{=html}
@@ -11,7 +12,7 @@ title: About
             <span class="meta-rule" aria-hidden="true"></span>
             <span class="meta-kind">Quantum chemistry · Construction software</span>
         </div>
-        <p>$introduction$</p>
+        <h1 class="personal-introduction">$introduction$</h1>
         <div class="hero-actions">
             <a class="np-btn np-btn-primary" href="/resume.html">View résumé <span aria-hidden="true">→</span></a>
             <a class="np-btn np-btn-secondary" href="/writing.html">Read the notes <span aria-hidden="true">→</span></a>

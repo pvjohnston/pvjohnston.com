@@ -49,12 +49,7 @@ baseCtx =
   constField "siteHost" siteHost <>
   constField "positioning" siteDescription <>
   constField "introduction" ("Peter Johnston, Ph.D. " ++ siteDescription) <>
-  field "metadescription" (\item -> do
-    description <- getMetadataField (itemIdentifier item) "description"
-    let value = fromMaybe siteImageAlt description
-    pure $ if toFilePath (itemIdentifier item) `elem` ["index.html", "about.markdown"]
-      then "Peter Johnston, Ph.D. " ++ siteDescription
-      else if length value > 155 then take 152 value ++ "..." else value) <>
+  constField "sitedesc" siteDescription <>
   defaultContext
 
 -- | Inputs 'resolveOgImage' needs. The generated-card path is @Just@ only when

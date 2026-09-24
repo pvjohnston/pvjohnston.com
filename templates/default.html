@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="$metadescription$">
+    <meta name="description" content="$if(description)$$description$$else$$sitedesc$$endif$">
     <title>$title$ — Peter V. Johnston</title>
 
     <meta name="theme-color" content="#F5F2EA" media="(prefers-color-scheme: light)">
@@ -13,7 +13,7 @@
     <meta property="og:type" content="$if(ogtype)$$ogtype$$else$website$endif$">
     <meta property="og:site_name" content="pvjohnston.com">
     <meta property="og:title" content="$title$">
-    <meta property="og:description" content="$metadescription$">
+    <meta property="og:description" content="$if(description)$$description$$else$$sitedesc$$endif$">
     <meta property="og:url" content="$siteHost$$url$">
     <meta property="og:image" content="$ogimage$">
     <meta property="og:image:type" content="image/png">
@@ -24,7 +24,7 @@
     <meta name="twitter:creator" content="@pvjohnston">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="$title$">
-    <meta name="twitter:description" content="$metadescription$">
+    <meta name="twitter:description" content="$if(description)$$description$$else$$sitedesc$$endif$">
     <meta name="twitter:image" content="$ogimage$">
     <meta name="twitter:image:alt" content="$ogimagealt$">
 
