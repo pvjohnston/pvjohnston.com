@@ -81,22 +81,12 @@ rhetorical flourish; it is the reason to publish at all. The verdict language
 this guide requires (*supported / falsified / inconclusive*, §2) is a verdict on
 **our own hypothesis and our own experiment** — never a grade on the source.
 
-### Tone — deliberately dry
+### Tone — calm and factual
 
-**A note reads like a lab notebook or a methods paper, not a magazine article.**
-No hooks, no gameshow pacing, no clever framing, no adversarial flourish, no
-marketing-blog energy. The post is not here to entertain, impress, or sell. It
-states the question, states what was done, reports what came out, and says what
-that currently means and where it might be wrong. If a sentence would feel out of
-place in a sober technical report, rewrite it until it would not.
-
-**Do not manufacture mystery where there is none.** A Research note can have a
-falsifier because its answer was genuinely uncertain before the experiment. An
-Understanding note explains what is already known; it does not need a hypothesis,
-a reveal, or a narrative arc. The reader is not led to a surprise ending — they
-are walked through a working object until it is clear. Cleverness, sensationalism,
-and tabloid framing are not stylistic choices; they are errors in the same way a
-wrong sign on a result is an error.
+Lead with one plain-language sentence stating the finding. One sentence explaining
+why it matters is allowed and encouraged. Stay calm and factual: no manufactured
+suspense, sensationalism, or adversarial flourish. No fixed opening formula,
+including “The question this note answers is…”, is required.
 
 ---
 
@@ -171,7 +161,7 @@ The site's research contributions came from friction with a *specific
 source*, not from choosing a subject: the unplotted regression in "a citation, a
 slot, and the line nobody plots" (the source's own data, the author's own error
 method), and the Neumaier decay in the temperature-zero note (a number that
-refused to reconcile). Neither came from a hook. Anomalies and standing are where
+refused to reconcile). Anomalies and standing are where
 the questions live; go there deliberately.
 
 **What is not novelty:** "I explained a known thing well." Kramers-Kronig has
@@ -199,36 +189,17 @@ Recency is a tiebreaker, not a necessary condition: a paper still has to
 yield a `contribution:` sentence, and "recent" is not a synonym for
 "unexamined."
 
-**Name the source before you inherit its question.** A **direct source-response
-post** is one whose contribution depends on a particular paper's open question,
-untested regime, claim, data, or method. In such a post, a citation halfway
-through the Introduction is necessary but not sufficient: the reader should not
-have to infer the intellectual handoff from phrases such as "their published
-test" or from a late Methods disclaimer.
+**Lead with the finding; name the source by sentence two.** Put the finding in
+plain words in the title, summary (`description`), and first sentence of the
+post (the Abstract for Research). For a direct source-response post, name the
+source paper with authors, year, title, and citation by sentence two, not in the
+headline. State whether this is an independent benchmark, reproduction,
+reanalysis, test, or extension; the “why it matters” sentence may do both jobs.
 
-Before Methods, three surfaces must agree:
-
-- **Headline:** name the source author or a recognizable short paper title and
-  state the relationship — testing an open regime, reanalysing data, checking a
-  claim, or extending a method. Use the full paper title when it remains
-  readable; otherwise use the author in the headline and give the full title in
-  the Abstract.
-- **Description:** identify the work as an independent benchmark, reproduction,
-  reanalysis, falsification, or extension. Do not describe only the new result
-  while hiding what prompted it.
-- **First Abstract paragraph:** give the authors, year, full paper title, and
-  citation, then state exactly what this post does in relation to it. Do not use
-  "their," "the source paper," or a method acronym before naming the source.
-
-Methods then records the implementation lineage precisely: whether the source
-authors' program, code, or data were used; what was independently implemented;
-and what could not be reproduced at the software level. This attribution does
-not imply collaboration, endorsement, or a call to the authors' program.
-
-**Provenance test:** read only the headline, description, and first Abstract
-paragraph. A reader must be able to name the source, identify the relationship
-to it, and tell whether the experiment is an independent implementation. If any
-of those still has to be inferred, the opening is not ready.
+Methods records whether the source authors' program, code, or data were used,
+what was independently implemented, and what could not be reproduced. Attribution
+does not imply collaboration or endorsement. The opening must make both the
+finding and its relationship to the source clear.
 
 **Where the gaps hide in a modern paper.** Read for friction, not for topic —
 these are places a literature is still *open*, not places its authors erred (the
@@ -287,7 +258,8 @@ title: "Colon-bearing titles must be quoted"
 date: 2026-07-06
 author: Peter Johnston
 tags: quantum chemistry, spectroscopy      # comma-separated
-description: One or two sentences. Used for meta description and social cards.
+description: State the result in plain words, at most 155 characters.
+lead: An optional plain-language statement of the finding in twenty to thirty words, giving the reader the result before the technical explanation begins.
 post-type: research                              # research or understanding
 contribution: X, which is not in [source].        # required; Research only
 contribution-type: decay                          # required; Research only
@@ -305,11 +277,12 @@ post-type: understanding
 question: What physical signal does a chord make, and what does a Fourier transform reveal about it?
 ```
 
-- **Title:** quote if it contains a colon or other YAML-significant punctuation.
-  For direct source-response posts, it also names the source author or a
-  recognizable short source title (§0).
-- **Description:** says how the post relates to its anchor source when that
-  relationship is direct (§0); it cannot report only the result.
+- **Title:** at most 70 characters; state the finding, not the source's name.
+  Quote if it contains a colon or other YAML-significant punctuation.
+- **Description (summary):** at most 155 characters; it must state the result
+  in plain words. Source attribution belongs in the opening (§0).
+- **`lead`:** optional: 20–30 plain-language words stating the
+  finding. It is not rendered yet. These rules are prospective; do not rewrite the archive.
 - **Links:** use site-relative URLs for other notes in this repository.
 - **`post-type`:** required for every new post. Rendered as a badge in the post
   header and in note lists. Older posts without the field predate this
@@ -356,13 +329,9 @@ Prefer reproducing a published number yourself over quoting it.
 
 - **Abstract** is a real in-body section, distinct from the `description` front
   matter (which is the meta/social card). Don't reuse the same sentences.
-- **Introduction** builds the case for the experiment. It is a **funnel, not a
-  hook**: what is known (cited) → what that predicts → **the thing that does not
-  fit** → therefore the hypothesis → which predicts P. The gap is the
-  load-bearing element; it is the reason the experiment exists. If a reader
-  reaches Methods without already knowing why you ran it, the Introduction
-  failed. Do not open with a contrarian flourish. Open with the state of
-  knowledge and walk to the edge of it.
+- **Introduction** explains why the experiment was run: known evidence →
+  prediction → gap → hypothesis. A plain-language opening and a sentence on why
+  it matters are encouraged; keep the tone calm and factual.
 - **The hypothesis must be falsifiable, and its falsifier is stated before
   Results** — in the Introduction or Methods, name the outcome that would kill
   it. Two tests: could it have come out the other way, and **would you have
@@ -438,8 +407,8 @@ that the note has not yet built.
 
 Every Understanding note includes these elements, wherever they fit naturally:
 
-- an opening paragraph that names the explanatory question and the route through
-  it, without manufacturing a hook or knowledge gap;
+- a finding-first opening that states the explanatory answer and route through
+  it, with room for a sentence on why it matters;
 - equations worked far enough that each plotted quantity can be reconstructed;
 - computer-generated demonstrations that expose the same object in two or more
   representations when that comparison does real explanatory work;
@@ -878,7 +847,7 @@ checkout does not restore the Hakyll store.
 **After drafting — every post:**
 
 - [ ] **Stance check:** no "the authors were wrong", no gotcha/exposé/"debunk" framing, no claim the finding is new to the field, no cleverness-for-its-own-sake; discrepancies read as "did not reproduce for us" and the post invites correction (stance section)
-- [ ] Front matter complete; title quoted if needed; links relative
+- [ ] Front matter meets §1: title ≤70 characters, result summary ≤155, optional finding-first `lead:` of 20–30 words; links relative
 - [ ] Every external source cited as `[@key]` in ACS style — no inline links, no footnotes, no exceptions (§3)
 - [ ] Source's own BibTeX/DOI used where it publishes one; entry type matches Table 0
 - [ ] New bib entries appended, keys unique & de-duped; `node scripts/verify-bib.mjs` passes
@@ -892,13 +861,12 @@ checkout does not restore the Hakyll store.
 
 **After drafting — Research only:**
 
-- [ ] Direct source-response provenance passes the headline + description + first-Abstract-paragraph test: source, relationship, and independent status are explicit (§0)
+- [ ] Finding leads the title, summary, and first sentence; a direct source-response names the paper by sentence two and states the relationship (§0)
 - [ ] IMRaD sections present and in order (§2)
-- [ ] Introduction funnels known → predicted → **gap** → hypothesis; no hook
+- [ ] Introduction explains the experiment’s purpose and hypothesis (§2)
 - [ ] Methods states interpreter/arch/versions/seeds precisely enough to re-run
 - [ ] Methods states whether source program/code/data were used and what was independently implemented
 - [ ] Methods identifies the computational procedure and digital inputs; no living subjects were recruited, observed, surveyed, interviewed, exposed, or acted upon
-- [ ] Tone is dry: no hooks, clever framing, adversarial flourish, or marketing-blog energy (stance section)
 - [ ] `experiment:` names its `research/<slug>/` owner; result-bearing prose uses `[metric_name]{.metric}` and no experiment result is quoted in front matter (§7)
 - [ ] The metrics generator passes `--check`; source fingerprints pass `node scripts/verify-metrics.mjs`; the post claims only the reproducibility label it has earned (§7)
 - [ ] Public research files come from an explicit reviewed allowlist; rights, privacy, secrets, and size exceptions are documented (§7)
@@ -911,8 +879,7 @@ checkout does not restore the Hakyll store.
 
 **After drafting — Understanding only:**
 
-- [ ] Tone is dry: the note states what is known and shows it cleanly, with no manufactured suspense, reveal, or problem-solution arc (stance section)
-- [ ] Opening names the question and explanatory route without a manufactured gap or hypothesis
+- [ ] Opening states the finding and explanatory route; a factual “why it matters” sentence is encouraged
 - [ ] Headings follow conceptual dependency order; no IMRaD labels or verdict
 - [ ] Equations are sufficient to reconstruct every plotted quantity
 - [ ] Reproducibility note names the computer environment, procedure, and digital inputs
