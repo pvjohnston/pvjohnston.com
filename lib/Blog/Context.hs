@@ -26,13 +26,13 @@ siteHost = "https://pvjohnston.com"
 -- | Fallback description used for social meta on pages without their own.
 siteDescription :: String
 siteDescription =
-  "Peter V. Johnston is an analytical problem solver, AI-assisted tool builder, and Ph.D. chemist who makes complicated domains legible."
+  "Peter Johnston, Ph.D. I run quantum-chemistry calculations on dyes and light-switching molecules and publish every number with the code behind it. By day I build the software that runs a Seattle construction company."
 
 -- | Fallback description of the branded social image used when a page does not
 -- have a note-specific card.
 siteImageAlt :: String
 siteImageAlt =
-  "Peter V. Johnston — analytical problem solver, AI-assisted tool builder, and Ph.D. chemist"
+  "Peter Johnston, Ph.D. — Quantum-chemistry calculations on dyes and light-switching molecules, with the code behind every number. Construction software by day."
 
 -- | Site-relative path of the generic branded card. Non-note pages keep this.
 genericOgImagePath :: String
