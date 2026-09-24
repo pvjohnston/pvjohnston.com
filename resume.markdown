@@ -33,8 +33,8 @@ description: Peter V. Johnston — Ph.D. chemist working in construction softwar
 <h2>Core competencies</h2>
 <div class="resume-grid">
 <div><h3>Analytical problem solving</h3><p>Problem framing · research and literature synthesis · quantitative analysis · root-cause investigation · translating complex domains into actionable models.</p></div>
-<div><h3>AI-assisted tools &amp; automation</h3><p>JavaScript / TypeScript · React · Firebase · rapid prototyping · custom internal applications · workflow design · data integration · document automation · validation and iterative improvement.</p></div>
-<div><h3>Google Workspace &amp; data</h3><p>Advanced Sheets (formulas, pivots, validation, connected sources) · Apps Script · SQL and structured data · Docs and Drive automation · reporting dashboards · templated document generation.</p></div>
+<div><h3>AI-assisted tools &amp; automation</h3><p>AI-assisted software development: specifying, reviewing, and shipping production apps with coding agents (Codex CLI) on a React/Firebase stack.</p><p>Rapid prototyping · custom internal applications · workflow design · data integration · document automation · validation and iterative improvement.</p></div>
+<div><h3>Google Workspace &amp; data</h3><p>Advanced Sheets (formulas, pivots, validation, connected sources) · structured data · Docs and Drive automation · reporting dashboards · templated document generation.</p></div>
 <div><h3>Scientific &amp; technical communication</h3><p>Chemistry and molecular materials · computational workflows · spectroscopy · peer-reviewed publication · technical writing · visual explanation.</p></div>
 </div>
 </section>
