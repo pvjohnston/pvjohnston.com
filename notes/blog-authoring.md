@@ -245,15 +245,6 @@ not enough. Neither is a plot gallery without a causal or mathematical route
 through it. Manufactured suspense or a false problem-solution arc is also not
 enough — the post simply says what is known and shows it cleanly.
 
-### Updates — small follow-ups
-
-For a small correction, additional check, or follow-up to an existing finding,
-append a `## Update — YYYY-MM-DD` section to the parent post before its final
-References heading instead of publishing a new IMRaD post. State the finding,
-what changed, why it matters, and any limits; retain citations and traceable
-metrics for new results. A distinct research question still needs its own post
-and contribution. An update inherits the parent's form and front matter.
-
 ---
 
 ## 1. Front matter
@@ -268,7 +259,7 @@ date: 2026-07-06
 author: Peter Johnston
 tags: quantum chemistry, spectroscopy      # comma-separated
 description: State the result in plain words, at most 155 characters.
-lead: A required plain-language statement of the finding in twenty to thirty words, giving the reader the result before the technical explanation begins.
+lead: An optional plain-language statement of the finding in twenty to thirty words, giving the reader the result before the technical explanation begins.
 post-type: research                              # research or understanding
 contribution: X, which is not in [source].        # required; Research only
 contribution-type: decay                          # required; Research only
@@ -290,9 +281,8 @@ question: What physical signal does a chord make, and what does a Fourier transf
   Quote if it contains a colon or other YAML-significant punctuation.
 - **Description (summary):** at most 155 characters; it must state the result
   in plain words. Source attribution belongs in the opening (§0).
-- **`lead`:** required for new posts: 20–30 plain-language words stating the
-  finding. This is an authoring requirement; the current template does not
-  render it separately. These rules are prospective; do not rewrite the archive.
+- **`lead`:** optional: 20–30 plain-language words stating the
+  finding. It is not rendered yet. These rules are prospective; do not rewrite the archive.
 - **Links:** use site-relative URLs for other notes in this repository.
 - **`post-type`:** required for every new post. Rendered as a badge in the post
   header and in note lists. Older posts without the field predate this
@@ -382,8 +372,9 @@ Prefer reproducing a published number yourself over quoting it.
   to the problem that opened the note — that is circularity, and it is what
   an essay does. An on-line next step goes on the shelf (§0).
 
-Standalone Research notes retain Methods and Results. Small follow-ups use the
-Update form (§0); explanations use Understanding.
+Research notes do not drop Methods or Results. If the intellectual job does not
+require them, change the declared form to Understanding and satisfy that form's
+contract instead.
 
 **Results are dry.** Every sentence in Results must survive one question: *what
 did the machine print?* If the answer is a number, a count, or a range, it is a
@@ -438,14 +429,26 @@ writing under them is not stiff — ACS research articles read like arguments, n
 forms. The argument lives in the Introduction and the Discussion, where it is
 allowed to.
 
-## 3. Citations — ACS references with inline links
+## 3. Citations — ACS style, always, no exceptions
 
-Posts use Pandoc's citation pipeline (`lib/Blog/Compilers.hs`) with
-`bib/style.csl` and `bib/bibliography.bib`. Keep formal `[@key]` citations for
-sources supporting claims and ACS formatting in the final reference list.
-Inline Markdown links are allowed alongside those citations for direct access
-to papers, tools, documentation, and related reading; they do not replace a
-formal citation for evidence. Do not use Markdown footnotes (`[^1]`).
+Every post is compiled through the Pandoc citation pipeline
+(`lib/Blog/Compilers.hs` → `readPandocBiblio` with `bib/style.csl` +
+`bib/bibliography.bib`). **`bib/style.csl` is the American Chemical Society
+style.** Every external reference in every post goes through it as a `[@key]`
+citation resolved against the shared bibliography. There is no second
+convention and no "this one's just a blog post" exit.
+
+This rule used to have an escape hatch for "web pages, docs, or tools with no
+formal bibliographic identity," which was deleted because it was wrong twice
+over. First, ACS specifies formats for exactly these source types — web pages,
+software, datasets, preprints, standards — so "no bibliographic identity" is not
+a category that exists; it just means you haven't looked up the right ACS format
+yet (§4). Second, it invited misclassification: the escape hatch was once used
+to inline-link a source that turned out to carry a DOI and ship its own BibTeX
+entry. If you are citing it, it has an entry.
+
+**Never mix conventions, and never use markdown footnotes** (`[^1]`) — that
+matches neither.
 
 **Marker placement.** Put the `[@key]` marker *after* the sentence punctuation,
 and group multiple sources for one sentence into a single bracket at the end of
@@ -803,8 +806,10 @@ that the build still needs to run:
    matching entry exists (`grep '{Higham2002,' bib/bibliography.bib`). New
    entries you appended count; typos and forgotten entries are the failure mode.
 2. Confirm the post ends with a bare `## References` heading.
-3. Confirm every internal `/posts/…` link ends in `.html`, not `.md` (§3).
-   Inline external links may accompany formal citations.
+3. Confirm no reference-style inline Markdown links remain in a citation-convention
+   post (grep the draft for `](http`), and that every internal `/posts/…` link
+   ends in `.html`, not `.md` (grep the draft for `/posts/[^)]*\.md` — it should
+   return nothing; the source `.md` extension ships as a 404, see §3).
 
 Note: `stack exec site build` alone is not enough in a reused local checkout —
 it runs the **already-compiled** `site` binary, and Hakyll's cache does not know
@@ -842,8 +847,8 @@ checkout does not restore the Hakyll store.
 **After drafting — every post:**
 
 - [ ] **Stance check:** no "the authors were wrong", no gotcha/exposé/"debunk" framing, no claim the finding is new to the field, no cleverness-for-its-own-sake; discrepancies read as "did not reproduce for us" and the post invites correction (stance section)
-- [ ] Front matter meets §1: title ≤70 characters, result summary ≤155, finding-first `lead:` of 20–30 words; links relative
-- [ ] Claims have formal citations and ACS references; inline links may accompany them (§3)
+- [ ] Front matter meets §1: title ≤70 characters, result summary ≤155, optional finding-first `lead:` of 20–30 words; links relative
+- [ ] Every external source cited as `[@key]` in ACS style — no inline links, no footnotes, no exceptions (§3)
 - [ ] Source's own BibTeX/DOI used where it publishes one; entry type matches Table 0
 - [ ] New bib entries appended, keys unique & de-duped; `node scripts/verify-bib.mjs` passes
 - [ ] Every `[@key]` grep-verified against `bib/bibliography.bib`; markers after punctuation; post ends with `## References`
