@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="$if(description)$$description$$else$$sitedesc$$endif$">
+    <meta name="description" content="$metadescription$">
     <title>$title$ — Peter V. Johnston</title>
 
     <meta name="theme-color" content="#F5F2EA" media="(prefers-color-scheme: light)">
@@ -13,7 +13,7 @@
     <meta property="og:type" content="$if(ogtype)$$ogtype$$else$website$endif$">
     <meta property="og:site_name" content="pvjohnston.com">
     <meta property="og:title" content="$title$">
-    <meta property="og:description" content="$if(description)$$description$$else$$sitedesc$$endif$">
+    <meta property="og:description" content="$metadescription$">
     <meta property="og:url" content="$siteHost$$url$">
     <meta property="og:image" content="$ogimage$">
     <meta property="og:image:type" content="image/png">
@@ -24,7 +24,7 @@
     <meta name="twitter:creator" content="@pvjohnston">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="$title$">
-    <meta name="twitter:description" content="$if(description)$$description$$else$$sitedesc$$endif$">
+    <meta name="twitter:description" content="$metadescription$">
     <meta name="twitter:image" content="$ogimage$">
     <meta name="twitter:image:alt" content="$ogimagealt$">
 
@@ -152,7 +152,7 @@
                     <span class="np-footer__mark">pj</span>
                     <span class="np-footer__word">Peter V. Johnston</span>
                 </div>
-                <p class="np-footer__blurb">Peter Johnston, Ph.D. I run quantum-chemistry calculations on dyes and light-switching molecules and publish every number with the code behind it. By day I build the software that runs a Seattle construction company.</p>
+                <p class="np-footer__blurb">$positioning$</p>
                 <p class="np-footer__blurb">Follow: <a href="https://x.com/pvjohnston">X</a> · <a href="/rss.xml">RSS</a> · <a href="mailto:pvjohnst@gmail.com">Email</a></p>
             </div>
             <div class="np-footer__cols">

@@ -327,7 +327,7 @@ checks =
   , ( "non-note pages keep the generic branded card"
     , resolveOgImage (OgImageInputs Nothing Nothing (Just "Home") Nothing)
         == ( "https://pvjohnston.com/images/og-image.png"
-           , "Peter Johnston, Ph.D. — Quantum-chemistry calculations on dyes and light-switching molecules, with the code behind every number. Construction software by day."
+           , "Peter V. Johnston, Ph.D. Quantum chemistry of dyes and light-switching molecules, with code behind every number. Construction software by day."
            )
     )
   ]

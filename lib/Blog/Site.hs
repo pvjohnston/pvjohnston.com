@@ -173,6 +173,8 @@ siteRules previewDrafts = do
     match (fromList staticPages) $ do
         route   $ setExtension "html"
         compile $ pandocCompiler
+            >>= (\item -> if itemIdentifier item == fromFilePath "about.markdown"
+                  then applyAsTemplate baseCtx item else pure item)
             >>= loadAndApplyTemplate "templates/default.html" baseCtx
             >>= relativizeUrls
 

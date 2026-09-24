@@ -1,6 +1,6 @@
 # pvjohnston.com
 
-Peter Johnston, Ph.D. I run quantum-chemistry calculations on dyes and light-switching molecules and publish every number with the code behind it. By day I build the software that runs a Seattle construction company.
+Peter V. Johnston, Ph.D. — [Quantum-chemistry calculations and construction software](https://pvjohnston.com/about.html).
 
 Start with [One dye, one transition](https://pvjohnston.com/posts/2026-08-13-dcdhf-me2-transitions.html) and [How the acceptor closes the gap](https://pvjohnston.com/posts/2026-08-16-how-the-acceptor-closes-the-gap.html).
 

@@ -23,16 +23,16 @@ import Blog.Metrics (loadPostMetricsFor)
 siteHost :: String
 siteHost = "https://pvjohnston.com"
 
--- | Fallback description used for social meta on pages without their own.
+-- | Shared positioning line for the homepage, About, and footer.
 siteDescription :: String
 siteDescription =
-  "Peter Johnston, Ph.D. I run quantum-chemistry calculations on dyes and light-switching molecules and publish every number with the code behind it. By day I build the software that runs a Seattle construction company."
+  "I run quantum-chemistry calculations on dyes and light-switching molecules and publish every number with the code behind it. By day I build the software that runs a Seattle construction company."
 
 -- | Fallback description of the branded social image used when a page does not
 -- have a note-specific card.
 siteImageAlt :: String
 siteImageAlt =
-  "Peter Johnston, Ph.D. — Quantum-chemistry calculations on dyes and light-switching molecules, with the code behind every number. Construction software by day."
+  "Peter V. Johnston, Ph.D. Quantum chemistry of dyes and light-switching molecules, with code behind every number. Construction software by day."
 
 -- | Site-relative path of the generic branded card. Non-note pages keep this.
 genericOgImagePath :: String
@@ -47,7 +47,11 @@ baseCtx =
   ogImageField <>
   ogImageAltField <>
   constField "siteHost" siteHost <>
-  constField "sitedesc" siteDescription <>
+  constField "positioning" siteDescription <>
+  field "metadescription" (\item -> do
+    description <- getMetadataField (itemIdentifier item) "description"
+    let value = fromMaybe siteImageAlt description
+    pure $ if length value > 155 then take 152 value ++ "..." else value) <>
   defaultContext
 
 -- | Inputs 'resolveOgImage' needs. The generated-card path is @Just@ only when
