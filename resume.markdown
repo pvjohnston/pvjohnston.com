@@ -42,12 +42,13 @@ description: Peter V. Johnston — Ph.D. chemist working in construction softwar
 <section>
 <h2>Experience</h2>
 <div class="resume-job">
-<div class="resume-job-head"><h3>Grey Wolfe Construction <span>— Project Coordinator</span></h3><p>Jan 2026–Present · Seattle, WA</p></div>
+<div class="resume-job-head"><h3>Grey Wolfe Construction <span>— Project &amp; Materials Coordinator</span></h3><p>Jan 2026–Present · Seattle, WA</p></div>
+<p>Coordinate materials, suppliers, and finish selections across approximately 50 concurrent insurance-restoration jobs, and lead development of systems connecting office, field, and suppliers.</p>
 <ul>
-<li>Led the design and rollout of six connected project-tracking applications, replacing scattered spreadsheets with a live source of truth used by field crews, warehouse staff, and the office.</li>
-<li>Automated finishing-material selection letters, bid packages, supplier requests, scopes of work, and client correspondence directly from job data, reducing routine production from hours to minutes.</li>
-<li>Built procurement reconciliation that matches orders to deliveries and flags discrepancies and outstanding materials by dollar value.</li>
-<li>Coordinate dozens of concurrent projects across subcontractors, suppliers, schedules, procurement, document control, and client communication.</li>
+<li>Translate Xactimate insurance estimates into material budgets and allowances; catch duplicated scope and built-in waste factors before procurement.</li>
+<li>Led the design and rollout of six connected project-tracking applications; automated selection letters, bid packages, supplier requests, and scopes of work from structured job data, reducing routine production from hours to minutes.</li>
+<li>Built procurement reconciliation that matches orders to deliveries and ranks open discrepancies by dollar value.</li>
+<li>Added a dated decision log for approvals and change orders after offline changes surfaced late, giving each decision an owner and a date.</li>
 </ul>
 </div>
 <div class="resume-job">
@@ -66,12 +67,16 @@ description: Peter V. Johnston — Ph.D. chemist working in construction softwar
 <p>Construction administration and delivery tools combining desktop scheduling, mobile driver workflows, materials tracking, and document management. Built photo-upload recovery for intermittent connectivity and attributable histories of job updates.</p>
 </div>
 <div class="resume-project">
+<h3>CabinetMaker <span>Private cabinet-layout tool</span></h3>
+<p>Led development of a layout tool that guides estimators toward buildable cabinet specifications with supplier codes. Moved error-checking to layout creation to reduce rejected and uninstallable orders.</p>
+</div>
+<div class="resume-project">
 <h3><a href="https://lineage.pvjohnston.com">Lineage</a> <span>Public citation explorer</span></h3>
 <p>Built an interactive research tool combining Crossref publication metadata and OpenCitations links in a chronological citation graph. Implemented D3 visualization, API request pacing, caching, and automated tests.</p>
 </div>
 <div class="resume-project">
 <h3>Howl <span>Private internal communication tool</span></h3>
-<p>Developed a multilingual jobsite messaging application that keeps conversations and photos connected to construction jobs, with original and translated messages and controlled access.</p>
+<p>Led development and deployment of a multilingual jobsite messaging app for a Vietnamese-speaking crew, with job-linked threads, translation, private photo sharing, and role-based access.</p>
 </div>
 <div class="resume-project">
 <h3><a href="https://noprofits.org">Nonprofit data tools</a> <span>Public data &amp; visualization</span></h3>
