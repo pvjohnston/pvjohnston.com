@@ -947,7 +947,7 @@ Format:
 - **Feasibility:** medium. Four frequency calculations on a 20-heavy-atom
   molecule with implicit solvent; hours per structure on 8 cores, and the
   functional/basis/grid choices must be frozen before running.
-- **Status:** ready
+- **Status:** running — protocol frozen in `research/smx-single-surface-thermochemistry/PREREGISTRATION.md` (B3LYPG-D3(BJ)/def2-TZVP + IEF-PCM water on GPU4PySCF)
 
 ---
 
