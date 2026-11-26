@@ -1,0 +1,28 @@
+# One repository-relative path per line. This allowlist contains only reviewed
+# reader-facing inputs, code, canonical results, and the Cartesian Hessian and
+# geometry artifacts required to regenerate the analysis and Figure 1. Verbose
+# PySCF stdout logs remain committed in Git with SHA-256 digests recorded in
+# dft_result.json, and are omitted from live-site routing for bundle size.
+LICENSE
+research/metrics.schema.json
+research/smx-single-surface-thermochemistry/README.md
+research/smx-single-surface-thermochemistry/PREREGISTRATION.md
+research/smx-single-surface-thermochemistry/inputs.json
+research/smx-single-surface-thermochemistry/thermo_analysis.py
+research/smx-single-surface-thermochemistry/run_colab_dft.py
+research/smx-single-surface-thermochemistry/colab_runner.ipynb
+research/smx-single-surface-thermochemistry/make-figure.py
+research/smx-single-surface-thermochemistry/results.json
+research/smx-single-surface-thermochemistry/generate-metrics.mjs
+research/smx-single-surface-thermochemistry/metrics.json
+research/smx-single-surface-thermochemistry/sources.json
+research/smx-single-surface-thermochemistry/environment.md
+research/smx-single-surface-thermochemistry/runs/environment_colab.json
+research/smx-single-surface-thermochemistry/runs/A/dft_result.json
+research/smx-single-surface-thermochemistry/runs/A/opt.xyz
+research/smx-single-surface-thermochemistry/runs/B/dft_result.json
+research/smx-single-surface-thermochemistry/runs/B/opt.xyz
+research/smx-single-surface-thermochemistry/runs/C/dft_result.json
+research/smx-single-surface-thermochemistry/runs/C/opt.xyz
+research/smx-single-surface-thermochemistry/runs/D/dft_result.json
+research/smx-single-surface-thermochemistry/runs/D/opt.xyz
