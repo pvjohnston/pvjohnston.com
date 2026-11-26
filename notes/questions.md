@@ -947,7 +947,20 @@ Format:
 - **Feasibility:** medium. Four frequency calculations on a 20-heavy-atom
   molecule with implicit solvent; hours per structure on 8 cores, and the
   functional/basis/grid choices must be frozen before running.
-- **Status:** running — protocol frozen in `research/smx-single-surface-thermochemistry/PREREGISTRATION.md` (B3LYPG-D3(BJ)/def2-TZVP + IEF-PCM water on GPU4PySCF)
+- **Status:** published —
+  `/posts/2026-11-26-smx-single-surface-thermochemistry.html`
+  (Colab Tesla T4 GPU4PySCF run 2026-11-25..26 under frozen
+  `research/smx-single-surface-thermochemistry/PREREGISTRATION.md`). Registered
+  single-surface concentration hypothesis **falsified** in both arms: on
+  `B3LYPG-D3(BJ)/def2-TZVP + IEF-PCM(water)`, all four conformers retain
+  positive frequencies (lowest modes 18.0–22.2 cm^-1, eliminating GFN2-xTB's
+  8.7 cm^-1 outlier on A) and stay inside the near-uniform region at 298.15 K
+  (electronic 25.2 / 24.6 / 25.5 / 24.7%, N_eff = 4.00; pure RRHO max shift
+  7.5 pp, N_eff = 3.88; mRRHO-50 max shift 3.8 pp, N_eff = 3.97, gently led by
+  B at 32.2% / 28.4%). Adding the DFT/IEF-PCM thermal corrections to the source
+  electronic energies gives the same near-uniform result (max shift 7.6 /
+  3.8 pp), showing the earlier concentration onto A came from the GFN2-xTB/ALPB
+  Hessian rather than hybrid-DFT thermochemistry.
 
 ---
 

@@ -1,0 +1,1432 @@
+{
+  "schema_version": 1,
+  "experiment": "smx-single-surface-thermochemistry",
+  "generated_at": "2026-11-26T21:27:15Z",
+  "provenance": {
+    "inputs": {
+      "path": "research/smx-single-surface-thermochemistry/inputs.json",
+      "sha256": "e1d5cbb0f606f3d02054165b3d0efa69d49cfa4989b896c86324f2bb996f35b8"
+    },
+    "preregistration": {
+      "path": "research/smx-single-surface-thermochemistry/PREREGISTRATION.md",
+      "sha256": "47e86dca97ce68a20b76fe2405cfa5c930e7838b361b8c84a261689bec66c34b"
+    },
+    "run_artifacts": [
+      {
+        "path": "research/smx-single-surface-thermochemistry/runs/A/dft_result.json",
+        "sha256": "ef5178b04b9e286ebe2ca6755b66d71026a0de5a450326ad21db247fa761e9b1"
+      },
+      {
+        "path": "research/smx-single-surface-thermochemistry/runs/A/opt.xyz",
+        "sha256": "1830a2456ab261f8bcebc490329c2480c695bd61500a520e944e5b0ab81cc006"
+      },
+      {
+        "path": "research/smx-single-surface-thermochemistry/runs/B/dft_result.json",
+        "sha256": "7adcdfa2c666477d5879b632093558dcd5703f46e640d7d9da522304ce27f2e3"
+      },
+      {
+        "path": "research/smx-single-surface-thermochemistry/runs/B/opt.xyz",
+        "sha256": "387c0c406f859e718330808dc9f875eb1f9901ae97bccc7d6fcc442bac15702e"
+      },
+      {
+        "path": "research/smx-single-surface-thermochemistry/runs/C/dft_result.json",
+        "sha256": "f2328deb153e63552960e1f1018a5f8e39379d5014fd5f8dc48b72079ca1913b"
+      },
+      {
+        "path": "research/smx-single-surface-thermochemistry/runs/C/opt.xyz",
+        "sha256": "814048f2dfdb9daeedfe4c646151425f6614de0c7d04e3749d1c77cac810381f"
+      },
+      {
+        "path": "research/smx-single-surface-thermochemistry/runs/D/dft_result.json",
+        "sha256": "9a5509d53e9af76ce71213195467e0037d0d5ff46e5cb9e82b5b4bed5bd33997"
+      },
+      {
+        "path": "research/smx-single-surface-thermochemistry/runs/D/opt.xyz",
+        "sha256": "9a8fd94764c89c0ca3252b842d6e12e0c5a49a3e4a4c402c918d9d5305a6930c"
+      }
+    ]
+  },
+  "protocol": {
+    "conditions": {
+      "temperature_k": 298.15,
+      "pressure_pa": 101325.0,
+      "rotational_symmetry_number": 1,
+      "charge": 0,
+      "spin": 0,
+      "xc": "b3lypg",
+      "dispersion": "d3bj",
+      "basis": "def2-tzvp",
+      "density_fit": false,
+      "grids_level": 4,
+      "pcm_method": "IEF-PCM",
+      "pcm_solvent": "water",
+      "pcm_eps": 78.3553,
+      "pcm_lebedev_order": 29,
+      "scf_conv_tol": 1e-10,
+      "scf_conv_tol_grad": 1e-07,
+      "scf_max_cycle": 200,
+      "opt_solver": "geomeTRIC",
+      "opt_maxsteps": 150,
+      "opt_convergence_energy_eh": 1e-06,
+      "opt_convergence_grms_eh_bohr": 0.0001,
+      "opt_convergence_gmax_eh_bohr": 0.0003,
+      "opt_convergence_drms_bohr": 0.0004,
+      "opt_convergence_dmax_bohr": 0.0012,
+      "frequency_scale": 1.0,
+      "imaginary_threshold_cm": -20.0,
+      "grimme_b_av_kg_m2": 1e-44,
+      "grimme_alpha": 4
+    },
+    "thermochemistry_arms": {
+      "rrho": {
+        "rotor_cutoff_cm": 0.0
+      },
+      "mrrho50": {
+        "rotor_cutoff_cm": 50.0
+      }
+    },
+    "decision": {
+      "concentration_min_population_shift_pp": 10.0,
+      "concentration_max_effective_conformer_count": 3.5,
+      "max_post_opt_grad_rms_eh_bohr": 0.0003,
+      "max_post_opt_grad_max_eh_bohr": 0.001,
+      "max_pyscf_thermo_discrepancy_eh": 1e-05,
+      "distinct_conformer_min_heavy_atom_rmsd_angstrom": 0.1,
+      "start_to_opt_max_heavy_atom_rmsd_angstrom": 0.5
+    }
+  },
+  "source_preflight": {
+    "source_electronic_energies_hartree": {
+      "A": -1176.172958,
+      "B": -1176.172906,
+      "C": -1176.172899,
+      "D": -1176.172881
+    },
+    "source_electronic_populations": {
+      "A": 0.2626378271,
+      "B": 0.248564418,
+      "C": 0.2467284247,
+      "D": 0.2420693302
+    },
+    "source_effective_conformer_count": 3.996237554,
+    "source_max_rounding_diff_pp": 0.04355820189,
+    "xtb_thermo_cross_check": {
+      "n_vibrational_modes": 78,
+      "our_rrho_g_corr_eh": 0.1540987884,
+      "xtb_rrho_g_corr_eh": 0.1541067822,
+      "rrho_abs_diff_eh": 7.993875177e-06,
+      "our_mrrho50_minus_rrho_eh": 0.003082640411,
+      "xtb_mrrho50_minus_rrho_eh": 0.003081447063,
+      "mrrho50_shift_diff_kj_mol": 0.003133134774
+    }
+  },
+  "single_surface_electronic_baseline": {
+    "energies_hartree": {
+      "A": -1176.172776,
+      "B": -1176.172756,
+      "C": -1176.172788,
+      "D": -1176.172759
+    },
+    "relative_energies_kj_per_mol": {
+      "A": 0.03082117009,
+      "B": 0.08523939546,
+      "C": 0.0,
+      "D": 0.07628921975
+    },
+    "span_kj_per_mol": 0.08523939546,
+    "lowest_conformer": "C",
+    "populations": {
+      "A": 0.2517228263,
+      "B": 0.2462572009,
+      "C": 0.2548720632,
+      "D": 0.2471479096
+    },
+    "population_shifts_from_baseline_pp": {
+      "A": -1.091500078,
+      "B": -0.230721713,
+      "C": 0.8143638483,
+      "D": 0.5078579431
+    },
+    "maximum_absolute_population_shift_pp": 1.091500078,
+    "effective_conformer_count": 3.999218583,
+    "shift_concentration_criterion_met": false,
+    "count_concentration_criterion_met": false,
+    "concentration_criterion_met": false
+  },
+  "primary_single_surface_analysis": {
+    "rrho": {
+      "energies_hartree": {
+        "A": -1176.007437,
+        "B": -1176.007891,
+        "C": -1176.007594,
+        "D": -1176.007633
+      },
+      "relative_energies_kj_per_mol": {
+        "A": 1.191551545,
+        "B": 0.0,
+        "C": 0.7807384683,
+        "D": 0.6771554554
+      },
+      "span_kj_per_mol": 1.191551545,
+      "lowest_conformer": "B",
+      "populations": {
+        "A": 0.1988862963,
+        "B": 0.3216293399,
+        "C": 0.234734107,
+        "D": 0.2447502568
+      },
+      "population_shifts_from_baseline_pp": {
+        "A": -5.283653001,
+        "B": 7.537213903,
+        "C": -2.01379562,
+        "D": -0.2397652815
+      },
+      "maximum_absolute_population_shift_pp": 7.537213903,
+      "effective_conformer_count": 3.875909196,
+      "shift_concentration_criterion_met": false,
+      "count_concentration_criterion_met": false,
+      "concentration_criterion_met": false
+    },
+    "mrrho50": {
+      "energies_hartree": {
+        "A": -1176.005275,
+        "B": -1176.005489,
+        "C": -1176.005306,
+        "D": -1176.005389
+      },
+      "relative_energies_kj_per_mol": {
+        "A": 0.561168301,
+        "B": 0.0,
+        "C": 0.4799220841,
+        "D": 0.2614898028
+      },
+      "span_kj_per_mol": 0.561168301,
+      "lowest_conformer": "B",
+      "populations": {
+        "A": 0.2264564577,
+        "B": 0.2839861385,
+        "C": 0.2340013867,
+        "D": 0.2555560172
+      },
+      "population_shifts_from_baseline_pp": {
+        "A": -2.526636861,
+        "B": 3.772893766,
+        "C": -2.087067657,
+        "D": 0.8408107515
+      },
+      "maximum_absolute_population_shift_pp": 3.772893766,
+      "effective_conformer_count": 3.968314108,
+      "shift_concentration_criterion_met": false,
+      "count_concentration_criterion_met": false,
+      "concentration_criterion_met": false
+    }
+  },
+  "secondary_source_plus_dft_thermo_diagnostic": {
+    "rrho": {
+      "energies_hartree": {
+        "A": -1176.007619,
+        "B": -1176.008041,
+        "C": -1176.007705,
+        "D": -1176.007755
+      },
+      "relative_energies_kj_per_mol": {
+        "A": 1.109443789,
+        "B": 0.0,
+        "C": 0.8843563615,
+        "D": 0.7517431222
+      },
+      "span_kj_per_mol": 1.109443789,
+      "lowest_conformer": "B",
+      "populations": {
+        "A": 0.2076955418,
+        "B": 0.3249326236,
+        "C": 0.2274368259,
+        "D": 0.2399350087
+      },
+      "population_shifts_from_baseline_pp": {
+        "A": -5.494228523,
+        "B": 7.636820558,
+        "C": -1.929159883,
+        "D": -0.213432152
+      },
+      "maximum_absolute_population_shift_pp": 7.636820558,
+      "effective_conformer_count": 3.875744167,
+      "shift_concentration_criterion_met": false,
+      "count_concentration_criterion_met": false,
+      "concentration_criterion_met": false
+    },
+    "mrrho50": {
+      "energies_hartree": {
+        "A": -1176.005457,
+        "B": -1176.005639,
+        "C": -1176.005417,
+        "D": -1176.005511
+      },
+      "relative_energies_kj_per_mol": {
+        "A": 0.4790605449,
+        "B": 0.0,
+        "C": 0.5835399773,
+        "D": 0.3360774696
+      },
+      "span_kj_per_mol": 0.5835399773,
+      "lowest_conformer": "B",
+      "populations": {
+        "A": 0.2363344923,
+        "B": 0.2867179524,
+        "C": 0.2265807998,
+        "D": 0.2503667554
+      },
+      "population_shifts_from_baseline_pp": {
+        "A": -2.630333478,
+        "B": 3.815353446,
+        "C": -2.014762489,
+        "D": 0.829742521
+      },
+      "maximum_absolute_population_shift_pp": 3.815353446,
+      "effective_conformer_count": 3.966938777,
+      "shift_concentration_criterion_met": false,
+      "count_concentration_criterion_met": false,
+      "concentration_criterion_met": false
+    }
+  },
+  "runs": {
+    "A": {
+      "electronic_energy_hartree": -1176.172776,
+      "post_opt_grad_rms_eh_bohr": 1.373899218e-06,
+      "post_opt_grad_max_eh_bohr": 4.582061767e-06,
+      "start_to_opt_heavy_atom_rmsd_angstrom": 0.02273675913,
+      "lowest_six_frequencies_cm": [
+        22.17692883,
+        27.68368463,
+        47.40704931,
+        87.16630844,
+        105.8600714,
+        110.5396918
+      ],
+      "highest_frequency_cm": 3675.430364,
+      "frequencies_cm": [
+        22.17692883,
+        27.68368463,
+        47.40704931,
+        87.16630844,
+        105.8600714,
+        110.5396918,
+        166.5190261,
+        172.7631174,
+        231.5307909,
+        257.083271,
+        288.3383584,
+        320.7780805,
+        340.0569873,
+        359.6934701,
+        369.4542779,
+        383.8349837,
+        416.0890936,
+        427.5669041,
+        440.6980116,
+        454.1851761,
+        511.9251305,
+        537.9197408,
+        561.6721916,
+        583.6474693,
+        634.0286185,
+        646.0859541,
+        650.5345367,
+        684.3750889,
+        720.6360745,
+        733.5919144,
+        794.1934253,
+        816.9683248,
+        826.585534,
+        847.2803864,
+        850.0895676,
+        869.6729905,
+        929.4779356,
+        972.1186677,
+        978.622906,
+        1005.06698,
+        1023.26466,
+        1025.730061,
+        1043.205921,
+        1065.062777,
+        1070.947671,
+        1099.370711,
+        1150.324847,
+        1156.75359,
+        1166.815175,
+        1210.026628,
+        1282.115873,
+        1322.130165,
+        1334.824622,
+        1344.217594,
+        1367.136882,
+        1380.551185,
+        1408.488013,
+        1456.965296,
+        1457.768028,
+        1472.230376,
+        1486.078719,
+        1532.075621,
+        1532.858091,
+        1598.491774,
+        1628.807266,
+        1643.679945,
+        1645.528561,
+        3043.990295,
+        3097.674292,
+        3139.919347,
+        3181.035974,
+        3182.257102,
+        3202.211576,
+        3215.542484,
+        3295.923895,
+        3520.394457,
+        3569.044993,
+        3675.430364
+      ],
+      "pyscf_rrho_g_tot_discrepancy_eh": 2.027150003e-08,
+      "timings_seconds": {
+        "opt": 17639.447,
+        "final_scf": 445.954,
+        "final_grad": 106.808,
+        "hessian": 3586.343,
+        "total": 21779.349
+      },
+      "optimized_coordinates_angstrom": [
+        [
+          -0.1610770722,
+          0.3258482255,
+          -0.09153241917
+        ],
+        [
+          -0.1246976115,
+          0.1718274808,
+          1.263182999
+        ],
+        [
+          1.10681698,
+          0.0459643347,
+          1.937899064
+        ],
+        [
+          1.144636734,
+          -0.1523044703,
+          3.300658037
+        ],
+        [
+          -1.314434284,
+          0.09033731276,
+          2.011567966
+        ],
+        [
+          -1.275869185,
+          -0.1088857149,
+          3.376241479
+        ],
+        [
+          -0.04700276187,
+          -0.2373995235,
+          4.026926464
+        ],
+        [
+          0.01378652303,
+          -0.4206293306,
+          5.759837221
+        ],
+        [
+          0.315066535,
+          1.101283605,
+          6.402207761
+        ],
+        [
+          -0.523989061,
+          2.176598056,
+          6.123232755
+        ],
+        [
+          -1.944087307,
+          2.198639517,
+          6.07762216
+        ],
+        [
+          -2.241875185,
+          3.497193554,
+          5.81734488
+        ],
+        [
+          -1.101729506,
+          4.211763814,
+          5.717778768
+        ],
+        [
+          -0.0009904099183,
+          3.359347972,
+          5.899740997
+        ],
+        [
+          -3.516287692,
+          4.227884638,
+          5.638909692
+        ],
+        [
+          -1.288688394,
+          -0.8111870053,
+          6.235454977
+        ],
+        [
+          1.178305977,
+          -1.180516021,
+          6.139082129
+        ],
+        [
+          0.6818614222,
+          0.606242915,
+          -0.5660528415
+        ],
+        [
+          -1.019823278,
+          0.6342898447,
+          -0.5178599399
+        ],
+        [
+          2.02850997,
+          0.1053881027,
+          1.373074623
+        ],
+        [
+          2.096190511,
+          -0.2450575362,
+          3.806121809
+        ],
+        [
+          -2.266797038,
+          0.1843116959,
+          1.505442658
+        ],
+        [
+          -2.195302417,
+          -0.1713669408,
+          3.939821878
+        ],
+        [
+          1.303437914,
+          1.33114344,
+          6.36198323
+        ],
+        [
+          -2.623812654,
+          1.380645187,
+          6.224057998
+        ],
+        [
+          -4.353329357,
+          3.543633133,
+          5.760430427
+        ],
+        [
+          -3.565517421,
+          4.674585057,
+          4.643830027
+        ],
+        [
+          -3.604588212,
+          5.031027644,
+          6.373025349
+        ]
+      ],
+      "thermochemistry": {
+        "rrho": {
+          "rotor_cutoff_cm": 0.0,
+          "zpe_hartree": 0.210076201,
+          "enthalpy_correction_hartree": 0.2266507935,
+          "entropy_total_eh_per_k": 0.0002056405145,
+          "ts_total_hartree": 0.06131171941,
+          "ts_vibrational_hartree": 0.02534163902,
+          "thermochemical_correction_hartree": 0.1653390741,
+          "imaginary_modes_below_threshold_cm": [],
+          "n_imaginary_modes_below_threshold": 0,
+          "soft_inverted_modes_cm": []
+        },
+        "mrrho50": {
+          "rotor_cutoff_cm": 50.0,
+          "zpe_hartree": 0.210076201,
+          "enthalpy_correction_hartree": 0.2266507935,
+          "entropy_total_eh_per_k": 0.0001983882779,
+          "ts_total_hartree": 0.05914946504,
+          "ts_vibrational_hartree": 0.02317938465,
+          "thermochemical_correction_hartree": 0.1675013284,
+          "imaginary_modes_below_threshold_cm": [],
+          "n_imaginary_modes_below_threshold": 0,
+          "soft_inverted_modes_cm": []
+        }
+      }
+    },
+    "B": {
+      "electronic_energy_hartree": -1176.172756,
+      "post_opt_grad_rms_eh_bohr": 1.446241316e-05,
+      "post_opt_grad_max_eh_bohr": 5.212828528e-05,
+      "start_to_opt_heavy_atom_rmsd_angstrom": 0.0849907464,
+      "lowest_six_frequencies_cm": [
+        18.02674227,
+        24.76121105,
+        45.2870211,
+        84.06486516,
+        105.2626187,
+        110.1444625
+      ],
+      "highest_frequency_cm": 3674.207676,
+      "frequencies_cm": [
+        18.02674227,
+        24.76121105,
+        45.2870211,
+        84.06486516,
+        105.2626187,
+        110.1444625,
+        164.6646113,
+        172.8131063,
+        230.6643838,
+        256.7131529,
+        288.0688996,
+        320.1621374,
+        336.9184352,
+        356.9438886,
+        369.5263542,
+        383.4281205,
+        414.775887,
+        427.0187903,
+        437.576469,
+        451.1016406,
+        511.8444542,
+        537.471444,
+        561.1211758,
+        582.7785735,
+        633.6909864,
+        645.9637449,
+        650.3783299,
+        683.9393324,
+        720.3871084,
+        733.4683539,
+        793.2845683,
+        815.8534377,
+        826.5175778,
+        846.9527097,
+        850.0873166,
+        869.4049414,
+        929.2115311,
+        972.0361896,
+        978.7748557,
+        1005.059426,
+        1023.266559,
+        1025.19935,
+        1043.284424,
+        1064.885239,
+        1070.946638,
+        1099.211502,
+        1149.804188,
+        1156.888339,
+        1165.990586,
+        1210.251723,
+        1282.10279,
+        1321.453918,
+        1334.917053,
+        1344.107094,
+        1367.182661,
+        1380.769125,
+        1408.050484,
+        1457.063807,
+        1457.691127,
+        1472.367266,
+        1485.979325,
+        1532.406267,
+        1533.105194,
+        1598.376788,
+        1628.956995,
+        1644.314147,
+        1645.767314,
+        3043.897636,
+        3097.621833,
+        3139.719022,
+        3181.776025,
+        3182.199837,
+        3202.071489,
+        3215.48,
+        3295.473324,
+        3520.851187,
+        3568.056807,
+        3674.207676
+      ],
+      "pyscf_rrho_g_tot_discrepancy_eh": 2.041383595e-08,
+      "timings_seconds": {
+        "opt": 10966.143,
+        "final_scf": 446.671,
+        "final_grad": 106.839,
+        "hessian": 3588.683,
+        "total": 15108.396
+      },
+      "optimized_coordinates_angstrom": [
+        [
+          0.3352495859,
+          -0.5308129195,
+          0.1979441417
+        ],
+        [
+          1.678540134,
+          -0.2957195874,
+          0.2263486642
+        ],
+        [
+          2.313499403,
+          0.1160991818,
+          1.413487987
+        ],
+        [
+          3.664431571,
+          0.3963208347,
+          1.428920887
+        ],
+        [
+          2.452587305,
+          -0.4171398107,
+          -0.9458374185
+        ],
+        [
+          3.801294335,
+          -0.1372995468,
+          -0.9296855069
+        ],
+        [
+          4.41380729,
+          0.277842894,
+          0.2567057242
+        ],
+        [
+          6.133195698,
+          0.5674923789,
+          0.2802398631
+        ],
+        [
+          6.88039823,
+          -0.9330394389,
+          0.3761658289
+        ],
+        [
+          6.587332265,
+          -1.81608114,
+          1.411560805
+        ],
+        [
+          6.407252055,
+          -1.528733778,
+          2.791544296
+        ],
+        [
+          6.197183591,
+          -2.746439451,
+          3.353422723
+        ],
+        [
+          6.249851117,
+          -3.699878999,
+          2.400342847
+        ],
+        [
+          6.485679344,
+          -3.098843543,
+          1.153412869
+        ],
+        [
+          5.941546365,
+          -3.190328073,
+          4.741778686
+        ],
+        [
+          6.569498739,
+          1.077586765,
+          -0.9953087642
+        ],
+        [
+          6.473298791,
+          1.268993141,
+          1.49155239
+        ],
+        [
+          -0.1495844835,
+          -0.6585841745,
+          1.07142438
+        ],
+        [
+          -0.04784422719,
+          -1.034363439,
+          -0.5856500825
+        ],
+        [
+          1.730407294,
+          0.2135506272,
+          2.320460918
+        ],
+        [
+          4.140744603,
+          0.7130570394,
+          2.345265855
+        ],
+        [
+          1.975512662,
+          -0.7325373159,
+          -1.865031793
+        ],
+        [
+          4.383416732,
+          -0.2359454761,
+          -1.835783769
+        ],
+        [
+          6.942318876,
+          -1.375483276,
+          -0.5357633668
+        ],
+        [
+          6.438823202,
+          -0.5723046477,
+          3.278141974
+        ],
+        [
+          5.935053294,
+          -2.330276814,
+          5.40802755
+        ],
+        [
+          6.714102292,
+          -3.888169043,
+          5.070368802
+        ],
+        [
+          4.977721082,
+          -3.698746179,
+          4.80996006
+        ]
+      ],
+      "thermochemistry": {
+        "rrho": {
+          "rotor_cutoff_cm": 0.0,
+          "zpe_hartree": 0.2099829101,
+          "enthalpy_correction_hartree": 0.2266081004,
+          "entropy_total_eh_per_k": 0.0002070890195,
+          "ts_total_hartree": 0.06174359118,
+          "ts_vibrational_hartree": 0.02577339041,
+          "thermochemical_correction_hartree": 0.1648645092,
+          "imaginary_modes_below_threshold_cm": [],
+          "n_imaginary_modes_below_threshold": 0,
+          "soft_inverted_modes_cm": []
+        },
+        "mrrho50": {
+          "rotor_cutoff_cm": 50.0,
+          "zpe_hartree": 0.2099829101,
+          "enthalpy_correction_hartree": 0.2266081004,
+          "entropy_total_eh_per_k": 0.0001990314825,
+          "ts_total_hartree": 0.05934123652,
+          "ts_vibrational_hartree": 0.02337103575,
+          "thermochemical_correction_hartree": 0.1672668639,
+          "imaginary_modes_below_threshold_cm": [],
+          "n_imaginary_modes_below_threshold": 0,
+          "soft_inverted_modes_cm": []
+        }
+      }
+    },
+    "C": {
+      "electronic_energy_hartree": -1176.172788,
+      "post_opt_grad_rms_eh_bohr": 1.473781963e-05,
+      "post_opt_grad_max_eh_bohr": 5.746684564e-05,
+      "start_to_opt_heavy_atom_rmsd_angstrom": 0.04820437687,
+      "lowest_six_frequencies_cm": [
+        21.4912696,
+        24.98591522,
+        45.43305651,
+        86.33963731,
+        107.4054711,
+        113.2196391
+      ],
+      "highest_frequency_cm": 3675.375533,
+      "frequencies_cm": [
+        21.4912696,
+        24.98591522,
+        45.43305651,
+        86.33963731,
+        107.4054711,
+        113.2196391,
+        166.5663115,
+        172.669976,
+        232.0021001,
+        257.8060921,
+        287.4548521,
+        321.527479,
+        344.1392362,
+        346.9394118,
+        369.7215255,
+        384.4994453,
+        415.5574661,
+        427.4748933,
+        440.0697524,
+        451.7817066,
+        512.7118387,
+        540.0976708,
+        561.4781247,
+        581.7037597,
+        633.7260242,
+        646.4170193,
+        650.5583002,
+        684.4401013,
+        720.5801127,
+        733.1032837,
+        794.1857892,
+        816.99636,
+        826.115031,
+        845.4494652,
+        852.3339961,
+        870.2684517,
+        929.6374606,
+        971.7861515,
+        978.2653211,
+        1005.247151,
+        1023.271142,
+        1025.98889,
+        1043.821917,
+        1064.975528,
+        1070.60831,
+        1099.445739,
+        1150.055974,
+        1157.21075,
+        1166.950366,
+        1210.739484,
+        1282.208989,
+        1321.922102,
+        1335.136534,
+        1344.312922,
+        1367.747269,
+        1382.612439,
+        1408.483828,
+        1457.52426,
+        1457.796808,
+        1472.665333,
+        1486.480272,
+        1532.65141,
+        1533.362628,
+        1598.442082,
+        1629.185902,
+        1643.877687,
+        1645.524081,
+        3044.002298,
+        3097.679224,
+        3140.014368,
+        3181.544474,
+        3182.66423,
+        3202.131867,
+        3215.465456,
+        3295.443164,
+        3523.01224,
+        3568.864799,
+        3675.375533
+      ],
+      "pyscf_rrho_g_tot_discrepancy_eh": 2.032288648e-08,
+      "timings_seconds": {
+        "opt": 17705.087,
+        "final_scf": 445.592,
+        "final_grad": 106.279,
+        "hessian": 3584.772,
+        "total": 21841.793
+      },
+      "optimized_coordinates_angstrom": [
+        [
+          0.5531573734,
+          0.1396488271,
+          -0.8976110584
+        ],
+        [
+          1.875132186,
+          0.1111642085,
+          -0.5634313944
+        ],
+        [
+          2.296784419,
+          0.4769518045,
+          0.7313439692
+        ],
+        [
+          3.63526452,
+          0.4887322597,
+          1.057481306
+        ],
+        [
+          2.850427264,
+          -0.2451396163,
+          -1.514155634
+        ],
+        [
+          4.190587784,
+          -0.2332014805,
+          -1.18686131
+        ],
+        [
+          4.58977095,
+          0.128816332,
+          0.1013047082
+        ],
+        [
+          6.284204102,
+          0.2042682431,
+          0.5059445446
+        ],
+        [
+          6.741632576,
+          1.815787133,
+          0.395558518
+        ],
+        [
+          6.553121529,
+          2.536522213,
+          -0.7803992394
+        ],
+        [
+          6.775926872,
+          2.11430138,
+          -2.118774816
+        ],
+        [
+          6.486859432,
+          3.214184392,
+          -2.860050112
+        ],
+        [
+          6.123906309,
+          4.226462096,
+          -2.045284565
+        ],
+        [
+          6.153008936,
+          3.78466431,
+          -0.7128210155
+        ],
+        [
+          6.501430869,
+          3.487626345,
+          -4.314333476
+        ],
+        [
+          6.477601059,
+          -0.1032516167,
+          1.900825088
+        ],
+        [
+          7.037058488,
+          -0.5017748418,
+          -0.4990240644
+        ],
+        [
+          -0.1300535945,
+          0.1719467563,
+          -0.1583949057
+        ],
+        [
+          0.2591971039,
+          -0.3316851113,
+          -1.737703831
+        ],
+        [
+          1.55581501,
+          0.7470888559,
+          1.472973839
+        ],
+        [
+          3.944813185,
+          0.7693773832,
+          2.054970424
+        ],
+        [
+          2.53938401,
+          -0.5338041453,
+          -2.510127561
+        ],
+        [
+          4.929736703,
+          -0.5137375419,
+          -1.922932354
+        ],
+        [
+          6.493338313,
+          2.328830494,
+          1.236001264
+        ],
+        [
+          7.104862553,
+          1.152215496,
+          -2.463489338
+        ],
+        [
+          6.83092819,
+          2.601404248,
+          -4.852526918
+        ],
+        [
+          7.177097309,
+          4.313957807,
+          -4.543161746
+        ],
+        [
+          5.503629447,
+          3.762573264,
+          -4.662194131
+        ]
+      ],
+      "thermochemistry": {
+        "rrho": {
+          "rotor_cutoff_cm": 0.0,
+          "zpe_hartree": 0.2100729965,
+          "enthalpy_correction_hartree": 0.2266620895,
+          "entropy_total_eh_per_k": 0.0002061638326,
+          "ts_total_hartree": 0.06146774668,
+          "ts_vibrational_hartree": 0.02549817233,
+          "thermochemical_correction_hartree": 0.1651943428,
+          "imaginary_modes_below_threshold_cm": [],
+          "n_imaginary_modes_below_threshold": 0,
+          "soft_inverted_modes_cm": []
+        },
+        "mrrho50": {
+          "rotor_cutoff_cm": 50.0,
+          "zpe_hartree": 0.2100729965,
+          "enthalpy_correction_hartree": 0.2266620895,
+          "entropy_total_eh_per_k": 0.0001984905817,
+          "ts_total_hartree": 0.05917996693,
+          "ts_vibrational_hartree": 0.02321039258,
+          "thermochemical_correction_hartree": 0.1674821225,
+          "imaginary_modes_below_threshold_cm": [],
+          "n_imaginary_modes_below_threshold": 0,
+          "soft_inverted_modes_cm": []
+        }
+      }
+    },
+    "D": {
+      "electronic_energy_hartree": -1176.172759,
+      "post_opt_grad_rms_eh_bohr": 8.008409247e-06,
+      "post_opt_grad_max_eh_bohr": 3.854578855e-05,
+      "start_to_opt_heavy_atom_rmsd_angstrom": 0.02966407139,
+      "lowest_six_frequencies_cm": [
+        20.35526419,
+        27.45284146,
+        46.39955352,
+        84.56842281,
+        103.0763533,
+        111.3023466
+      ],
+      "highest_frequency_cm": 3676.135724,
+      "frequencies_cm": [
+        20.35526419,
+        27.45284146,
+        46.39955352,
+        84.56842281,
+        103.0763533,
+        111.3023466,
+        165.9622937,
+        171.3437458,
+        230.9707273,
+        257.4776243,
+        288.0559631,
+        320.8668735,
+        338.5545701,
+        345.7277527,
+        368.394084,
+        382.957132,
+        415.3921398,
+        426.8837152,
+        440.0416834,
+        451.6152322,
+        512.4569611,
+        540.285442,
+        562.520476,
+        584.9681598,
+        633.9611556,
+        646.2776828,
+        650.4876131,
+        684.9730993,
+        721.0953658,
+        733.2417569,
+        794.7512211,
+        818.3054371,
+        826.412951,
+        845.296565,
+        852.4936407,
+        869.5795477,
+        929.2586341,
+        971.9444484,
+        978.4013772,
+        1004.981065,
+        1023.254176,
+        1025.68384,
+        1043.272521,
+        1064.735171,
+        1070.638014,
+        1099.551024,
+        1150.235006,
+        1157.268471,
+        1166.788724,
+        1211.332737,
+        1282.206711,
+        1321.876701,
+        1335.27537,
+        1344.377777,
+        1367.553981,
+        1381.469639,
+        1407.927267,
+        1456.680385,
+        1457.473689,
+        1472.981929,
+        1485.9435,
+        1532.299797,
+        1533.32605,
+        1598.030357,
+        1629.252107,
+        1643.015026,
+        1645.399974,
+        3043.878405,
+        3097.557728,
+        3139.751492,
+        3181.510594,
+        3182.94347,
+        3202.447961,
+        3215.208527,
+        3296.220673,
+        3519.71505,
+        3569.560226,
+        3676.135724
+      ],
+      "pyscf_rrho_g_tot_discrepancy_eh": 2.033857527e-08,
+      "timings_seconds": {
+        "opt": 10711.766,
+        "final_scf": 445.694,
+        "final_grad": 106.679,
+        "hessian": 3595.507,
+        "total": 14859.707
+      },
+      "optimized_coordinates_angstrom": [
+        [
+          -0.2894285458,
+          0.09271384163,
+          0.05025944702
+        ],
+        [
+          -0.1535171108,
+          0.09347547747,
+          1.407124906
+        ],
+        [
+          1.121689565,
+          0.06404310155,
+          2.003328559
+        ],
+        [
+          1.256685585,
+          0.01949334412,
+          3.375568035
+        ],
+        [
+          -1.289422751,
+          0.0833105445,
+          2.242453282
+        ],
+        [
+          -1.153807015,
+          0.03847859602,
+          3.612654025
+        ],
+        [
+          0.1204366657,
+          0.0104751636,
+          4.187312536
+        ],
+        [
+          0.2798003928,
+          -0.1131613901,
+          5.918986852
+        ],
+        [
+          0.04876928806,
+          -1.728216488,
+          6.316433842
+        ],
+        [
+          0.8363475374,
+          -2.72638377,
+          5.749520255
+        ],
+        [
+          2.238759567,
+          -2.719938882,
+          5.520424021
+        ],
+        [
+          2.49006933,
+          -3.948831639,
+          5.00147653
+        ],
+        [
+          1.340742766,
+          -4.651357591,
+          4.924728008
+        ],
+        [
+          0.2793226546,
+          -3.859461654,
+          5.39138122
+        ],
+        [
+          3.725046085,
+          -4.618463803,
+          4.536341953
+        ],
+        [
+          1.635034951,
+          0.2058466981,
+          6.288812236
+        ],
+        [
+          -0.8212115455,
+          0.5522475987,
+          6.568933231
+        ],
+        [
+          0.5121832305,
+          0.3215929416,
+          -0.514739614
+        ],
+        [
+          -1.182294217,
+          0.3387842967,
+          -0.3451955773
+        ],
+        [
+          2.001959166,
+          0.07891617599,
+          1.373283209
+        ],
+        [
+          2.240154897,
+          0.001676071094,
+          3.822043739
+        ],
+        [
+          -2.275196083,
+          0.1134323634,
+          1.7958912
+        ],
+        [
+          -2.033290094,
+          0.03194542574,
+          4.241935061
+        ],
+        [
+          -0.9387870676,
+          -1.96080419,
+          6.360919866
+        ],
+        [
+          2.938364013,
+          -1.930357433,
+          5.719676292
+        ],
+        [
+          4.577092391,
+          -3.955931266,
+          4.672962366
+        ],
+        [
+          3.644593949,
+          -4.878401742,
+          3.478916158
+        ],
+        [
+          3.897408301,
+          -5.539148875,
+          5.096993545
+        ]
+      ],
+      "thermochemistry": {
+        "rrho": {
+          "rotor_cutoff_cm": 0.0,
+          "zpe_hartree": 0.2100285353,
+          "enthalpy_correction_hartree": 0.2266415053,
+          "entropy_total_eh_per_k": 0.0002063245755,
+          "ts_total_hartree": 0.06151567219,
+          "ts_vibrational_hartree": 0.02554607147,
+          "thermochemical_correction_hartree": 0.1651258331,
+          "imaginary_modes_below_threshold_cm": [],
+          "n_imaginary_modes_below_threshold": 0,
+          "soft_inverted_modes_cm": []
+        },
+        "mrrho50": {
+          "rotor_cutoff_cm": 50.0,
+          "zpe_hartree": 0.2100285353,
+          "enthalpy_correction_hartree": 0.2266415053,
+          "entropy_total_eh_per_k": 0.000198798042,
+          "ts_total_hartree": 0.05927163622,
+          "ts_vibrational_hartree": 0.02330203549,
+          "thermochemical_correction_hartree": 0.1673698691,
+          "imaginary_modes_below_threshold_cm": [],
+          "n_imaginary_modes_below_threshold": 0,
+          "soft_inverted_modes_cm": []
+        }
+      }
+    }
+  },
+  "fidelity": {
+    "run_checks": {
+      "A": {
+        "normal_convergence": true,
+        "post_opt_grad_rms_ok": true,
+        "post_opt_grad_max_ok": true,
+        "no_modes_below_imaginary_threshold": true,
+        "pyscf_thermo_agreement_ok": true,
+        "start_to_opt_rmsd_ok": true
+      },
+      "B": {
+        "normal_convergence": true,
+        "post_opt_grad_rms_ok": true,
+        "post_opt_grad_max_ok": true,
+        "no_modes_below_imaginary_threshold": true,
+        "pyscf_thermo_agreement_ok": true,
+        "start_to_opt_rmsd_ok": true
+      },
+      "C": {
+        "normal_convergence": true,
+        "post_opt_grad_rms_ok": true,
+        "post_opt_grad_max_ok": true,
+        "no_modes_below_imaginary_threshold": true,
+        "pyscf_thermo_agreement_ok": true,
+        "start_to_opt_rmsd_ok": true
+      },
+      "D": {
+        "normal_convergence": true,
+        "post_opt_grad_rms_ok": true,
+        "post_opt_grad_max_ok": true,
+        "no_modes_below_imaginary_threshold": true,
+        "pyscf_thermo_agreement_ok": true,
+        "start_to_opt_rmsd_ok": true
+      }
+    },
+    "distinct_conformer_pair_rmsd_angstrom": {
+      "A-B": 1.429720412,
+      "A-C": 1.712628491,
+      "A-D": 1.175251039,
+      "B-C": 1.175217364,
+      "B-D": 1.71375772,
+      "C-D": 1.429776479
+    },
+    "distinct_conformers_passed": true,
+    "all_run_checks_passed": true,
+    "passed": true
+  },
+  "verdict": {
+    "value": "falsified",
+    "reason": "both registered rotor arms remained inside the near-uniform region on the single surface",
+    "hypothesis_supported": false,
+    "hypothesis_falsified": true,
+    "result_inconclusive": false
+  }
+}

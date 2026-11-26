@@ -179,7 +179,6 @@ def compute_thermo_from_modes(
     com_m = np.sum((masses * amu_kg)[:, None] * coords_m, axis=0) / total_mass_kg
     rel_m = coords_m - com_m
 
-    # Principal moments of inertia (kg m^2)
     r2 = np.sum(rel_m ** 2, axis=1)
     inertia = np.zeros((3, 3), dtype=float)
     for idx in range(len(masses)):
@@ -189,14 +188,12 @@ def compute_thermo_from_modes(
     if np.any(i_vals <= 0.0):
         raise ValueError(f"non-positive principal moments of inertia: {i_vals}")
 
-    # Translational (ideal gas at T, p)
     q_trans_over_n = ((2.0 * math.pi * total_mass_kg * kb * t_k) / (h ** 2)) ** 1.5 * (
         kb * t_k / p_pa
     )
     u_trans_j = 1.5 * kb * t_k
     s_trans_j_k = kb * (2.5 + math.log(q_trans_over_n))
 
-    # Nonlinear rigid rotor
     theta_rot = (hbar ** 2) / (2.0 * i_vals * kb)
     q_rot = (math.sqrt(math.pi) / sigma_r) * math.sqrt(
         (t_k ** 3) / float(np.prod(theta_rot))
@@ -204,7 +201,6 @@ def compute_thermo_from_modes(
     u_rot_j = 1.5 * kb * t_k
     s_rot_j_k = kb * (1.5 + math.log(q_rot))
 
-    # Vibrational modes
     scaled = [freq * scale for freq in frequencies_cm]
     below_imag_thr = [freq for freq in scaled if freq < imag_thr]
     inverted_soft_modes = [freq for freq in scaled if imag_thr <= freq < 0.0]
@@ -279,7 +275,6 @@ def preflight_check(inputs: dict) -> dict:
     if max_diff_pp > 0.15:
         raise ValueError(f"source Boltzmann baseline mismatch: {max_diff_pp:.3f} pp")
 
-    # Cross-check RRHO vs mRRHO50 delta-G shift against Post 1's committed xTB run A
     xtb_rrho_log = ROOT / "research/smx-conformer-thermochemistry/runs/A/rrho/xtb.out"
     xtb_mrrho_log = ROOT / "research/smx-conformer-thermochemistry/runs/A/mrrho50/xtb.out"
     xtb_geom = ROOT / "research/smx-conformer-thermochemistry/runs/A/rrho/xtbopt.xyz"
@@ -501,7 +496,6 @@ def build_results(inputs: dict, generated_at: str) -> dict:
     all_run_checks_ok = all(all(chk.values()) for chk in run_checks.values())
     fidelity_passed = all_run_checks_ok and distinct_ok
 
-    # Single-surface electronic baseline
     single_elec_eh = {
         name: runs_summary[name]["electronic_energy_hartree"] for name in CONFORMER_NAMES
     }
@@ -510,7 +504,6 @@ def build_results(inputs: dict, generated_at: str) -> dict:
     )
     single_elec_pops = single_elec_eval["populations"]
 
-    # Primary single-surface free-energy arms (vs single-surface electronic baseline)
     primary_arms = {}
     secondary_source_composite_arms = {}
     for arm in ARM_NAMES:
@@ -523,7 +516,6 @@ def build_results(inputs: dict, generated_at: str) -> dict:
             single_free_eh, single_elec_pops, inputs
         )
 
-        # Secondary diagnostic: source electronic energy + single-surface DFT dG_corr
         comp_eh = {
             name: preflight["source_electronic_energies_hartree"][name]
             + runs_summary[name]["thermochemistry"][arm]["thermochemical_correction_hartree"]
@@ -588,16 +580,21 @@ def build_results(inputs: dict, generated_at: str) -> dict:
     }
 
 
-def rounded(value, significant: int = 12):
+def rounded(value, significant: int = 10, clamp_tiny: bool = True):
+    """Round floats to 10 significant digits so eigensolver last-ulp differences
+    between linux-x86_64 OpenBLAS and osx-arm64 Accelerate serialize identically."""
     if isinstance(value, bool) or not isinstance(value, float):
         if isinstance(value, dict):
-            return {k: rounded(v, significant) for k, v in value.items()}
+            return {
+                k: rounded(v, significant, clamp_tiny=(clamp_tiny and k != "protocol"))
+                for k, v in value.items()
+            }
         if isinstance(value, list):
-            return [rounded(v, significant) for v in value]
+            return [rounded(v, significant, clamp_tiny=clamp_tiny) for v in value]
         return value
     if value == 0.0 or not math.isfinite(value):
         return value
-    if abs(value) < 1.0e-12:
+    if clamp_tiny and abs(value) < 1.0e-12:
         return 0.0
     return float(f"{value:.{significant}g}")
 

@@ -1,0 +1,938 @@
+{
+  "schema_version": 1,
+  "experiment": "smx-single-surface-thermochemistry",
+  "provenance": {
+    "generated_at": "2026-11-26T21:37:47Z",
+    "generator": "research/smx-single-surface-thermochemistry/generate-metrics.mjs",
+    "inputs": [
+      {
+        "path": "research/smx-single-surface-thermochemistry/PREREGISTRATION.md",
+        "sha256": "47e86dca97ce68a20b76fe2405cfa5c930e7838b361b8c84a261689bec66c34b"
+      },
+      {
+        "path": "research/smx-single-surface-thermochemistry/inputs.json",
+        "sha256": "e1d5cbb0f606f3d02054165b3d0efa69d49cfa4989b896c86324f2bb996f35b8"
+      },
+      {
+        "path": "research/smx-single-surface-thermochemistry/thermo_analysis.py",
+        "sha256": "be3c60d11a81644d099783571a605ad07e5388add927a3d6c503e58631b38ee3"
+      },
+      {
+        "path": "research/smx-single-surface-thermochemistry/results.json",
+        "sha256": "c3b5d7813d96ffc018b55f73a2791044925f075bad69de46e843f956aae10bb4"
+      }
+    ]
+  },
+  "metrics": {
+    "source_population_a": {
+      "type": "number",
+      "value": 0.2626378271,
+      "format": {
+        "style": "percent",
+        "digits": 1
+      },
+      "description": "Source electronic-energy Boltzmann population of conformer A at 298.15 K",
+      "unit": "ratio"
+    },
+    "elec_population_a": {
+      "type": "number",
+      "value": 0.2517228263,
+      "format": {
+        "style": "percent",
+        "digits": 1
+      },
+      "description": "Single-surface B3LYPG-D3(BJ)/def2-TZVP + IEF-PCM(water) electronic Boltzmann population of conformer A at 298.15 K",
+      "unit": "ratio"
+    },
+    "elec_rel_energy_a_kj_mol": {
+      "type": "number",
+      "value": 0.03082117009,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Single-surface relative electronic energy of conformer A",
+      "unit": "kJ/mol"
+    },
+    "abs_energy_diff_from_source_a_meh": {
+      "type": "number",
+      "value": 0.18199999999524152,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Absolute electronic-energy difference from the published Q-Chem value for conformer A",
+      "unit": "mEh"
+    },
+    "rrho_population_a": {
+      "type": "number",
+      "value": 0.1988862963,
+      "format": {
+        "style": "percent",
+        "digits": 1
+      },
+      "description": "Single-surface pure-RRHO Boltzmann population of conformer A at 298.15 K",
+      "unit": "ratio"
+    },
+    "mrrho50_population_a": {
+      "type": "number",
+      "value": 0.2264564577,
+      "format": {
+        "style": "percent",
+        "digits": 1
+      },
+      "description": "Single-surface 50 cm^-1 modified-RRHO Boltzmann population of conformer A at 298.15 K",
+      "unit": "ratio"
+    },
+    "rrho_rel_free_energy_a_kj_mol": {
+      "type": "number",
+      "value": 1.191551545,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Single-surface pure-RRHO relative free energy of conformer A at 298.15 K",
+      "unit": "kJ/mol"
+    },
+    "mrrho50_rel_free_energy_a_kj_mol": {
+      "type": "number",
+      "value": 0.561168301,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Single-surface 50 cm^-1 modified-RRHO relative free energy of conformer A at 298.15 K",
+      "unit": "kJ/mol"
+    },
+    "ddg_corr_rrho_from_a_a_kj_mol": {
+      "type": "number",
+      "value": 0,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Pure-RRHO thermochemical free-energy correction of conformer A relative to A",
+      "unit": "kJ/mol"
+    },
+    "ddg_corr_mrrho50_from_a_a_kj_mol": {
+      "type": "number",
+      "value": 0,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "50 cm^-1 modified-RRHO thermochemical free-energy correction of conformer A relative to A",
+      "unit": "kJ/mol"
+    },
+    "lowest_freq_a_cm": {
+      "type": "number",
+      "value": 22.17692883,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Lowest harmonic vibrational frequency of conformer A",
+      "unit": "cm^-1"
+    },
+    "second_freq_a_cm": {
+      "type": "number",
+      "value": 27.68368463,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Second-lowest harmonic vibrational frequency of conformer A",
+      "unit": "cm^-1"
+    },
+    "third_freq_a_cm": {
+      "type": "number",
+      "value": 47.40704931,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Third-lowest harmonic vibrational frequency of conformer A",
+      "unit": "cm^-1"
+    },
+    "start_opt_rmsd_a_angstrom": {
+      "type": "number",
+      "value": 0.02273675913,
+      "format": {
+        "style": "fixed",
+        "digits": 3
+      },
+      "description": "Heavy-atom Kabsch RMSD between published and re-optimized conformer A",
+      "unit": "angstrom"
+    },
+    "source_plus_dft_rrho_population_a": {
+      "type": "number",
+      "value": 0.2076955418,
+      "format": {
+        "style": "percent",
+        "digits": 1
+      },
+      "description": "Secondary composite (source electronic + single-surface DFT pure-RRHO) population of conformer A",
+      "unit": "ratio"
+    },
+    "source_plus_dft_mrrho50_population_a": {
+      "type": "number",
+      "value": 0.2363344923,
+      "format": {
+        "style": "percent",
+        "digits": 1
+      },
+      "description": "Secondary composite (source electronic + single-surface DFT mRRHO-50) population of conformer A",
+      "unit": "ratio"
+    },
+    "source_population_b": {
+      "type": "number",
+      "value": 0.248564418,
+      "format": {
+        "style": "percent",
+        "digits": 1
+      },
+      "description": "Source electronic-energy Boltzmann population of conformer B at 298.15 K",
+      "unit": "ratio"
+    },
+    "elec_population_b": {
+      "type": "number",
+      "value": 0.2462572009,
+      "format": {
+        "style": "percent",
+        "digits": 1
+      },
+      "description": "Single-surface B3LYPG-D3(BJ)/def2-TZVP + IEF-PCM(water) electronic Boltzmann population of conformer B at 298.15 K",
+      "unit": "ratio"
+    },
+    "elec_rel_energy_b_kj_mol": {
+      "type": "number",
+      "value": 0.08523939546,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Single-surface relative electronic energy of conformer B",
+      "unit": "kJ/mol"
+    },
+    "abs_energy_diff_from_source_b_meh": {
+      "type": "number",
+      "value": 0.15000000007603376,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Absolute electronic-energy difference from the published Q-Chem value for conformer B",
+      "unit": "mEh"
+    },
+    "rrho_population_b": {
+      "type": "number",
+      "value": 0.3216293399,
+      "format": {
+        "style": "percent",
+        "digits": 1
+      },
+      "description": "Single-surface pure-RRHO Boltzmann population of conformer B at 298.15 K",
+      "unit": "ratio"
+    },
+    "mrrho50_population_b": {
+      "type": "number",
+      "value": 0.2839861385,
+      "format": {
+        "style": "percent",
+        "digits": 1
+      },
+      "description": "Single-surface 50 cm^-1 modified-RRHO Boltzmann population of conformer B at 298.15 K",
+      "unit": "ratio"
+    },
+    "rrho_rel_free_energy_b_kj_mol": {
+      "type": "number",
+      "value": 0,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Single-surface pure-RRHO relative free energy of conformer B at 298.15 K",
+      "unit": "kJ/mol"
+    },
+    "mrrho50_rel_free_energy_b_kj_mol": {
+      "type": "number",
+      "value": 0,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Single-surface 50 cm^-1 modified-RRHO relative free energy of conformer B at 298.15 K",
+      "unit": "kJ/mol"
+    },
+    "ddg_corr_rrho_from_a_b_kj_mol": {
+      "type": "number",
+      "value": -1.2459699738598196,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Pure-RRHO thermochemical free-energy correction of conformer B relative to A",
+      "unit": "kJ/mol"
+    },
+    "ddg_corr_mrrho50_from_a_b_kj_mol": {
+      "type": "number",
+      "value": -0.615586460220844,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "50 cm^-1 modified-RRHO thermochemical free-energy correction of conformer B relative to A",
+      "unit": "kJ/mol"
+    },
+    "lowest_freq_b_cm": {
+      "type": "number",
+      "value": 18.02674227,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Lowest harmonic vibrational frequency of conformer B",
+      "unit": "cm^-1"
+    },
+    "second_freq_b_cm": {
+      "type": "number",
+      "value": 24.76121105,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Second-lowest harmonic vibrational frequency of conformer B",
+      "unit": "cm^-1"
+    },
+    "third_freq_b_cm": {
+      "type": "number",
+      "value": 45.2870211,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Third-lowest harmonic vibrational frequency of conformer B",
+      "unit": "cm^-1"
+    },
+    "start_opt_rmsd_b_angstrom": {
+      "type": "number",
+      "value": 0.0849907464,
+      "format": {
+        "style": "fixed",
+        "digits": 3
+      },
+      "description": "Heavy-atom Kabsch RMSD between published and re-optimized conformer B",
+      "unit": "angstrom"
+    },
+    "source_plus_dft_rrho_population_b": {
+      "type": "number",
+      "value": 0.3249326236,
+      "format": {
+        "style": "percent",
+        "digits": 1
+      },
+      "description": "Secondary composite (source electronic + single-surface DFT pure-RRHO) population of conformer B",
+      "unit": "ratio"
+    },
+    "source_plus_dft_mrrho50_population_b": {
+      "type": "number",
+      "value": 0.2867179524,
+      "format": {
+        "style": "percent",
+        "digits": 1
+      },
+      "description": "Secondary composite (source electronic + single-surface DFT mRRHO-50) population of conformer B",
+      "unit": "ratio"
+    },
+    "source_population_c": {
+      "type": "number",
+      "value": 0.2467284247,
+      "format": {
+        "style": "percent",
+        "digits": 1
+      },
+      "description": "Source electronic-energy Boltzmann population of conformer C at 298.15 K",
+      "unit": "ratio"
+    },
+    "elec_population_c": {
+      "type": "number",
+      "value": 0.2548720632,
+      "format": {
+        "style": "percent",
+        "digits": 1
+      },
+      "description": "Single-surface B3LYPG-D3(BJ)/def2-TZVP + IEF-PCM(water) electronic Boltzmann population of conformer C at 298.15 K",
+      "unit": "ratio"
+    },
+    "elec_rel_energy_c_kj_mol": {
+      "type": "number",
+      "value": 0,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Single-surface relative electronic energy of conformer C",
+      "unit": "kJ/mol"
+    },
+    "abs_energy_diff_from_source_c_meh": {
+      "type": "number",
+      "value": 0.11099999983343878,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Absolute electronic-energy difference from the published Q-Chem value for conformer C",
+      "unit": "mEh"
+    },
+    "rrho_population_c": {
+      "type": "number",
+      "value": 0.234734107,
+      "format": {
+        "style": "percent",
+        "digits": 1
+      },
+      "description": "Single-surface pure-RRHO Boltzmann population of conformer C at 298.15 K",
+      "unit": "ratio"
+    },
+    "mrrho50_population_c": {
+      "type": "number",
+      "value": 0.2340013867,
+      "format": {
+        "style": "percent",
+        "digits": 1
+      },
+      "description": "Single-surface 50 cm^-1 modified-RRHO Boltzmann population of conformer C at 298.15 K",
+      "unit": "ratio"
+    },
+    "rrho_rel_free_energy_c_kj_mol": {
+      "type": "number",
+      "value": 0.7807384683,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Single-surface pure-RRHO relative free energy of conformer C at 298.15 K",
+      "unit": "kJ/mol"
+    },
+    "mrrho50_rel_free_energy_c_kj_mol": {
+      "type": "number",
+      "value": 0.4799220841,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Single-surface 50 cm^-1 modified-RRHO relative free energy of conformer C at 298.15 K",
+      "unit": "kJ/mol"
+    },
+    "ddg_corr_rrho_from_a_c_kj_mol": {
+      "type": "number",
+      "value": -0.37999197597147333,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Pure-RRHO thermochemical free-energy correction of conformer C relative to A",
+      "unit": "kJ/mol"
+    },
+    "ddg_corr_mrrho50_from_a_c_kj_mol": {
+      "type": "number",
+      "value": -0.05042508352592198,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "50 cm^-1 modified-RRHO thermochemical free-energy correction of conformer C relative to A",
+      "unit": "kJ/mol"
+    },
+    "lowest_freq_c_cm": {
+      "type": "number",
+      "value": 21.4912696,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Lowest harmonic vibrational frequency of conformer C",
+      "unit": "cm^-1"
+    },
+    "second_freq_c_cm": {
+      "type": "number",
+      "value": 24.98591522,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Second-lowest harmonic vibrational frequency of conformer C",
+      "unit": "cm^-1"
+    },
+    "third_freq_c_cm": {
+      "type": "number",
+      "value": 45.43305651,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Third-lowest harmonic vibrational frequency of conformer C",
+      "unit": "cm^-1"
+    },
+    "start_opt_rmsd_c_angstrom": {
+      "type": "number",
+      "value": 0.04820437687,
+      "format": {
+        "style": "fixed",
+        "digits": 3
+      },
+      "description": "Heavy-atom Kabsch RMSD between published and re-optimized conformer C",
+      "unit": "angstrom"
+    },
+    "source_plus_dft_rrho_population_c": {
+      "type": "number",
+      "value": 0.2274368259,
+      "format": {
+        "style": "percent",
+        "digits": 1
+      },
+      "description": "Secondary composite (source electronic + single-surface DFT pure-RRHO) population of conformer C",
+      "unit": "ratio"
+    },
+    "source_plus_dft_mrrho50_population_c": {
+      "type": "number",
+      "value": 0.2265807998,
+      "format": {
+        "style": "percent",
+        "digits": 1
+      },
+      "description": "Secondary composite (source electronic + single-surface DFT mRRHO-50) population of conformer C",
+      "unit": "ratio"
+    },
+    "source_population_d": {
+      "type": "number",
+      "value": 0.2420693302,
+      "format": {
+        "style": "percent",
+        "digits": 1
+      },
+      "description": "Source electronic-energy Boltzmann population of conformer D at 298.15 K",
+      "unit": "ratio"
+    },
+    "elec_population_d": {
+      "type": "number",
+      "value": 0.2471479096,
+      "format": {
+        "style": "percent",
+        "digits": 1
+      },
+      "description": "Single-surface B3LYPG-D3(BJ)/def2-TZVP + IEF-PCM(water) electronic Boltzmann population of conformer D at 298.15 K",
+      "unit": "ratio"
+    },
+    "elec_rel_energy_d_kj_mol": {
+      "type": "number",
+      "value": 0.07628921975,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Single-surface relative electronic energy of conformer D",
+      "unit": "kJ/mol"
+    },
+    "abs_energy_diff_from_source_d_meh": {
+      "type": "number",
+      "value": 0.12199999991935329,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Absolute electronic-energy difference from the published Q-Chem value for conformer D",
+      "unit": "mEh"
+    },
+    "rrho_population_d": {
+      "type": "number",
+      "value": 0.2447502568,
+      "format": {
+        "style": "percent",
+        "digits": 1
+      },
+      "description": "Single-surface pure-RRHO Boltzmann population of conformer D at 298.15 K",
+      "unit": "ratio"
+    },
+    "mrrho50_population_d": {
+      "type": "number",
+      "value": 0.2555560172,
+      "format": {
+        "style": "percent",
+        "digits": 1
+      },
+      "description": "Single-surface 50 cm^-1 modified-RRHO Boltzmann population of conformer D at 298.15 K",
+      "unit": "ratio"
+    },
+    "rrho_rel_free_energy_d_kj_mol": {
+      "type": "number",
+      "value": 0.6771554554,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Single-surface pure-RRHO relative free energy of conformer D at 298.15 K",
+      "unit": "kJ/mol"
+    },
+    "mrrho50_rel_free_energy_d_kj_mol": {
+      "type": "number",
+      "value": 0.2614898028,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Single-surface 50 cm^-1 modified-RRHO relative free energy of conformer D at 298.15 K",
+      "unit": "kJ/mol"
+    },
+    "ddg_corr_rrho_from_a_d_kj_mol": {
+      "type": "number",
+      "value": -0.559864168622341,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Pure-RRHO thermochemical free-energy correction of conformer D relative to A",
+      "unit": "kJ/mol"
+    },
+    "ddg_corr_mrrho50_from_a_d_kj_mol": {
+      "type": "number",
+      "value": -0.3451463447562735,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "50 cm^-1 modified-RRHO thermochemical free-energy correction of conformer D relative to A",
+      "unit": "kJ/mol"
+    },
+    "lowest_freq_d_cm": {
+      "type": "number",
+      "value": 20.35526419,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Lowest harmonic vibrational frequency of conformer D",
+      "unit": "cm^-1"
+    },
+    "second_freq_d_cm": {
+      "type": "number",
+      "value": 27.45284146,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Second-lowest harmonic vibrational frequency of conformer D",
+      "unit": "cm^-1"
+    },
+    "third_freq_d_cm": {
+      "type": "number",
+      "value": 46.39955352,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Third-lowest harmonic vibrational frequency of conformer D",
+      "unit": "cm^-1"
+    },
+    "start_opt_rmsd_d_angstrom": {
+      "type": "number",
+      "value": 0.02966407139,
+      "format": {
+        "style": "fixed",
+        "digits": 3
+      },
+      "description": "Heavy-atom Kabsch RMSD between published and re-optimized conformer D",
+      "unit": "angstrom"
+    },
+    "source_plus_dft_rrho_population_d": {
+      "type": "number",
+      "value": 0.2399350087,
+      "format": {
+        "style": "percent",
+        "digits": 1
+      },
+      "description": "Secondary composite (source electronic + single-surface DFT pure-RRHO) population of conformer D",
+      "unit": "ratio"
+    },
+    "source_plus_dft_mrrho50_population_d": {
+      "type": "number",
+      "value": 0.2503667554,
+      "format": {
+        "style": "percent",
+        "digits": 1
+      },
+      "description": "Secondary composite (source electronic + single-surface DFT mRRHO-50) population of conformer D",
+      "unit": "ratio"
+    },
+    "ddg_corr_rrho_span_kj_mol": {
+      "type": "number",
+      "value": 1.2459699738598196,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Conformer-to-conformer spread of pure-RRHO free-energy corrections across A-D",
+      "unit": "kJ/mol"
+    },
+    "ddg_corr_mrrho50_span_kj_mol": {
+      "type": "number",
+      "value": 0.615586460220844,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Conformer-to-conformer spread of 50 cm^-1 modified-RRHO free-energy corrections across A-D",
+      "unit": "kJ/mol"
+    },
+    "source_plus_dft_rrho_span_kj_mol": {
+      "type": "number",
+      "value": 1.109443789,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Free-energy span across A-D when single-surface DFT pure-RRHO corrections are added to source electronic energies",
+      "unit": "kJ/mol"
+    },
+    "source_plus_dft_mrrho50_span_kj_mol": {
+      "type": "number",
+      "value": 0.5835399773,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Free-energy span across A-D when single-surface DFT mRRHO-50 corrections are added to source electronic energies",
+      "unit": "kJ/mol"
+    },
+    "elec_span_kj_mol": {
+      "type": "number",
+      "value": 0.08523939546,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Electronic-energy span across conformers A-D on the single B3LYPG-D3(BJ)/def2-TZVP + IEF-PCM(water) surface",
+      "unit": "kJ/mol"
+    },
+    "elec_effective_conformer_count": {
+      "type": "number",
+      "value": 3.999218583,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Effective conformer count on the single-surface electronic baseline",
+      "unit": "conformers"
+    },
+    "elec_max_shift_from_source_pp": {
+      "type": "number",
+      "value": 1.091500078,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Maximum absolute electronic-only population difference between single-surface DFT and published Q-Chem baseline",
+      "unit": "percentage points"
+    },
+    "rrho_span_kj_mol": {
+      "type": "number",
+      "value": 1.191551545,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Free-energy span across conformers A-D in the single-surface pure-RRHO arm",
+      "unit": "kJ/mol"
+    },
+    "mrrho50_span_kj_mol": {
+      "type": "number",
+      "value": 0.561168301,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Free-energy span across conformers A-D in the single-surface 50 cm^-1 modified-RRHO arm",
+      "unit": "kJ/mol"
+    },
+    "rrho_max_population_shift_pp": {
+      "type": "number",
+      "value": 7.537213903,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Maximum absolute population shift from the single-surface electronic baseline in the pure-RRHO arm",
+      "unit": "percentage points"
+    },
+    "mrrho50_max_population_shift_pp": {
+      "type": "number",
+      "value": 3.772893766,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Maximum absolute population shift from the single-surface electronic baseline in the 50 cm^-1 modified-RRHO arm",
+      "unit": "percentage points"
+    },
+    "rrho_effective_conformer_count": {
+      "type": "number",
+      "value": 3.875909196,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Effective conformer count in the single-surface pure-RRHO arm",
+      "unit": "conformers"
+    },
+    "mrrho50_effective_conformer_count": {
+      "type": "number",
+      "value": 3.968314108,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Effective conformer count in the single-surface 50 cm^-1 modified-RRHO arm",
+      "unit": "conformers"
+    },
+    "source_plus_dft_rrho_max_shift_pp": {
+      "type": "number",
+      "value": 7.636820558,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Maximum absolute population shift from source baseline when single-surface DFT pure-RRHO corrections are added to source electronic energies",
+      "unit": "percentage points"
+    },
+    "source_plus_dft_mrrho50_max_shift_pp": {
+      "type": "number",
+      "value": 3.815353446,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Maximum absolute population shift from source baseline when single-surface DFT mRRHO-50 corrections are added to source electronic energies",
+      "unit": "percentage points"
+    },
+    "source_plus_dft_rrho_effective_count": {
+      "type": "number",
+      "value": 3.875744167,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Effective conformer count when single-surface DFT pure-RRHO corrections are added to source electronic energies",
+      "unit": "conformers"
+    },
+    "source_plus_dft_mrrho50_effective_count": {
+      "type": "number",
+      "value": 3.966938777,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Effective conformer count when single-surface DFT mRRHO-50 corrections are added to source electronic energies",
+      "unit": "conformers"
+    },
+    "lowest_mode_min_cm": {
+      "type": "number",
+      "value": 18.02674227,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Minimum lowest harmonic vibrational mode across conformers A-D",
+      "unit": "cm^-1"
+    },
+    "lowest_mode_max_cm": {
+      "type": "number",
+      "value": 22.17692883,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Maximum lowest harmonic vibrational mode across conformers A-D",
+      "unit": "cm^-1"
+    },
+    "min_start_opt_rmsd_angstrom": {
+      "type": "number",
+      "value": 0.02273675913,
+      "format": {
+        "style": "fixed",
+        "digits": 3
+      },
+      "description": "Minimum start-to-optimized heavy-atom Kabsch RMSD across conformers A-D",
+      "unit": "angstrom"
+    },
+    "max_start_opt_rmsd_angstrom": {
+      "type": "number",
+      "value": 0.0849907464,
+      "format": {
+        "style": "fixed",
+        "digits": 3
+      },
+      "description": "Maximum start-to-optimized heavy-atom Kabsch RMSD across conformers A-D",
+      "unit": "angstrom"
+    },
+    "min_pairwise_rmsd_angstrom": {
+      "type": "number",
+      "value": 1.175217364,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Minimum heavy-atom Kabsch RMSD among the six optimized conformer pairs",
+      "unit": "angstrom"
+    },
+    "max_pairwise_rmsd_angstrom": {
+      "type": "number",
+      "value": 1.71375772,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Maximum heavy-atom Kabsch RMSD among the six optimized conformer pairs",
+      "unit": "angstrom"
+    },
+    "total_wall_hours": {
+      "type": "number",
+      "value": 20.441456944444443,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Total wall-clock execution time for all four conformer optimizations and analytical Hessians on Colab",
+      "unit": "hours"
+    },
+    "mean_hessian_minutes": {
+      "type": "number",
+      "value": 59.81377083333333,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Mean analytical PCM Hessian wall-clock runtime per conformer on the Tesla T4 GPU",
+      "unit": "minutes"
+    },
+    "method_fidelity_passed": {
+      "type": "boolean",
+      "value": true,
+      "description": "Whether every preregistered convergence, gradient, frequency, thermo cross-check, and RMSD gate passed"
+    },
+    "hypothesis_supported": {
+      "type": "boolean",
+      "value": false,
+      "description": "Whether the preregistered single-surface concentration hypothesis was supported"
+    },
+    "hypothesis_falsified": {
+      "type": "boolean",
+      "value": true,
+      "description": "Whether the preregistered single-surface concentration hypothesis was falsified"
+    },
+    "result_inconclusive": {
+      "type": "boolean",
+      "value": false,
+      "description": "Whether the preregistered result was inconclusive"
+    }
+  }
+}
