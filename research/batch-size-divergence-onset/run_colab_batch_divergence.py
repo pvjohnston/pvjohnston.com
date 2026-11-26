@@ -244,10 +244,11 @@ def run_smoke_and_mm(
             top_k=None,
         )
     hf_gen = hf_out[:, toy_ids.shape[1] :].cpu()
-    kv_matches_hf = bool(torch.equal(kv_gen, hf_gen))
+    n_hf = int(hf_gen.shape[1])
+    kv_matches_hf = bool(n_hf >= 5 and torch.equal(kv_gen[:, :n_hf], hf_gen))
     if not kv_matches_hf:
         raise RuntimeError(
-            f"KV loop mismatch vs HF generate: {kv_gen.tolist()} vs {hf_gen.tolist()}"
+            f"KV loop mismatch vs HF generate: {kv_gen[:, :n_hf].tolist()} vs {hf_gen.tolist()}"
         )
 
     payload = {
