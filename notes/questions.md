@@ -63,7 +63,7 @@ Format:
   which the source asserts a mechanism for but never measures
 - **Falsifier:** onset is flat in batch size, or dominated by prompt rather than batch
 - **Blocked on:** a GPU. Rentable; not owned. Do not report as first-hand without one.
-- **Status:** observation
+- **Status:** running — protocol frozen in `research/batch-size-divergence-onset/PREREGISTRATION.md` (`Qwen/Qwen3-4B-Instruct-2507` in `bfloat16`, 8 prompts × 14 batch sizes `B = 1..128` on Colab GPU)
 
 ## SIREN's underperformance in Villatoro et al. may be an initialization artifact
 - **Observed:** §2.3.2 records that "the official SIREN Python implementation's
