@@ -1,0 +1,997 @@
+{
+  "schema_version": 1,
+  "experiment": "batch-size-divergence-onset",
+  "provenance": {
+    "generated_at": "2026-11-27T00:08:10Z",
+    "generator": "research/batch-size-divergence-onset/generate-metrics.mjs",
+    "inputs": [
+      {
+        "path": "research/batch-size-divergence-onset/PREREGISTRATION.md",
+        "sha256": "03a4aec4c2a52a7705b35bff20d3f78c9e9730fea04b6ed2c08b9b35d5ae2e29"
+      },
+      {
+        "path": "research/batch-size-divergence-onset/inputs.json",
+        "sha256": "d54fb35c5701079d89c3bb98af9b0b503eba5e62b2b341de7eaddb0a899ac9f4"
+      },
+      {
+        "path": "research/batch-size-divergence-onset/analyze_divergence.py",
+        "sha256": "50dfbff01c564b0ac58936a456c0d82cf7061b9e5df8c1b5cf778cbcbf039354"
+      },
+      {
+        "path": "research/batch-size-divergence-onset/results.json",
+        "sha256": "4090cf28ae5d031e58ed7052aa3e5b1af0ecdfcea815205482a8dd7cb333caea"
+      }
+    ]
+  },
+  "metrics": {
+    "n_prompts_total": {
+      "type": "integer",
+      "value": 8,
+      "description": "Total preregistered prompts evaluated",
+      "unit": "prompts"
+    },
+    "n_diverging_prompts": {
+      "type": "integer",
+      "value": 8,
+      "description": "Prompts that diverged from B=1 within 256 tokens at one or more B >= 2",
+      "unit": "prompts"
+    },
+    "median_within_prompt_censored_range_tokens": {
+      "type": "number",
+      "value": 196.5,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Median within-prompt onset range across B >= 2 for diverging prompts (with non-diverging cells censored at 257)",
+      "unit": "tokens"
+    },
+    "median_within_prompt_uncensored_range_tokens": {
+      "type": "number",
+      "value": 122,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Median within-prompt onset range across uncensored diverging batch sizes",
+      "unit": "tokens"
+    },
+    "min_unique_completions_per_prompt": {
+      "type": "integer",
+      "value": 4,
+      "description": "Minimum distinct 256-token completions observed across the 14 batch sizes for a single prompt",
+      "unit": "completions"
+    },
+    "max_unique_completions_per_prompt": {
+      "type": "integer",
+      "value": 14,
+      "description": "Maximum distinct 256-token completions observed across the 14 batch sizes for a single prompt",
+      "unit": "completions"
+    },
+    "median_unique_completions_per_prompt": {
+      "type": "number",
+      "value": 8.5,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Median distinct 256-token completions observed across the 14 batch sizes",
+      "unit": "completions"
+    },
+    "batch_to_prompt_variance_ratio": {
+      "type": "number",
+      "value": 0.0944420468,
+      "format": {
+        "style": "fixed",
+        "digits": 3
+      },
+      "description": "Ratio of batch-size main-effect variance to prompt main-effect variance on onset token"
+    },
+    "prompt_share_of_total_variance_pct": {
+      "type": "number",
+      "value": 49.51722062,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Share of total onset-token variance explained by prompt main effects",
+      "unit": "percent"
+    },
+    "batch_share_of_total_variance_pct": {
+      "type": "number",
+      "value": 4.676507667,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Share of total onset-token variance explained by batch-size main effects",
+      "unit": "percent"
+    },
+    "residual_share_of_total_variance_pct": {
+      "type": "number",
+      "value": 45.806271720000005,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Share of total onset-token variance in prompt-by-batch interaction residual",
+      "unit": "percent"
+    },
+    "grand_mean_censored_onset_tokens": {
+      "type": "number",
+      "value": 149.1826923,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Grand mean censored onset token across all 8 prompts and 13 multi-request batch sizes",
+      "unit": "tokens"
+    },
+    "spearman_rho_min": {
+      "type": "number",
+      "value": -0.487556551,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Minimum within-prompt Spearman rank correlation between batch size B and censored onset token"
+    },
+    "spearman_rho_max": {
+      "type": "number",
+      "value": 0.2185543868,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Maximum within-prompt Spearman rank correlation between batch size B and censored onset token"
+    },
+    "spearman_rho_median": {
+      "type": "number",
+      "value": -0.103336621635,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Median within-prompt Spearman rank correlation between batch size B and censored onset token"
+    },
+    "torch_mm_fp32_max_diff": {
+      "type": "number",
+      "value": 1406.75,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Maximum absolute difference between B=1 and B=2048 float32 torch.mm on row 0"
+    },
+    "torch_mm_bf16_max_diff": {
+      "type": "number",
+      "value": 8192,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Maximum absolute difference between B=1 and B=2048 bfloat16 torch.mm on row 0"
+    },
+    "median_b1_margin_at_flip_steps": {
+      "type": "number",
+      "value": 0.125,
+      "format": {
+        "style": "fixed",
+        "digits": 3
+      },
+      "description": "Median B=1 top-1 minus top-2 logit margin at token steps where batch divergence occurred",
+      "unit": "logit units"
+    },
+    "max_b1_margin_at_flip_steps": {
+      "type": "number",
+      "value": 0.5,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Maximum B=1 top-1 minus top-2 logit margin at any token step where batch divergence occurred",
+      "unit": "logit units"
+    },
+    "median_b1_margin_at_nonflip_steps": {
+      "type": "number",
+      "value": 6.0625,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Median across prompts of the median B=1 top-1 minus top-2 logit margin at non-flipping steps",
+      "unit": "logit units"
+    },
+    "feynman_neighbor_b8_mismatches": {
+      "type": "integer",
+      "value": 0,
+      "description": "Token mismatches in slot 0 at B=8 when rows 1..7 contain distinct tokens vs identical copies",
+      "unit": "tokens"
+    },
+    "feynman_neighbor_b32_mismatches": {
+      "type": "integer",
+      "value": 0,
+      "description": "Token mismatches in slot 0 at B=32 when rows 1..31 contain distinct tokens vs identical copies",
+      "unit": "tokens"
+    },
+    "feynman_neighbor_max_logit_diff": {
+      "type": "number",
+      "value": 0,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Maximum step-1 logit difference in slot 0 between heterogeneous and homogeneous co-batches at B=8 and B=32",
+      "unit": "logit units"
+    },
+    "all_intra_batch_rows_identical": {
+      "type": "boolean",
+      "value": true,
+      "description": "Whether all B identical rows inside every homogeneous batch produced identical 256-token sequences"
+    },
+    "method_fidelity_passed": {
+      "type": "boolean",
+      "value": true,
+      "description": "Whether run-to-run determinism, matmul non-invariance, KV equivalence, and signal floor gates passed"
+    },
+    "hypothesis_supported": {
+      "type": "boolean",
+      "value": false,
+      "description": "Whether the preregistered batch-size-graded onset hypothesis was supported"
+    },
+    "hypothesis_falsified": {
+      "type": "boolean",
+      "value": true,
+      "description": "Whether the preregistered batch-size-graded onset hypothesis was falsified"
+    },
+    "result_inconclusive": {
+      "type": "boolean",
+      "value": false,
+      "description": "Whether the preregistered result was inconclusive"
+    },
+    "b2_diverged_prompts": {
+      "type": "integer",
+      "value": 7,
+      "description": "Number of prompts (out of 8) diverging from B=1 within 256 tokens at batch size 2",
+      "unit": "prompts"
+    },
+    "b2_mean_censored_onset": {
+      "type": "number",
+      "value": 143.75,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Mean censored onset token across 8 prompts at batch size 2",
+      "unit": "tokens"
+    },
+    "b2_mean_step1_logit_diff": {
+      "type": "number",
+      "value": 0.1171875,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Mean step-1 max absolute logit difference vs B=1 across 8 prompts at batch size 2",
+      "unit": "logit units"
+    },
+    "b2_max_step1_logit_diff": {
+      "type": "number",
+      "value": 0.25,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Maximum step-1 max absolute logit difference vs B=1 across 8 prompts at batch size 2",
+      "unit": "logit units"
+    },
+    "b3_diverged_prompts": {
+      "type": "integer",
+      "value": 6,
+      "description": "Number of prompts (out of 8) diverging from B=1 within 256 tokens at batch size 3",
+      "unit": "prompts"
+    },
+    "b3_mean_censored_onset": {
+      "type": "number",
+      "value": 150.25,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Mean censored onset token across 8 prompts at batch size 3",
+      "unit": "tokens"
+    },
+    "b3_mean_step1_logit_diff": {
+      "type": "number",
+      "value": 0.3447265625,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Mean step-1 max absolute logit difference vs B=1 across 8 prompts at batch size 3",
+      "unit": "logit units"
+    },
+    "b3_max_step1_logit_diff": {
+      "type": "number",
+      "value": 0.5,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Maximum step-1 max absolute logit difference vs B=1 across 8 prompts at batch size 3",
+      "unit": "logit units"
+    },
+    "b4_diverged_prompts": {
+      "type": "integer",
+      "value": 6,
+      "description": "Number of prompts (out of 8) diverging from B=1 within 256 tokens at batch size 4",
+      "unit": "prompts"
+    },
+    "b4_mean_censored_onset": {
+      "type": "number",
+      "value": 175.5,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Mean censored onset token across 8 prompts at batch size 4",
+      "unit": "tokens"
+    },
+    "b4_mean_step1_logit_diff": {
+      "type": "number",
+      "value": 0.3154296875,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Mean step-1 max absolute logit difference vs B=1 across 8 prompts at batch size 4",
+      "unit": "logit units"
+    },
+    "b4_max_step1_logit_diff": {
+      "type": "number",
+      "value": 0.5,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Maximum step-1 max absolute logit difference vs B=1 across 8 prompts at batch size 4",
+      "unit": "logit units"
+    },
+    "b6_diverged_prompts": {
+      "type": "integer",
+      "value": 5,
+      "description": "Number of prompts (out of 8) diverging from B=1 within 256 tokens at batch size 6",
+      "unit": "prompts"
+    },
+    "b6_mean_censored_onset": {
+      "type": "number",
+      "value": 171.625,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Mean censored onset token across 8 prompts at batch size 6",
+      "unit": "tokens"
+    },
+    "b6_mean_step1_logit_diff": {
+      "type": "number",
+      "value": 0.09375,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Mean step-1 max absolute logit difference vs B=1 across 8 prompts at batch size 6",
+      "unit": "logit units"
+    },
+    "b6_max_step1_logit_diff": {
+      "type": "number",
+      "value": 0.25,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Maximum step-1 max absolute logit difference vs B=1 across 8 prompts at batch size 6",
+      "unit": "logit units"
+    },
+    "b8_diverged_prompts": {
+      "type": "integer",
+      "value": 6,
+      "description": "Number of prompts (out of 8) diverging from B=1 within 256 tokens at batch size 8",
+      "unit": "prompts"
+    },
+    "b8_mean_censored_onset": {
+      "type": "number",
+      "value": 175.125,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Mean censored onset token across 8 prompts at batch size 8",
+      "unit": "tokens"
+    },
+    "b8_mean_step1_logit_diff": {
+      "type": "number",
+      "value": 0.1171875,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Mean step-1 max absolute logit difference vs B=1 across 8 prompts at batch size 8",
+      "unit": "logit units"
+    },
+    "b8_max_step1_logit_diff": {
+      "type": "number",
+      "value": 0.25,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Maximum step-1 max absolute logit difference vs B=1 across 8 prompts at batch size 8",
+      "unit": "logit units"
+    },
+    "b12_diverged_prompts": {
+      "type": "integer",
+      "value": 5,
+      "description": "Number of prompts (out of 8) diverging from B=1 within 256 tokens at batch size 12",
+      "unit": "prompts"
+    },
+    "b12_mean_censored_onset": {
+      "type": "number",
+      "value": 143.75,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Mean censored onset token across 8 prompts at batch size 12",
+      "unit": "tokens"
+    },
+    "b12_mean_step1_logit_diff": {
+      "type": "number",
+      "value": 0.3371582031,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Mean step-1 max absolute logit difference vs B=1 across 8 prompts at batch size 12",
+      "unit": "logit units"
+    },
+    "b12_max_step1_logit_diff": {
+      "type": "number",
+      "value": 0.5,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Maximum step-1 max absolute logit difference vs B=1 across 8 prompts at batch size 12",
+      "unit": "logit units"
+    },
+    "b16_diverged_prompts": {
+      "type": "integer",
+      "value": 5,
+      "description": "Number of prompts (out of 8) diverging from B=1 within 256 tokens at batch size 16",
+      "unit": "prompts"
+    },
+    "b16_mean_censored_onset": {
+      "type": "number",
+      "value": 169.125,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Mean censored onset token across 8 prompts at batch size 16",
+      "unit": "tokens"
+    },
+    "b16_mean_step1_logit_diff": {
+      "type": "number",
+      "value": 0.39453125,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Mean step-1 max absolute logit difference vs B=1 across 8 prompts at batch size 16",
+      "unit": "logit units"
+    },
+    "b16_max_step1_logit_diff": {
+      "type": "number",
+      "value": 0.5,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Maximum step-1 max absolute logit difference vs B=1 across 8 prompts at batch size 16",
+      "unit": "logit units"
+    },
+    "b24_diverged_prompts": {
+      "type": "integer",
+      "value": 6,
+      "description": "Number of prompts (out of 8) diverging from B=1 within 256 tokens at batch size 24",
+      "unit": "prompts"
+    },
+    "b24_mean_censored_onset": {
+      "type": "number",
+      "value": 107.25,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Mean censored onset token across 8 prompts at batch size 24",
+      "unit": "tokens"
+    },
+    "b24_mean_step1_logit_diff": {
+      "type": "number",
+      "value": 0.3793945312,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Mean step-1 max absolute logit difference vs B=1 across 8 prompts at batch size 24",
+      "unit": "logit units"
+    },
+    "b24_max_step1_logit_diff": {
+      "type": "number",
+      "value": 0.5,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Maximum step-1 max absolute logit difference vs B=1 across 8 prompts at batch size 24",
+      "unit": "logit units"
+    },
+    "b32_diverged_prompts": {
+      "type": "integer",
+      "value": 7,
+      "description": "Number of prompts (out of 8) diverging from B=1 within 256 tokens at batch size 32",
+      "unit": "prompts"
+    },
+    "b32_mean_censored_onset": {
+      "type": "number",
+      "value": 120.125,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Mean censored onset token across 8 prompts at batch size 32",
+      "unit": "tokens"
+    },
+    "b32_mean_step1_logit_diff": {
+      "type": "number",
+      "value": 0.3059082031,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Mean step-1 max absolute logit difference vs B=1 across 8 prompts at batch size 32",
+      "unit": "logit units"
+    },
+    "b32_max_step1_logit_diff": {
+      "type": "number",
+      "value": 0.375,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Maximum step-1 max absolute logit difference vs B=1 across 8 prompts at batch size 32",
+      "unit": "logit units"
+    },
+    "b48_diverged_prompts": {
+      "type": "integer",
+      "value": 7,
+      "description": "Number of prompts (out of 8) diverging from B=1 within 256 tokens at batch size 48",
+      "unit": "prompts"
+    },
+    "b48_mean_censored_onset": {
+      "type": "number",
+      "value": 137.625,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Mean censored onset token across 8 prompts at batch size 48",
+      "unit": "tokens"
+    },
+    "b48_mean_step1_logit_diff": {
+      "type": "number",
+      "value": 0.3425292969,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Mean step-1 max absolute logit difference vs B=1 across 8 prompts at batch size 48",
+      "unit": "logit units"
+    },
+    "b48_max_step1_logit_diff": {
+      "type": "number",
+      "value": 0.5,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Maximum step-1 max absolute logit difference vs B=1 across 8 prompts at batch size 48",
+      "unit": "logit units"
+    },
+    "b64_diverged_prompts": {
+      "type": "integer",
+      "value": 6,
+      "description": "Number of prompts (out of 8) diverging from B=1 within 256 tokens at batch size 64",
+      "unit": "prompts"
+    },
+    "b64_mean_censored_onset": {
+      "type": "number",
+      "value": 143.375,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Mean censored onset token across 8 prompts at batch size 64",
+      "unit": "tokens"
+    },
+    "b64_mean_step1_logit_diff": {
+      "type": "number",
+      "value": 0.3406982422,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Mean step-1 max absolute logit difference vs B=1 across 8 prompts at batch size 64",
+      "unit": "logit units"
+    },
+    "b64_max_step1_logit_diff": {
+      "type": "number",
+      "value": 0.5,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Maximum step-1 max absolute logit difference vs B=1 across 8 prompts at batch size 64",
+      "unit": "logit units"
+    },
+    "b96_diverged_prompts": {
+      "type": "integer",
+      "value": 6,
+      "description": "Number of prompts (out of 8) diverging from B=1 within 256 tokens at batch size 96",
+      "unit": "prompts"
+    },
+    "b96_mean_censored_onset": {
+      "type": "number",
+      "value": 153.75,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Mean censored onset token across 8 prompts at batch size 96",
+      "unit": "tokens"
+    },
+    "b96_mean_step1_logit_diff": {
+      "type": "number",
+      "value": 0.3732910156,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Mean step-1 max absolute logit difference vs B=1 across 8 prompts at batch size 96",
+      "unit": "logit units"
+    },
+    "b96_max_step1_logit_diff": {
+      "type": "number",
+      "value": 0.5,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Maximum step-1 max absolute logit difference vs B=1 across 8 prompts at batch size 96",
+      "unit": "logit units"
+    },
+    "b128_diverged_prompts": {
+      "type": "integer",
+      "value": 7,
+      "description": "Number of prompts (out of 8) diverging from B=1 within 256 tokens at batch size 128",
+      "unit": "prompts"
+    },
+    "b128_mean_censored_onset": {
+      "type": "number",
+      "value": 148.125,
+      "format": {
+        "style": "fixed",
+        "digits": 1
+      },
+      "description": "Mean censored onset token across 8 prompts at batch size 128",
+      "unit": "tokens"
+    },
+    "b128_mean_step1_logit_diff": {
+      "type": "number",
+      "value": 0.34375,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Mean step-1 max absolute logit difference vs B=1 across 8 prompts at batch size 128",
+      "unit": "logit units"
+    },
+    "b128_max_step1_logit_diff": {
+      "type": "number",
+      "value": 0.5,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Maximum step-1 max absolute logit difference vs B=1 across 8 prompts at batch size 128",
+      "unit": "logit units"
+    },
+    "p1_feynman_unique_completions": {
+      "type": "integer",
+      "value": 8,
+      "description": "Distinct 256-token completions across the 14 batch sizes for P1_feynman",
+      "unit": "completions"
+    },
+    "p1_feynman_diverging_batches": {
+      "type": "integer",
+      "value": 12,
+      "description": "Number of multi-request batch sizes (out of 13) diverging from B=1 for P1_feynman",
+      "unit": "batches"
+    },
+    "p1_feynman_min_onset": {
+      "type": "integer",
+      "value": 62,
+      "description": "Earliest divergence token across B >= 2 for P1_feynman",
+      "unit": "token"
+    },
+    "p1_feynman_max_uncensored_onset": {
+      "type": "integer",
+      "value": 115,
+      "description": "Latest uncensored divergence token across B >= 2 for P1_feynman",
+      "unit": "token"
+    },
+    "p1_feynman_spearman_rho": {
+      "type": "number",
+      "value": 0.2185543868,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Spearman rank correlation between batch size and censored onset token for P1_feynman"
+    },
+    "p2_noether_unique_completions": {
+      "type": "integer",
+      "value": 4,
+      "description": "Distinct 256-token completions across the 14 batch sizes for P2_noether",
+      "unit": "completions"
+    },
+    "p2_noether_diverging_batches": {
+      "type": "integer",
+      "value": 6,
+      "description": "Number of multi-request batch sizes (out of 13) diverging from B=1 for P2_noether",
+      "unit": "batches"
+    },
+    "p2_noether_min_onset": {
+      "type": "integer",
+      "value": 84,
+      "description": "Earliest divergence token across B >= 2 for P2_noether",
+      "unit": "token"
+    },
+    "p2_noether_max_uncensored_onset": {
+      "type": "integer",
+      "value": 247,
+      "description": "Latest uncensored divergence token across B >= 2 for P2_noether",
+      "unit": "token"
+    },
+    "p2_noether_spearman_rho": {
+      "type": "number",
+      "value": -0.07894316317,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Spearman rank correlation between batch size and censored onset token for P2_noether"
+    },
+    "p3_lavoisier_unique_completions": {
+      "type": "integer",
+      "value": 14,
+      "description": "Distinct 256-token completions across the 14 batch sizes for P3_lavoisier",
+      "unit": "completions"
+    },
+    "p3_lavoisier_diverging_batches": {
+      "type": "integer",
+      "value": 13,
+      "description": "Number of multi-request batch sizes (out of 13) diverging from B=1 for P3_lavoisier",
+      "unit": "batches"
+    },
+    "p3_lavoisier_min_onset": {
+      "type": "integer",
+      "value": 24,
+      "description": "Earliest divergence token across B >= 2 for P3_lavoisier",
+      "unit": "token"
+    },
+    "p3_lavoisier_max_uncensored_onset": {
+      "type": "integer",
+      "value": 143,
+      "description": "Latest uncensored divergence token across B >= 2 for P3_lavoisier",
+      "unit": "token"
+    },
+    "p3_lavoisier_spearman_rho": {
+      "type": "number",
+      "value": -0.487556551,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Spearman rank correlation between batch size and censored onset token for P3_lavoisier"
+    },
+    "p4_turing_unique_completions": {
+      "type": "integer",
+      "value": 4,
+      "description": "Distinct 256-token completions across the 14 batch sizes for P4_turing",
+      "unit": "completions"
+    },
+    "p4_turing_diverging_batches": {
+      "type": "integer",
+      "value": 7,
+      "description": "Number of multi-request batch sizes (out of 13) diverging from B=1 for P4_turing",
+      "unit": "batches"
+    },
+    "p4_turing_min_onset": {
+      "type": "integer",
+      "value": 250,
+      "description": "Earliest divergence token across B >= 2 for P4_turing",
+      "unit": "token"
+    },
+    "p4_turing_max_uncensored_onset": {
+      "type": "integer",
+      "value": 256,
+      "description": "Latest uncensored divergence token across B >= 2 for P4_turing",
+      "unit": "token"
+    },
+    "p4_turing_spearman_rho": {
+      "type": "number",
+      "value": -0.0263292993,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Spearman rank correlation between batch size and censored onset token for P4_turing"
+    },
+    "p5_curie_unique_completions": {
+      "type": "integer",
+      "value": 9,
+      "description": "Distinct 256-token completions across the 14 batch sizes for P5_curie",
+      "unit": "completions"
+    },
+    "p5_curie_diverging_batches": {
+      "type": "integer",
+      "value": 12,
+      "description": "Number of multi-request batch sizes (out of 13) diverging from B=1 for P5_curie",
+      "unit": "batches"
+    },
+    "p5_curie_min_onset": {
+      "type": "integer",
+      "value": 1,
+      "description": "Earliest divergence token across B >= 2 for P5_curie",
+      "unit": "token"
+    },
+    "p5_curie_max_uncensored_onset": {
+      "type": "integer",
+      "value": 238,
+      "description": "Latest uncensored divergence token across B >= 2 for P5_curie",
+      "unit": "token"
+    },
+    "p5_curie_spearman_rho": {
+      "type": "number",
+      "value": -0.2402096656,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Spearman rank correlation between batch size and censored onset token for P5_curie"
+    },
+    "p6_boltzmann_unique_completions": {
+      "type": "integer",
+      "value": 10,
+      "description": "Distinct 256-token completions across the 14 batch sizes for P6_boltzmann",
+      "unit": "completions"
+    },
+    "p6_boltzmann_diverging_batches": {
+      "type": "integer",
+      "value": 11,
+      "description": "Number of multi-request batch sizes (out of 13) diverging from B=1 for P6_boltzmann",
+      "unit": "batches"
+    },
+    "p6_boltzmann_min_onset": {
+      "type": "integer",
+      "value": 28,
+      "description": "Earliest divergence token across B >= 2 for P6_boltzmann",
+      "unit": "token"
+    },
+    "p6_boltzmann_max_uncensored_onset": {
+      "type": "integer",
+      "value": 239,
+      "description": "Latest uncensored divergence token across B >= 2 for P6_boltzmann",
+      "unit": "token"
+    },
+    "p6_boltzmann_spearman_rho": {
+      "type": "number",
+      "value": -0.1277300801,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Spearman rank correlation between batch size and censored onset token for P6_boltzmann"
+    },
+    "p7_maxwell_unique_completions": {
+      "type": "integer",
+      "value": 6,
+      "description": "Distinct 256-token completions across the 14 batch sizes for P7_maxwell",
+      "unit": "completions"
+    },
+    "p7_maxwell_diverging_batches": {
+      "type": "integer",
+      "value": 6,
+      "description": "Number of multi-request batch sizes (out of 13) diverging from B=1 for P7_maxwell",
+      "unit": "batches"
+    },
+    "p7_maxwell_min_onset": {
+      "type": "integer",
+      "value": 14,
+      "description": "Earliest divergence token across B >= 2 for P7_maxwell",
+      "unit": "token"
+    },
+    "p7_maxwell_max_uncensored_onset": {
+      "type": "integer",
+      "value": 134,
+      "description": "Latest uncensored divergence token across B >= 2 for P7_maxwell",
+      "unit": "token"
+    },
+    "p7_maxwell_spearman_rho": {
+      "type": "number",
+      "value": 0.1827756891,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Spearman rank correlation between batch size and censored onset token for P7_maxwell"
+    },
+    "p8_thermodynamics_unique_completions": {
+      "type": "integer",
+      "value": 9,
+      "description": "Distinct 256-token completions across the 14 batch sizes for P8_thermodynamics",
+      "unit": "completions"
+    },
+    "p8_thermodynamics_diverging_batches": {
+      "type": "integer",
+      "value": 12,
+      "description": "Number of multi-request batch sizes (out of 13) diverging from B=1 for P8_thermodynamics",
+      "unit": "batches"
+    },
+    "p8_thermodynamics_min_onset": {
+      "type": "integer",
+      "value": 59,
+      "description": "Earliest divergence token across B >= 2 for P8_thermodynamics",
+      "unit": "token"
+    },
+    "p8_thermodynamics_max_uncensored_onset": {
+      "type": "integer",
+      "value": 183,
+      "description": "Latest uncensored divergence token across B >= 2 for P8_thermodynamics",
+      "unit": "token"
+    },
+    "p8_thermodynamics_spearman_rho": {
+      "type": "number",
+      "value": -0.2490490677,
+      "format": {
+        "style": "fixed",
+        "digits": 2
+      },
+      "description": "Spearman rank correlation between batch size and censored onset token for P8_thermodynamics"
+    },
+    "p1_feynman_modal_onset_token": {
+      "type": "integer",
+      "value": 69,
+      "description": "Modal divergence onset token on the Richard Feynman prompt",
+      "unit": "token"
+    },
+    "p1_feynman_modal_onset_batch_count": {
+      "type": "integer",
+      "value": 9,
+      "description": "Number of multi-request batch sizes (out of 13) that diverged at token 69 on the Richard Feynman prompt",
+      "unit": "batches"
+    }
+  }
+}

@@ -1,0 +1,2537 @@
+{
+  "schema_version": 1,
+  "experiment": "batch-size-divergence-onset",
+  "generated_at": "2026-11-26T23:50:00Z",
+  "provenance": {
+    "inputs": {
+      "path": "research/batch-size-divergence-onset/inputs.json",
+      "sha256": "d54fb35c5701079d89c3bb98af9b0b503eba5e62b2b341de7eaddb0a899ac9f4"
+    },
+    "preregistration": {
+      "path": "research/batch-size-divergence-onset/PREREGISTRATION.md",
+      "sha256": "03a4aec4c2a52a7705b35bff20d3f78c9e9730fea04b6ed2c08b9b35d5ae2e29"
+    },
+    "run_artifacts": [
+      {
+        "path": "research/batch-size-divergence-onset/runs/smoke_and_mm_check.json",
+        "sha256": "44c234b97f1eeea1db2fc358c97867979e90c8344d81ab82106b6718d43421af"
+      },
+      {
+        "path": "research/batch-size-divergence-onset/runs/environment_colab.json",
+        "sha256": "036cbedeab2fe273a9be92427e1a48e91faa81f50aa750a3e9c6f88739bc8728"
+      },
+      {
+        "path": "research/batch-size-divergence-onset/runs/P1_feynman.json",
+        "sha256": "a10136b836be6c2b8b3ba896bdd7105286adc3798a423a8f70ff8bda98b98796"
+      },
+      {
+        "path": "research/batch-size-divergence-onset/runs/P2_noether.json",
+        "sha256": "5d6ba3aa65293e0aba7466d5db8105a4f3b386b53275a2f4e3b4dd705cbbc21e"
+      },
+      {
+        "path": "research/batch-size-divergence-onset/runs/P3_lavoisier.json",
+        "sha256": "04b10473ab3a3f1a3091918f1d8d402548a8f866c900156e33685115b9c8f64f"
+      },
+      {
+        "path": "research/batch-size-divergence-onset/runs/P4_turing.json",
+        "sha256": "f8925d32ccd1c2dff406b3696ca7ae14048c3782763e8eb9e77a4141d159caee"
+      },
+      {
+        "path": "research/batch-size-divergence-onset/runs/P5_curie.json",
+        "sha256": "7b7dca392cc2d8f9043bf00a7f1ffcc1c294e83b4b7aa113f053b73ef743fb53"
+      },
+      {
+        "path": "research/batch-size-divergence-onset/runs/P6_boltzmann.json",
+        "sha256": "e7ed8b498ff4f1e39812ef7e5e2a8859210896cd82fbcaff0231ccba523a6dd5"
+      },
+      {
+        "path": "research/batch-size-divergence-onset/runs/P7_maxwell.json",
+        "sha256": "bb77ac106c8f3c585a156aa0a885c0597740d4991c13e4b8a2f9ae59127ee04c"
+      },
+      {
+        "path": "research/batch-size-divergence-onset/runs/P8_thermodynamics.json",
+        "sha256": "98b1330100daa2a8196048d514be6d8554356afdafefbfca0e11ef11a933bcf6"
+      }
+    ]
+  },
+  "protocol": {
+    "conditions": {
+      "model_id": "Qwen/Qwen3-4B-Instruct-2507",
+      "dtype": "bfloat16",
+      "max_new_tokens": 256,
+      "censored_onset_value": 257,
+      "batch_sizes": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        8,
+        12,
+        16,
+        24,
+        32,
+        48,
+        64,
+        96,
+        128
+      ],
+      "determinism_check_batch_sizes": [
+        1,
+        32
+      ],
+      "neighbor_content_control_batch_sizes": [
+        8,
+        32
+      ],
+      "mm_check_b": 2048,
+      "mm_check_d": 4096
+    },
+    "decision": {
+      "min_diverging_prompts": 4,
+      "min_median_within_prompt_onset_range_tokens": 5.0,
+      "min_batch_to_prompt_variance_ratio": 0.25
+    }
+  },
+  "smoke_and_mm_check": {
+    "completed_at": "2026-11-26T23:17:37.355742+00:00",
+    "torch_mm_fp32_max_abs_diff": 1406.75,
+    "torch_mm_fp32_repeat_diff": 0.0,
+    "torch_mm_bf16_max_abs_diff": 8192.0,
+    "torch_mm_bf16_repeat_diff": 0.0,
+    "kv_loop_matches_hf_generate": true,
+    "toy_decoded_preview": "One, two, three, four, five.<|im_end|>\n<|im_end|>\n<|endoftext|>Human",
+    "elapsed_seconds": 1.965
+  },
+  "summary": {
+    "n_prompts_total": 8,
+    "n_diverging_prompts": 8,
+    "median_within_prompt_censored_range_tokens": 196.5,
+    "median_within_prompt_uncensored_range_tokens": 122.0,
+    "min_unique_completions_per_prompt": 4,
+    "max_unique_completions_per_prompt": 14,
+    "median_unique_completions_per_prompt": 8.5,
+    "median_b1_margin_at_flip_steps": 0.125,
+    "max_b1_margin_at_flip_steps": 0.5,
+    "median_b1_margin_at_nonflip_steps": 6.0625,
+    "all_intra_batch_rows_identical": true,
+    "two_way_anova_all_prompts": {
+      "grand_mean_tokens": 149.1826923,
+      "var_prompt_main_effect": 4169.519138,
+      "var_batch_main_effect": 393.7779216,
+      "var_interaction_residual": 3857.044564,
+      "var_total": 8420.341624,
+      "prompt_share_of_total": 0.4951722062,
+      "batch_share_of_total": 0.04676507667,
+      "residual_share_of_total": 0.4580627172,
+      "batch_to_prompt_variance_ratio": 0.0944420468
+    },
+    "two_way_anova_diverging_prompts": {
+      "grand_mean_tokens": 149.1826923,
+      "var_prompt_main_effect": 4169.519138,
+      "var_batch_main_effect": 393.7779216,
+      "var_interaction_residual": 3857.044564,
+      "var_total": 8420.341624,
+      "prompt_share_of_total": 0.4951722062,
+      "batch_share_of_total": 0.04676507667,
+      "residual_share_of_total": 0.4580627172,
+      "batch_to_prompt_variance_ratio": 0.0944420468
+    },
+    "non_flat_criterion_passed": true,
+    "not_prompt_dominated_criterion_passed": false
+  },
+  "batch_size_curve": {
+    "2": {
+      "n_prompts_diverged": 7,
+      "fraction_prompts_diverged": 0.875,
+      "mean_censored_onset_tokens": 143.75,
+      "median_censored_onset_tokens": 144.0,
+      "median_uncensored_onset_tokens": 127.0,
+      "mean_step1_logit_max_abs_diff": 0.1171875,
+      "max_step1_logit_max_abs_diff": 0.25
+    },
+    "3": {
+      "n_prompts_diverged": 6,
+      "fraction_prompts_diverged": 0.75,
+      "mean_censored_onset_tokens": 150.25,
+      "median_censored_onset_tokens": 142.0,
+      "median_uncensored_onset_tokens": 107.0,
+      "mean_step1_logit_max_abs_diff": 0.3447265625,
+      "max_step1_logit_max_abs_diff": 0.5
+    },
+    "4": {
+      "n_prompts_diverged": 6,
+      "fraction_prompts_diverged": 0.75,
+      "mean_censored_onset_tokens": 175.5,
+      "median_censored_onset_tokens": 211.0,
+      "median_uncensored_onset_tokens": 163.0,
+      "mean_step1_logit_max_abs_diff": 0.3154296875,
+      "max_step1_logit_max_abs_diff": 0.5
+    },
+    "6": {
+      "n_prompts_diverged": 5,
+      "fraction_prompts_diverged": 0.625,
+      "mean_censored_onset_tokens": 171.625,
+      "median_censored_onset_tokens": 187.0,
+      "median_uncensored_onset_tokens": 115.0,
+      "mean_step1_logit_max_abs_diff": 0.09375,
+      "max_step1_logit_max_abs_diff": 0.25
+    },
+    "8": {
+      "n_prompts_diverged": 6,
+      "fraction_prompts_diverged": 0.75,
+      "mean_censored_onset_tokens": 175.125,
+      "median_censored_onset_tokens": 204.0,
+      "median_uncensored_onset_tokens": 144.0,
+      "mean_step1_logit_max_abs_diff": 0.1171875,
+      "max_step1_logit_max_abs_diff": 0.25
+    },
+    "12": {
+      "n_prompts_diverged": 5,
+      "fraction_prompts_diverged": 0.625,
+      "mean_censored_onset_tokens": 143.75,
+      "median_censored_onset_tokens": 132.5,
+      "median_uncensored_onset_tokens": 69.0,
+      "mean_step1_logit_max_abs_diff": 0.3371582031,
+      "max_step1_logit_max_abs_diff": 0.5
+    },
+    "16": {
+      "n_prompts_diverged": 5,
+      "fraction_prompts_diverged": 0.625,
+      "mean_censored_onset_tokens": 169.125,
+      "median_censored_onset_tokens": 197.5,
+      "median_uncensored_onset_tokens": 88.0,
+      "mean_step1_logit_max_abs_diff": 0.39453125,
+      "max_step1_logit_max_abs_diff": 0.5
+    },
+    "24": {
+      "n_prompts_diverged": 6,
+      "fraction_prompts_diverged": 0.75,
+      "mean_censored_onset_tokens": 107.25,
+      "median_censored_onset_tokens": 60.5,
+      "median_uncensored_onset_tokens": 43.5,
+      "mean_step1_logit_max_abs_diff": 0.3793945312,
+      "max_step1_logit_max_abs_diff": 0.5
+    },
+    "32": {
+      "n_prompts_diverged": 7,
+      "fraction_prompts_diverged": 0.875,
+      "mean_censored_onset_tokens": 120.125,
+      "median_censored_onset_tokens": 104.0,
+      "median_uncensored_onset_tokens": 88.0,
+      "mean_step1_logit_max_abs_diff": 0.3059082031,
+      "max_step1_logit_max_abs_diff": 0.375
+    },
+    "48": {
+      "n_prompts_diverged": 7,
+      "fraction_prompts_diverged": 0.875,
+      "mean_censored_onset_tokens": 137.625,
+      "median_censored_onset_tokens": 127.0,
+      "median_uncensored_onset_tokens": 120.0,
+      "mean_step1_logit_max_abs_diff": 0.3425292969,
+      "max_step1_logit_max_abs_diff": 0.5
+    },
+    "64": {
+      "n_prompts_diverged": 6,
+      "fraction_prompts_diverged": 0.75,
+      "mean_censored_onset_tokens": 143.375,
+      "median_censored_onset_tokens": 105.5,
+      "median_uncensored_onset_tokens": 79.5,
+      "mean_step1_logit_max_abs_diff": 0.3406982422,
+      "max_step1_logit_max_abs_diff": 0.5
+    },
+    "96": {
+      "n_prompts_diverged": 6,
+      "fraction_prompts_diverged": 0.75,
+      "mean_censored_onset_tokens": 153.75,
+      "median_censored_onset_tokens": 151.5,
+      "median_uncensored_onset_tokens": 112.0,
+      "mean_step1_logit_max_abs_diff": 0.3732910156,
+      "max_step1_logit_max_abs_diff": 0.5
+    },
+    "128": {
+      "n_prompts_diverged": 7,
+      "fraction_prompts_diverged": 0.875,
+      "mean_censored_onset_tokens": 148.125,
+      "median_censored_onset_tokens": 140.5,
+      "median_uncensored_onset_tokens": 120.0,
+      "mean_step1_logit_max_abs_diff": 0.34375,
+      "max_step1_logit_max_abs_diff": 0.5
+    }
+  },
+  "prompts": {
+    "P1_feynman": {
+      "label": "Richard Feynman",
+      "prompt_text": "Tell me about Richard Feynman",
+      "prompt_token_length": 15,
+      "determinism_passed": true,
+      "diverged_at_any_b": true,
+      "n_diverging_batch_sizes": 12,
+      "n_unique_completions_across_14_batches": 8,
+      "equivalence_classes": [
+        {
+          "batch_sizes": [
+            1,
+            48
+          ],
+          "matches_b1": true
+        },
+        {
+          "batch_sizes": [
+            2,
+            64
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            3
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            4,
+            8,
+            32
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            6
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            12,
+            16,
+            96
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            24
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            128
+          ],
+          "matches_b1": false
+        }
+      ],
+      "min_onset_token": 62,
+      "max_onset_token_uncensored": 115,
+      "within_prompt_censored_onset_range_tokens": 195.0,
+      "within_prompt_uncensored_onset_range_tokens": 53.0,
+      "spearman_rho_batch_vs_censored_onset": 0.2185543868,
+      "b1_min_margin": 0.0,
+      "b1_median_margin": 6.8125,
+      "neighbor_content_control": {
+        "8": {
+          "batch_size": 8,
+          "token_mismatches_vs_homogeneous_same_b": 0,
+          "step1_logit_max_abs_diff_vs_homogeneous_same_b": 0.0,
+          "onset_token_vs_b1": 69
+        },
+        "32": {
+          "batch_size": 32,
+          "token_mismatches_vs_homogeneous_same_b": 0,
+          "step1_logit_max_abs_diff_vs_homogeneous_same_b": 0.0,
+          "onset_token_vs_b1": 69
+        }
+      },
+      "batches": {
+        "2": {
+          "diverged": true,
+          "onset_token_1indexed": 69,
+          "censored_onset_token": 69,
+          "step1_logit_max_abs_diff_vs_b1": 0.25,
+          "b1_top1_minus_top2_margin_at_onset": 0.25,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 69,
+            "shared_context_tail": " figure in science and education.\n\n### Key",
+            "b1_token_id": 96004,
+            "b1_token_str": " Contributions",
+            "b1_continuation": " Contributions to Science:\n\n1. **F",
+            "b_token_id": 44983,
+            "b_token_str": " Facts",
+            "b_continuation": " Facts About Richard Feynman:\n\n####"
+          }
+        },
+        "3": {
+          "diverged": true,
+          "onset_token_1indexed": 69,
+          "censored_onset_token": 69,
+          "step1_logit_max_abs_diff_vs_b1": 0.5,
+          "b1_top1_minus_top2_margin_at_onset": 0.25,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 69,
+            "shared_context_tail": " figure in science and education.\n\n### Key",
+            "b1_token_id": 96004,
+            "b1_token_str": " Contributions",
+            "b1_continuation": " Contributions to Science:\n\n1. **F",
+            "b_token_id": 44983,
+            "b_token_str": " Facts",
+            "b_continuation": " Facts About Richard Feynman:\n\n####"
+          }
+        },
+        "4": {
+          "diverged": true,
+          "onset_token_1indexed": 69,
+          "censored_onset_token": 69,
+          "step1_logit_max_abs_diff_vs_b1": 0.5,
+          "b1_top1_minus_top2_margin_at_onset": 0.25,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 69,
+            "shared_context_tail": " figure in science and education.\n\n### Key",
+            "b1_token_id": 96004,
+            "b1_token_str": " Contributions",
+            "b1_continuation": " Contributions to Science:\n\n1. **F",
+            "b_token_id": 44983,
+            "b_token_str": " Facts",
+            "b_continuation": " Facts About Richard Feynman:\n\n####"
+          }
+        },
+        "6": {
+          "diverged": true,
+          "onset_token_1indexed": 115,
+          "censored_onset_token": 115,
+          "step1_logit_max_abs_diff_vs_b1": 0.25,
+          "b1_top1_minus_top2_margin_at_onset": 0.0,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 115,
+            "shared_context_tail": " field theory. These diagrams simplify complex calculations",
+            "b1_token_id": 304,
+            "b1_token_str": " in",
+            "b1_continuation": " in quantum electrodynamics (QED",
+            "b_token_id": 15860,
+            "b_token_str": " involving",
+            "b_continuation": " involving subatomic particles and their interactions ("
+          }
+        },
+        "8": {
+          "diverged": true,
+          "onset_token_1indexed": 69,
+          "censored_onset_token": 69,
+          "step1_logit_max_abs_diff_vs_b1": 0.25,
+          "b1_top1_minus_top2_margin_at_onset": 0.25,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 69,
+            "shared_context_tail": " figure in science and education.\n\n### Key",
+            "b1_token_id": 96004,
+            "b1_token_str": " Contributions",
+            "b1_continuation": " Contributions to Science:\n\n1. **F",
+            "b_token_id": 44983,
+            "b_token_str": " Facts",
+            "b_continuation": " Facts About Richard Feynman:\n\n####"
+          }
+        },
+        "12": {
+          "diverged": true,
+          "onset_token_1indexed": 69,
+          "censored_onset_token": 69,
+          "step1_logit_max_abs_diff_vs_b1": 0.3125,
+          "b1_top1_minus_top2_margin_at_onset": 0.25,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 69,
+            "shared_context_tail": " figure in science and education.\n\n### Key",
+            "b1_token_id": 96004,
+            "b1_token_str": " Contributions",
+            "b1_continuation": " Contributions to Science:\n\n1. **F",
+            "b_token_id": 44983,
+            "b_token_str": " Facts",
+            "b_continuation": " Facts About Richard Feynman:\n\n####"
+          }
+        },
+        "16": {
+          "diverged": true,
+          "onset_token_1indexed": 69,
+          "censored_onset_token": 69,
+          "step1_logit_max_abs_diff_vs_b1": 0.5,
+          "b1_top1_minus_top2_margin_at_onset": 0.25,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 69,
+            "shared_context_tail": " figure in science and education.\n\n### Key",
+            "b1_token_id": 96004,
+            "b1_token_str": " Contributions",
+            "b1_continuation": " Contributions to Science:\n\n1. **F",
+            "b_token_id": 44983,
+            "b_token_str": " Facts",
+            "b_continuation": " Facts About Richard Feynman:\n\n####"
+          }
+        },
+        "24": {
+          "diverged": true,
+          "onset_token_1indexed": 62,
+          "censored_onset_token": 62,
+          "step1_logit_max_abs_diff_vs_b1": 0.5,
+          "b1_top1_minus_top2_margin_at_onset": 0.0,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 62,
+            "shared_context_tail": " physics, and he remains a celebrated figure",
+            "b1_token_id": 304,
+            "b1_token_str": " in",
+            "b1_continuation": " in science and education.\n\n### Key Contributions",
+            "b_token_id": 2176,
+            "b_token_str": " both",
+            "b_continuation": " both in science and popular culture.\n\n###"
+          }
+        },
+        "32": {
+          "diverged": true,
+          "onset_token_1indexed": 69,
+          "censored_onset_token": 69,
+          "step1_logit_max_abs_diff_vs_b1": 0.375,
+          "b1_top1_minus_top2_margin_at_onset": 0.25,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 69,
+            "shared_context_tail": " figure in science and education.\n\n### Key",
+            "b1_token_id": 96004,
+            "b1_token_str": " Contributions",
+            "b1_continuation": " Contributions to Science:\n\n1. **F",
+            "b_token_id": 44983,
+            "b_token_str": " Facts",
+            "b_continuation": " Facts About Richard Feynman:\n\n####"
+          }
+        },
+        "48": {
+          "diverged": false,
+          "onset_token_1indexed": null,
+          "censored_onset_token": 257,
+          "step1_logit_max_abs_diff_vs_b1": 0.34375,
+          "b1_top1_minus_top2_margin_at_onset": null,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": null
+        },
+        "64": {
+          "diverged": true,
+          "onset_token_1indexed": 69,
+          "censored_onset_token": 69,
+          "step1_logit_max_abs_diff_vs_b1": 0.375,
+          "b1_top1_minus_top2_margin_at_onset": 0.25,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 69,
+            "shared_context_tail": " figure in science and education.\n\n### Key",
+            "b1_token_id": 96004,
+            "b1_token_str": " Contributions",
+            "b1_continuation": " Contributions to Science:\n\n1. **F",
+            "b_token_id": 44983,
+            "b_token_str": " Facts",
+            "b_continuation": " Facts About Richard Feynman:\n\n####"
+          }
+        },
+        "96": {
+          "diverged": true,
+          "onset_token_1indexed": 69,
+          "censored_onset_token": 69,
+          "step1_logit_max_abs_diff_vs_b1": 0.34375,
+          "b1_top1_minus_top2_margin_at_onset": 0.25,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 69,
+            "shared_context_tail": " figure in science and education.\n\n### Key",
+            "b1_token_id": 96004,
+            "b1_token_str": " Contributions",
+            "b1_continuation": " Contributions to Science:\n\n1. **F",
+            "b_token_id": 44983,
+            "b_token_str": " Facts",
+            "b_continuation": " Facts About Richard Feynman:\n\n####"
+          }
+        },
+        "128": {
+          "diverged": true,
+          "onset_token_1indexed": 115,
+          "censored_onset_token": 115,
+          "step1_logit_max_abs_diff_vs_b1": 0.375,
+          "b1_top1_minus_top2_margin_at_onset": 0.0,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 115,
+            "shared_context_tail": " field theory. These diagrams simplify complex calculations",
+            "b1_token_id": 304,
+            "b1_token_str": " in",
+            "b1_continuation": " in quantum electrodynamics (QED",
+            "b_token_id": 15860,
+            "b_token_str": " involving",
+            "b_continuation": " involving subatomic particles and their interactions ("
+          }
+        }
+      }
+    },
+    "P2_noether": {
+      "label": "Emmy Noether",
+      "prompt_text": "Tell me about Emmy Noether",
+      "prompt_token_length": 14,
+      "determinism_passed": true,
+      "diverged_at_any_b": true,
+      "n_diverging_batch_sizes": 6,
+      "n_unique_completions_across_14_batches": 4,
+      "equivalence_classes": [
+        {
+          "batch_sizes": [
+            1,
+            2,
+            4,
+            12,
+            16,
+            32,
+            64,
+            96
+          ],
+          "matches_b1": true
+        },
+        {
+          "batch_sizes": [
+            3,
+            6,
+            8,
+            128
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            24
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            48
+          ],
+          "matches_b1": false
+        }
+      ],
+      "min_onset_token": 84,
+      "max_onset_token_uncensored": 247,
+      "within_prompt_censored_onset_range_tokens": 173.0,
+      "within_prompt_uncensored_onset_range_tokens": 163.0,
+      "spearman_rho_batch_vs_censored_onset": -0.07894316317,
+      "b1_min_margin": 0.0,
+      "b1_median_margin": 5.1875,
+      "neighbor_content_control": null,
+      "batches": {
+        "2": {
+          "diverged": false,
+          "onset_token_1indexed": null,
+          "censored_onset_token": 257,
+          "step1_logit_max_abs_diff_vs_b1": 0.0625,
+          "b1_top1_minus_top2_margin_at_onset": null,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": null
+        },
+        "3": {
+          "diverged": true,
+          "onset_token_1indexed": 247,
+          "censored_onset_token": 247,
+          "step1_logit_max_abs_diff_vs_b1": 0.375,
+          "b1_top1_minus_top2_margin_at_onset": 0.0,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 247,
+            "shared_context_tail": "- **Ideal theory**\n- **Non",
+            "b1_token_id": 3621,
+            "b1_token_str": "comm",
+            "b1_continuation": "commutative algebra**\n\nHer work on",
+            "b_token_id": 87289,
+            "b_token_str": "-comm",
+            "b_continuation": "-commutative algebra**\n\nHer work on"
+          }
+        },
+        "4": {
+          "diverged": false,
+          "onset_token_1indexed": null,
+          "censored_onset_token": 257,
+          "step1_logit_max_abs_diff_vs_b1": 0.328125,
+          "b1_top1_minus_top2_margin_at_onset": null,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": null
+        },
+        "6": {
+          "diverged": true,
+          "onset_token_1indexed": 247,
+          "censored_onset_token": 247,
+          "step1_logit_max_abs_diff_vs_b1": 0.0625,
+          "b1_top1_minus_top2_margin_at_onset": 0.0,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 247,
+            "shared_context_tail": "- **Ideal theory**\n- **Non",
+            "b1_token_id": 3621,
+            "b1_token_str": "comm",
+            "b1_continuation": "commutative algebra**\n\nHer work on",
+            "b_token_id": 87289,
+            "b_token_str": "-comm",
+            "b_continuation": "-commutative algebra**\n\nHer work on"
+          }
+        },
+        "8": {
+          "diverged": true,
+          "onset_token_1indexed": 247,
+          "censored_onset_token": 247,
+          "step1_logit_max_abs_diff_vs_b1": 0.0625,
+          "b1_top1_minus_top2_margin_at_onset": 0.0,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 247,
+            "shared_context_tail": "- **Ideal theory**\n- **Non",
+            "b1_token_id": 3621,
+            "b1_token_str": "comm",
+            "b1_continuation": "commutative algebra**\n\nHer work on",
+            "b_token_id": 87289,
+            "b_token_str": "-comm",
+            "b_continuation": "-commutative algebra**\n\nHer work on"
+          }
+        },
+        "12": {
+          "diverged": false,
+          "onset_token_1indexed": null,
+          "censored_onset_token": 257,
+          "step1_logit_max_abs_diff_vs_b1": 0.328125,
+          "b1_top1_minus_top2_margin_at_onset": null,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": null
+        },
+        "16": {
+          "diverged": false,
+          "onset_token_1indexed": null,
+          "censored_onset_token": 257,
+          "step1_logit_max_abs_diff_vs_b1": 0.375,
+          "b1_top1_minus_top2_margin_at_onset": null,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": null
+        },
+        "24": {
+          "diverged": true,
+          "onset_token_1indexed": 170,
+          "censored_onset_token": 170,
+          "step1_logit_max_abs_diff_vs_b1": 0.375,
+          "b1_top1_minus_top2_margin_at_onset": 0.25,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 170,
+            "shared_context_tail": "907).\n- Despite her academic",
+            "b1_token_id": 82480,
+            "b1_token_str": " brilliance",
+            "b1_continuation": " brilliance, she faced significant barriers\u2014she",
+            "b_token_id": 37556,
+            "b_token_str": " excellence",
+            "b_continuation": " excellence, she faced significant barriers\u2014she"
+          }
+        },
+        "32": {
+          "diverged": false,
+          "onset_token_1indexed": null,
+          "censored_onset_token": 257,
+          "step1_logit_max_abs_diff_vs_b1": 0.375,
+          "b1_top1_minus_top2_margin_at_onset": null,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": null
+        },
+        "48": {
+          "diverged": true,
+          "onset_token_1indexed": 84,
+          "censored_onset_token": 84,
+          "step1_logit_max_abs_diff_vs_b1": 0.375,
+          "b1_top1_minus_top2_margin_at_onset": 0.25,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 84,
+            "shared_context_tail": "- Born **Emmy Noether**",
+            "b1_token_id": 389,
+            "b1_token_str": " on",
+            "b1_continuation": " on **March 23, ",
+            "b_token_id": 304,
+            "b_token_str": " in",
+            "b_continuation": " in Erlangen, Germany, on **"
+          }
+        },
+        "64": {
+          "diverged": false,
+          "onset_token_1indexed": null,
+          "censored_onset_token": 257,
+          "step1_logit_max_abs_diff_vs_b1": 0.3125,
+          "b1_top1_minus_top2_margin_at_onset": null,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": null
+        },
+        "96": {
+          "diverged": false,
+          "onset_token_1indexed": null,
+          "censored_onset_token": 257,
+          "step1_logit_max_abs_diff_vs_b1": 0.359375,
+          "b1_top1_minus_top2_margin_at_onset": null,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": null
+        },
+        "128": {
+          "diverged": true,
+          "onset_token_1indexed": 247,
+          "censored_onset_token": 247,
+          "step1_logit_max_abs_diff_vs_b1": 0.5,
+          "b1_top1_minus_top2_margin_at_onset": 0.0,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 247,
+            "shared_context_tail": "- **Ideal theory**\n- **Non",
+            "b1_token_id": 3621,
+            "b1_token_str": "comm",
+            "b1_continuation": "commutative algebra**\n\nHer work on",
+            "b_token_id": 87289,
+            "b_token_str": "-comm",
+            "b_continuation": "-commutative algebra**\n\nHer work on"
+          }
+        }
+      }
+    },
+    "P3_lavoisier": {
+      "label": "Antoine Lavoisier",
+      "prompt_text": "Tell me about Antoine Lavoisier",
+      "prompt_token_length": 16,
+      "determinism_passed": true,
+      "diverged_at_any_b": true,
+      "n_diverging_batch_sizes": 13,
+      "n_unique_completions_across_14_batches": 14,
+      "equivalence_classes": [
+        {
+          "batch_sizes": [
+            1
+          ],
+          "matches_b1": true
+        },
+        {
+          "batch_sizes": [
+            2
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            3
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            4
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            6
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            8
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            12
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            16
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            24
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            32
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            48
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            64
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            96
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            128
+          ],
+          "matches_b1": false
+        }
+      ],
+      "min_onset_token": 24,
+      "max_onset_token_uncensored": 143,
+      "within_prompt_censored_onset_range_tokens": 119.0,
+      "within_prompt_uncensored_onset_range_tokens": 119.0,
+      "spearman_rho_batch_vs_censored_onset": -0.487556551,
+      "b1_min_margin": 0.0,
+      "b1_median_margin": 4.5,
+      "neighbor_content_control": null,
+      "batches": {
+        "2": {
+          "diverged": true,
+          "onset_token_1indexed": 127,
+          "censored_onset_token": 127,
+          "step1_logit_max_abs_diff_vs_b1": 0.125,
+          "b1_top1_minus_top2_margin_at_onset": 0.0,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 127,
+            "shared_context_tail": "atic Nomenclature**  \n   He",
+            "b1_token_id": 7881,
+            "b1_token_str": " developed",
+            "b1_continuation": " developed a systematic and logical naming system for",
+            "b_token_id": 11523,
+            "b_token_str": " introduced",
+            "b_continuation": " introduced a systematic and logical naming system for"
+          }
+        },
+        "3": {
+          "diverged": true,
+          "onset_token_1indexed": 127,
+          "censored_onset_token": 127,
+          "step1_logit_max_abs_diff_vs_b1": 0.3125,
+          "b1_top1_minus_top2_margin_at_onset": 0.0,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 127,
+            "shared_context_tail": "atic Nomenclature**  \n   He",
+            "b1_token_id": 7881,
+            "b1_token_str": " developed",
+            "b1_continuation": " developed a systematic and logical naming system for",
+            "b_token_id": 11523,
+            "b_token_str": " introduced",
+            "b_continuation": " introduced a systematic and logical naming system for"
+          }
+        },
+        "4": {
+          "diverged": true,
+          "onset_token_1indexed": 143,
+          "censored_onset_token": 143,
+          "step1_logit_max_abs_diff_vs_b1": 0.3125,
+          "b1_top1_minus_top2_margin_at_onset": 0.0,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 143,
+            "shared_context_tail": " chemical compounds, which greatly improved clarity and",
+            "b1_token_id": 10535,
+            "b1_token_str": " communication",
+            "b1_continuation": " communication in chemistry. This system, known",
+            "b_token_id": 16052,
+            "b_token_str": " precision",
+            "b_continuation": " precision in chemical communication. This system,"
+          }
+        },
+        "6": {
+          "diverged": true,
+          "onset_token_1indexed": 127,
+          "censored_onset_token": 127,
+          "step1_logit_max_abs_diff_vs_b1": 0.125,
+          "b1_top1_minus_top2_margin_at_onset": 0.0,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 127,
+            "shared_context_tail": "atic Nomenclature**  \n   He",
+            "b1_token_id": 7881,
+            "b1_token_str": " developed",
+            "b1_continuation": " developed a systematic and logical naming system for",
+            "b_token_id": 11523,
+            "b_token_str": " introduced",
+            "b_continuation": " introduced a systematic and logical naming system for"
+          }
+        },
+        "8": {
+          "diverged": true,
+          "onset_token_1indexed": 127,
+          "censored_onset_token": 127,
+          "step1_logit_max_abs_diff_vs_b1": 0.125,
+          "b1_top1_minus_top2_margin_at_onset": 0.0,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 127,
+            "shared_context_tail": "atic Nomenclature**  \n   He",
+            "b1_token_id": 7881,
+            "b1_token_str": " developed",
+            "b1_continuation": " developed a systematic and logical naming system for",
+            "b_token_id": 11523,
+            "b_token_str": " introduced",
+            "b_continuation": " introduced a systematic and logical naming system for"
+          }
+        },
+        "12": {
+          "diverged": true,
+          "onset_token_1indexed": 44,
+          "censored_onset_token": 44,
+          "step1_logit_max_abs_diff_vs_b1": 0.306640625,
+          "b1_top1_minus_top2_margin_at_onset": 0.0,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 44,
+            "shared_context_tail": "** His work laid the foundation for the",
+            "b1_token_id": 6481,
+            "b1_token_str": " modern",
+            "b1_continuation": " modern scientific understanding of chemical reactions and the",
+            "b_token_id": 12344,
+            "b_token_str": " scientific",
+            "b_continuation": " scientific method in chemistry and revolutionized the"
+          }
+        },
+        "16": {
+          "diverged": true,
+          "onset_token_1indexed": 88,
+          "censored_onset_token": 88,
+          "step1_logit_max_abs_diff_vs_b1": 0.375,
+          "b1_top1_minus_top2_margin_at_onset": 0.25,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 88,
+            "shared_context_tail": " system, matter is neither created nor destroyed",
+            "b1_token_id": 2337,
+            "b1_token_str": " during",
+            "b1_continuation": " during a chemical reaction. This principle,",
+            "b_token_id": 304,
+            "b_token_str": " in",
+            "b_continuation": " in chemical reactions. This principle, known"
+          }
+        },
+        "24": {
+          "diverged": true,
+          "onset_token_1indexed": 24,
+          "censored_onset_token": 24,
+          "step1_logit_max_abs_diff_vs_b1": 0.3125,
+          "b1_top1_minus_top2_margin_at_onset": 0.5,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 24,
+            "shared_context_tail": "4) was a French chemist and",
+            "b1_token_id": 374,
+            "b1_token_str": " is",
+            "b1_continuation": " is widely regarded as the **\"Father",
+            "b_token_id": 82223,
+            "b_token_str": " physicist",
+            "b_continuation": " physicist widely regarded as the **\"Father"
+          }
+        },
+        "32": {
+          "diverged": true,
+          "onset_token_1indexed": 120,
+          "censored_onset_token": 120,
+          "step1_logit_max_abs_diff_vs_b1": 0.25,
+          "b1_top1_minus_top2_margin_at_onset": 0.125,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 120,
+            "shared_context_tail": " in chemistry.\n\n2. **Systematic",
+            "b1_token_id": 451,
+            "b1_token_str": " N",
+            "b1_continuation": " Nomenclature**  \n   He developed",
+            "b_token_id": 96475,
+            "b_token_str": " Naming",
+            "b_continuation": " Naming of Chemical Compounds**  \n  "
+          }
+        },
+        "48": {
+          "diverged": true,
+          "onset_token_1indexed": 120,
+          "censored_onset_token": 120,
+          "step1_logit_max_abs_diff_vs_b1": 0.271484375,
+          "b1_top1_minus_top2_margin_at_onset": 0.125,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 120,
+            "shared_context_tail": " in chemistry.\n\n2. **Systematic",
+            "b1_token_id": 451,
+            "b1_token_str": " N",
+            "b1_continuation": " Nomenclature**  \n   He developed",
+            "b_token_id": 96475,
+            "b_token_str": " Naming",
+            "b_continuation": " Naming of Chemical Compounds**  \n  "
+          }
+        },
+        "64": {
+          "diverged": true,
+          "onset_token_1indexed": 127,
+          "censored_onset_token": 127,
+          "step1_logit_max_abs_diff_vs_b1": 0.28125,
+          "b1_top1_minus_top2_margin_at_onset": 0.0,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 127,
+            "shared_context_tail": "atic Nomenclature**  \n   He",
+            "b1_token_id": 7881,
+            "b1_token_str": " developed",
+            "b1_continuation": " developed a systematic and logical naming system for",
+            "b_token_id": 11523,
+            "b_token_str": " introduced",
+            "b_continuation": " introduced a systematic and logical naming system for"
+          }
+        },
+        "96": {
+          "diverged": true,
+          "onset_token_1indexed": 120,
+          "censored_onset_token": 120,
+          "step1_logit_max_abs_diff_vs_b1": 0.34375,
+          "b1_top1_minus_top2_margin_at_onset": 0.125,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 120,
+            "shared_context_tail": " in chemistry.\n\n2. **Systematic",
+            "b1_token_id": 451,
+            "b1_token_str": " N",
+            "b1_continuation": " Nomenclature**  \n   He developed",
+            "b_token_id": 96475,
+            "b_token_str": " Naming",
+            "b_continuation": " Naming of Chemical Compounds**  \n  "
+          }
+        },
+        "128": {
+          "diverged": true,
+          "onset_token_1indexed": 120,
+          "censored_onset_token": 120,
+          "step1_logit_max_abs_diff_vs_b1": 0.28125,
+          "b1_top1_minus_top2_margin_at_onset": 0.125,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 120,
+            "shared_context_tail": " in chemistry.\n\n2. **Systematic",
+            "b1_token_id": 451,
+            "b1_token_str": " N",
+            "b1_continuation": " Nomenclature**  \n   He developed",
+            "b_token_id": 96475,
+            "b_token_str": " Naming",
+            "b_continuation": " Naming of Chemical Compounds**  \n  "
+          }
+        }
+      }
+    },
+    "P4_turing": {
+      "label": "Alan Turing",
+      "prompt_text": "Tell me about Alan Turing",
+      "prompt_token_length": 13,
+      "determinism_passed": true,
+      "diverged_at_any_b": true,
+      "n_diverging_batch_sizes": 7,
+      "n_unique_completions_across_14_batches": 4,
+      "equivalence_classes": [
+        {
+          "batch_sizes": [
+            1,
+            3,
+            6,
+            12,
+            16,
+            24,
+            96
+          ],
+          "matches_b1": true
+        },
+        {
+          "batch_sizes": [
+            2,
+            32,
+            64
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            4,
+            8,
+            48
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            128
+          ],
+          "matches_b1": false
+        }
+      ],
+      "min_onset_token": 250,
+      "max_onset_token_uncensored": 256,
+      "within_prompt_censored_onset_range_tokens": 7.0,
+      "within_prompt_uncensored_onset_range_tokens": 6.0,
+      "spearman_rho_batch_vs_censored_onset": -0.0263292993,
+      "b1_min_margin": 0.0,
+      "b1_median_margin": 4.8125,
+      "neighbor_content_control": null,
+      "batches": {
+        "2": {
+          "diverged": true,
+          "onset_token_1indexed": 250,
+          "censored_onset_token": 250,
+          "step1_logit_max_abs_diff_vs_b1": 0.0625,
+          "b1_top1_minus_top2_margin_at_onset": 0.0,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 250,
+            "shared_context_tail": ", the central site for British codebreaking",
+            "b1_token_id": 13,
+            "b1_token_str": ".",
+            "b1_continuation": ". There, he led the development",
+            "b_token_id": 382,
+            "b_token_str": ".\n\n",
+            "b_continuation": ".\n\nTuring led the team that"
+          }
+        },
+        "3": {
+          "diverged": false,
+          "onset_token_1indexed": null,
+          "censored_onset_token": 257,
+          "step1_logit_max_abs_diff_vs_b1": 0.25,
+          "b1_top1_minus_top2_margin_at_onset": null,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": null
+        },
+        "4": {
+          "diverged": true,
+          "onset_token_1indexed": 255,
+          "censored_onset_token": 255,
+          "step1_logit_max_abs_diff_vs_b1": 0.25,
+          "b1_top1_minus_top2_margin_at_onset": 0.125,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 255,
+            "shared_context_tail": " British codebreaking. There, he led",
+            "b1_token_id": 279,
+            "b1_token_str": " the",
+            "b1_continuation": " the development",
+            "b_token_id": 264,
+            "b_token_str": " a",
+            "b_continuation": " a team"
+          }
+        },
+        "6": {
+          "diverged": false,
+          "onset_token_1indexed": null,
+          "censored_onset_token": 257,
+          "step1_logit_max_abs_diff_vs_b1": 0.0625,
+          "b1_top1_minus_top2_margin_at_onset": null,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": null
+        },
+        "8": {
+          "diverged": true,
+          "onset_token_1indexed": 255,
+          "censored_onset_token": 255,
+          "step1_logit_max_abs_diff_vs_b1": 0.0625,
+          "b1_top1_minus_top2_margin_at_onset": 0.125,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 255,
+            "shared_context_tail": " British codebreaking. There, he led",
+            "b1_token_id": 279,
+            "b1_token_str": " the",
+            "b1_continuation": " the development",
+            "b_token_id": 264,
+            "b_token_str": " a",
+            "b_continuation": " a team"
+          }
+        },
+        "12": {
+          "diverged": false,
+          "onset_token_1indexed": null,
+          "censored_onset_token": 257,
+          "step1_logit_max_abs_diff_vs_b1": 0.28125,
+          "b1_top1_minus_top2_margin_at_onset": null,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": null
+        },
+        "16": {
+          "diverged": false,
+          "onset_token_1indexed": null,
+          "censored_onset_token": 257,
+          "step1_logit_max_abs_diff_vs_b1": 0.375,
+          "b1_top1_minus_top2_margin_at_onset": null,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": null
+        },
+        "24": {
+          "diverged": false,
+          "onset_token_1indexed": null,
+          "censored_onset_token": 257,
+          "step1_logit_max_abs_diff_vs_b1": 0.3125,
+          "b1_top1_minus_top2_margin_at_onset": null,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": null
+        },
+        "32": {
+          "diverged": true,
+          "onset_token_1indexed": 250,
+          "censored_onset_token": 250,
+          "step1_logit_max_abs_diff_vs_b1": 0.28125,
+          "b1_top1_minus_top2_margin_at_onset": 0.0,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 250,
+            "shared_context_tail": ", the central site for British codebreaking",
+            "b1_token_id": 13,
+            "b1_token_str": ".",
+            "b1_continuation": ". There, he led the development",
+            "b_token_id": 382,
+            "b_token_str": ".\n\n",
+            "b_continuation": ".\n\nTuring led the team that"
+          }
+        },
+        "48": {
+          "diverged": true,
+          "onset_token_1indexed": 255,
+          "censored_onset_token": 255,
+          "step1_logit_max_abs_diff_vs_b1": 0.375,
+          "b1_top1_minus_top2_margin_at_onset": 0.125,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 255,
+            "shared_context_tail": " British codebreaking. There, he led",
+            "b1_token_id": 279,
+            "b1_token_str": " the",
+            "b1_continuation": " the development",
+            "b_token_id": 264,
+            "b_token_str": " a",
+            "b_continuation": " a team"
+          }
+        },
+        "64": {
+          "diverged": true,
+          "onset_token_1indexed": 250,
+          "censored_onset_token": 250,
+          "step1_logit_max_abs_diff_vs_b1": 0.265625,
+          "b1_top1_minus_top2_margin_at_onset": 0.0,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 250,
+            "shared_context_tail": ", the central site for British codebreaking",
+            "b1_token_id": 13,
+            "b1_token_str": ".",
+            "b1_continuation": ". There, he led the development",
+            "b_token_id": 382,
+            "b_token_str": ".\n\n",
+            "b_continuation": ".\n\nTuring led the team that"
+          }
+        },
+        "96": {
+          "diverged": false,
+          "onset_token_1indexed": null,
+          "censored_onset_token": 257,
+          "step1_logit_max_abs_diff_vs_b1": 0.375,
+          "b1_top1_minus_top2_margin_at_onset": null,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": null
+        },
+        "128": {
+          "diverged": true,
+          "onset_token_1indexed": 256,
+          "censored_onset_token": 256,
+          "step1_logit_max_abs_diff_vs_b1": 0.34375,
+          "b1_top1_minus_top2_margin_at_onset": 0.25,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 256,
+            "shared_context_tail": " codebreaking. There, he led the",
+            "b1_token_id": 4401,
+            "b1_token_str": " development",
+            "b1_continuation": " development",
+            "b_token_id": 2083,
+            "b_token_str": " team",
+            "b_continuation": " team"
+          }
+        }
+      }
+    },
+    "P5_curie": {
+      "label": "Marie Curie",
+      "prompt_text": "Tell me about Marie Curie",
+      "prompt_token_length": 14,
+      "determinism_passed": true,
+      "diverged_at_any_b": true,
+      "n_diverging_batch_sizes": 12,
+      "n_unique_completions_across_14_batches": 9,
+      "equivalence_classes": [
+        {
+          "batch_sizes": [
+            1,
+            8
+          ],
+          "matches_b1": true
+        },
+        {
+          "batch_sizes": [
+            2
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            3,
+            4
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            6
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            12,
+            24,
+            128
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            16
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            32,
+            48
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            64
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            96
+          ],
+          "matches_b1": false
+        }
+      ],
+      "min_onset_token": 1,
+      "max_onset_token_uncensored": 238,
+      "within_prompt_censored_onset_range_tokens": 256.0,
+      "within_prompt_uncensored_onset_range_tokens": 237.0,
+      "spearman_rho_batch_vs_censored_onset": -0.2402096656,
+      "b1_min_margin": 0.0,
+      "b1_median_margin": 6.9375,
+      "neighbor_content_control": null,
+      "batches": {
+        "2": {
+          "diverged": true,
+          "onset_token_1indexed": 171,
+          "censored_onset_token": 171,
+          "step1_logit_max_abs_diff_vs_b1": 0.0625,
+          "b1_top1_minus_top2_margin_at_onset": 0.125,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 171,
+            "shared_context_tail": " she herself coined. Before her work,",
+            "b1_token_id": 13923,
+            "b1_token_str": " scientists",
+            "b1_continuation": " scientists believed that atoms were indivisible and",
+            "b_token_id": 279,
+            "b_token_str": " the",
+            "b_continuation": " the concept of radiation was poorly understood."
+          }
+        },
+        "3": {
+          "diverged": true,
+          "onset_token_1indexed": 1,
+          "censored_onset_token": 1,
+          "step1_logit_max_abs_diff_vs_b1": 0.3125,
+          "b1_top1_minus_top2_margin_at_onset": 0.25,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 1,
+            "shared_context_tail": "",
+            "b1_token_id": 95456,
+            "b1_token_str": "Certainly",
+            "b1_continuation": "Certainly! Marie Curie (18",
+            "b_token_id": 12061,
+            "b_token_str": "Mar",
+            "b_continuation": "Marie Curie (186"
+          }
+        },
+        "4": {
+          "diverged": true,
+          "onset_token_1indexed": 1,
+          "censored_onset_token": 1,
+          "step1_logit_max_abs_diff_vs_b1": 0.3125,
+          "b1_top1_minus_top2_margin_at_onset": 0.25,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 1,
+            "shared_context_tail": "",
+            "b1_token_id": 95456,
+            "b1_token_str": "Certainly",
+            "b1_continuation": "Certainly! Marie Curie (18",
+            "b_token_id": 12061,
+            "b_token_str": "Mar",
+            "b_continuation": "Marie Curie (186"
+          }
+        },
+        "6": {
+          "diverged": true,
+          "onset_token_1indexed": 85,
+          "censored_onset_token": 85,
+          "step1_logit_max_abs_diff_vs_b1": 0.0625,
+          "b1_top1_minus_top2_margin_at_onset": 0.0,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 85,
+            "shared_context_tail": " in 1867. At",
+            "b1_token_id": 264,
+            "b1_token_str": " a",
+            "b1_continuation": " a time when women were largely excluded from",
+            "b_token_id": 279,
+            "b_token_str": " the",
+            "b_continuation": " the time, Poland was under Russian rule"
+          }
+        },
+        "8": {
+          "diverged": false,
+          "onset_token_1indexed": null,
+          "censored_onset_token": 257,
+          "step1_logit_max_abs_diff_vs_b1": 0.0625,
+          "b1_top1_minus_top2_margin_at_onset": null,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": null
+        },
+        "12": {
+          "diverged": true,
+          "onset_token_1indexed": 1,
+          "censored_onset_token": 1,
+          "step1_logit_max_abs_diff_vs_b1": 0.34375,
+          "b1_top1_minus_top2_margin_at_onset": 0.25,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 1,
+            "shared_context_tail": "",
+            "b1_token_id": 95456,
+            "b1_token_str": "Certainly",
+            "b1_continuation": "Certainly! Marie Curie (18",
+            "b_token_id": 12061,
+            "b_token_str": "Mar",
+            "b_continuation": "Marie Curie (186"
+          }
+        },
+        "16": {
+          "diverged": true,
+          "onset_token_1indexed": 238,
+          "censored_onset_token": 238,
+          "step1_logit_max_abs_diff_vs_b1": 0.375,
+          "b1_top1_minus_top2_margin_at_onset": 0.0,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 238,
+            "shared_context_tail": "** (named for its intense radioactivity",
+            "b1_token_id": 340,
+            "b1_token_str": ")\n",
+            "b1_continuation": ")\n- They isolated radium in ",
+            "b_token_id": 692,
+            "b_token_str": ")\n\n",
+            "b_continuation": ")\n\nThey isolated radium in 1"
+          }
+        },
+        "24": {
+          "diverged": true,
+          "onset_token_1indexed": 1,
+          "censored_onset_token": 1,
+          "step1_logit_max_abs_diff_vs_b1": 0.46875,
+          "b1_top1_minus_top2_margin_at_onset": 0.25,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 1,
+            "shared_context_tail": "",
+            "b1_token_id": 95456,
+            "b1_token_str": "Certainly",
+            "b1_continuation": "Certainly! Marie Curie (18",
+            "b_token_id": 12061,
+            "b_token_str": "Mar",
+            "b_continuation": "Marie Curie (186"
+          }
+        },
+        "32": {
+          "diverged": true,
+          "onset_token_1indexed": 6,
+          "censored_onset_token": 6,
+          "step1_logit_max_abs_diff_vs_b1": 0.328125,
+          "b1_top1_minus_top2_margin_at_onset": 0.0,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 6,
+            "shared_context_tail": "Certainly! Marie Curie",
+            "b1_token_id": 320,
+            "b1_token_str": " (",
+            "b1_continuation": " (1867\u201319",
+            "b_token_id": 572,
+            "b_token_str": " was",
+            "b_continuation": " was a pioneering Polish-French physicist and"
+          }
+        },
+        "48": {
+          "diverged": true,
+          "onset_token_1indexed": 6,
+          "censored_onset_token": 6,
+          "step1_logit_max_abs_diff_vs_b1": 0.3125,
+          "b1_top1_minus_top2_margin_at_onset": 0.0,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 6,
+            "shared_context_tail": "Certainly! Marie Curie",
+            "b1_token_id": 320,
+            "b1_token_str": " (",
+            "b1_continuation": " (1867\u201319",
+            "b_token_id": 572,
+            "b_token_str": " was",
+            "b_continuation": " was a pioneering Polish-French physicist and"
+          }
+        },
+        "64": {
+          "diverged": true,
+          "onset_token_1indexed": 84,
+          "censored_onset_token": 84,
+          "step1_logit_max_abs_diff_vs_b1": 0.375,
+          "b1_top1_minus_top2_margin_at_onset": 0.0,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 84,
+            "shared_context_tail": ", in 1867.",
+            "b1_token_id": 2411,
+            "b1_token_str": " At",
+            "b1_continuation": " At a time when women were largely excluded",
+            "b_token_id": 2932,
+            "b_token_str": " She",
+            "b_continuation": " She grew up in a time when women"
+          }
+        },
+        "96": {
+          "diverged": true,
+          "onset_token_1indexed": 1,
+          "censored_onset_token": 1,
+          "step1_logit_max_abs_diff_vs_b1": 0.5,
+          "b1_top1_minus_top2_margin_at_onset": 0.25,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 1,
+            "shared_context_tail": "",
+            "b1_token_id": 95456,
+            "b1_token_str": "Certainly",
+            "b1_continuation": "Certainly! Marie Curie (18",
+            "b_token_id": 12061,
+            "b_token_str": "Mar",
+            "b_continuation": "Marie Curie (186"
+          }
+        },
+        "128": {
+          "diverged": true,
+          "onset_token_1indexed": 1,
+          "censored_onset_token": 1,
+          "step1_logit_max_abs_diff_vs_b1": 0.3125,
+          "b1_top1_minus_top2_margin_at_onset": 0.25,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 1,
+            "shared_context_tail": "",
+            "b1_token_id": 95456,
+            "b1_token_str": "Certainly",
+            "b1_continuation": "Certainly! Marie Curie (18",
+            "b_token_id": 12061,
+            "b_token_str": "Mar",
+            "b_continuation": "Marie Curie (186"
+          }
+        }
+      }
+    },
+    "P6_boltzmann": {
+      "label": "Ludwig Boltzmann",
+      "prompt_text": "Tell me about Ludwig Boltzmann",
+      "prompt_token_length": 15,
+      "determinism_passed": true,
+      "diverged_at_any_b": true,
+      "n_diverging_batch_sizes": 11,
+      "n_unique_completions_across_14_batches": 10,
+      "equivalence_classes": [
+        {
+          "batch_sizes": [
+            1,
+            3,
+            12
+          ],
+          "matches_b1": true
+        },
+        {
+          "batch_sizes": [
+            2,
+            8,
+            24
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            4
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            6
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            16
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            32
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            48
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            64
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            96
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            128
+          ],
+          "matches_b1": false
+        }
+      ],
+      "min_onset_token": 28,
+      "max_onset_token_uncensored": 239,
+      "within_prompt_censored_onset_range_tokens": 229.0,
+      "within_prompt_uncensored_onset_range_tokens": 211.0,
+      "spearman_rho_batch_vs_censored_onset": -0.1277300801,
+      "b1_min_margin": 0.0,
+      "b1_median_margin": 6.4375,
+      "neighbor_content_control": null,
+      "batches": {
+        "2": {
+          "diverged": true,
+          "onset_token_1indexed": 28,
+          "censored_onset_token": 28,
+          "step1_logit_max_abs_diff_vs_b1": 0.0625,
+          "b1_top1_minus_top2_margin_at_onset": 0.375,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 28,
+            "shared_context_tail": "6) was an Austrian physicist and philosopher",
+            "b1_token_id": 315,
+            "b1_token_str": " of",
+            "b1_continuation": " of science who made foundational contributions to the",
+            "b_token_id": 879,
+            "b_token_str": " who",
+            "b_continuation": " who made foundational contributions to the field of"
+          }
+        },
+        "3": {
+          "diverged": false,
+          "onset_token_1indexed": null,
+          "censored_onset_token": 257,
+          "step1_logit_max_abs_diff_vs_b1": 0.5,
+          "b1_top1_minus_top2_margin_at_onset": null,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": null
+        },
+        "4": {
+          "diverged": true,
+          "onset_token_1indexed": 239,
+          "censored_onset_token": 239,
+          "step1_logit_max_abs_diff_vs_b1": 0.5,
+          "b1_top1_minus_top2_margin_at_onset": 0.25,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 239,
+            "shared_context_tail": "     \\]\n   - This constant is",
+            "b1_token_id": 16587,
+            "b1_token_str": " crucial",
+            "b1_continuation": " crucial in connecting the microscopic world (individual",
+            "b_token_id": 8622,
+            "b_token_str": " central",
+            "b_continuation": " central to both thermodynamics and statistical mechanics"
+          }
+        },
+        "6": {
+          "diverged": true,
+          "onset_token_1indexed": 28,
+          "censored_onset_token": 28,
+          "step1_logit_max_abs_diff_vs_b1": 0.0625,
+          "b1_top1_minus_top2_margin_at_onset": 0.375,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 28,
+            "shared_context_tail": "6) was an Austrian physicist and philosopher",
+            "b1_token_id": 315,
+            "b1_token_str": " of",
+            "b1_continuation": " of science who made foundational contributions to the",
+            "b_token_id": 879,
+            "b_token_str": " who",
+            "b_continuation": " who made foundational contributions to the field of"
+          }
+        },
+        "8": {
+          "diverged": true,
+          "onset_token_1indexed": 28,
+          "censored_onset_token": 28,
+          "step1_logit_max_abs_diff_vs_b1": 0.0625,
+          "b1_top1_minus_top2_margin_at_onset": 0.375,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 28,
+            "shared_context_tail": "6) was an Austrian physicist and philosopher",
+            "b1_token_id": 315,
+            "b1_token_str": " of",
+            "b1_continuation": " of science who made foundational contributions to the",
+            "b_token_id": 879,
+            "b_token_str": " who",
+            "b_continuation": " who made foundational contributions to the field of"
+          }
+        },
+        "12": {
+          "diverged": false,
+          "onset_token_1indexed": null,
+          "censored_onset_token": 257,
+          "step1_logit_max_abs_diff_vs_b1": 0.375,
+          "b1_top1_minus_top2_margin_at_onset": null,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": null
+        },
+        "16": {
+          "diverged": true,
+          "onset_token_1indexed": 30,
+          "censored_onset_token": 30,
+          "step1_logit_max_abs_diff_vs_b1": 0.5,
+          "b1_top1_minus_top2_margin_at_onset": 0.25,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 30,
+            "shared_context_tail": " was an Austrian physicist and philosopher of science",
+            "b1_token_id": 879,
+            "b1_token_str": " who",
+            "b1_continuation": " who made foundational contributions to the field of",
+            "b_token_id": 11,
+            "b_token_str": ",",
+            "b_continuation": ", widely regarded as one of the most"
+          }
+        },
+        "24": {
+          "diverged": true,
+          "onset_token_1indexed": 28,
+          "censored_onset_token": 28,
+          "step1_logit_max_abs_diff_vs_b1": 0.375,
+          "b1_top1_minus_top2_margin_at_onset": 0.375,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 28,
+            "shared_context_tail": "6) was an Austrian physicist and philosopher",
+            "b1_token_id": 315,
+            "b1_token_str": " of",
+            "b1_continuation": " of science who made foundational contributions to the",
+            "b_token_id": 879,
+            "b_token_str": " who",
+            "b_continuation": " who made foundational contributions to the field of"
+          }
+        },
+        "32": {
+          "diverged": true,
+          "onset_token_1indexed": 88,
+          "censored_onset_token": 88,
+          "step1_logit_max_abs_diff_vs_b1": 0.337890625,
+          "b1_top1_minus_top2_margin_at_onset": 0.0,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 88,
+            "shared_context_tail": " best known for developing the statistical interpretation of",
+            "b1_token_id": 29845,
+            "b1_token_str": " therm",
+            "b1_continuation": " thermodynamics. He showed that macroscopic",
+            "b_token_id": 47502,
+            "b_token_str": " entropy",
+            "b_continuation": " entropy, which links the microscopic behavior of"
+          }
+        },
+        "48": {
+          "diverged": true,
+          "onset_token_1indexed": 88,
+          "censored_onset_token": 88,
+          "step1_logit_max_abs_diff_vs_b1": 0.5,
+          "b1_top1_minus_top2_margin_at_onset": 0.0,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 88,
+            "shared_context_tail": " best known for developing the statistical interpretation of",
+            "b1_token_id": 29845,
+            "b1_token_str": " therm",
+            "b1_continuation": " thermodynamics. He showed that macroscopic",
+            "b_token_id": 47502,
+            "b_token_str": " entropy",
+            "b_continuation": " entropy, which links the microscopic behavior of"
+          }
+        },
+        "64": {
+          "diverged": true,
+          "onset_token_1indexed": 28,
+          "censored_onset_token": 28,
+          "step1_logit_max_abs_diff_vs_b1": 0.5,
+          "b1_top1_minus_top2_margin_at_onset": 0.375,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 28,
+            "shared_context_tail": "6) was an Austrian physicist and philosopher",
+            "b1_token_id": 315,
+            "b1_token_str": " of",
+            "b1_continuation": " of science who made foundational contributions to the",
+            "b_token_id": 879,
+            "b_token_str": " who",
+            "b_continuation": " who made foundational contributions to the field of"
+          }
+        },
+        "96": {
+          "diverged": true,
+          "onset_token_1indexed": 239,
+          "censored_onset_token": 239,
+          "step1_logit_max_abs_diff_vs_b1": 0.5,
+          "b1_top1_minus_top2_margin_at_onset": 0.25,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 239,
+            "shared_context_tail": "     \\]\n   - This constant is",
+            "b1_token_id": 16587,
+            "b1_token_str": " crucial",
+            "b1_continuation": " crucial in connecting the microscopic world (individual",
+            "b_token_id": 8622,
+            "b_token_str": " central",
+            "b_continuation": " central to both statistical mechanics and thermodynamics"
+          }
+        },
+        "128": {
+          "diverged": true,
+          "onset_token_1indexed": 28,
+          "censored_onset_token": 28,
+          "step1_logit_max_abs_diff_vs_b1": 0.375,
+          "b1_top1_minus_top2_margin_at_onset": 0.375,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 28,
+            "shared_context_tail": "6) was an Austrian physicist and philosopher",
+            "b1_token_id": 315,
+            "b1_token_str": " of",
+            "b1_continuation": " of science who made foundational contributions to the",
+            "b_token_id": 879,
+            "b_token_str": " who",
+            "b_continuation": " who made foundational contributions to the field of"
+          }
+        }
+      }
+    },
+    "P7_maxwell": {
+      "label": "Maxwell's equations",
+      "prompt_text": "Explain Maxwell's equations and their physical meaning",
+      "prompt_token_length": 17,
+      "determinism_passed": true,
+      "diverged_at_any_b": true,
+      "n_diverging_batch_sizes": 6,
+      "n_unique_completions_across_14_batches": 6,
+      "equivalence_classes": [
+        {
+          "batch_sizes": [
+            1,
+            4,
+            6,
+            8,
+            16,
+            24,
+            64,
+            128
+          ],
+          "matches_b1": true
+        },
+        {
+          "batch_sizes": [
+            2,
+            3
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            12
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            32
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            48
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            96
+          ],
+          "matches_b1": false
+        }
+      ],
+      "min_onset_token": 14,
+      "max_onset_token_uncensored": 134,
+      "within_prompt_censored_onset_range_tokens": 243.0,
+      "within_prompt_uncensored_onset_range_tokens": 120.0,
+      "spearman_rho_batch_vs_censored_onset": 0.1827756891,
+      "b1_min_margin": 0.0,
+      "b1_median_margin": 8.375,
+      "neighbor_content_control": null,
+      "batches": {
+        "2": {
+          "diverged": true,
+          "onset_token_1indexed": 87,
+          "censored_onset_token": 87,
+          "step1_logit_max_abs_diff_vs_b1": 0.25,
+          "b1_top1_minus_top2_margin_at_onset": 0.0,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 87,
+            "shared_context_tail": " foundation of classical electromagnetic theory and are essential",
+            "b1_token_id": 304,
+            "b1_token_str": " in",
+            "b1_continuation": " in physics, engineering, and technology.\n\n",
+            "b_token_id": 369,
+            "b_token_str": " for",
+            "b_continuation": " for understanding a vast range of phenomena,"
+          }
+        },
+        "3": {
+          "diverged": true,
+          "onset_token_1indexed": 87,
+          "censored_onset_token": 87,
+          "step1_logit_max_abs_diff_vs_b1": 0.25,
+          "b1_top1_minus_top2_margin_at_onset": 0.0,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 87,
+            "shared_context_tail": " foundation of classical electromagnetic theory and are essential",
+            "b1_token_id": 304,
+            "b1_token_str": " in",
+            "b1_continuation": " in physics, engineering, and technology.\n\n",
+            "b_token_id": 369,
+            "b_token_str": " for",
+            "b_continuation": " for understanding a vast range of phenomena,"
+          }
+        },
+        "4": {
+          "diverged": false,
+          "onset_token_1indexed": null,
+          "censored_onset_token": 257,
+          "step1_logit_max_abs_diff_vs_b1": 0.0625,
+          "b1_top1_minus_top2_margin_at_onset": null,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": null
+        },
+        "6": {
+          "diverged": false,
+          "onset_token_1indexed": null,
+          "censored_onset_token": 257,
+          "step1_logit_max_abs_diff_vs_b1": 0.0625,
+          "b1_top1_minus_top2_margin_at_onset": null,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": null
+        },
+        "8": {
+          "diverged": false,
+          "onset_token_1indexed": null,
+          "censored_onset_token": 257,
+          "step1_logit_max_abs_diff_vs_b1": 0.25,
+          "b1_top1_minus_top2_margin_at_onset": null,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": null
+        },
+        "12": {
+          "diverged": true,
+          "onset_token_1indexed": 104,
+          "censored_onset_token": 104,
+          "step1_logit_max_abs_diff_vs_b1": 0.25,
+          "b1_top1_minus_top2_margin_at_onset": 0.125,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 104,
+            "shared_context_tail": "### The Four Maxwell's Equations\n\n",
+            "b1_token_id": 8420,
+            "b1_token_str": "Here",
+            "b1_continuation": "Here are the equations in their integral and",
+            "b_token_id": 16,
+            "b_token_str": "1",
+            "b_continuation": "1. **Gauss's Law for"
+          }
+        },
+        "16": {
+          "diverged": false,
+          "onset_token_1indexed": null,
+          "censored_onset_token": 257,
+          "step1_logit_max_abs_diff_vs_b1": 0.28125,
+          "b1_top1_minus_top2_margin_at_onset": null,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": null
+        },
+        "24": {
+          "diverged": false,
+          "onset_token_1indexed": null,
+          "censored_onset_token": 257,
+          "step1_logit_max_abs_diff_vs_b1": 0.31640625,
+          "b1_top1_minus_top2_margin_at_onset": null,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": null
+        },
+        "32": {
+          "diverged": true,
+          "onset_token_1indexed": 14,
+          "censored_onset_token": 14,
+          "step1_logit_max_abs_diff_vs_b1": 0.25,
+          "b1_top1_minus_top2_margin_at_onset": 0.25,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 14,
+            "shared_context_tail": " a set of four fundamental partial differential equations",
+            "b1_token_id": 304,
+            "b1_token_str": " in",
+            "b1_continuation": " in classical electromagnetism that describe how",
+            "b_token_id": 429,
+            "b_token_str": " that",
+            "b_continuation": " that describe how electric and magnetic fields are"
+          }
+        },
+        "48": {
+          "diverged": true,
+          "onset_token_1indexed": 134,
+          "censored_onset_token": 134,
+          "step1_logit_max_abs_diff_vs_b1": 0.28125,
+          "b1_top1_minus_top2_margin_at_onset": 0.0,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 134,
+            "shared_context_tail": "Gauss's Law for Electricity**\n**",
+            "b1_token_id": 24509,
+            "b1_token_str": "Equ",
+            "b1_continuation": "Equation (Integral form):**  \n",
+            "b_token_id": 66164,
+            "b_token_str": "Integral",
+            "b_continuation": "Integral form:**  \n\\[\n\\oint"
+          }
+        },
+        "64": {
+          "diverged": false,
+          "onset_token_1indexed": null,
+          "censored_onset_token": 257,
+          "step1_logit_max_abs_diff_vs_b1": 0.328125,
+          "b1_top1_minus_top2_margin_at_onset": null,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": null
+        },
+        "96": {
+          "diverged": true,
+          "onset_token_1indexed": 104,
+          "censored_onset_token": 104,
+          "step1_logit_max_abs_diff_vs_b1": 0.283203125,
+          "b1_top1_minus_top2_margin_at_onset": 0.125,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 104,
+            "shared_context_tail": "### The Four Maxwell's Equations\n\n",
+            "b1_token_id": 8420,
+            "b1_token_str": "Here",
+            "b1_continuation": "Here are the equations in their integral and",
+            "b_token_id": 16,
+            "b_token_str": "1",
+            "b_continuation": "1. **Gauss's Law for"
+          }
+        },
+        "128": {
+          "diverged": false,
+          "onset_token_1indexed": null,
+          "censored_onset_token": 257,
+          "step1_logit_max_abs_diff_vs_b1": 0.25,
+          "b1_top1_minus_top2_margin_at_onset": null,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": null
+        }
+      }
+    },
+    "P8_thermodynamics": {
+      "label": "Second law",
+      "prompt_text": "Explain the second law of thermodynamics",
+      "prompt_token_length": 16,
+      "determinism_passed": true,
+      "diverged_at_any_b": true,
+      "n_diverging_batch_sizes": 12,
+      "n_unique_completions_across_14_batches": 9,
+      "equivalence_classes": [
+        {
+          "batch_sizes": [
+            1,
+            6
+          ],
+          "matches_b1": true
+        },
+        {
+          "batch_sizes": [
+            2,
+            8
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            3,
+            16,
+            32,
+            48
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            4
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            12
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            24
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            64
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            96
+          ],
+          "matches_b1": false
+        },
+        {
+          "batch_sizes": [
+            128
+          ],
+          "matches_b1": false
+        }
+      ],
+      "min_onset_token": 59,
+      "max_onset_token_uncensored": 183,
+      "within_prompt_censored_onset_range_tokens": 198.0,
+      "within_prompt_uncensored_onset_range_tokens": 124.0,
+      "spearman_rho_batch_vs_censored_onset": -0.2490490677,
+      "b1_min_margin": 0.0,
+      "b1_median_margin": 5.0625,
+      "neighbor_content_control": null,
+      "batches": {
+        "2": {
+          "diverged": true,
+          "onset_token_1indexed": 161,
+          "censored_onset_token": 161,
+          "step1_logit_max_abs_diff_vs_b1": 0.0625,
+          "b1_top1_minus_top2_margin_at_onset": 0.0,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 161,
+            "shared_context_tail": " intervention):\n- The total entropy of the",
+            "b1_token_id": 1849,
+            "b1_token_str": " system",
+            "b1_continuation": " system and its surroundings **increases**",
+            "b_token_id": 15494,
+            "b_token_str": " universe",
+            "b_continuation": " universe (system + surroundings) **incre"
+          }
+        },
+        "3": {
+          "diverged": true,
+          "onset_token_1indexed": 157,
+          "censored_onset_token": 157,
+          "step1_logit_max_abs_diff_vs_b1": 0.2578125,
+          "b1_top1_minus_top2_margin_at_onset": 0.0,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 157,
+            "shared_context_tail": " happens naturally without external intervention):\n- The",
+            "b1_token_id": 2790,
+            "b1_token_str": " total",
+            "b1_continuation": " total entropy of the system and its surroundings",
+            "b_token_id": 3070,
+            "b_token_str": " **",
+            "b_continuation": " **total entropy of the universe (system"
+          }
+        },
+        "4": {
+          "diverged": true,
+          "onset_token_1indexed": 183,
+          "censored_onset_token": 183,
+          "step1_logit_max_abs_diff_vs_b1": 0.2578125,
+          "b1_top1_minus_top2_margin_at_onset": 0.25,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 183,
+            "shared_context_tail": " reversible (like a perfectly efficient machine),",
+            "b1_token_id": 47502,
+            "b1_token_str": " entropy",
+            "b1_continuation": " entropy remains constant.\n- In real,",
+            "b_token_id": 279,
+            "b_token_str": " the",
+            "b_continuation": " the entropy remains constant.\n- In real"
+          }
+        },
+        "6": {
+          "diverged": false,
+          "onset_token_1indexed": null,
+          "censored_onset_token": 257,
+          "step1_logit_max_abs_diff_vs_b1": 0.0625,
+          "b1_top1_minus_top2_margin_at_onset": null,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": null
+        },
+        "8": {
+          "diverged": true,
+          "onset_token_1indexed": 161,
+          "censored_onset_token": 161,
+          "step1_logit_max_abs_diff_vs_b1": 0.0625,
+          "b1_top1_minus_top2_margin_at_onset": 0.0,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 161,
+            "shared_context_tail": " intervention):\n- The total entropy of the",
+            "b1_token_id": 1849,
+            "b1_token_str": " system",
+            "b1_continuation": " system and its surroundings **increases**",
+            "b_token_id": 15494,
+            "b_token_str": " universe",
+            "b_continuation": " universe (system + surroundings) **incre"
+          }
+        },
+        "12": {
+          "diverged": true,
+          "onset_token_1indexed": 161,
+          "censored_onset_token": 161,
+          "step1_logit_max_abs_diff_vs_b1": 0.5,
+          "b1_top1_minus_top2_margin_at_onset": 0.0,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 161,
+            "shared_context_tail": " intervention):\n- The total entropy of the",
+            "b1_token_id": 1849,
+            "b1_token_str": " system",
+            "b1_continuation": " system and its surroundings **increases**",
+            "b_token_id": 15494,
+            "b_token_str": " universe",
+            "b_continuation": " universe (system + surroundings) **incre"
+          }
+        },
+        "16": {
+          "diverged": true,
+          "onset_token_1indexed": 157,
+          "censored_onset_token": 157,
+          "step1_logit_max_abs_diff_vs_b1": 0.375,
+          "b1_top1_minus_top2_margin_at_onset": 0.0,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 157,
+            "shared_context_tail": " happens naturally without external intervention):\n- The",
+            "b1_token_id": 2790,
+            "b1_token_str": " total",
+            "b1_continuation": " total entropy of the system and its surroundings",
+            "b_token_id": 3070,
+            "b_token_str": " **",
+            "b_continuation": " **total entropy of the universe (system"
+          }
+        },
+        "24": {
+          "diverged": true,
+          "onset_token_1indexed": 59,
+          "censored_onset_token": 59,
+          "step1_logit_max_abs_diff_vs_b1": 0.375,
+          "b1_top1_minus_top2_margin_at_onset": 0.25,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 59,
+            "shared_context_tail": " It either increases or remains constant in any",
+            "b1_token_id": 1931,
+            "b1_token_str": " real",
+            "b1_continuation": " real process.**\n\nLet\u2019s break this",
+            "b_token_id": 5042,
+            "b_token_str": " actual",
+            "b_continuation": " actual process.**\n\nLet\u2019s break this"
+          }
+        },
+        "32": {
+          "diverged": true,
+          "onset_token_1indexed": 157,
+          "censored_onset_token": 157,
+          "step1_logit_max_abs_diff_vs_b1": 0.25,
+          "b1_top1_minus_top2_margin_at_onset": 0.0,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 157,
+            "shared_context_tail": " happens naturally without external intervention):\n- The",
+            "b1_token_id": 2790,
+            "b1_token_str": " total",
+            "b1_continuation": " total entropy of the system and its surroundings",
+            "b_token_id": 3070,
+            "b_token_str": " **",
+            "b_continuation": " **total entropy of the universe (system"
+          }
+        },
+        "48": {
+          "diverged": true,
+          "onset_token_1indexed": 157,
+          "censored_onset_token": 157,
+          "step1_logit_max_abs_diff_vs_b1": 0.28125,
+          "b1_top1_minus_top2_margin_at_onset": 0.0,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 157,
+            "shared_context_tail": " happens naturally without external intervention):\n- The",
+            "b1_token_id": 2790,
+            "b1_token_str": " total",
+            "b1_continuation": " total entropy of the system and its surroundings",
+            "b_token_id": 3070,
+            "b_token_str": " **",
+            "b_continuation": " **total entropy of the universe (system"
+          }
+        },
+        "64": {
+          "diverged": true,
+          "onset_token_1indexed": 75,
+          "censored_onset_token": 75,
+          "step1_logit_max_abs_diff_vs_b1": 0.2880859375,
+          "b1_top1_minus_top2_margin_at_onset": 0.25,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 75,
+            "shared_context_tail": " down:\n\n### 1. **Entropy",
+            "b1_token_id": 1019,
+            "b1_token_str": "**\n",
+            "b1_continuation": "**\n- Entropy is a measure of",
+            "b_token_id": 320,
+            "b_token_str": " (",
+            "b_continuation": " (S)**\nEntropy is a measure"
+          }
+        },
+        "96": {
+          "diverged": true,
+          "onset_token_1indexed": 183,
+          "censored_onset_token": 183,
+          "step1_logit_max_abs_diff_vs_b1": 0.28125,
+          "b1_top1_minus_top2_margin_at_onset": 0.25,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 183,
+            "shared_context_tail": " reversible (like a perfectly efficient machine),",
+            "b1_token_id": 47502,
+            "b1_token_str": " entropy",
+            "b1_continuation": " entropy remains constant.\n- In real,",
+            "b_token_id": 279,
+            "b_token_str": " the",
+            "b_continuation": " the entropy remains constant.\n- In real"
+          }
+        },
+        "128": {
+          "diverged": true,
+          "onset_token_1indexed": 161,
+          "censored_onset_token": 161,
+          "step1_logit_max_abs_diff_vs_b1": 0.3125,
+          "b1_top1_minus_top2_margin_at_onset": 0.0,
+          "intra_batch_unique_sequences": 1,
+          "divergence_snippet": {
+            "onset_token_1indexed": 161,
+            "shared_context_tail": " intervention):\n- The total entropy of the",
+            "b1_token_id": 1849,
+            "b1_token_str": " system",
+            "b1_continuation": " system and its surroundings **increases**",
+            "b_token_id": 15494,
+            "b_token_str": " universe",
+            "b_continuation": " universe (system + surroundings) **incre"
+          }
+        }
+      }
+    }
+  },
+  "fidelity": {
+    "all_run_to_run_deterministic": true,
+    "matmul_noninvariance_and_kv_equivalence_verified": true,
+    "minimum_signal_prompts_met": true,
+    "passed": true
+  },
+  "verdict": {
+    "value": "falsified",
+    "reason": "batch-to-prompt variance ratio was below 0.25 (dominated by prompt near-ties)",
+    "hypothesis_supported": false,
+    "hypothesis_falsified": true,
+    "result_inconclusive": false
+  }
+}

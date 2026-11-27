@@ -1,0 +1,10 @@
+{
+  "completed_at": "2026-11-26T23:17:37.355742+00:00",
+  "torch_mm_fp32_max_abs_diff": 1406.75,
+  "torch_mm_fp32_repeat_diff": 0.0,
+  "torch_mm_bf16_max_abs_diff": 8192.0,
+  "torch_mm_bf16_repeat_diff": 0.0,
+  "kv_loop_matches_hf_generate": true,
+  "toy_decoded_preview": "One, two, three, four, five.<|im_end|>\n<|im_end|>\n<|endoftext|>Human",
+  "elapsed_seconds": 1.965
+}

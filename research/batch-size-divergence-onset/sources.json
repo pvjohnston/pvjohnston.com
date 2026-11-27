@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "name": "He and Thinking Machines Lab article on LLM inference nondeterminism",
+      "url": "https://thinkingmachines.ai/blog/defeating-nondeterminism-in-llm-inference/",
+      "version": "2025-09-10; DOI 10.64434/tml.20250910",
+      "accessed": "2026-07-16",
+      "license": "Published research blog article; cited via bibliography.bib",
+      "acquisition": "Retrieve via DOI 10.64434/tml.20250910 or the Thinking Machines Lab URL.",
+      "committed": false,
+      "exclusion_reason": "External literature reference; cited as @He2025Nondeterminism."
+    },
+    {
+      "name": "Qwen/Qwen3-4B-Instruct-2507 model weights and tokenizer",
+      "url": "https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507",
+      "version": "Hugging Face Hub snapshot commit recorded in runs/environment_colab.json during canonical execution",
+      "accessed": "2026-11-26",
+      "license": "Apache-2.0",
+      "acquisition": "Downloaded automatically on Colab via transformers AutoModelForCausalLM / AutoTokenizer. Exact Hub commit SHA is recorded in runs/environment_colab.json.",
+      "committed": false,
+      "exclusion_reason": "8 GB bfloat16 model checkpoint is retrieved from Hugging Face Hub rather than stored in Git."
+    }
+  ]
+}

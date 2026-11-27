@@ -1,0 +1,27 @@
+# One repository-relative path per line. This allowlist contains only reviewed
+# reader-facing inputs, code, canonical results, and the raw per-prompt JSON
+# run records required to regenerate the analysis and Figure 1.
+LICENSE
+research/metrics.schema.json
+research/batch-size-divergence-onset/README.md
+research/batch-size-divergence-onset/PREREGISTRATION.md
+research/batch-size-divergence-onset/inputs.json
+research/batch-size-divergence-onset/analyze_divergence.py
+research/batch-size-divergence-onset/run_colab_batch_divergence.py
+research/batch-size-divergence-onset/colab_runner.ipynb
+research/batch-size-divergence-onset/make-figure.py
+research/batch-size-divergence-onset/results.json
+research/batch-size-divergence-onset/generate-metrics.mjs
+research/batch-size-divergence-onset/metrics.json
+research/batch-size-divergence-onset/sources.json
+research/batch-size-divergence-onset/environment.md
+research/batch-size-divergence-onset/runs/environment_colab.json
+research/batch-size-divergence-onset/runs/smoke_and_mm_check.json
+research/batch-size-divergence-onset/runs/P1_feynman.json
+research/batch-size-divergence-onset/runs/P2_noether.json
+research/batch-size-divergence-onset/runs/P3_lavoisier.json
+research/batch-size-divergence-onset/runs/P4_turing.json
+research/batch-size-divergence-onset/runs/P5_curie.json
+research/batch-size-divergence-onset/runs/P6_boltzmann.json
+research/batch-size-divergence-onset/runs/P7_maxwell.json
+research/batch-size-divergence-onset/runs/P8_thermodynamics.json

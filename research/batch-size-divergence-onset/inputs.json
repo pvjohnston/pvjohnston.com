@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "experiment": "batch-size-divergence-onset",
+  "source": {
+    "doi": "10.64434/tml.20250910",
+    "title": "Defeating Nondeterminism in LLM Inference",
+    "authors": [
+      "Horace He",
+      "Thinking Machines Lab"
+    ],
+    "url": "https://thinkingmachines.ai/blog/defeating-nondeterminism-in-llm-inference/"
+  },
+  "conditions": {
+    "model_id": "Qwen/Qwen3-4B-Instruct-2507",
+    "dtype": "bfloat16",
+    "max_new_tokens": 256,
+    "censored_onset_value": 257,
+    "batch_sizes": [1, 2, 3, 4, 6, 8, 12, 16, 24, 32, 48, 64, 96, 128],
+    "determinism_check_batch_sizes": [1, 32],
+    "neighbor_content_control_batch_sizes": [8, 32],
+    "mm_check_b": 2048,
+    "mm_check_d": 4096
+  },
+  "decision": {
+    "min_diverging_prompts": 4,
+    "min_median_within_prompt_onset_range_tokens": 5.0,
+    "min_batch_to_prompt_variance_ratio": 0.25
+  },
+  "prompts": [
+    {
+      "id": "P1_feynman",
+      "label": "Richard Feynman",
+      "text": "Tell me about Richard Feynman",
+      "source_anchor": true
+    },
+    {
+      "id": "P2_noether",
+      "label": "Emmy Noether",
+      "text": "Tell me about Emmy Noether",
+      "source_anchor": false
+    },
+    {
+      "id": "P3_lavoisier",
+      "label": "Antoine Lavoisier",
+      "text": "Tell me about Antoine Lavoisier",
+      "source_anchor": false
+    },
+    {
+      "id": "P4_turing",
+      "label": "Alan Turing",
+      "text": "Tell me about Alan Turing",
+      "source_anchor": false
+    },
+    {
+      "id": "P5_curie",
+      "label": "Marie Curie",
+      "text": "Tell me about Marie Curie",
+      "source_anchor": false
+    },
+    {
+      "id": "P6_boltzmann",
+      "label": "Ludwig Boltzmann",
+      "text": "Tell me about Ludwig Boltzmann",
+      "source_anchor": false
+    },
+    {
+      "id": "P7_maxwell",
+      "label": "Maxwell's equations",
+      "text": "Explain Maxwell's equations and their physical meaning",
+      "source_anchor": false
+    },
+    {
+      "id": "P8_thermodynamics",
+      "label": "Second law",
+      "text": "Explain the second law of thermodynamics",
+      "source_anchor": false
+    }
+  ]
+}
