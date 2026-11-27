@@ -1,0 +1,39 @@
+{
+  "recorded_at": "2026-11-26T23:17:35.185450+00:00",
+  "python": "3.13.16",
+  "platform": "Linux-6.6.159+-x86_64-with-glibc2.39",
+  "machine": "x86_64",
+  "git_head": "483ef01a099484fc42592b82483086c70afdc392",
+  "gpu_name": "NVIDIA L4",
+  "gpu_compute_capability": "8.9",
+  "gpu_multi_processor_count": 58,
+  "gpu_total_memory_mib": 22563.1,
+  "cuda_runtime_version": "13.0",
+  "cudnn_version": 92800,
+  "torch_backends": {
+    "matmul_allow_tf32": false,
+    "cudnn_allow_tf32": true,
+    "flash_sdp_enabled": true,
+    "mem_efficient_sdp_enabled": true,
+    "math_sdp_enabled": true
+  },
+  "model_id": "Qwen/Qwen3-4B-Instruct-2507",
+  "model_hub_commit_sha": null,
+  "attn_implementation": "sdpa",
+  "nvidia_smi": "Thu Nov 26 23:17:35 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 580.82.07              Driver Version: 580.82.07      CUDA Version: 13.0     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA L4                      Off |   00000000:00:03.0 Off |                    0 |\n| N/A   37C    P0             28W /   72W |    7870MiB /  23034MiB |      0%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|    0   N/A  N/A            3576      C   python3                                7862MiB |\n+-----------------------------------------------------------------------------------------+",
+  "lscpu": "Architecture:                            x86_64\nCPU op-mode(s):                          32-bit, 64-bit\nAddress sizes:                           46 bits physical, 48 bits virtual\nByte Order:                              Little Endian\nCPU(s):                                  12\nOn-line CPU(s) list:                     0-11\nVendor ID:                               GenuineIntel\nModel name:                              Intel(R) Xeon(R) CPU @ 2.20GHz\nCPU family:                              6\nModel:                                   85\nThread(s) per core:                      2\nCore(s) per socket:                      6\nSocket(s):                               1\nStepping:                                7\nBogoMIPS:                                4400.31\nFlags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch ssbd ibrs ibpb stibp ibrs_enhanced fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves arat avx512_vnni md_clear arch_capabilities\nHypervisor vendor:                       KVM\nVirtualization type:                     full\nL1d cache:                               192 KiB (6 instances)\nL1i cache:                               192 KiB (6 instances)\nL2 cache:                                6 MiB (6 instances)\nL3 cache:                                38.5 MiB (1 instance)\nNUMA node(s):                            1\nNUMA node0 CPU(s):                       0-11\nVulnerability Gather data sampling:      Not affected\nVulnerability Indirect target selection: Vulnerable\nVulnerability Itlb multihit:             Not affected\nVulnerability L1tf:                      Not affected\nVulnerability Mds:                       Not affected\nVulnerability Meltdown:                  Not affected\nVulnerability Mmio stale data:           Vulnerable\nVulnerability Reg file data sampling:    Not affected\nVulnerability Retbleed:                  Vulnerable\nVulnerability Spec rstack overflow:      Not affected\nVulnerability Spec store bypass:         Vulnerable\nVulnerability Spectre v1:                Vulnerable: __user pointer sanitization and usercopy barriers only; no swapgs barriers\nVulnerability Spectre v2:                Vulnerable; IBPB: disabled; STIBP: disabled; PBRSB-eIBRS: Vulnerable; BHI: Vulnerable\nVulnerability Srbds:                     Not affected\nVulnerability Tsa:                       Not affected\nVulnerability Tsx async abort:           Vulnerable\nVulnerability Vmscape:                   Not affected",
+  "packages": {
+    "torch": "2.14.1+cu130",
+    "transformers": "5.24.1",
+    "accelerate": "1.16.0",
+    "tokenizers": "0.23.3",
+    "safetensors": "0.8.0",
+    "numpy": "2.4.6"
+  },
+  "frozen_sha256": {
+    "PREREGISTRATION.md": "03a4aec4c2a52a7705b35bff20d3f78c9e9730fea04b6ed2c08b9b35d5ae2e29",
+    "inputs.json": "d54fb35c5701079d89c3bb98af9b0b503eba5e62b2b341de7eaddb0a899ac9f4",
+    "run_colab_batch_divergence.py": "ad192dcca0e88ab5a152c9d10a9cae087348ebadc69c501534088b660a0ff7ae",
+    "analyze_divergence.py": "50dfbff01c564b0ac58936a456c0d82cf7061b9e5df8c1b5cf778cbcbf039354"
+  }
+}

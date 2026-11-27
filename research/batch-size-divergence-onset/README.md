@@ -16,18 +16,41 @@ Horace He and Thinking Machines Lab's *Defeating Nondeterminism in LLM Inference
 - Research falsifier: [PREREGISTRATION.md](PREREGISTRATION.md) — falsified if
   median within-prompt onset range across `B >= 2` is `< 5` tokens or
   `Var_B / Var_p < 0.25`.
-- Traceability: not yet established (awaiting canonical Colab GPU run)
-- Highest reproduction level: none yet
+- Verdict: **falsified** — all 8 prompts diverged from `B = 1` within 256 tokens
+  (producing 4 to 14 distinct completions per prompt), and within-prompt onset
+  ranges spanned a median of 196.5 censored / 122.0 uncensored tokens across
+  discrete kernel regimes, yet batch-size main effects accounted for only `4.7%`
+  of variance against `49.5%` for prompt identity (`Var_B / Var_p = 0.094 < 0.25`)
+  and `45.8%` for prompt-by-kernel interaction.
+- What this experiment can establish: token-divergence onset across `B in 1..128`
+  in unpadded `bfloat16` PyTorch SDPA inference on NVIDIA L4 (`SM 8.9`), step-1
+  logit drift, `B = 1` top-1/top-2 margins at flip steps, and invariance of slot
+  `0` to co-batched token identities at fixed sequence length.
+- What it cannot establish: continuous-batching ragged-prefix chunking in vLLM
+  or SGLang, multi-GPU tensor-parallel all-reduce effects, or `Qwen3-235B` MoE
+  routing flips.
+- Traceability: traceable
+- Highest reproduction level: analysis-reproducible locally from committed JSON
+  run records (`runs/*.json`), and end-to-end reproducible on an NVIDIA L4 GPU
+  with CUDA 13.0 and PyTorch `2.14.1+cu130`.
 
-## Stage 1: Preflight check (local, no GPU required)
+## Regenerate analysis, metrics, and Figure 1 locally (no GPU required)
 
 ```sh
 python3 research/batch-size-divergence-onset/analyze_divergence.py --preflight
+python3 research/batch-size-divergence-onset/analyze_divergence.py --analyze
+python3 research/batch-size-divergence-onset/analyze_divergence.py --check
+node research/batch-size-divergence-onset/generate-metrics.mjs
+node research/batch-size-divergence-onset/generate-metrics.mjs --check
+node scripts/verify-metrics.mjs
+python3 research/batch-size-divergence-onset/make-figure.py
+python3 research/batch-size-divergence-onset/make-figure.py --check
 ```
 
-## Stage 2: GPU sweep (Google Colab L4 or A100)
+## Data and publication
 
-Open `colab_runner.ipynb` on Google Colab (`L4` or `A100` GPU) to run the smoke
-test (`torch.mm` batch non-invariance + `model.generate` equivalence) and sweep
-all 8 prompts across `B = 1..128`, checkpointing each prompt to Google Drive and
-packaging `batch_size_divergence_colab_artifacts.tar.gz`.
+`PUBLIC_FILES.txt` routes all reviewed inputs, scripts, `results.json`,
+`metrics.json`, `runs/environment_colab.json`, `runs/smoke_and_mm_check.json`,
+and all eight per-prompt `runs/P*.json` records onto the live site. The 8 GB
+Apache-2.0 `Qwen/Qwen3-4B-Instruct-2507` checkpoint is fetched from Hugging Face
+Hub (`sources.json`) rather than stored in Git.

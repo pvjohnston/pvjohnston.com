@@ -63,7 +63,39 @@ Format:
   which the source asserts a mechanism for but never measures
 - **Falsifier:** onset is flat in batch size, or dominated by prompt rather than batch
 - **Blocked on:** a GPU. Rentable; not owned. Do not report as first-hand without one.
-- **Status:** running — protocol frozen in `research/batch-size-divergence-onset/PREREGISTRATION.md` (`Qwen/Qwen3-4B-Instruct-2507` in `bfloat16`, 8 prompts × 14 batch sizes `B = 1..128` on Colab GPU)
+- **Status:** published —
+  `/posts/2026-11-26-batch-size-divergence-onset.html`
+  (Colab NVIDIA L4 `bfloat16` sweep 2026-11-26 on `Qwen/Qwen3-4B-Instruct-2507`
+  across 8 prompts × 14 batch sizes `B = 1..128` under frozen
+  `research/batch-size-divergence-onset/PREREGISTRATION.md`). Registered
+  batch-graded onset hypothesis **falsified**: all 8/8 prompts diverged from
+  `B = 1` within 256 tokens (4–14 unique completions per prompt; 7/8 already
+  diverge at `B = 2` with mean censored onset 143.8 vs 148.1 at `B = 128`), and
+  batch-size main effects explain 4.7% of onset variance vs 49.5% for prompt
+  identity (`Var_B / Var_p = 0.094 < 0.25`) and 45.8% for prompt-by-kernel
+  interaction. Every flip occurred at a `B = 1` greedy margin <= 0.50 logit
+  units (median 0.125, vs 6.06 at non-flipping steps), and replacing batchmates'
+  tokens at fixed length changed slot 0 logits by 0.0.
+
+## Does Mixture-of-Experts top-k routing amplify batch-size logit drift above the dense ceiling?
+- **Observed:** Next step from `/posts/2026-11-26-batch-size-divergence-onset.html`.
+  On dense `Qwen/Qwen3-4B-Instruct-2507`, `bfloat16` prefill step-1 logit drift
+  across `B = 2..128` capped at `0.50` logit units (`2-4` ulps) and only flipped
+  tokens whose `B = 1` top-two margin was `<= 0.50` (median `0.125`). He &
+  Thinking Machines Lab's benchmark used `Qwen3-235B-A22B-Instruct-2507`, a
+  sparse MoE where a 1-ulp router tie can swap an entire expert MLP inside step
+  `t` before `argmax`.
+- **Source:** own next step; He & Thinking Machines Lab (2025)
+- **Type:** untested regime
+- **Contribution (candidate):** a matched `8 x 14` batch-size sweep on sparse
+  `Qwen/Qwen3-30B-A3B-Instruct-2507` testing whether internal MoE expert-gate
+  flips produce step-1 logit drift and flip margins materially exceeding the
+  dense `0.50`-unit ceiling
+- **Falsifier:** `Qwen3-30B-A3B` step-1 logit drift and maximum flipped `B = 1`
+  margin stay within the same `~0.5` logit-unit regime as dense `Qwen3-4B` →
+  MoE routing ties are rare enough within 256 tokens that `argmax` remains the
+  primary discretizer
+- **Status:** observation — fits on an 80 GB A100 Colab runtime in `bfloat16`
 
 ## SIREN's underperformance in Villatoro et al. may be an initialization artifact
 - **Observed:** §2.3.2 records that "the official SIREN Python implementation's
